@@ -446,7 +446,10 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
         })
         _.uniq($scope.nameList,name);
         console.log('namelist',$scope.nameList);
-        $scope.popover.show($event);
+        if($scope.nameList.length>0){
+            $scope.popover.show($event);
+        }
+
     };
 
     $scope.namePopupSelect=function(name){
