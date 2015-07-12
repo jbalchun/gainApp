@@ -1,0 +1,21 @@
+<ion-view ng-controller="NavCtrl" ng-class="{true:'blurBackground'}[blurFlag]">
+    <ion-tabs class="tabs-icon" style="border-top:none">
+
+        <ion-tab title="Lifts" icon="icon ion-clipboard" href="#/tab/posts" ng-click="posts()">
+            <ion-nav-view name="tab-posts"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Calendar" icon="icon ion-calendar" href="#/tab/calendar" ng-click="calendar()">
+            <ion-nav-view name="tab-calendar"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Data" icon="icon ion-arrow-graph-up-right" href="#/tab/charts" ng-click="charts()">
+            <ion-nav-view name="tab-charts"></ion-nav-view>
+        </ion-tab>
+
+        <ion-tab title="Timer" icon="icon ion-clock" href="#/tab/timer" ng-click="timerNav()">
+            <ion-nav-view name="tab-timer"></ion-nav-view>
+        </ion-tab>
+
+    </ion-tabs>
+</ion-view>

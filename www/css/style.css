@@ -1,0 +1,571 @@
+/* Empty. Add your own CSS if you like */
+/* Empty. Add your own CSS if you like */
+
+/* Styles go here */
+
+
+
+/*@font-face {*/
+    /*font-family: myFirstFont;*/
+    /*src: url(sansation_light.woff);*/
+/*}*/
+
+
+#imagecontainer {
+    position: absolute;
+    top: 3%;
+    left: 0;
+    right: 62%;
+    bottom: 50%;
+}
+
+.liftSearchButtons {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    font-size: .8em;
+}
+
+.scrollbox {
+
+    padding-top: 0px;
+
+}
+
+.padding {
+    padding-top: 20px;
+}
+
+.activeLift {
+    background-color: rgba(0, 100, 255, 0.5);
+}
+
+.list-inset {
+    padding-right: 10px;
+}
+
+/*.addRemove{*/
+/*position: relative;*/
+/*top:100%;*/
+/*transform: translateY(60%);*/
+/*}*/
+.animate-enter,
+.animate-leave {
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+}
+
+/*.animate-enter.animate-enter-active,*/
+/*.animate-leave {*/
+/*opacity: 1;*/
+/*top: 0;*/
+/*height: 30px;*/
+/*}*/
+
+/*.stats{*/
+/*float:right;*/
+/*}*/
+
+body {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+
+
+.my-item {
+    left: 0;
+    right: 0;
+}
+
+.list .item-content .reorder-adjusted {
+    display: inline-block;
+    -webkit-transition-duration: 250ms;
+    transition-duration: 250ms;
+    -webkit-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    transition-property: transform;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.list.list-right-editing .item-content .reorder-adjusted {
+    -webkit-transform: translate3d(50px, 0, 0);
+    transform: translate3d(50px, 0, 0);
+}
+
+.transparent {
+    background: transparent !important;
+}
+
+.blurBackground {
+    -webkit-filter: blur(3px);
+}
+
+.list .item.item-accordion {
+    line-height: 38px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom:none;
+    transition: 0.09s all linear;
+}
+
+.item-stable.no-back{
+    border-bottom:none;
+}
+
+.list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+
+.setInput {
+    width: 15%;
+    float: left;
+    /*border: none;*/
+    padding: 1px;
+    display: inline-block;
+    color: blue;
+    font-size: 20px;
+
+}
+
+.repInput {
+    width: 10%;
+    float: left;
+    /*border: none;*/
+    padding: 1px;
+    display: inline-block;
+    color: red;
+    font-size: 26px;
+
+}
+
+.multiplier {
+    width: 15px;
+    float: left;
+    /*border: none;*/
+    padding: 1px;
+    display: inline-block;
+    color: red;
+    font-size: 25px;
+
+}
+
+.repWeight {
+
+    vertical-align: bottom;
+}
+
+.sets {
+    vertical-align: bottom;
+}
+
+.reps {
+
+    vertical-align: bottom;
+
+}
+
+.item-content {
+    padding: 4px !important;
+}
+
+.month-divider {
+    background-color: #444444;
+    color:#ffffff;
+}
+.month-divider-odd {
+    background-color: #8b8b8b;
+    color:#ffffff;
+}
+
+input[type="tel"].setInput {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-size: 28px;
+
+}
+
+.pane {
+    background-color: #e8e8e8;
+}
+.plusMinus {
+    font-size: 1.5em;
+    padding-left: 0px;
+
+}
+.plusMinusGoal {
+    font-size: 1.1em;
+    padding: 0;
+    width:44px;
+    margin:0;
+    width:5px;
+
+}
+.bigGoal {
+    font-size: 1.7em;
+    padding: 0px;
+    margin: 0px;
+}
+
+.button.liftSearchButtonSmall  {
+    font-size: 1em;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+.liftSearchButtonSmall  {
+    font-size: 1em;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+
+.button.liftListButton  {
+    font-size: 12px;
+}
+
+.item.lift-list{
+    height: 15%;
+}
+
+.popup-buttons.button:last-child {
+    border-color: #111;
+    background-color: #444;
+    color: #fff;
+}
+
+.button.liftNameButton{
+    font-size: 13px;
+    padding-right: 0px;
+    background-color: #ff512e;
+    color:#ff512e;
+
+}
+
+
+
+.timerMinus{
+    color :#ef473a;
+}
+
+.timerPlus{
+    color :#33cd5f;
+}
+
+/*.popup-buttons*/
+/*.button:last-child*/
+/*.button:first-child*/
+.popup-buttons .button:last-child{
+    background-color: #444444;
+    border-color:#444444;
+}
+
+.searchIcon{
+   color:#00933B;
+    /*padding-right: 5%; click was missing*/
+}
+
+.liftSelectEntry{
+    color:#387ef5;
+}
+
+
+input[type="tel"].bodyWtInput {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-size: 1em;
+
+}
+
+input[type="text"].workoutNameInput {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-size: 1em;
+
+}
+
+.goal{
+    color:darkgreen;
+}
+
+.chartSwitch{
+    color: red;
+}
+
+.goal-a{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+
+}
+
+.resultText{
+    color:#999797;
+}
+
+.weightcard{
+    background-color: #e8e8e8;
+}
+
+.item-stable.border-top-cal{
+    border-top:black;
+    border-top:thin;
+}
+
+.color-header {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 3px !important;
+    color: #444444;
+}
+
+.color-header2 {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 3px !important;
+    color: #444444;
+
+}
+
+.item.item-divider.color-header:first-child {
+    background-color: #444444;
+}
+
+.item.item-divider.color-header2:first-child {
+    background-color: #8b8b8b;
+}
+
+.borderless {
+    border-top: none !important;
+}
+
+.stop{
+    background-color:#ef473a;
+    color:#ef473a;
+}
+
+.start{
+    background-color :#33cd5f;
+    color :#33cd5f;
+}
+
+.button.button-clear.timerButtonSmall{
+    font-size: 1.2em;
+    padding-left: 1px;
+    padding-right: 1px;
+
+}
+
+.button.button-outline.first{
+
+}
+.button.button-outline.middle{
+    background-color :#33cd5f;
+    color :#33cd5f;
+}
+.button.button-outline.end{
+    background-color :#33cd5f;
+    color :#33cd5f;
+}
+
+
+.bar-footer.weightSelect{
+    height:200px;
+}
+
+.fixed-outside{
+    position: absolute;
+    bottom: 0;
+    background: #444444;
+    color:white;
+    width: 100%;
+    height: 150px;
+    text-align:center;
+}
+
+.has-bottom{
+    bottom:200px !important;
+}
+
+
+.fixed-outside2{
+    position: absolute;
+    bottom: 0;
+    background: #444444;
+    color:white;
+    width: 100%;
+    height: 200px;
+    text-align:center;
+}
+
+.has-bottom2{
+    bottom:200px !important;
+}
+
+
+::-webkit-input-placeholder {
+    text-align: center;
+    color:#387ef5;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+    color:#387ef5;
+    opacity:  1;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;
+    color:#387ef5;
+    opacity:  1;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+    color:#387ef5;
+}
+
+input, input[placeholder]{
+    font-weight:bold;
+    color:#387ef5;
+    text-align:center;
+
+}
+
+.bottom-only{
+    border-left:none;
+    border-top:none;
+    border-right:none;
+}
+
+.active.selected{
+    color:red;
+}
+
+.my-button,
+.my-button:before{
+    font-size:36px;
+}
+
+ion-delete-button.button{
+    font-size:12px;
+    background: transparent;
+    color : #111;
+}
+
+i.your-class.ion-minus-circled {
+    font-size: 5px;
+}
+
+button.ion-minus-circled:before {
+    font-size: 5px !important;
+}
+
+.remove-lift{
+    color:#ef473a;
+}
+
+.button.button-selected-lift{
+    color:#387ef5;
+
+}
+
+.button.button-positive.button-noborder{
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #387ef5; }
+
+.button.weight-pad{
+    margin-left:12px;
+}
+
+.button.button-positive.button-highlight{
+   color:#444;
+}
+.button.button-positive.button-row1.button-highlight{
+    color:#444;
+}
+.button.button-positive.button-row3.button-highlight{
+    color:#444;
+}
+
+.button.button-positive.button-row1{
+    color:#74A5F8;
+}
+
+.button.button-positive.button-row3{
+    color:#3271DC;
+}
+.button.button-dark.button-filter{
+    color:#387ef5;
+}
+.liftday{
+    background-color:#8b8b8b;
+}
+
+
+
+
+
+/*.progress-bar {*/
+/*background: #191919;*/
+/*height: 120px;*/
+/*margin-bottom: 1em;*/
+/*border-radius: 2px;*/
+/*overflow: hidden; }*/
+
+/*.progress {*/
+/*background: #444;*/
+/*height: 100%;*/
+/*max-width: 100% !important; }*/
+
+
+/*progress {*/
+/*display: block;*/
+/*margin: 15px auto;*/
+/*width: 100%; }*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*::-webkit-input-placeholder {*/
+/*color: red;*/
+/*}*/
+
+/*.evenSet{*/
+/*color:red;*/
+/*}*/
+
+/*.scrollbox{*/
+/*height: 30%;*/
+
+/*}*/
+

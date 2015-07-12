@@ -1,0 +1,69 @@
+<ion-view class="transparent">
+
+    <ion-content class="has-header has-subheader">
+        <div class="card">
+            <div class="item item-divider month-divider" >
+                Done Lifting? Enter workout details
+            </div>
+        <ion-item class="col col-offset-5" style="width:100%">
+
+            <!--<input type="text" class="workoutNameInput col col-55" ng-model="workoutName.name" placeholder="Workout Name" maxlength="10">-->
+            <!--<a class=" button-dark col col-33 liftSearchButtonSmall button-clear icon ion-ios-search" ></a>-->
+            <div class="item item-input-inset  ">
+                <label class="item-input-wrapper">
+                    <input ng-model="workoutName.name" type="text" placeholder="Workout Name" maxlength="15">
+                </label>
+                <button class="button button-small button-clear button-dark icon ion-ios-search"
+                        ng-click="namePopupSubmit($event)">
+                </button>
+            </div>
+
+            <div class="item item-input-inset col col-100">
+                <label class="item-input-wrapper">
+                    <input type="text" ng-model="bodyWeight.wt" placeholder="Body Weight" maxlength="3">
+                </label>
+
+            </div>
+
+            <div class="item item-input-inset col col-100">
+                <label class="item-input-wrapper">
+                    <input ng-model="notes.notes" type="text" placeholder="Notes" maxlength="140">
+                </label>
+
+            </div>
+
+            <!--<div class=" button-bar bar-dark" style="background-color:#ffffff; margin-top:3px; ">-->
+                <!--<a on-hold="clearHold('month')"  class="button button-clear button-dark col " ng-click="datePopup($event,'Month')" style="width:3em">-->
+                    <!--{{dateObj['Month']}}-->
+                <!--</a>-->
+
+                <!--<a on-hold="clearHold('day')"  class="button button-clear button-dark col" ng-click="datePopup($event,'Day')" style="width:3em">-->
+                    <!--{{dateObj['Day']}}-->
+                <!--</a>-->
+                <!--<a on-hold="clearHold('year')"  class="button button-clear button-dark col" ng-click="datePopup($event,'Year')" style="width:3em float:right;">-->
+                    <!--{{dateObj['Year']}}-->
+                <!--</a>-->
+
+            <!--</div>-->
+
+            <div class="col" style="margin-left:18%">
+                <button  style="padding-left: 30px;padding-right: 30px" class="button button-outline button-dark" ng-click="closeModal(0,0,5)">
+                    Cancel
+                </button>
+                <button style="padding-left: 35px;padding-right: 35px" class="button  button-dark" ng-click="closeModal(1,1,5)">
+                    Done
+                </button>
+            </div>
+        </ion-item>
+
+        </div>
+
+    </ion-content>
+</ion-view>
+<!--<ion-item>-->
+<!--<div><input style="border-top:thick;" type="tel" class="bodyWtInput" ng-model="bodyWeight.wt" placeholder="Body Weight" maxlength="3"></div>-->
+<!--</ion-item>-->
+
+<!--<ion-item>-->
+<!--<div><input type="text" class="notesInput" ng-model="notes.notes" placeholder="Notes" maxlength="140"></div>-->
+<!--</ion-item>-->

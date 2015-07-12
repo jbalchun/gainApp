@@ -1,0 +1,90 @@
+<ion-view ng-controller="liftcontrol" ng-class="{true:'blurBackground'}[blurFlag]" title="Today's Lifts">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-trash-b" style='font-size: .8em' ng-click="clearLifts()">
+
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
+
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-footer" has-header="true" ng-click="outRemove()">
+        <div>
+            <!--<div class="row">-->
+            <!--<ion-scroll class="scrollbox" zooming="true" direction="xy" style="height: 400px">-->
+            <!--<div class="card" collection-repeat="lift in liftCards" collection-item-width="'100%'" collection-item-height="60" ng-style="{height: getItemHeight(item, $index), left: 0, right: 0}">-->
+            <div class="list card">
+                <div class="item item-divider color-header">
+                </div>
+
+                <ion-list show-delete="removeFlag">
+                    <span class="reorder-adjusted"></span>
+
+                    <ion-item on-hold="lift.super = !lift.super" class="item  item-remove-animate no-padding borderless" ng-repeat="lift in liftCards track by $index"
+                              href="#/lift/{{lift.name}}">
+                        <div ng-if="$index != 0 && lift.super == true" class="item item-divider color-header2">
+                        </div>
+                        <div class="liftNameButton">
+                            <button class="button button-clear button-positive button-text-wrap liftNameButton"
+                                    ng-click="openModal(lift.name, $index,0,1)">
+                                {{lift.name}}
+                            </button>
+                            <button class="button button-clear button-balanced plusMinus" ng-class="{'active':lift.sets[0].reps == 0 && lift.sets[0].wt==0}" ng-click="addSet($index)"
+                                    style="float:right;"> +
+                            </button>
+                            <button class="button button-clear button-assertive plusMinus" ng-class="{'active':lift.sets[0].reps == 0 && lift.sets[0].wt==0 || lift.sets.length ==1}" ng-click="removeSet($index)"
+                                    style="float:right;">-
+                            </button>
+
+                        </div>
+                        <div ng-if="lift.sets[0].reps == 0 && lift.sets[0].wt==0">
+                        <button ng-class="{'active':lift.name =='Select Lift'}" class="button button-clear button-positive button-text-wrap liftNameButton"
+                                 ng-click="openModal(lift.name, $index,0,2)" style="float:left;">
+                            Add Weight
+                        </button>
+                        </div>
+                        <div ng-repeat="set in lift.sets track by $index" ng-if="lift.sets[0].reps != 0 || lift.sets[0].wt!=0">
+                            <button class="button button-clear button-positive button-text-wrap liftNameButton"
+                                    on-hold="openModal(lift.name,$parent.$parent.$index,$index,2,true)" ng-click="openModal(lift.name,$parent.$parent.$index,$index,2)" style="float:left;">
+                                {{set.reps +'x' + set.wt}}
+                            </button>
+
+                        </div>
+
+                        <button class="button button-clear button-positive button-text-wrap icon ion-arrow-graph-up-right" ng-class="{'active':lift.name =='Select Lift' || lift.sets[0].reps == 0 && lift.sets[0].wt==0}"
+                                style="float:right;" ng-click="openModal(lift.name, $index,0,4)">
+                        </button>
+                        <button class="button button-clear button-positive button-text-wrap icon ion-ios-timer-outline" ng-class="{'active':lift.name =='Select Lift' || lift.sets[0].reps == 0 && lift.sets[0].wt==0}"
+                                style="float:right;" ng-click="historyPop($index)">
+                        </button>
+                        <ion-delete-button class="ion-minus-circled"
+                                           ng-click="removeLiftRow($index)" style="float:left; size:1em;">
+                        </ion-delete-button>
+                    </ion-item>
+
+
+                </ion-list>
+            </div>
+        </div>
+        <div ng-click="removeFlag = !removeFlag;"></div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-dark" style="border-bottom: none">
+        <div class="button-bar">
+            <a ng-class="" ng-class="{'active': removeFlag == true}" ng-click="removeLift()" type="button" class="button button-assertive button-clear"
+               style="border-left:none; border-top:none;border-bottom:none;font-size: 25px;">-</a>
+
+            <a ng-class="" ng-click="showConfirm()" type="button" class="button icon ion-android-done"
+               style="border-top:none;border-bottom:none;">  </a>
+            <!--<a ng-class="{'active': reorderFlag == true}" ng-click="reorderFlag = !reorderFlag;" type="button" class="button">Reorder Lifts</a>-->
+            <a type="button " ng-click="addLift()"
+               class="button button-balanced button-clear " style="border-color:black;border-top:none;border-bottom:none;border-right:none;font-size: 25px;">+</a>
+        </div>
+
+    </ion-footer-bar>
+
+
+    </div>
+
+</ion-view>
+

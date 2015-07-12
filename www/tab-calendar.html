@@ -1,0 +1,78 @@
+<ion-view title="Calendar" ng-controller="calendarcontrol">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-ios-refresh-outline"
+                ng-click="clearAll()">
+
+        </button>
+    </ion-nav-buttons>
+    <ion-content scroll="false"  class="has-header">
+        <div class=" button-bar bar-positive" style="background-color:#ffffff;border-bottom: thin">
+            <a on-hold="clearHold('lift')" ng-class="{'button-filter':liftName != 'Lift'}" class="button button-clear button-dark col" ng-click=" openModal()" style="width:2em;" >
+                {{liftName}}
+            </a>
+
+            <a on-hold="clearHold('name')" ng-class="{'button-filter':nameFilter != 'Name'}" class="button button-clear button-dark col" ng-click="namePopup($event)"  style="width:3em float:right;">
+                {{nameFilter}}
+            </a>
+
+        </div>
+        <div style="border-top: thick;"></div>
+        <div class=" button-bar bar-positive" style="background-color:#ffffff; margin-top:3px; ">
+            <a on-hold="clearHold('month')" ng-class="{'button-filter':dateObj['Month'] != 'Month'}" class="button button-clear button-dark col " ng-click="datePopup($event,'Month')" style="width:3em">
+                {{dateObj['Month']}}
+            </a>
+
+            <a on-hold="clearHold('day')" ng-class="{'button-filter':dateObj['Day'] != 'Day'}" class="button button-clear button-dark col" ng-click="datePopup($event,'Day')" style="width:3em">
+                {{dateObj['Day']}}
+            </a>
+            <a on-hold="clearHold('year')" ng-class="{'button-filter':dateObj['Year'] != 'Year'}" class="button button-clear button-dark col" ng-click="datePopup($event,'Year')" style="width:3em float:right;">
+                {{dateObj['Year']}}
+            </a>
+
+        </div>
+        <div  class="item item-divider color-header" style="background-color:black">
+        </div>
+
+        <ion-scroll class="scrollbox" zooming="true" direction="y"  style="border-top: thick; height:550px">
+        <div class="list" style=" height:700px">
+            <div ng-repeat="workout in filterList" class ='card' >
+                <div class="item item-divider month-divider" >
+                    {{workout.date +": " + workout.name }}
+                    <i class = "icon ion-arrow-up-c"  ng-click="loadLiftOptions($index)" style="font-size:1.8em;  float:right;color:#387ef5;"></i>
+                    <i class = "icon ion-trash-b"  ng-click="removeWorkout(workout)" style="float:right;font-size:1.8em; padding-right: 22px"></i>
+                    <span ng-if="workout.bodyWeight.length >= 2" style="float:right; padding-right: 10px;">{{workout.bodyWeight +'lbs '}}</span>
+                </div>
+                <ion-list>
+                    <div ng-repeat="lift in workout.lifts">
+                        <div ng-if="lift.super" class="item item-divider color-header2">
+                        </div>
+                        <ion-item class="item-stable no-back"
+                                  ng-click="toggleGroup(lift)"
+                                  ng-class="{active: isGroupShown(lift),'border-top-cal':lift.super}">
+                            <i class="icon" ng-class="isGroupShown(lift) ? 'ion-minus' : 'ion-plus'"></i>
+                            {{lift.name+": "}}
+                            <span  ng-repeat="set in lift.sets">{{set.reps}} {{$last ? '':','}}</span>
+                        </ion-item>
+
+                        <ion-item class="item-accordion"
+                                  ng-repeat="set in lift.sets"
+                                  ng-show="isGroupShown(lift)">
+                            {{set.reps + ' X ' + set.wt }}
+                        </ion-item>
+                    </div>
+                    <div ng-if="workout.notes.length >1" >
+                        <div class="item item-divider color-header">
+                        </div>
+                        <ion-item class="item-stable no-back item-text-wrap"
+                                  ng-click="toggleGroup(lift)"
+                                  ng-class="{active: isGroupShown(lift),'border-top-cal':lift.super}">
+                       {{workout.notes}}
+                        </ion-item>
+                    </div>
+                </ion-list>
+
+                </div>
+        </div>
+       </ion-scroll>
+    </ion-content>
+</ion-view>

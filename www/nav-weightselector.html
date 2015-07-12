@@ -1,0 +1,213 @@
+<ion-view ng-controller="weightcontrol" class="transparent">
+    <ion-header-bar class="bar-dark">
+        <div class="buttons">
+            <button class="button icon ion-arrow-left-c" style="border:none;" ng-click="closeModal('none',0,2)"></button>
+        </div>
+        <h1 class="title">{{nameLift}}</h1>
+    </ion-header-bar>
+    <div class="bar bar-subheader bar-dark">
+        <div class ="row">
+            <div class="button-bar bar-dark">
+                <a ng-class="" ng-click="preset(1)" type="button" class="button" style="border-left: none; border-bottom: none;border-top: none; ">5-5-5</a>
+                <a ng-class="" ng-click="preset(2)" type="button" style=" border-bottom: none; border-top: none;" class="button">6-6-6</a>
+                <a ng-class="" ng-click="preset(3)" type="button" style=" border-bottom: none; border-top: none;" class="button">8-8-8</a>
+                <a ng-click="preset(4)" style="border-right: none; border-bottom: none; border-top: none;" type="button" class="button" >5-3-1</a>
+            </div>
+        </div>
+    </div>
+
+    <ion-content  ng-click="outRemove2()" class="has-header has-subheader has-bottom" >
+        <div class="row">
+        <div class="card col-80 col-offset-10">
+            <div class="item item-divider color-header">
+            </div>
+        <ion-list  show-delete="removeFlag" class="col-50  col-offset-25"  >
+
+            <ion-item class="item" ng-repeat="set in sets2 track by $index" >
+                <div style="float:left; width:30%;">
+                <!--<input ng-model="set.reps"  type="tel" maxlength="2"  ng-if="$index == focusIndex" select-on-click select-on-focus take-focus>-->
+                    <button class="button weight-pad button-outline  button-positive" ng-class="{'button-selected-lift': wtSelectPress == $index+'1','button-noborder':wtSelectPress != $index+'1'}" ng-click="selectNumber($index,1)">{{set.reps +" Reps"}}</button>
+
+                </div>
+                <div style="float:right; width:30%;">
+                    <button class="button  button-outline button-positive" ng-class="{'button-selected-lift':wtSelectPress == $index+'2','button-noborder':wtSelectPress != $index+'2'}" ng-click="selectNumber($index,2)">{{set.wt + kgMap[nameLift]}}</button>
+                <!--<input ng-model="set.wt"  type="tel" maxlength="3" select-on-click select-on-focus>-->
+                    <!--<input ng-model="set.wt"  type="tel" maxlength="3" ng-if="$index != focusIndex"  select-on-click>-->
+                </div>
+                <ion-delete-button class="ion-minus-circled"
+                                   ng-click="removeSet($index)" style="float:left">
+                </ion-delete-button>
+            </ion-item>
+
+        </ion-list>
+        </div>
+        </div>
+
+    </ion-content>
+  <div class="fixed-outside">
+      <!--<div class ="row">-->
+          <!--<div class="button-bar bar-dark">-->
+              <!--<a ng-class="{'active': removeFlag == true}" ng-click="removeFlag = !removeFlag;" style="border-color:black;border-left: none; border-top: none; font-size: 1.8em;"type="button"-->
+                 <!--class="button button-clear button-assertive">-</a>-->
+              <!--<a ng-class="" ng-click="submitWeight()" type="button" style=" border-top: none;" class="button icon ion-android-done"></a>-->
+              <!--<a ng-class="" ng-click="addSet()" type="button" class="button  button-balanced button-clear" style="border-color:black;border-right: none; border-top: none; font-size: 1.8em;">+</a>-->
+
+          <!--</div>-->
+      <!--</div>-->
+
+      <div class ="row">
+          <div class="button-bar bar-dark" ng-if="editingNumber.id ==2 && weightRack=='heavy'">
+              <a ng-class="" ng-click="changeNumber(45,true)" type="button" class="button bottom-only"  >45</a>
+              <a ng-class="" ng-click="changeNumber(135,true)" type="button" class="button bottom-only">135</a>
+              <a ng-class="" ng-click="changeNumber(225,true)" type="button" class="button bottom-only">225</a>
+              <a ng-class=""  ng-click="changeNumber(315,true)" type="button" class="button bottom-only">315</a>
+              <a ng-click="changeNumber(405,true)"  type="button" class="button bottom-only" >405</a>
+          </div>
+          <div class="button-bar bar-dark" ng-if="editingNumber.id ==1">
+              <a ng-class="" on-hold="popEditingNumber(3,true)" ng-click="changeNumber(3,true)" type="button" class="button bottom-only" >3</a>
+              <a ng-class="" on-hold="popEditingNumber(4,true)" ng-click="changeNumber(4,true)" type="button" class="button bottom-only" >4</a>
+              <a ng-class="" on-hold="popEditingNumber(5,true)" ng-click="changeNumber(5,true)" type="button" class="button bottom-only">5</a>
+              <a ng-class="" on-hold="popEditingNumber(6,true)" ng-click="changeNumber(6,true)" type="button"  class="button bottom-only">6</a>
+              <a ng-click="changeNumber(8,true)" on-hold="popEditingNumber(8,true)"  type="button" class="button bottom-only" >8</a>
+              <a ng-click="changeNumber(10,true)" on-hold="popEditingNumber(10,true)"  type="button" class="button bottom-only" >10</a>
+          </div>
+          <div class="button-bar bar-dark" ng-if="editingNumber.id ==2 && weightRack=='light'">
+              <a ng-class="" ng-click="changeNumber(40,true)" type="button" class="button bottom-only" >40</a>
+              <a ng-class="" ng-click="changeNumber(80,true)" type="button" class="button bottom-only" >80</a>
+              <a ng-class="" ng-click="changeNumber(120,true)" type="button" class="button bottom-only" >120</a>
+              <a ng-class="" ng-click="changeNumber(160,true)" type="button"  class="button bottom-only">160</a>
+              <a ng-class="" ng-click="changeNumber(200,true)" type="button"  class="button bottom-only">200</a>
+          </div>
+          <div class="button-bar bar-dark" ng-if="editingNumber.id ==2 && weightRack=='heavykg'">
+              <a ng-class="" ng-click="changeNumber(40,true)" type="button" class="button button-positive button-clear " >20</a>
+              <a ng-class="" ng-click="changeNumber(80,true)" type="button" class="button button-positive button-clear" >60</a>
+              <a ng-class="" ng-click="changeNumber(120,true)" type="button" class="button button-positive button-clear">100</a>
+              <a ng-class="" ng-click="changeNumber(160,true)" type="button"  class="button button-positive button-clear">140</a>
+              <a ng-class="" ng-click="changeNumber(200,true)" type="button" class="button button-positive button-clear">180</a>
+          </div>
+      </div>
+
+        <div class="row">
+            <!--<div class = "col-offset-5"></div>-->
+            <div ng-if="editingNumber.id ==1 " class="" style="float:left;">
+                <button class="button button-clear button-assertive plusMinusGoal"on-hold="popEditingNumber(-1)"  ng-click="changeNumber(-1)"
+                        style="float:right;"> -1
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal"on-hold="popEditingNumber(-5)"  ng-click="changeNumber(-5)"
+                        style="float:right;"> -5
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal"on-hold="popEditingNumber(-10)"  ng-click="changeNumber(-10)"
+                        style="float:right;"> -10
+                </button>
+            </div>
+            <div ng-if="editingNumber.id ==2 && weightRack=='light'" class="" style="float:left;">
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-5)"
+                        style="float:right;"> -5
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-10)"
+                        style="float:right;"> -10
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-20)"
+                        style="float:right;"> -20
+                </button>
+            </div>
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavy' " class="" style="float:left;">
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-10)"
+                        style="float:right;"> -10
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-20)"
+                        style="float:right;"> -20
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-50)"
+                        style="float:right;"> -50
+                </button>
+            </div>
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavykg' " class="" style="float:left;">
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-10)"
+                        style="float:right;color:white "> -10
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-20)"
+                        style="float:right; color:green"> -20
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-30)"
+                        style="float:right; color:yellow"> -30
+                </button>
+            </div>
+            <div>
+                <button class="button button-clear bigGoal ">{{editingShow.num}}</button>
+            </div>
+            <div ng-if="editingNumber.id ==1"  style="float:right;">
+                <button class="button button-clear button-balanced plusMinusGoal"on-hold="popEditingNumber(10)" ng-click="changeNumber(10)"
+                        style="float:right;"> +10
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal"on-hold="popEditingNumber(5)"  ng-click="changeNumber(5)"
+                        style="float:right;"> +5
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal" on-hold="popEditingNumber(1)" ng-click="changeNumber(1)"
+                        style="float:right;"> +1
+                </button>
+            </div>
+
+            <div ng-if="editingNumber.id ==2 && weightRack=='light'"  style="float:right;">
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(20)"
+                        style="float:right;"> +20
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(10)"
+                        style="float:right;"> +10
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(5)"
+                        style="float:right;"> +5
+                </button>
+            </div>
+
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavy' "  style="float:right;">
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(50)"
+                        style="float:right;"> +50
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(20)"
+                        style="float:right;"> +20
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(10)"
+                        style="float:right;"> +10
+                </button>
+            </div>
+
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavykg' "  style="float:right;">
+                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(30)"
+                        style="float:right;color:yellow">  +30
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal"  ng-click="changeNumber(20)"
+                        style="float:right; color:green"> +20
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal"  ng-click="changeNumber(10)"
+                        style="float:right; color:white"> +10
+                </button>
+            </div>
+        </div>
+
+            <div class ="row">
+                <div class="button-bar bar-dark">
+                    <a ng-class="{'active': removeFlag == true || sets2.length ==1}" ng-click="remove()" style="border-color:black;border-left: none; border-bottom: none; font-size: 1.8em;"type="button"
+                       class="button button-clear button-assertive">-</a>
+                    <a ng-class="" ng-click="submitWeight()" type="button" style=" border-bottom: none;" class="button icon ion-android-done"></a>
+                    <a ng-class="{'active': removeFlag == true || sets2[0].reps == 0 && sets2[0].wt==0}" ng-click="addSet()" type="button" class="button  button-balanced button-clear" style="border-color:black;border-right: none; border-bottom: none; font-size: 1.8em;">+</a>
+                </div>
+            </div>
+            <!--<div class="range" style="width:100%"  ng-if="editingNumber.id ==1">-->
+                <!--<i class="icon ion-minus timerMinus" ng-click="changeNumber(-1)"></i>-->
+                <!--<input type="range" ng-model="editingShow.num" on-release="onReleaseNumber()"  step="2" min="0" max="30" />-->
+                <!--<i class="icon ion-plus timerPlus" ng-click="changeNumber(1)"></i>-->
+            <!--</div>-->
+            <!--<div class="range" style="width:100%" ng-if="editingNumber.id ==2 && lightHeavyMap[nameLift]=='light'">-->
+                <!--<i class="icon ion-minus timerMinus" ng-click="changeNumber(-1)"></i>-->
+                <!--<input type="range" ng-model="editingShow.num" on-release="onReleaseNumber()" step="5" min="0" max="300" />-->
+                <!--<i class="icon ion-plus timerPlus" ng-click="changeNumber(1)"></i>-->
+            <!--</div>-->
+            <!--<div class="range" style="width:100%" ng-if="editingNumber.id ==2 && lightHeavyMap[nameLift]=='heavy'">-->
+                <!--<i class="icon ion-minus timerMinus" ng-click="changeNumber(-5)"></i>-->
+                <!--<input type="range" ng-model="editingShow.num" on-release="onReleaseNumber()" step="5" min="0" max="500" />-->
+                <!--<i class="icon ion-plus timerPlus" ng-click="changeNumber(5)"></i>-->
+            <!--</div>-->
+
+  </div>
+</ion-view>

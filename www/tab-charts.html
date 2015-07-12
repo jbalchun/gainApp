@@ -1,0 +1,103 @@
+<ion-view title="Data" ng-controller="LineCtrl" cache-view="false">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .1em'
+                ng-click="showInfo()">
+
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header has-footer">
+        <div ng-if="chartTable" class="card ">
+            <div class="item item-divider color-header">
+            </div>
+            <div class="row">
+                <div class="col-40 col-offset-20">
+                    <a class=>{{chartTitle}}</a><a ng-if="bodyWtFlag && repsChart.reps">{{ " for " +repsChart.reps + " reps"}}</a>
+                </div>
+            </div>
+
+            <canvas id="line" class="chart chart-line" data="weightSet" labels="dateSet"
+                    legend="true" click="" options="chartOptions"></canvas>
+            <div>
+                <a>{{firstDate}}</a> <a style="float:right;">{{lastDate}}</a>
+            </div>
+            <div class="item-input-wrapper">
+
+                <input class="col col-33 col-offset-34" type="tel" placeholder="Goal" maxlength="3"
+                       ng-model="goalNum.wt.wt">
+                <button class="button button-clear" ng-click="updateGoal(repsChart.reps)">Update
+                </button>
+            </div>
+            <div class="button-bar liftSearchButtons" style="padding:0px">
+                <a type="button"
+                   class="button button-clear timerButtonSmall" ng-class="{'active': spanSelect ==5 }"
+                   ng-click="selectTimespan(5)" style="border-top:none;border-bottom:none;border-right:none;">5 wks</a>
+                <a type="button"
+                   class="button button-clear timerButtonSmall" ng-class="{'active': spanSelect ==10}"
+                   ng-click="selectTimespan(10)" style="border-top:none;border-bottom:none;border-right:none;">10
+                    wks</a>
+                <a type="button button-clear timerButtonSmall"
+                   class="button button-clear timerButtonSmall" ng-class="{'active': spanSelect ==20 }"
+                   ng-click="selectTimespan(20)" style="border-top:none;border-bottom:none;border-right:none;">20
+                    wks</a>
+                <a type="button button-clear timerButtonSmall"
+                   class="button button-clear timerButtonSmall" ng-class="{'active': !spanSelect }"
+                   ng-click="selectTimespan(false)"
+                   style="border-top:none;border-bottom:none;border-right:none;">All</a>
+            </div>
+        </div>
+        <div class="card">
+            <div ng-if="chartTable ==false" class="item item-divider color-header">
+            </div>
+            <ion-item class="item item-remove-animate no-padding">
+
+                <a ng-if="!chartTable" style="float:left;padding-right:10px" class="ion-ios7-person"
+                   ng-click="chartBodyWeight()"></a>
+
+                <div ng-if="chartTable || (bodyWtFlag && !chartTable)" class="liftNameButton">
+                    <a class="liftSelectEntry" style="float:left;" ng-click="openModal()">{{liftName}}</a>
+                    <a class="liftSelectEntry" ng-click="repPopup($event)" style="float:right;">
+                        {{selectedReps}}
+                    </a>
+                    <!--<a class="liftSelectEntry"  ng-if="liftName != 'Select Lift'">Set Goal</a>-->
+                </div>
+                <div ng-if="  (!bodyWtFlag && !chartTable)" class="liftNameButton" style="float:left;">
+                    <a class="liftSelectEntry" ng-click="openModal()">Body Weight (tap to select lift)</a>
+                    <!--<a class="liftSelectEntry"  ng-if="liftName != 'Select Lift'">Set Goal</a>-->
+                </div>
+
+
+            </ion-item>
+            <ion-item ng-if="chartTable == false" ng-repeat="lift in dateWeightObjectList">
+
+                <a>{{lift.date}}</a>
+                <a style="float:right">{{lift.wt + " lbs"}}</a>
+
+            </ion-item>
+            <ion-item ng-if="chartTable" class="item  item-remove-animate no-padding">
+                <div class="row" style="padding:0px ">
+                    <a class="col col-offset-25 liftSelectEntry" ng-click="chartBodyWeight()" ng-if="bodyWtFlag">Chart
+                        Body Weight</a>
+                    <a class="col col-offset-25 chartSwitch" ng-click="chartBodyWeight()" ng-if="!bodyWtFlag">Chart
+                        current lift</a>
+                </div>
+            </ion-item>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-dark">
+        <div class="button-bar">
+            <a ng-class="{'active': chartTable == true}" ng-click="changeView(true,repsChart.reps)" type="button"
+               class="button icon ion-arrow-graph-up-right"
+               style="border-top:none;border-bottom:none;border-left:none;font-size: 2.0em;"></a>
+            <a ng-class="{'active': chartTable == false}" ng-click="changeView( false,repsChart.reps)" type="button"
+               class="button icon ion-ios-list-outline"
+               style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"></a>
+            <a  ng-click="analytics = !analytics;" ng-class="{'active': analytics == false}"  type="button"
+               class="button icon ion-ios-lightbulb-outline"
+               style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"></a>
+        </div>
+
+    </ion-footer-bar>
+
+</ion-view>
