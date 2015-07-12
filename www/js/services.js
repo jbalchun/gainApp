@@ -364,7 +364,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             return returnFlag;
         },
         clearLifts:function(){
-            $localStorage.$reset();
+            //$localStorage.$reset();
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
