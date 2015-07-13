@@ -31,6 +31,8 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
   //  $state.go('tab.posts');
   //}, 5000);
 
+
+
   $rootScope.$storage = $localStorage.$default({
     x : 53,
     editingLift:[],

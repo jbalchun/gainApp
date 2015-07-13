@@ -546,13 +546,13 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
 
     $scope.showInfo = function(){
         var confirmPopup = $ionicPopup.show({
-            title: 'New Workout',
-            subTitle: "Click 'Select Lift' to choose your movement" + "\n"
-            + "Click 'Add Weight' to select reps and weight" + "\n"
-            + " Use the clock to see your history" + "\n" + "\n"
-            + " Plus and minus add/remove sets and lifts, check button to complete the workout ",
-
+            title: 'Entering a new workout',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
             scope: $scope,
+            templateUrl:'pop-maininfo.html',
             buttons: [
                 {
                     text: '<b>Done</b>',
