@@ -18,6 +18,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
     $scope.liftName = "Lift";
     $scope.monthMap ={'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12};
     $scope.calendar1 = true;
+    $scope.infoFlag =2;
 
     $scope.date;
 
@@ -93,6 +94,31 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
     }).then(function(popover2) {
         $scope.popover2 = popover2;
     });
+
+    $scope.showInfo = function(){
+        var confirmPopup = $ionicPopup.show({
+            title: 'Entering a new ',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+            scope: $scope,
+            templateUrl:'pop-maininfo.html',
+            buttons: [
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            console.log('Tapped!', res);
+        });
+
+    };
 
     $scope.datePopup = function($event,date){
         document.body.classList.add('platform-ios');

@@ -42,6 +42,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
     $scope.dateObj = {'Year':dateGo.getFullYear(),'Month':[dateGo.getMonth()],'Day':dateGo.getDate()};
     $scope.dateList = [];
     $scope.calendar1 = false;
+    $scope.infoFlag =1;
 
         //prevent selection of the same lift, unless its "new lift"
     //for autoselect in weightselect modal
@@ -543,6 +544,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
             ]
         })
     }
+
 
     $scope.showInfo = function(){
         var confirmPopup = $ionicPopup.show({

@@ -5,6 +5,11 @@
 
         </button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
+
+        </button>
+    </ion-nav-buttons>
     <ion-content scroll="false"  class="has-header">
         <div class=" button-bar bar-positive" style="background-color:#ffffff;border-bottom: thin">
             <a on-hold="clearHold('lift')" ng-class="{'button-filter':liftName != 'Lift'}" class="button button-clear button-dark col" ng-click=" openModal()" style="width:2em;" >

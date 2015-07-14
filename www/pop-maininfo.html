@@ -1,5 +1,5 @@
 <style>.popup { width:500px; }</style>
-<div ng-if="true">
+<div ng-if="infoFlag == 1">
 <li>Click 'Select Lift' to choose your movement </li>
     <li>Click 'Add Weight' to select reps and weight</li>
     <li> Use the clock button to see your history</li>
@@ -7,3 +7,21 @@
     <li>Check button completes the workout </li>
 </div>
 
+<div ng-if="infoFlag == 2">
+    <li>Combine the filters on top to search for your workouts</li>
+    <li>Click the garbage icon to delete a workout</li>
+    <li>Click the arrow icon to load the workout to the editor</li>
+</div>
+
+<div ng-if="infoFlag == 3">
+    <li>For a given lift and number of reps, the weekly max of each daily max is shown</li>
+    <li>The table icon shows all daily max's listed out</li>
+    <li>Set your goals underneath the chart, they will be saved</li>
+    <li>Change the timeframe with the buttons below</li>
+    <li>You need to lift for a few weeks to get meaningful data!</li>
+
+</div>
+
+<div ng-if="infoFlag == 4">
+    <li>Use the presets or the sliders to start your timer</li>
+</div>

@@ -449,6 +449,7 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
     //
     //}
 
+    $scope.infoFlag =3;
     //AXIS MANIPULATION
     $scope.chartCeiling = undefined;
     $scope.chartOptions = {
@@ -462,26 +463,26 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
         datasetFill:false
     };
 
-    $scope.showInfo = function(){
-        var confirmPopup = $ionicPopup.show({
-            title: 'Charting info',
-            subTitle: "For a given lift and number of reps, the maximum of each day and week is calculated. Weeks are shown on the x axis, weight on the y axis. Table view shows this data, not all sets",
-            scope: $scope,
-            buttons: [
-                {
-                    text: '<b>Done</b>',
-                    type: 'button-dark',
-                    onTap: function (e) {
-
-                    }
-                }
-            ]
-        });
-        confirmPopup.then(function (res) {
-            console.log('Tapped!', res);
-        });
-
-    };
+    //$scope.showInfo = function(){
+    //    var confirmPopup = $ionicPopup.show({
+    //        title: 'Charting info',
+    //        subTitle: "For a given lift and number of reps, the maximum of each day and week is calculated. Weeks are shown on the x axis, weight on the y axis. Table view shows this data, not all sets",
+    //        scope: $scope,
+    //        buttons: [
+    //            {
+    //                text: '<b>Done</b>',
+    //                type: 'button-dark',
+    //                onTap: function (e) {
+    //
+    //                }
+    //            }
+    //        ]
+    //    });
+    //    confirmPopup.then(function (res) {
+    //        console.log('Tapped!', res);
+    //    });
+    //
+    //};
 
 
     var axisAdjust = function(zeroFlag,max,min){//zeroflag true means Show the zero(body wt)
@@ -545,6 +546,31 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
 
             $scope.repSelect(0,$scope.chartTable,true);
     }
+
+    $scope.showInfo = function(){
+        var confirmPopup = $ionicPopup.show({
+            title: 'Entering a new ',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+            scope: $scope,
+            templateUrl:'pop-maininfo.html',
+            buttons: [
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            console.log('Tapped!', res);
+        });
+
+    };
 
 
 
@@ -895,7 +921,7 @@ app.controller('accordionCtrl',function($scope){
         $scope.timerClear = true;
         $scope.stringMin = String($scope.rangeMin);
         $scope.stringSec = String($scope.rangeSec);
-
+        $scope.infoFlag = 4;
 
         $scope.$watch('minutes',function(){
             $scope.stringMin = String($scope.minutes)
@@ -910,6 +936,31 @@ app.controller('accordionCtrl',function($scope){
                 $scope.stringSec = "0"+String($scope.seconds)
             }
         });
+
+        $scope.showInfo = function(){
+            var confirmPopup = $ionicPopup.show({
+                title: 'Entering a new ',
+                //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+                //+ "Click 'Add Weight' to select reps and weight" + "\n"
+                //+ " Use the clock to see your history" + "\n" + "\n"
+                //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+                scope: $scope,
+                templateUrl:'pop-maininfo.html',
+                buttons: [
+                    {
+                        text: '<b>Done</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }
+                ]
+            });
+            confirmPopup.then(function (res) {
+                console.log('Tapped!', res);
+            });
+
+        };
 
         $scope.timerPreset = function(index){
             if(index == 1){
@@ -1102,6 +1153,8 @@ app.controller('accordionCtrl',function($scope){
 
             });
         }
+
+
 
 // Timer Controller
 
