@@ -280,6 +280,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
       ]
 
   });
+  function keyboardHideHandler(e){
+    $rootScope.$broadcast('closeKeyboard')
+  }
+
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -289,11 +293,11 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
       $rootScope.$storage.nameList[workout.name+workout.date] = workout.name;
     });
     if (window.cordova && window.cordova.plugins.Keyboard) {
-
+      window.addEventListener('native.keyboardhide', keyboardHideHandler);
       navigator.splashscreen.hide();
       //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       //$cordovaKeyboard.disableScroll(true)
       //    .then(function(value) {
       //  console.log('keyboard locked'); // Success!
@@ -309,6 +313,8 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     //}
   });
   });
+
+
 
 app.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider

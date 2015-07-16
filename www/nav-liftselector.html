@@ -4,12 +4,13 @@
 </head>
 <body>
 
-<ion-view ng-controller="buttonCtrl" class="transparent" >
+<ion-view ng-keypress="keyPressed()" ng-controller="buttonCtrl" class="transparent" >
     <ion-header-bar class="bar-dark">
         <div class="buttons ">
             <button class="button icon ion-arrow-left-c" style="border:none;"
                     ng-click="backFrom()"></button>
         </div>
+
         <h1 class="title">{{liftSelectorState}}</h1>
     </ion-header-bar>
 
@@ -24,7 +25,7 @@
                 <ion-item  class="item-stable item-remove-animate lift-list" ng-class="{active : isSelected(lift)}"
                           ng-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText" ng-if="!custom ||(custom && lift.custom == true)">
                        <a   class="liftSelectEntry" ng-class="{'remove-lift':removeFlagB}" ng-click="setLift(lift,$index)">{{lift.name }} </a>
-                    <i class="icon ion-social-google-outline searchIcon" style="float:right; font-size: 1.2em; padding-right: .8em" ng-click=" goToUrl(lift.name)"></i>
+                    <i class="icon ion-social-google-outline searchIcon" style="float:right; font-size: 1.2em; padding-right: .8em" ng-click="goToUrl(lift.name)"></i>
                     <i class="icon ion-gear-a " style="float:right; font-size: 1.2em; padding-right: .8em" ng-click="editSettings(lift.name)"></i>
 
                     <!--<ion-delete-button class="ion-minus-circled your-class button"-->
@@ -36,7 +37,7 @@
         </ion-scroll>
         <div class="item item-input-inset no-padding borderless">
         <label class="item-input-wrapper" on-swipe-left="swipeLeftLift()">
-        <input ng-model="searchText" type="search" placeholder="Search" >
+        <input ng-model="searchText" ng-enter="closeKeyboard()" type="search" placeholder="Search" >
         </label>
         </div>
             <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">

@@ -91,6 +91,20 @@ app.directive('selectOnClick', function () {
     };
 });
 
+app.directive('ngEnter', function() {
+    return function(scope, element, attrs) {
+        element.bind("keydown keypress", function(event) {
+            if(event.which === 13) {
+                scope.$apply(function(){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
 app.controller('buttonCtrl',
     function($scope,$ionicScrollDelegate,$ionicPlatform,$localStorage,localStore,$ionicPopup,$rootScope) {
 
@@ -108,6 +122,44 @@ app.controller('buttonCtrl',
         $scope.liftForSettingsChange = '';
         $scope.liftObjectForSettingsChange ={};
         $scope.liftSelectorState = 'All Lifts';
+        $rootScope.$on('keypress', function (e, a, key) {
+            //$scope.$apply(function () {
+                $scope.showInfo()
+            //});
+        });
+
+        $scope.closeKeyboard = function(){
+            //cordova.plugins.Keyboard.hide()
+            document.activeElement.blur();
+            document.activeElement.blur()
+        }
+
+
+
+        $scope.showInfo = function(){
+            var confirmPopup = $ionicPopup.show({
+                title: 'Entering a new ',
+                //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+                //+ "Click 'Add Weight' to select reps and weight" + "\n"
+                //+ " Use the clock to see your history" + "\n" + "\n"
+                //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+                scope: $scope,
+                templateUrl:'pop-maininfo.html',
+                buttons: [
+                    {
+                        text: '<b>Done</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }
+                ]
+            });
+            confirmPopup.then(function (res) {
+                console.log('Tapped!', res);
+            });
+
+        };
         //$scope.addLiftFlag = false;
 
         //Removal function. This feature is overkill for now.
@@ -547,6 +599,11 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
             $scope.repSelect(0,$scope.chartTable,true);
     }
 
+    $scope.$on('closeKeyboard',function(event){
+        $scope.updateGoal($scope.repsChart.reps)
+    })
+
+
     $scope.showInfo = function(){
         var confirmPopup = $ionicPopup.show({
             title: 'Entering a new ',
@@ -571,13 +628,18 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
         });
 
     };
-
-
+    $scope.keyPressed = function(keyEvent, formModel) {
+        //if (keyEvent.keyCode == 13) {
+            console.log(keyEvent)
+            //$scope.showInfo()
+        //}
+    };
 
     $scope.updateGoal = function(){
         if($scope.chartTitle = "Dummy Lift for xx reps"){
             return
         }
+
         console.log("reppero",$scope.repsChart.reps)
         var goalMap1 = {};
         console.log("goal before update",$scope.goalNum.wt);

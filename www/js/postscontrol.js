@@ -61,6 +61,14 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
         $scope.popover2 = popover2;
     });
 
+    $scope.closeKeyboard = function(){
+        //cordova.plugins.Keyboard.hide()
+        document.activeElement.blur();
+        document.activeElement.blur()
+    }
+
+
+
     $scope.datePopup = function($event,date){
         document.body.classList.add('platform-ios');
         $scope.dateType = date;
@@ -446,18 +454,19 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
             }
         })
         _.uniq($scope.nameList,name);
-        console.log('namelist',$scope.nameList);
-        if($scope.nameList.length>0){
+        //console.log('namelist',$scope.nameList);
+        //console.log('show?',Object.keys($scope.nameList).length)
+        if(Object.keys($scope.nameList).length>0){
+            console.log('show')
             $scope.popover.show($event);
         }
-
     };
 
     $scope.namePopupSelect=function(name){
         console.log('clearing')
         if(name =='clear'){
             $scope.nameFilter = "Name"
-            $scope.popover2.hide();
+            $scope.popover.hide();
             $scope.filter();
             //$scope.filterList = angular.copy($scope.workouts);
             return
@@ -578,6 +587,13 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
         }
     }
 
+
+    $scope.keyPressed = function(keyEvent, formModel) {
+        if (keyEvent.keyCode == 13) {
+            console.log('gotit')
+            $scope.showInfo()
+        }
+    };
 
     $scope.clearLifts = function(){
         var confirmPopup = $ionicPopup.show({
