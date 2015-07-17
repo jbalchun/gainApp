@@ -289,9 +289,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
 
-    angular.forEach($rootScope.$storage.workouts,function(workout,val){
-      $rootScope.$storage.nameList[workout.name+workout.date] = workout.name;
-    });
+    //for dummy data
+    //angular.forEach($rootScope.$storage.workouts,function(workout,val){
+    //  $rootScope.$storage.nameList[workout.name+workout.date] = workout.name;
+    //});
     if (window.cordova && window.cordova.plugins.Keyboard) {
       window.addEventListener('native.keyboardhide', keyboardHideHandler);
       navigator.splashscreen.hide();

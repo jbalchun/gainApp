@@ -5,16 +5,15 @@ var app = angular.module('MyApp.postscontrol', ['ionic','MyApp.services','ngStor
 
 app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localStore,$ionicPopup,$ionicPopover,$ionicPlatform,$timeout, $ionicScrollDelegate) {
 
-    $scope.multi = ' X ';
     $scope.removeFlag = false;
-    $scope.reorderFlag=false;
+    //$scope.reorderFlag=false;
     $scope.blurFlag=false;
     $scope.indexLift = 0;
     $scope.userId="userX";
     $scope.focusIndex = 0;
-    $scope.date = new Date(2015,5,26);
+    $scope.date = new Date();
     $scope.liftDate = String($scope.date).substring(4,15);
-    $scope.list1 = [1,2,3];
+    //$scope.list1 = [1,2,3];
     $scope.workoutName = {name:''};
     $scope.bodyWeight ={wt:''};
     $scope.maxList ={};
@@ -183,6 +182,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
         // find the max of that rep and pass the delta to the key
         var weightListTemp = [];
         var liftListMaxTemp = [];
+
         $scope.lastClickedRep[name] = reps;
         angular.forEach($scope.resultsLifts, function(lift, index){
             if (lift.name == name){
@@ -202,7 +202,6 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
 
         if(maxItem < -1000 || !maxItem || maxItem >1000){
             $scope.maxList[name] = 'None';
-
         }else{
             $scope.maxList[name] = Math.abs(weightsMax.wt - Number(maxItem.wt));
             if(weightsMax.wt && weightsMax.wt - Number(maxItem.wt) > 0){
@@ -219,6 +218,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
                 $scope.plusMinusLast[name] = 0;
             }else $scope.plusMinusLast[name] = 1
         }
+        //TODO intervene if max/last = the only one
         return{name:name,reps:reps,todaysMax:$scope.todaysMaxs[name+String(reps)],max:maxItem,last:lastItem}
         //last clicked rep for a given lift
     };
@@ -557,7 +557,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
 
     $scope.showInfo = function(){
         var confirmPopup = $ionicPopup.show({
-            title: 'Entering a new ',
+            title: 'New Workout',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
             //+ "Click 'Add Weight' to select reps and weight" + "\n"
             //+ " Use the clock to see your history" + "\n" + "\n"

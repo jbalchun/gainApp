@@ -97,7 +97,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
 
     $scope.showInfo = function(){
         var confirmPopup = $ionicPopup.show({
-            title: 'Entering a new ',
+            title: 'Calendar',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
             //+ "Click 'Add Weight' to select reps and weight" + "\n"
             //+ " Use the clock to see your history" + "\n" + "\n"

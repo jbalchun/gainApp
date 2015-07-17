@@ -138,7 +138,7 @@ app.controller('buttonCtrl',
 
         $scope.showInfo = function(){
             var confirmPopup = $ionicPopup.show({
-                title: 'Entering a new ',
+                title: 'Lift select',
                 //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
                 //+ "Click 'Add Weight' to select reps and weight" + "\n"
                 //+ " Use the clock to see your history" + "\n" + "\n"
@@ -606,7 +606,7 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
 
     $scope.showInfo = function(){
         var confirmPopup = $ionicPopup.show({
-            title: 'Entering a new ',
+            title: 'Data',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
             //+ "Click 'Add Weight' to select reps and weight" + "\n"
             //+ " Use the clock to see your history" + "\n" + "\n"
@@ -1001,7 +1001,7 @@ app.controller('accordionCtrl',function($scope){
 
         $scope.showInfo = function(){
             var confirmPopup = $ionicPopup.show({
-                title: 'Entering a new ',
+                title: 'Timer',
                 //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
                 //+ "Click 'Add Weight' to select reps and weight" + "\n"
                 //+ " Use the clock to see your history" + "\n" + "\n"
