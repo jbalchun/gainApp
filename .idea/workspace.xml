@@ -95,8 +95,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.63141996" vertical-offset="5098" max-vertical-offset="5775">
-              <caret line="312" column="47" selection-start-line="312" selection-start-column="40" selection-end-line="312" selection-end-column="47" />
+            <state vertical-scroll-proportion="-0.8836858" vertical-offset="4935" max-vertical-offset="5790">
+              <caret line="290" column="53" selection-start-line="290" selection-start-column="53" selection-end-line="290" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -219,9 +219,9 @@
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/js/postscontrol.js" />
         <option value="$PROJECT_DIR$/newrelic.js" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
   </component>
@@ -388,7 +388,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1297" height="808" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -886,8 +886,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.63141996" vertical-offset="5098" max-vertical-offset="5775">
-          <caret line="312" column="47" selection-start-line="312" selection-start-column="40" selection-end-line="312" selection-end-column="47" />
+        <state vertical-scroll-proportion="-0.8836858" vertical-offset="4935" max-vertical-offset="5790">
+          <caret line="290" column="53" selection-start-line="290" selection-start-column="53" selection-end-line="290" selection-end-column="53" />
           <folding />
         </state>
       </provider>
