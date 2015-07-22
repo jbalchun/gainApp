@@ -301,15 +301,15 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
   $ionicPlatform.ready(function() {
     if($rootScope.$storage.userId.length > 1){//if they have a user id
       ++$rootScope.$storage.visitCount
-      console.log('user returning for the '+ $rootScope.$storage.visitCount+ " time ////// "  +  $rootScope.$storage.userId );
+      winston.log('info', 'This is informational...');('user returning for the '+ $rootScope.$storage.visitCount+ " time ////// "  +  $rootScope.$storage.userId );
     }else{
       $rootScope.$storage.userId = generateUUID()
-      console.log('startup for ' +  $rootScope.$storage.userId );
+      winston.log('startup for ' +  $rootScope.$storage.userId );
       ++$rootScope.$storage.visitCount
     }
-    if(winston){
-      winston.log('info', 'This is informational...');
-    }
+    //if(winston){
+      //winston.log('info', 'This is informational...');
+    //}
 
     //var winston = require('winston');
 
