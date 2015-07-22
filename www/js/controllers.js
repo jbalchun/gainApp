@@ -429,21 +429,21 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
     $scope.calendar = function(){
         $state.go('tab.calendar')
 
-        winston.log($rootScope.$storage.userId + ",went to Calendar")
+        winston.log('info',$rootScope.$storage.userId + ",went to Calendar")
 
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
     $scope.posts = function(){
         $state.go('tab.posts');
-        winston.log($rootScope.$storage.userId + ",went to Home")
+        winston.log('info',$rootScope.$storage.userId + ",went to Home")
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
     $scope.charts = function(){
         $state.go('tab.charts')
         //cordova.plugins.Keyboard.disableScroll();
-        winston.log($rootScope.$storage.userId + ",went to Charts")
+        winston.log('info',$rootScope.$storage.userId + ",went to Charts")
         if(window.cordova){
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 
@@ -453,7 +453,7 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
 
     $scope.timerNav=function(){
         $state.go('tab.timer')
-        winston.log($rootScope.$storage.userId + ",went to Timer")
+        winston.log('info',$rootScope.$storage.userId + ",went to Timer")
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
