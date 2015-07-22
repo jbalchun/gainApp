@@ -306,24 +306,24 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
       console.log('startup for ' +  $rootScope.$storage.userId );
       ++$rootScope.$storage.visitCount
     }
-    var winston = require('winston');
+    //var winston = require('winston');
 
     //
     // Requiring `winston-papertrail` will expose
     // `winston.transports.Papertrail`
     //
-
-
-    var logger = new winston.Logger({
-      transports: [
-        new winston.transports.Papertrail({
-          host: 'logs3.papertrailapp.com',
-          port: 44424
-        })
-      ]
-    });
-
-    logger.info('this is my message');
+    //
+    //
+    //var logger = new winston.Logger({
+    //  transports: [
+    //    new winston.transports.Papertrail({
+    //      host: 'logs3.papertrailapp.com',
+    //      port: 44424
+    //    })
+    //  ]
+    //});
+    //
+    //logger.info('this is my message');
 
 
 
