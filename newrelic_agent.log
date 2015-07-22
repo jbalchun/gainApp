@@ -1,0 +1,5 @@
+{"v":0,"level":30,"name":"newrelic","hostname":"Jamess-MacBook-Pro.local","pid":13807,"time":"2015-07-18T21:16:53.788Z","msg":"Starting New Relic for Node.js connection process."}
+{"v":0,"level":30,"name":"newrelic","hostname":"Jamess-MacBook-Pro.local","pid":13807,"time":"2015-07-18T21:16:54.283Z","msg":"Platform is not a flavor of linux, omitting docker info","component":"system-info"}
+{"v":0,"level":30,"name":"newrelic","hostname":"Jamess-MacBook-Pro.local","pid":13807,"time":"2015-07-18T21:16:55.297Z","msg":"Request for AWS attribute instance-type timed out","component":"aws-info"}
+{"v":0,"level":30,"name":"newrelic","hostname":"Jamess-MacBook-Pro.local","pid":13807,"time":"2015-07-18T21:16:55.673Z","msg":"Reporting to: https://rpm.newrelic.com/accounts/1046569/applications/9871172","component":"new_relic_response"}
+{"v":0,"level":30,"name":"newrelic","hostname":"Jamess-MacBook-Pro.local","pid":13807,"time":"2015-07-18T21:16:55.674Z","msg":"Connected to collector-157.newrelic.com:443 with agent run ID 42396371467277773.","component":"collector_api"}
