@@ -33,8 +33,20 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
 
 
 
+  function generateUUID(){
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (d + Math.random()*16)%16 | 0;
+      d = Math.floor(d/16);
+      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+  };
+
   $rootScope.$storage = $localStorage.$default({
     x : 53,
+    userId:'',
+    visitCount:0,
     editingLift:[],
     goalsMap:{},
     kgMap:{},
@@ -286,7 +298,16 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
 
 
   $ionicPlatform.ready(function() {
-    console.log('startup123');
+    if($rootScope.$storage.userId.length > 1){//if they have a user id
+      ++$rootScope.$storage.visitCount
+      console.log('user returning for the '+ $rootScope.$storage.visitCount+ " time ////// "  +  $rootScope.$storage.userId );
+    }else{
+      $rootScope.$storage.userId = generateUUID()
+      console.log('startup for ' +  $rootScope.$storage.userId );
+      ++$rootScope.$storage.visitCount
+    }
+
+
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
