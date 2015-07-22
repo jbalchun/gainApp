@@ -75,8 +75,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72809666" vertical-offset="4273" max-vertical-offset="6450">
-              <caret line="317" column="38" selection-start-line="317" selection-start-column="38" selection-end-line="317" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.5694864" vertical-offset="4273" max-vertical-offset="6450">
+              <caret line="310" column="48" selection-start-line="310" selection-start-column="35" selection-end-line="310" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -988,8 +988,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72809666" vertical-offset="4273" max-vertical-offset="6450">
-          <caret line="317" column="38" selection-start-line="317" selection-start-column="38" selection-end-line="317" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.5694864" vertical-offset="4273" max-vertical-offset="6450">
+          <caret line="310" column="48" selection-start-line="310" selection-start-column="35" selection-end-line="310" selection-end-column="48" />
           <folding />
         </state>
       </provider>
