@@ -307,12 +307,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
       console.log('startup for ' +  $rootScope.$storage.userId );
       ++$rootScope.$storage.visitCount
     }
-    var tattletale = new Tattletale('logs3.papertrailapp.com:44424');
+    if(winston){
+      winston.log('info', 'This is informational...');
+    }
 
-    tattletale.log('“My name is Ozymandias, king of kings:');
-    tattletale.log('Look on my works, ye Mighty, and despair!”');
-
-    tattletale.send();
     //var winston = require('winston');
 
     //
