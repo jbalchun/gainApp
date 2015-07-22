@@ -301,7 +301,7 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
   $ionicPlatform.ready(function() {
     if($rootScope.$storage.userId.length > 1){//if they have a user id
       ++$rootScope.$storage.visitCount
-      winston.log('info', 'This is informational...');('user returning for the '+ $rootScope.$storage.visitCount+ " time ////// "  +  $rootScope.$storage.userId );
+      winston.log('user returning for the '+ $rootScope.$storage.visitCount+ " time xlog:"  +  $rootScope.$storage.userId );
     }else{
       $rootScope.$storage.userId = generateUUID()
       winston.log('startup for ' +  $rootScope.$storage.userId );
