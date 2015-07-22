@@ -312,7 +312,7 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     // Requiring `winston-papertrail` will expose
     // `winston.transports.Papertrail`
     //
-    require('winston-papertrail').Papertrail;
+
 
     var logger = new winston.Logger({
       transports: [
