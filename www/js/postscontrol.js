@@ -556,6 +556,10 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
 
 
     $scope.showInfo = function(){
+        if (!window.cordova) {
+            winston.log('info', $scope.$storage.userId + ", viewed home info")
+            var datenew = new Date()
+        }
         var confirmPopup = $ionicPopup.show({
             title: 'New Workout',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -576,6 +580,11 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
         });
         confirmPopup.then(function (res) {
             console.log('Tapped!', res);
+            if (!window.cordova) {
+                var dateDiff = new Date() - datenew
+                winston.log('info', $scope.$storage.userId + ", closed home info after" + dateDiff)
+            }
+
         });
 
     };
@@ -591,7 +600,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
     $scope.keyPressed = function(keyEvent, formModel) {
         if (keyEvent.keyCode == 13) {
             console.log('gotit')
-            $scope.showInfo()
+            $scope.s()
         }
     };
 
@@ -715,12 +724,11 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
             if(bool){
                 $scope.changeNumber(num,bool)
             }else $scope.changeNumber(num)
-
         }
 
         $scope.editingNumber.id = 2
         $scope.wtSelectPress = $scope.editingNumber.index+"2"
-        $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].wt}
+        $scope.wtSelectPress = {num: $scope.sets2[$scope.editingNumber.index].wt}
 
     }
 
@@ -846,15 +854,15 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
             $scope.modal4.hide();
         }else{
             if(newLift == 1){ //TODO make sure date isn't date
-                if(!localStore.checkDate($scope.liftDate)){
+                //if(!localStore.checkDate($scope.liftDate)){
                     localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight,$scope.notes);
                     $scope.resultsLifts = $scope.liftCards;
                     $scope.liftCards = $scope.$storage.todaysLifts;
                     $scope.uniqueSortReps();
                     $scope.openModal('', '', '', '3');
-                }else {
-                    $scope.dateErrorPop();
-                }
+                //}else {
+                //    $scope.dateErrorPop();
+                //}
                 $scope.modal5.hide()
             }
             $scope.modal5.hide()

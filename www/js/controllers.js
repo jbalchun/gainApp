@@ -122,11 +122,6 @@ app.controller('buttonCtrl',
         $scope.liftForSettingsChange = '';
         $scope.liftObjectForSettingsChange ={};
         $scope.liftSelectorState = 'All Lifts';
-        $rootScope.$on('keypress', function (e, a, key) {
-            //$scope.$apply(function () {
-                $scope.showInfo()
-            //});
-        });
 
         $scope.closeKeyboard = function(){
             //cordova.plugins.Keyboard.hide()
@@ -137,6 +132,10 @@ app.controller('buttonCtrl',
 
 
         $scope.showInfo = function(){
+            if (!window.cordova) {
+                var datenew = new Date()
+                winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
+            }
             var confirmPopup = $ionicPopup.show({
                 title: 'Lift select',
                 //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -156,7 +155,11 @@ app.controller('buttonCtrl',
                 ]
             });
             confirmPopup.then(function (res) {
-                console.log('Tapped!', res);
+                //console.log('Tapped!', res);
+                if (!window.cordova) {
+                    var dateDiff = new Date() - datenew
+                    winston.log('info', $scope.$storage.userId + ", closed liftselect after" +dateDiff)
+                }
             });
 
         };
@@ -401,14 +404,16 @@ app.controller('weightcontrol', function($scope) {
     }
 
     $scope.addSet = function() {
-        console.log('sets2',$scope.sets2)
+        console.log('sets2',$scope.editingNumber.id,$scope.wtSelectPress,$scope.wtSelectPress)
         if($scope.sets2[0].reps !=0 || $scope.sets2[0].wt!=0 || $scope.sets2.length>1){
             var last = angular.copy(_.last($scope.sets2));
             $scope.sets2.push(
                 last
             );
         }
+
     }
+
     $scope.removeSet = function ($index) {
         if ($scope.removeFlag) {
             $scope.sets2.splice($index, 1);
@@ -429,21 +434,26 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
     $scope.calendar = function(){
         $state.go('tab.calendar')
 
-        winston.log('info',$rootScope.$storage.userId + ",went to Calendar")
-
+        if (!window.cordova) {
+            winston.log('info', $rootScope.$storage.userId + ",went to Calendar")
+        }
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
     $scope.posts = function(){
         $state.go('tab.posts');
-        winston.log('info',$rootScope.$storage.userId + ",went to Home")
+        if (!window.cordova) {
+            winston.log('info', $rootScope.$storage.userId + ",went to Home")
+        }
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
     $scope.charts = function(){
         $state.go('tab.charts')
         //cordova.plugins.Keyboard.disableScroll();
-        winston.log('info',$rootScope.$storage.userId + ",went to Charts")
+        if (!window.cordova) {
+            winston.log('info', $rootScope.$storage.userId + ",went to Charts")
+        }
         if(window.cordova){
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 
@@ -453,47 +463,13 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
 
     $scope.timerNav=function(){
         $state.go('tab.timer')
-        winston.log('info',$rootScope.$storage.userId + ",went to Timer")
+        if (!window.cordova) {
+            winston.log('info', $rootScope.$storage.userId + ",went to Timer")
+        }
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
 });
-
-//app.controller('DatepickerDemoCtrl', function ($scope) {
-//    $scope.today = function() {
-//        $scope.dt = new Date();
-//    };
-//    $scope.today();
-//
-//    $scope.clear = function () {
-//        $scope.dt = null;
-//    };
-//
-//    // Disable weekend selection
-//    $scope.disabled = function(date, mode) {
-//        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-//    };
-//
-//    $scope.toggleMin = function() {
-//        $scope.minDate = $scope.minDate ? null : new Date();
-//    };
-//    $scope.toggleMin();
-//
-//    $scope.open = function($event) {
-//        $event.preventDefault();
-//        $event.stopPropagation();
-//
-//        $scope.opened = true;
-//    };
-//
-//    $scope.dateOptions = {
-//        formatYear: 'yy',
-//        startingDay: 1
-//    };
-//
-//    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-//    $scope.format = $scope.formats[0];
-//});
 
 
 app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicModal,$timeout, $ionicPopup,$ionicPopover,$state) {
@@ -608,6 +584,10 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
 
 
     $scope.showInfo = function(){
+        if (!window.cordova) {
+            var datenew = new Date()
+            winston.log('info', $scope.$storage.userId + ", viewed data info")
+        }
         var confirmPopup = $ionicPopup.show({
             title: 'Data',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -627,14 +607,19 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
             ]
         });
         confirmPopup.then(function (res) {
-            console.log('Tapped!', res);
+            //console.log('Tapped!', res);
+            if (!window.cordova) {
+                var dateDiff = new Date() - datenew
+                winston.log('info', $scope.$storage.userId + ", closed data after" +dateDiff)
+            }
         });
 
     };
     $scope.keyPressed = function(keyEvent, formModel) {
         //if (keyEvent.keyCode == 13) {
             console.log(keyEvent)
-            //$scope.showInfo()
+            //$scope.
+            // ()
         //}
     };
 
@@ -1003,6 +988,9 @@ app.controller('accordionCtrl',function($scope){
         });
 
         $scope.showInfo = function(){
+            if (!window.cordova) {
+                winston.log('info', $scope.$storage.userId + ", viewed timer info at " + new Date())
+            }
             var confirmPopup = $ionicPopup.show({
                 title: 'Timer',
                 //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -1022,6 +1010,9 @@ app.controller('accordionCtrl',function($scope){
                 ]
             });
             confirmPopup.then(function (res) {
+                if (!window.cordova) {
+                    winston.log('info', $scope.$storage.userId + ", closed timer info at " + new Date())
+                }
                 console.log('Tapped!', res);
             });
 

@@ -96,6 +96,10 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
     });
 
     $scope.showInfo = function(){
+        if (!window.cordova) {
+            var datenew = new Date()
+            winston.log('info', $scope.$storage.userId + ", viewed calendar info")
+        }
         var confirmPopup = $ionicPopup.show({
             title: 'Calendar',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -115,7 +119,11 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
             ]
         });
         confirmPopup.then(function (res) {
-            console.log('Tapped!', res);
+            //console.log('Tapped!', res);
+            if (!window.cordova) {
+                var dateDiff = new Date() - datenew
+                winston.log('info', $scope.$storage.userId + ", closed calendar after" +dateDiff)
+            }
         });
 
     };
