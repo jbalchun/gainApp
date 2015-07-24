@@ -560,6 +560,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             return maxObj;
 
         },
+
         updateGoals: function(goalsMap){
           angular.forEach(goalsMap,function(value, key){
               console.log("inserted goal for:", key);

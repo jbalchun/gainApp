@@ -3,7 +3,7 @@
  */
 var app = angular.module('MyApp.postscontrol', ['ionic','MyApp.services','ngStorage','ngCordova']);
 
-app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localStore,$ionicPopup,$ionicPopover,$ionicPlatform,$timeout, $ionicScrollDelegate) {
+app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootScope,localStore,$ionicPopup,$ionicPopover,$ionicPlatform,$timeout, $ionicScrollDelegate) {
 
     $scope.removeFlag = false;
     //$scope.reorderFlag=false;
@@ -555,8 +555,56 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
     }
 
 
+    $rootScope.emailPop = function(){
+        if ($rootScope.stateW =='heroku') {
+            winston.log('info', $scope.$storage.userId + ", opened email")
+
+        }
+        var emailPop = $ionicPopup.show({
+            title: 'Like Gain Deck?',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+            scope: $rootScope,
+            templateUrl:'pop-email.html',
+            buttons: [
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+        emailPop.then(function (res) {
+            console.log('Tapped!', res);
+            if ($rootScope.stateW =='heroku') {
+
+                if($rootScope.email.email.length < 1 || $rootScope.email.email.indexOf('@')== -1){
+                    winston.log('info', $scope.$storage.userId + " closed with no email" )
+                }else{
+                    winston.log('info', $scope.$storage.userId + " closed with email" + $rootScope.email.email)
+                    $scope.$storage.email = angular.copy($rootScope.email.email);
+                }
+                $scope.$broadcast('destroyEmail')
+
+            }
+
+        });
+
+    };
+
+    $scope.$on('destroyEmail',function(){
+        $timeout(function(){
+            $rootScope.email.email = ''
+        },3000)
+
+    });
+
     $scope.showInfo = function(){
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             winston.log('info', $scope.$storage.userId + ", viewed home info")
             var datenew = new Date()
         }
@@ -580,7 +628,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
         });
         confirmPopup.then(function (res) {
             console.log('Tapped!', res);
-            if (!window.cordova) {
+            if ($rootScope.stateW =='heroku') {
                 var dateDiff = new Date() - datenew
                 winston.log('info', $scope.$storage.userId + ", closed home info after" + dateDiff)
             }
@@ -821,7 +869,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
     $scope.closeModal = function(newLift,sets,id) {
         $scope.blurFlag = false;
         if(id==1){
-
+            $scope.modal.hidden();
             if(window.cordova){
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
@@ -830,12 +878,13 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage,localSt
                     $scope.liftName = "Select Lift";
                 }
             }
-            $scope.modal.hide();
+
             if(newLift!='no change'){
                 $scope.liftCards[$scope.$storage.editingLift.index].name = newLift.name;
                 $scope.$storage.lightHeavyMap[newLift.name] = newLift.weight;
                 console.log($scope.lightHeavyMap);
             }
+
             localStore.buildKgMap();
             $scope.kgMap= $scope.$storage.kgMap
             console.log($scope.kgMap)

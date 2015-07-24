@@ -132,7 +132,7 @@ app.controller('buttonCtrl',
 
 
         $scope.showInfo = function(){
-            if (!window.cordova) {
+            if ($rootScope.stateW =='heroku') {
                 var datenew = new Date()
                 winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
             }
@@ -156,7 +156,7 @@ app.controller('buttonCtrl',
             });
             confirmPopup.then(function (res) {
                 //console.log('Tapped!', res);
-                if (!window.cordova) {
+                if ($rootScope.stateW =='heroku') {
                     var dateDiff = new Date() - datenew
                     winston.log('info', $scope.$storage.userId + ", closed liftselect after" +dateDiff)
                 }
@@ -434,7 +434,7 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
     $scope.calendar = function(){
         $state.go('tab.calendar')
 
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             winston.log('info', $rootScope.$storage.userId + ",went to Calendar")
         }
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -442,7 +442,7 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
 
     $scope.posts = function(){
         $state.go('tab.posts');
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             winston.log('info', $rootScope.$storage.userId + ",went to Home")
         }
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -451,7 +451,7 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
     $scope.charts = function(){
         $state.go('tab.charts')
         //cordova.plugins.Keyboard.disableScroll();
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             winston.log('info', $rootScope.$storage.userId + ",went to Charts")
         }
         if(window.cordova){
@@ -463,7 +463,7 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
 
     $scope.timerNav=function(){
         $state.go('tab.timer')
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             winston.log('info', $rootScope.$storage.userId + ",went to Timer")
         }
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -472,7 +472,7 @@ app.controller('NavCtrl', function($scope, $location, $state,$rootScope, Post) {
 });
 
 
-app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicModal,$timeout, $ionicPopup,$ionicPopover,$state) {
+app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicModal,$timeout,$rootScope, $ionicPopup,$ionicPopover,$state) {
     //$scope.$state = $state;
 
     //if($state.includes('tab.charts')){
@@ -584,7 +584,7 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
 
 
     $scope.showInfo = function(){
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             var datenew = new Date()
             winston.log('info', $scope.$storage.userId + ", viewed data info")
         }
@@ -608,7 +608,7 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
         });
         confirmPopup.then(function (res) {
             //console.log('Tapped!', res);
-            if (!window.cordova) {
+            if ($rootScope.stateW =='heroku') {
                 var dateDiff = new Date() - datenew
                 winston.log('info', $scope.$storage.userId + ", closed data after" +dateDiff)
             }
@@ -962,7 +962,7 @@ app.controller('accordionCtrl',function($scope){
 
 // Homepage Set-A-Goal Controller
     // Prefill the slider to 9:30
-    app.controller('GoalCtrl', function($scope,$ionicPopup,$timeout) {
+    app.controller('GoalCtrl', function($scope,$ionicPopup,$timeout,$rootScope) {
         //$scope.range = ($scope.rangeMin * 60 *10) + ($scope.rangeSec *10);
 
         $scope.rangeMin = 1;
@@ -988,7 +988,7 @@ app.controller('accordionCtrl',function($scope){
         });
 
         $scope.showInfo = function(){
-            if (!window.cordova) {
+            if ($rootScope.stateW =='heroku') {
                 winston.log('info', $scope.$storage.userId + ", viewed timer info at " + new Date())
             }
             var confirmPopup = $ionicPopup.show({
@@ -1010,7 +1010,7 @@ app.controller('accordionCtrl',function($scope){
                 ]
             });
             confirmPopup.then(function (res) {
-                if (!window.cordova) {
+                if ($rootScope.stateW =='heroku') {
                     winston.log('info', $scope.$storage.userId + ", closed timer info at " + new Date())
                 }
                 console.log('Tapped!', res);

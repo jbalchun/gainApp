@@ -1,9 +1,14 @@
 <ion-view title="Calendar" ng-controller="calendarcontrol">
     <ion-nav-buttons side="right">
+
         <button class="button button-clear icon ion-ios-refresh-outline"
                 ng-click="clearAll()">
 
         </button>
+        <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
+            Like it?
+        </button>
+
     </ion-nav-buttons>
     <ion-nav-buttons side="left">
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">

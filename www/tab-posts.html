@@ -3,6 +3,9 @@
         <button class="button button-clear icon ion-trash-b" style='font-size: .8em' ng-click="clearLifts()">
 
         </button>
+        <button class="button button-balanced " ng-if= "stateW == 'heroku'"  style='font-size: 1.2em' ng-click="emailPop()">
+            Like it?
+        </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="left">
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
@@ -21,7 +24,8 @@
                 <ion-list show-delete="removeFlag">
                     <span class="reorder-adjusted"></span>
 
-                    <ion-item on-hold="lift.super = !lift.super" class="item  item-remove-animate no-padding borderless" ng-repeat="lift in liftCards track by $index"
+                    <ion-item on-hold="lift.super = !lift.super" style="border-top:none !important;border-bottom:none !important"
+                              class=" borderless2 item  item-remove-animate no-padding borderless" ng-repeat="lift in liftCards track by $index"
                               href="#/lift/{{lift.name}}">
                         <div ng-if="$index != 0 && lift.super == true" class="item item-divider color-header2">
                         </div>

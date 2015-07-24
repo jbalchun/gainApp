@@ -4,6 +4,11 @@
 
         </button>
     </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
+            Like it?
+        </button>
+    </ion-nav-buttons>
 
     <ion-content class="has-header has-footer">
         <div ng-if="chartTable" class="card ">

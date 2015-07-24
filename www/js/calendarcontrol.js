@@ -4,7 +4,7 @@
 
 var app = angular.module('MyApp.calendarcontrol', ['ionic', 'MyApp.services', 'ngStorage']);
 
-app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicScrollDelegate, $localStorage,$state, localStore,$ionicPopup,$ionicPopover) {
+app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicScrollDelegate,$rootScope, $localStorage,$state, localStore,$ionicPopup,$ionicPopover) {
     $scope.$storage =$localStorage;
 
     $scope.workouts = $scope.$storage.workouts;
@@ -96,7 +96,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
     });
 
     $scope.showInfo = function(){
-        if (!window.cordova) {
+        if ($rootScope.stateW =='heroku') {
             var datenew = new Date()
             winston.log('info', $scope.$storage.userId + ", viewed calendar info")
         }

@@ -357,6 +357,9 @@ input[type="text"].workoutNameInput {
 .borderless {
     border-top: none !important;
 }
+.borderless2 {
+    border-top: none !important;
+}
 
 .stop{
     background-color:#ef473a;
@@ -521,6 +524,23 @@ button.ion-minus-circled:before {
 }
 .liftday{
     background-color:#8b8b8b;
+}
+
+#mainContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 450px;
+    max-height:680px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: #000000;
+    border-right: thick;
+
+
+    border: 10px solid black;
 }
 
 

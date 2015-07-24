@@ -31,8 +31,6 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
   //  $state.go('tab.posts');
   //}, 5000);
 
-
-
   function generateUUID(){
     var d = new Date().getTime();
     var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -51,6 +49,7 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     goalsMap:{},
     kgMap:{},
     nameList:{},
+    email:{},
     //nameList:{'Arms6/2/2015':'Arms','Legs6/15/2015':'Legs'},
     selectedLiftNames:[],
     weightSet:[],
@@ -296,11 +295,26 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     $rootScope.$broadcast('closeKeyboard')
   }
 
-
+  $rootScope.stateW = '';
+  $rootScope.email = {email:''};
 
   $ionicPlatform.ready(function() {
-
-    if (!window.cordova){
+    //console.log(winston != undefined)
+    if(!window.cordova){
+      if( typeof winston !== "undefined"){
+        $rootScope.stateW = 'heroku'
+        //console.log($rootScope.stateW)
+      }
+    }
+    if(window.cordova){
+      $rootScope.stateW = 'cordova'
+    }
+    console.log(typeof winston == undefined)
+    if(typeof winston == "undefined" && !window.cordova){
+      $rootScope.stateW = 'local'
+    }
+    console.log($rootScope.stateW)
+    if ($rootScope.stateW == 'heroku'){
         if($rootScope.$storage.userId.length > 1){//if they have a user id
         ++$rootScope.$storage.visitCount
         winston.log('info','user returning for the '+ $rootScope.$storage.visitCount+ " time xlog:"  +  $rootScope.$storage.userId  );
