@@ -48,7 +48,7 @@
                             Add Weight
                         </button>
                         </div>
-                        <div ng-repeat="set in lift.sets track by $index" ng-if="lift.sets[0].reps != 0 || lift.sets[0].wt!=0">
+                        <div ng-repeat="set in lift.sets track by $index" ng-if="lift.sets[0].reps != 0 || lift.sets[0].wt!=0" >
                             <button class="button button-clear button-positive button-text-wrap liftNameButton"
                                     on-hold="openModal(lift.name,$parent.$parent.$index,$index,2,true)" ng-click="openModal(lift.name,$parent.$parent.$index,$index,2)" style="float:left;">
                                 {{set.reps +'x' + set.wt}}

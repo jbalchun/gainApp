@@ -136,6 +136,7 @@ app.controller('buttonCtrl',
                 var datenew = new Date()
                 winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
             }
+            $scope.infoFlag = 5;
             var confirmPopup = $ionicPopup.show({
                 title: 'Lift select',
                 //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -357,7 +358,7 @@ app.controller('buttonCtrl',
     }
 );
 
-app.controller('weightcontrol', function($scope) {
+app.controller('weightcontrol', function($scope,$ionicPopup,$rootScope) {
     //
     //$scope.$on( '$ionicView.afterEnter', function () {
     //    // Handle iOS-specific issue with jumpy viewport when interacting with input fields.
@@ -385,6 +386,34 @@ app.controller('weightcontrol', function($scope) {
             $scope.removeFlag = !$scope.removeFlag
         }
     }
+
+    $scope.showInfo = function() {
+        if ($rootScope.stateW == 'heroku') {
+            var datenew = new Date()
+            winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
+        }
+        $scope.infoFlag = 6;
+        var confirmPopup = $ionicPopup.show({
+            title: 'Set Details',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+            scope: $scope,
+            templateUrl: 'pop-maininfo.html',
+            buttons: [
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+    }
+
+
 
     //console.log("nameof 1"+$scope.todaysLiftsM2[0].name);
     //$scope.sets2 = $scope.todaysLiftsM2[$localStorage.editingLift.index].sets;

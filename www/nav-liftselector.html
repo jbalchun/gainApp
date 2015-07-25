@@ -10,9 +10,13 @@
         <div class="buttons ">
             <button class="button icon ion-arrow-left-c" style="border:none;"
                     ng-click="backFrom()"></button>
+
         </div>
 
         <h1 class="title">{{liftSelectorState}}</h1>
+        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
+
+        </button>
     </ion-header-bar>
 
     <ion-content scroll="false" class="has-header has-footer" on-swipe-left="swipeLeftLift()" >
@@ -52,7 +56,7 @@
                 <a ng-class="{'button-highlight': attr2Pressed == '1'}" ng-click="listSort(2,'1')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Barbell</a>
                 <a ng-class="{'button-highlight': attr2Pressed == '2'}" ng-click="listSort(2,'2')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Dumbell</a>
                 <a ng-class="{'button-highlight': attr2Pressed == '3'}" ng-click="listSort(2,'3')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Machine</a>
-                <a ng-class="{'button-highlight': attr2Pressed == '4'}" ng-click="listSort(2,'4')" type="button" class="button  button-positive button-clear  c">Body
+                <a ng-class="{'button-highlight': attr2Pressed == '4'}" ng-click="listSort(2,'4')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Body
                     Wt</a>
             </div>
             <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
