@@ -72,11 +72,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="postscontrol.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="postscontrol.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/postscontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.76923" vertical-offset="8654" max-vertical-offset="14190">
-              <caret line="606" column="12" selection-start-line="606" selection-start-column="12" selection-end-line="606" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.4003021" vertical-offset="12815" max-vertical-offset="14190">
+              <caret line="872" column="31" selection-start-line="872" selection-start-column="31" selection-end-line="872" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -157,11 +157,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tab-posts.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tab-posts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/tab-posts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
-              <caret line="0" column="94" selection-start-line="0" selection-start-column="94" selection-end-line="0" selection-end-column="94" />
+            <state vertical-scroll-proportion="-4.24" vertical-offset="763" max-vertical-offset="1500">
+              <caret line="65" column="93" selection-start-line="65" selection-start-column="93" selection-end-line="65" selection-end-column="93" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#ion-nav-buttons#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#ion-nav-buttons#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -229,13 +229,13 @@
         <option value="$PROJECT_DIR$/www/pop-maininfo.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/pop-email.html" />
-        <option value="$PROJECT_DIR$/www/js/postscontrol.js" />
         <option value="$PROJECT_DIR$/www/tab-charts.html" />
         <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/tab-posts.html" />
+        <option value="$PROJECT_DIR$/www/js/postscontrol.js" />
       </list>
     </option>
   </component>
@@ -457,7 +457,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3980447" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33938548" sideWeight="0.5006954" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980973" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -908,14 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/postscontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.76923" vertical-offset="8654" max-vertical-offset="14190">
-          <caret line="606" column="12" selection-start-line="606" selection-start-column="12" selection-end-line="606" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4622" max-vertical-offset="6750">
@@ -960,14 +952,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-posts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
-          <caret line="0" column="94" selection-start-line="0" selection-start-column="94" selection-end-line="0" selection-end-column="94" />
+        <state vertical-scroll-proportion="-4.24" vertical-offset="763" max-vertical-offset="1500">
+          <caret line="65" column="93" selection-start-line="65" selection-start-column="93" selection-end-line="65" selection-end-column="93" />
           <folding>
             <element signature="n#style#0;n#button#0;n#ion-nav-buttons#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#ion-nav-buttons#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-item#0;n#ion-list#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/postscontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4003021" vertical-offset="12815" max-vertical-offset="14190">
+          <caret line="872" column="31" selection-start-line="872" selection-start-column="31" selection-end-line="872" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>

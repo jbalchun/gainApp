@@ -869,7 +869,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
     $scope.closeModal = function(newLift,sets,id) {
         $scope.blurFlag = false;
         if(id==1){
-            $scope.modal.hidden();
+            $scope.modal.hide();
             if(window.cordova){
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
