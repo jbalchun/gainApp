@@ -184,10 +184,20 @@ body {
 .month-divider {
     background-color: #444444;
     color:#ffffff;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 .month-divider-odd {
     background-color: #8b8b8b;
     color:#ffffff;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+}
+
+.month-divider.calendar{
+    /*padding-top: 2px;*/
+    padding-bottom: 2px;
 }
 
 input[type="tel"].setInput {
@@ -247,13 +257,13 @@ input[type="tel"].setInput {
     color: #fff;
 }
 
-.button.liftNameButton{
-    font-size: 13px;
-    padding-right: 0px;
-    background-color: #ff512e;
-    color:#ff512e;
+/*.button.liftNameButton{*/
+    /*font-size: 13px;*/
+    /*padding-right: 0px;*/
+    /*background-color: #ff512e;*/
+    /*color:#ff512e;*/
 
-}
+/*}*/
 
 
 
@@ -565,7 +575,9 @@ button.ion-minus-circled:before {
 .tabs { background-image: linear-gradient( 0deg, #b2b2b2, #b2b2b2 50%, transparent 50%); }
 
 
-
+div.row.no-padding.borderless{
+    padding:0px;
+}
 
 /*.progress-bar {*/
 /*background: #191919;*/

@@ -5,7 +5,7 @@
                 ng-click="clearAll()">
 
         </button>
-        <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
+        <button class="button button-balanced " ng-if= "stateW == 'heroku'"style='font-size: 1.2em' ng-click="emailPop()">
             Like it?
         </button>
 
@@ -46,7 +46,7 @@
         <ion-scroll class="scrollbox" zooming="true" direction="y"  style="border-top: thick; height:550px">
         <div class="list" style=" height:700px">
             <div ng-repeat="workout in filterList" class ='card' >
-                <div class="item item-divider month-divider" >
+                <div class="item item-divider month-divider calendar" >
                     {{workout.date +": " + workout.name }}
                     <i class = "icon ion-arrow-up-c"  ng-click="loadLiftOptions($index)" style="font-size:1.8em;  float:right;color:#387ef5;"></i>
                     <i class = "icon ion-trash-b"  ng-click="removeWorkout(workout)" style="float:right;font-size:1.8em; padding-right: 22px"></i>

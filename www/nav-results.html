@@ -9,8 +9,6 @@
             <div class="item item-divider month-divider" >
                 Body Weight
             </div>
-            <div class="liftNameButton">
-
                 <ion-list>
                     <div class="row">
                         <a class="col" style="color:#387ef5;">Weight</a>
@@ -27,20 +25,13 @@
                         </div>
                     </ion-item>
                 </ion-list>
-                <div class="col-100">
-                    <span class="col-offset-20 ">
 
-                    </span>
-                    </span>
-                </div>
-            </div>
         </div>
         <div class="card" ng-repeat="lift in resultsLifts">
             <div class="item item-divider" ng-class-even="'month-divider'" ng-class-odd="'month-divider-odd'">
                 {{lift.name}}
-
             </div>
-            <div class="liftNameButton">
+
                 <ion-list>
                     <div class="row">
                         <a class="col" style="color:#387ef5;">Reps</a>
@@ -50,7 +41,7 @@
                         <a class="col" style="color:#387ef5;"> Goal</a>
                     </div>
                     <ion-item  class="no-padding borderless" ng-repeat="set1 in uniqueNameSetsMap[lift.name]">
-                        <div class="row">
+                        <div  class="row">
                         <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].reps}}</a>
                         <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].todaysMax}}</a>
                         <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt}}</a>
@@ -59,12 +50,7 @@
                         </div>
                     </ion-item>
                 </ion-list>
-                <div class="col-100">
-                    <span class="col-offset-20 ">
 
-                    </span>
-                    </span>
-                </div>
             </div>
         </div>
     </ion-content>
