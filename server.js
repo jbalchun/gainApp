@@ -6,7 +6,7 @@
 
  // winstonExpress takes two parameters,
  // an express app, and a winston logger instance.
- if (cluster.isMaster) {
+ if (cluster.isMaster) {//TODO make sure we are routing to these
      // Count the machine's CPUs
      var cpuCount = require('os').cpus().length;
 
