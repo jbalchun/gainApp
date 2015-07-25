@@ -768,16 +768,18 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
             $scope.removeFlag = !$scope.removeFlag;
         }
     }
+
     $scope.popEditingNumber = function(num,bool){
         if(num!=$scope.editingShow.num){
             if(bool){
                 $scope.changeNumber(num,bool)
             }else $scope.changeNumber(num)
+
         }
 
         $scope.editingNumber.id = 2
         $scope.wtSelectPress = $scope.editingNumber.index+"2"
-        $scope.wtSelectPress = {num: $scope.sets2[$scope.editingNumber.index].wt}
+        $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].wt}
 
     }
 
