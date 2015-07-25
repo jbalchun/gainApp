@@ -200,6 +200,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
 
         var maxItem= localStore.getMax(name,reps);
         var lastItem = localStore.getDataAngular(name,reps,3).slice(-1)[0];
+        console.log('only1',maxItem.only1)
         if(maxItem.only1 == true){
             return{name:name,reps:reps,todaysMax:$scope.todaysMaxs[name+String(reps)],max:0,last:0}
         }

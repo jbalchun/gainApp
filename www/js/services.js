@@ -545,19 +545,24 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 bodyWeight.push({wt:day.bodyWeight,date:day.date})
                 angular.forEach(day.lifts, function(lift, index){
                     if (lift.name == name){
+                        var tempDayList = [];
                         angular.forEach(lift.sets,function(set1, index){
                             if(Number(set1.reps) == Number(reps)){
-                                weightsDates.push({wt:Number(set1.wt),date:day.date});
+                                tempDayList.push({wt:Number(set1.wt),date:day.date});
+
                             }
                         });
+                        var tempMaxObj = _.max(tempDayList, function(lift){ return lift.wt;})
+                        weightsDates.push(tempMaxObj);
                     }
                 });
             });
+
             var maxObj = _.max(weightsDates, function(lift){ return lift.wt;})
-            if(weightsDates.length == 1){
+            console.log(weightsDates.length)
+            if(weightsDates.length==1){
                 maxObj['only1'] = true;
             }
-
             if (name == "Body Weight"){
                 maxObj = bodyWeight;
             }
