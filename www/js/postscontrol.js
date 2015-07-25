@@ -200,7 +200,9 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
 
         var maxItem= localStore.getMax(name,reps);
         var lastItem = localStore.getDataAngular(name,reps,3).slice(-1)[0];
-
+        if(maxItem.only1 == true){
+            return{name:name,reps:reps,todaysMax:$scope.todaysMaxs[name+String(reps)],max:0,last:0}
+        }
         if(maxItem < -1000 || !maxItem || maxItem >1000){
             $scope.maxList[name] = 'None';
         }else{
@@ -220,6 +222,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
             }else $scope.plusMinusLast[name] = 1
         }
         //TODO intervene if max/last = the only one
+
         return{name:name,reps:reps,todaysMax:$scope.todaysMaxs[name+String(reps)],max:maxItem,last:lastItem}
         //last clicked rep for a given lift
     };

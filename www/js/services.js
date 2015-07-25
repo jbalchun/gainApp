@@ -553,7 +553,11 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                     }
                 });
             });
-            var maxObj = _.max(weightsDates, function(lift){ return lift.wt; })
+            var maxObj = _.max(weightsDates, function(lift){ return lift.wt;})
+            if(weightsDates.length == 1){
+                maxObj['only1'] = true;
+            }
+
             if (name == "Body Weight"){
                 maxObj = bodyWeight;
             }
