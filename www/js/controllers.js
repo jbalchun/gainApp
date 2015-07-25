@@ -265,6 +265,10 @@ app.controller('buttonCtrl',
             $scope.searchTextC = searchText;
         };
 
+        $scope.$on('reset-liftselect',function(){
+            $scope.reset();
+        })
+
         $scope.isSelected = function(lift) {
             return $scope.selected === lift;
         }
@@ -284,10 +288,6 @@ app.controller('buttonCtrl',
                 localStore.removeLiftEntry(lift.name);
                 return;
             }
-            $scope.attr1Pressed = '.';
-            $scope.attr2Pressed = '.';
-            $scope.attr3Pressed = '.';
-            $scope.selected = '.';
             $scope.selected = lift;
             $scope.closeModal(lift,0,1);
         }

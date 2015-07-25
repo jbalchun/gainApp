@@ -42,6 +42,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
     $scope.dateList = [];
     $scope.calendar1 = false;
     $scope.infoFlag =1;
+    var hideModalFlag = {'newlift':'','sets':'','id':''}
 
         //prevent selection of the same lift, unless its "new lift"
     //for autoselect in weightselect modal
@@ -866,13 +867,17 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
 
         }
     };
-    $scope.closeModal = function(newLift,sets,id) {
-        $scope.blurFlag = false;
+    $scope.$on('modal.hidden', function() {
+        console.log(hideModalFlag)
+        var newLift = hideModalFlag.newLift
+        var sets = hideModalFlag.sets
+        var id = hideModalFlag.id
+        console.log(newLift);
         if(id==1){
-            $scope.modal.hide();
             if(window.cordova){
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
+
             if(newLift == "no change"){
                 if( $scope.liftCards[$scope.$storage.editingLift.index].name == "Select Lift"){
                     $scope.liftName = "Select Lift";
@@ -884,36 +889,55 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
                 $scope.$storage.lightHeavyMap[newLift.name] = newLift.weight;
                 console.log($scope.lightHeavyMap);
             }
-
             localStore.buildKgMap();
             $scope.kgMap= $scope.$storage.kgMap
-            console.log($scope.kgMap)
+            $timeout(function(){
+                $scope.$broadcast('reset-liftselect');
+            },500);
+
         }
 
         else if(id ==2) {
-            $scope.modal2.hide();
-            //$scope.liftCards[$scope.editingLiftIndex].sets = sets;
+
         }else if (id ==3){
-            $scope.modal3.hide();
             $timeout(function() {
                 $scope.clearResults();
             }, 3000);
 
         }else if(id==4){
-            $scope.modal4.hide();
+
         }else{
             if(newLift == 1){ //TODO make sure date isn't date
                 //if(!localStore.checkDate($scope.liftDate)){
-                    localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight,$scope.notes);
-                    $scope.resultsLifts = $scope.liftCards;
-                    $scope.liftCards = $scope.$storage.todaysLifts;
-                    $scope.uniqueSortReps();
-                    $scope.openModal('', '', '', '3');
+                localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight,$scope.notes);
+                $scope.resultsLifts = $scope.liftCards;
+                $scope.liftCards = $scope.$storage.todaysLifts;
+                $scope.uniqueSortReps();
+                $scope.openModal('', '', '', '3');
                 //}else {
                 //    $scope.dateErrorPop();
                 //}
-                $scope.modal5.hide()
             }
+        }
+
+    });
+
+    $scope.closeModal = function(newLift,sets,id) {
+        console.log(newLift)
+        hideModalFlag = {newLift:newLift,sets:sets,id:id};
+        console.log(hideModalFlag)
+        $scope.blurFlag = false;
+        if(id==1){
+            $scope.modal.hide();
+        }
+        else if(id ==2) {
+            $scope.modal2.hide();
+        }else if (id ==3){
+            $scope.modal3.hide();
+
+        }else if(id==4){
+            $scope.modal4.hide();
+        }else{
             $scope.modal5.hide()
         }
 
