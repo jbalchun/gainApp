@@ -72,11 +72,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="postscontrol.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="postscontrol.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/postscontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0625" vertical-offset="12902" max-vertical-offset="14550">
-              <caret line="863" column="13" selection-start-line="863" selection-start-column="13" selection-end-line="863" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="12902" max-vertical-offset="14550">
+              <caret line="864" column="35" selection-start-line="864" selection-start-column="35" selection-end-line="864" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -95,8 +95,28 @@
       <file leaf-file-name="nav-liftselector.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/nav-liftselector.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125" vertical-offset="75" max-vertical-offset="1245">
-              <caret line="26" column="106" selection-start-line="26" selection-start-column="106" selection-end-line="26" selection-end-column="106" />
+            <state vertical-scroll-proportion="-23.291666" vertical-offset="581" max-vertical-offset="1260">
+              <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7020349" vertical-offset="7677" max-vertical-offset="8985">
+              <caret line="544" column="0" selection-start-line="544" selection-start-column="0" selection-end-line="544" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.041667" vertical-offset="497" max-vertical-offset="1185">
+              <caret line="54" column="2" selection-start-line="54" selection-start-column="2" selection-end-line="54" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -135,7 +155,6 @@
         <option value="$PROJECT_DIR$/www/pop-liftnames.html" />
         <option value="$PROJECT_DIR$/app.json" />
         <option value="$PROJECT_DIR$/www/tabs.html" />
-        <option value="$PROJECT_DIR$/www/nav-liftselector.html" />
         <option value="$PROJECT_DIR$/www/pop-confirm.html" />
         <option value="$PROJECT_DIR$/newrelic.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -149,11 +168,12 @@
         <option value="$PROJECT_DIR$/www/pop-email.html" />
         <option value="$PROJECT_DIR$/www/tab-charts.html" />
         <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/tab-posts.html" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/js/postscontrol.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/nav-liftselector.html" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
       </list>
     </option>
   </component>
@@ -811,22 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.666667" vertical-offset="521" max-vertical-offset="1185">
-          <caret line="55" column="51" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.327273" vertical-offset="7677" max-vertical-offset="8955">
-          <caret line="535" column="18" selection-start-line="535" selection-start-column="18" selection-end-line="535" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1410">
@@ -867,14 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/nav-liftselector.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125" vertical-offset="75" max-vertical-offset="1245">
-          <caret line="26" column="106" selection-start-line="26" selection-start-column="106" selection-end-line="26" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.5384616" vertical-offset="3755" max-vertical-offset="19140">
@@ -885,8 +881,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/postscontrol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0625" vertical-offset="12902" max-vertical-offset="14550">
-          <caret line="863" column="13" selection-start-line="863" selection-start-column="13" selection-end-line="863" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="12902" max-vertical-offset="14550">
+          <caret line="864" column="35" selection-start-line="864" selection-start-column="35" selection-end-line="864" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.041667" vertical-offset="497" max-vertical-offset="1185">
+          <caret line="54" column="2" selection-start-line="54" selection-start-column="2" selection-end-line="54" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/nav-liftselector.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.291666" vertical-offset="581" max-vertical-offset="1260">
+          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7020349" vertical-offset="7677" max-vertical-offset="8985">
+          <caret line="544" column="0" selection-start-line="544" selection-start-column="0" selection-end-line="544" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -525,22 +525,24 @@ button.ion-minus-circled:before {
 .liftday{
     background-color:#8b8b8b;
 }
+@media (orientation: landscape){
+    #mainContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: 520px;
+        max-height:750px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: #000000;
+        border-right: thick;
 
-#mainContainer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 520px;
-    max-height:750px;
-    margin-left: auto;
-    margin-right: auto;
-    border-left: #000000;
-    border-right: thick;
 
+        border: 10px solid black;
+    }
 
-    border: 10px solid black;
 }
 
 
