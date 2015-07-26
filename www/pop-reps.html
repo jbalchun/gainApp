@@ -1,2 +1,2 @@
-<ion-popover-view style="height:{{(55 * reps3.length) + 'px'}}; overflow-y: scroll"><ion-list><ion-item ng-if="reps3[0].reps ==0 || reps3.length<1">No data for this lift</ion-item>
+<ion-popover-view style="height:{{(35 * reps3.length) + 'px'}}; overflow-y: scroll"><ion-list><ion-item ng-if="reps3[0].reps ==0 || reps3.length<1">No data for this lift</ion-item>
     <ion-item ng-repeat="rep1 in reps3" ng-click="repPopSelect(rep1.reps)">{{rep1.reps}}</ion-item></ion-list></ion-popover-view>
