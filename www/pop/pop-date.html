@@ -1,0 +1,6 @@
+<ion-popover-view style="height:50%; overflow-y: scroll">
+    <ion-list>
+        <ion-item  ng-click="datePopupSelect('clear')">Clear Filter</ion-item>
+        <ion-item  ng-if="isLiftDay(date)" ng-repeat="date in dateList"   ng-click="datePopupSelect(date)">{{date}}</ion-item>
+    </ion-list>
+</ion-popover-view>

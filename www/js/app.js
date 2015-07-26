@@ -13,7 +13,6 @@ var app = angular.module('MyApp', [
     'timer',
     'ngStorage',
     'ngCordova',
-    'autocomplete'
 ]);
 
 app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore) {

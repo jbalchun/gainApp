@@ -13,8 +13,14 @@
       <change type="NEW" beforePath="" afterPath="$APPLICATION_CONFIG_DIR$/options/security.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/ngstorage.min.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/postscontrol.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/timercontrollers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/vendor/moment-duration-format.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/vendor/moment.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/vendor/shake.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/vendor/timer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/vendor/underscore.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/nav-liftselector.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/www/nav-weightselector.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip" />
@@ -71,8 +77,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-43.75" vertical-offset="0" max-vertical-offset="1245">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.24" vertical-offset="223" max-vertical-offset="1245">
+              <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="40" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -81,8 +87,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3649" max-vertical-offset="6150">
-              <caret line="257" column="25" selection-start-line="257" selection-start-column="25" selection-end-line="257" selection-end-column="25" />
+            <state vertical-scroll-proportion="-8.076923" vertical-offset="0" max-vertical-offset="6135">
+              <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -108,11 +114,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendarcontrol.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tab-calendar.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.14" vertical-offset="508" max-vertical-offset="1410">
+              <caret line="51" column="138" selection-start-line="51" selection-start-column="138" selection-end-line="51" selection-end-column="138" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#ion-scroll#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chartcontrol.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.44561934" vertical-offset="2075" max-vertical-offset="6330">
+              <caret line="158" column="37" selection-start-line="158" selection-start-column="37" selection-end-line="158" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendarcontrol.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5876133" vertical-offset="509" max-vertical-offset="6465">
-              <caret line="104" column="21" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
+            <state vertical-scroll-proportion="-17.961538" vertical-offset="5623" max-vertical-offset="6285">
+              <caret line="406" column="6" selection-start-line="406" selection-start-column="6" selection-end-line="406" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -163,7 +191,6 @@
         <option value="$PROJECT_DIR$/www/nav-goals.html" />
         <option value="$PROJECT_DIR$/www/nav-results.html" />
         <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
-        <option value="$PROJECT_DIR$/www/tab-calendar.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/tab-posts.html" />
         <option value="$PROJECT_DIR$/www/pop-maininfo.html" />
@@ -176,16 +203,17 @@
         <option value="$PROJECT_DIR$/www/tabs.html" />
         <option value="$PROJECT_DIR$/www/js/navcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/timercontrol.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/js/weightcontrol.js" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/liftselectcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/chartcontrol.js" />
+        <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/tab-calendar.html" />
       </list>
     </option>
   </component>
@@ -309,6 +337,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gainApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gainApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -337,6 +383,7 @@
       <recent name="$PROJECT_DIR$/www/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/www/lib" />
       <recent name="$PROJECT_DIR$/www/modals" />
       <recent name="$PROJECT_DIR$/www/pop" />
     </key>
@@ -612,13 +659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/ngstorage.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="165">
@@ -734,16 +774,6 @@
         <state vertical-scroll-proportion="-8.461538" vertical-offset="7430" max-vertical-offset="9435">
           <caret line="510" column="7" selection-start-line="510" selection-start-column="1" selection-end-line="510" selection-end-column="7" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.708333" vertical-offset="592" max-vertical-offset="1410">
-          <caret line="55" column="59" selection-start-line="55" selection-start-column="59" selection-end-line="55" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#button#1;n#ion-nav-buttons#0;n#ion-view#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -920,34 +950,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.75" vertical-offset="0" max-vertical-offset="1245">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3649" max-vertical-offset="6150">
-          <caret line="257" column="25" selection-start-line="257" selection-start-column="25" selection-end-line="257" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.2220545" vertical-offset="9209" max-vertical-offset="13605">
           <caret line="712" column="22" selection-start-line="712" selection-start-column="22" selection-end-line="712" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26435044" vertical-offset="3065" max-vertical-offset="6330">
-          <caret line="216" column="93" selection-start-line="216" selection-start-column="93" selection-end-line="216" selection-end-column="93" />
           <folding />
         </state>
       </provider>
@@ -960,10 +966,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/lib/ngstorage.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="688">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5876133" vertical-offset="509" max-vertical-offset="6465">
-          <caret line="104" column="21" selection-start-line="104" selection-start-column="21" selection-end-line="104" selection-end-column="21" />
+        <state vertical-scroll-proportion="-17.961538" vertical-offset="5623" max-vertical-offset="6285">
+          <caret line="406" column="6" selection-start-line="406" selection-start-column="6" selection-end-line="406" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.24" vertical-offset="223" max-vertical-offset="1245">
+          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="40" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.076923" vertical-offset="0" max-vertical-offset="6135">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.14" vertical-offset="508" max-vertical-offset="1410">
+          <caret line="51" column="138" selection-start-line="51" selection-start-column="138" selection-end-line="51" selection-end-column="138" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#ion-scroll#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44561934" vertical-offset="2075" max-vertical-offset="6330">
+          <caret line="158" column="37" selection-start-line="158" selection-start-column="37" selection-end-line="158" selection-end-column="37" />
           <folding />
         </state>
       </provider>

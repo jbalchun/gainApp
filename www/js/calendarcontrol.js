@@ -216,7 +216,6 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
     }
 
     $scope.filter = function (clearFlag) {
-        //catch all not filter. need to make a filter
         console.log('filterListBefore', $scope.filterList)
         $scope.filterList = []
         var monthFlag = false
@@ -237,6 +236,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         $scope.dateObj["Year"] != 'Year' ? yearFlag = true : yearFlag = false
         $scope.dateObj["Day"] != 'Day' ? dayFlag = true : dayFlag = false
         $scope.liftName != 'Lift' ? liftFlag = true : liftFlag = false
+
         var noneFlag = 1;
         if ((!nameFlag && !monthFlag && !yearFlag && !dayFlag && !liftFlag) || clearFlag == 'clear') {
             $scope.filterList = angular.copy($scope.$storage.workouts);
@@ -247,7 +247,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             console.log("day, month, year,name,lift flag", dayFlag, monthFlag, yearFlag, nameFlag, liftFlag)
             var currentDate = new Date(workout.date)
 
-            if (liftFlag) {
+            if (liftFlag) { //O(lifts.length*N) shouldn't be slow for a while
                 angular.forEach(workout.lifts, function (lift, index) {
                     if (lift.name == $scope.liftName) {
                         console.log('lift name ', lift.name, 'scope liftname', $scope.liftName, liftFlag)
@@ -405,19 +405,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         }
 
     };
-    //Cleanup the modal when we're done with it!
-    $scope.$on('$destroy', function () {
-        $scope.modal.remove();
-        console.log('Destroying modals...');
-    });
-    // Execute action on hide modal
-    $scope.$on('modal.hidden', function () {
-        // Execute action
-    });
-    // Execute action on remove modal
-    $scope.$on('modal.removed', function () {
-        // Execute action
-    });
+
 
 });
 

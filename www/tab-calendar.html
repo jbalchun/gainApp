@@ -48,8 +48,8 @@
             <div ng-repeat="workout in filterList" class ='card' >
                 <div class="item item-divider month-divider calendar" >
                     {{workout.date +": " + workout.name }}
-                    <i class = "icon ion-arrow-up-c"  ng-click="loadLiftOptions($index)" style="font-size:1.8em;  float:right;color:#387ef5;"></i>
-                    <i class = "icon ion-trash-b"  ng-click="removeWorkout(workout)" style="float:right;font-size:1.8em; padding-right: 22px"></i>
+                    <i class = "icon ion-arrow-up-c"  ng-click="loadLiftOptions($index)" style="font-size:1.8em; padding-right: 4px;  float:right;color:#387ef5;"></i>
+                    <i class = "icon ion-trash-b"  ng-click="removeWorkout(workout)" style="float:right;font-size:1.8em; padding-right: 15px"></i>
                     <span ng-if="workout.bodyWeight.length >= 2" style="float:right; padding-right: 10px;">{{workout.bodyWeight +'lbs '}}</span>
                 </div>
                 <ion-list>
