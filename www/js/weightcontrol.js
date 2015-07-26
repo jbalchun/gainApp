@@ -3,7 +3,7 @@ var app = angular.module('MyApp.weightcontrol', ['ionic']);
 app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
 
     $scope.removeFlag = false;
-    console.log("weightxx" + $scope.indexLift);
+    //console.log("weightxx" + $scope.indexLift);
     $scope.kgLookup = function (nameLift) {
     }
 
@@ -50,7 +50,7 @@ app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
     }
 
     $scope.addSet = function () {
-        console.log('sets2', $scope.editingNumber.id, $scope.wtSelectPress, $scope.wtSelectPress)
+        //console.log('sets2', $scope.editingNumber.id, $scope.wtSelectPress, $scope.wtSelectPress)
         if ($scope.sets2[0].reps != 0 || $scope.sets2[0].wt != 0 || $scope.sets2.length > 1) {
             var last = angular.copy(_.last($scope.sets2));
             $scope.sets2.push(

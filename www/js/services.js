@@ -43,11 +43,11 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':false})
         },
         saveLift: function (date,lifts,name,bodyWeight,notes) {
-            console.log('saving',{'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes})
+            //console.log('saving',{'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes})
             $rootScope.$storage.workouts.unshift({'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes}),
             $rootScope.$storage.nameList[name.name+date] = name.name;
 
-            console.log('namelistStore',$rootScope.$storage.nameList);
+            //console.log('namelistStore',$rootScope.$storage.nameList);
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}],
@@ -59,9 +59,9 @@ app.factory('localStore', function ($rootScope, $localStorage) {
 
         removeWorkout:function(workout){//TODO change if you allow free dates?
             angular.forEach($rootScope.$storage.workouts,function(workout2,index){
-                console.log('workouts',workout,workout2)
+                //console.log('workouts',workout,workout2)
                 if(workout.date == workout2.date){
-                    console.log('in to remove',index)
+                    //console.log('in to remove',index)
                     $rootScope.$storage.workouts.splice(index,1)
                 }
 
@@ -74,7 +74,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
               var numDay = Number(day);
                   if(currentDay == numDay){
                     resultFlag = true;
-                      console.log(resultFlag)
+                      //console.log(resultFlag)
                   }
           });
             return resultFlag;
@@ -117,7 +117,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             }
 
           })
-            console.log('kgmap',$rootScope.$storage.kgMap)
+            //console.log('kgmap',$rootScope.$storage.kgMap)
         },
         getChartData: function(name,reps,flag){ //its a monster, watch type stuff
             var weightSetTemp = [];
@@ -126,12 +126,12 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             var tempMaxMap ={};
             angular.forEach($rootScope.$storage.workouts, function(day, index) {
                 angular.forEach(day.lifts, function(lift, index){
-                    //console.log('day lifts',lift);
+                    ////console.log('day lifts',lift);
                     if (lift.name == name){
                         angular.forEach(lift.sets,function(set1, index){
-                            console.log('lift sets',set1);
+                            //console.log('lift sets',set1);
                           if(Number(set1.reps) == Number(reps)){
-                              console.log('if number')
+                              //console.log('if number')
                               if(tempMaxMap[String(lift.name)+String(set1.reps)+String(day.date)] > 0){ // if we have an entry
                                  var lastLiftReps = Number(tempMaxMap[String(lift.name)+String(set1.reps)+String(day.date)]);
                                   if (lastLiftReps < set1.wt){// and if that entry is not the max
@@ -141,12 +141,12 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                                       weightDateSet.push({wt:Number(set1.wt),date:day.date});
                                   }
                               }else{
-                                  console.log('elser')
+                                  //console.log('elser')
                                   tempMaxMap[String(lift.name)+String(set1.reps)+String(day.date)] = Number(set1.wt);
                                   weightSetTemp.push(Number(set1.wt));
                                   dateSetTemp.push(day.date);
                                   weightDateSet.push({wt:Number(set1.wt),date:day.date});
-                                  console.log(weightDateSet)
+                                  //console.log(weightDateSet)
                               }
                           }
                         });
@@ -154,24 +154,24 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 });
             });
             if(flag == 1){
-                console.log('wtdt1',weightDateSet)
+                //console.log('wtdt1',weightDateSet)
                 if(weightSetTemp.length == 0){
                     weightSetTemp = [0];
                 }
                 var weightSetBuild =[weightSetTemp,];
-                console.log('returning',weightSetBuild)
+                //console.log('returning',weightSetBuild)
                 return weightSetBuild;
             }
             else if (flag == 2){
-                console.log('wtdt2',weightDateSet)
+                //console.log('wtdt2',weightDateSet)
                 if(dateSetTemp.length == 0){
                 dateSetTemp=['','No Data Available']
                 }
-                console.log('returning',dateSetTemp)
+                //console.log('returning',dateSetTemp)
                 return dateSetTemp;
             }
             else{
-                console.log('returning',weightDateSet)
+                //console.log('returning',weightDateSet)
                 return weightDateSet;
             }
         },
@@ -215,13 +215,13 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             angular.forEach($rootScope.$storage.workouts, function(day, index) {
                 //var weightSetDayTemp= [];
                 //var dateSetDayTemp =[];
-                console.log('day replist',day)
+                //console.log('day replist',day)
                 angular.forEach(day.lifts, function(lift, index){
-                    console.log('day lifts',lift)
+                    //console.log('day lifts',lift)
                     if (lift.name == name){
                         angular.forEach(lift.sets,function(set1, index){
                                 //if rep not in replist
-                            console.log('set lifts',set1)
+                            //console.log('set lifts',set1)
                                 repList.push(Number(set1.reps));
                                 //do something
                         });
@@ -235,11 +235,11 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             angular.forEach(repListS,function(rep,index){
                 repListF.push({reps:Number(rep)});
             })
-            console.log("zerooo",repListF[0])
+            //console.log("zerooo",repListF[0])
             if (repListF[0]==undefined ){
                 repListF = [{reps:0},]
             }
-            console.log("repListF",repListF);
+            //console.log("repListF",repListF);
             return repListF;
         },
         getBodyWeightData: function(flag){//flag indicates dates or weights
@@ -291,7 +291,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             });
 
             var maxObj = _.max(weightsDates, function(lift){ return lift.wt;})
-            console.log(weightsDates.length)
+            //console.log(weightsDates.length)
             if(weightsDates.length==1){
                 maxObj['only1'] = true;
             }
@@ -304,9 +304,9 @@ app.factory('localStore', function ($rootScope, $localStorage) {
 
         updateGoals: function(goalsMap){
           angular.forEach(goalsMap,function(value, key){
-              console.log("inserted goal for:", key);
+              //console.log("inserted goal for:", key);
               $rootScope.$storage.goalsMap[key]=value;
-              console.log($rootScope.$storage.goalsMap)
+              //console.log($rootScope.$storage.goalsMap)
           });
         },
         getGoal:function(key){
@@ -320,7 +320,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 var weekListFinal = [];
                 var liftListFinal =[];
                 var dateList =dateWeightList;
-                console.log('dwlist',dateWeightList)
+                //console.log('dwlist',dateWeightList)
                 var week = getWeek(  dateList[0].date)
                   dateShow = week;
 
@@ -360,22 +360,22 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                         repeatList[weekFrom] = {date:entry,wt:maxWt};
                     }
                 });
-            console.log('nmL',normalLifts)
+            //console.log('nmL',normalLifts)
                 var normalWeeks =[];//lets just make two arrays bc that's what the app takes.
                 var liftWrapArray =[];
                 var normalLifts =[];
                 var lastWeight = 0;
                 var lastDate;
                 var normalDate =[];
-                console.log('nmL',weekList)
+                //console.log('nmL',weekList)
                 //Maps entries to their week number if they are present that week, else take last weight.
-            console.log('wkl',normalLastWeek)
+            //console.log('wkl',normalLastWeek)
                 for(var i=0;i<normalLastWeek+1;i++){//for every week between start and finish
                     normalWeeks[i] =String(i);//add the week regardless
                     if(weekList[i] && weekList[i].hasOwnProperty('wt')){//if that week has a designated weight
                         normalLifts[i] = Number(weekList[i].wt);
                         normalDate[i] =weekList[i].date;
-                        console.log('nmL',normalLifts)
+                        //console.log('nmL',normalLifts)
                         normalWeeks[i] = String(i);
                         lastWeight = weekList[i].wt
                         lastDate = new Date(weekList[i].date)
@@ -389,13 +389,13 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                   var liftListFinal = [normalLifts];
 
                 if(flag ==1){
-                    console.log('returning',liftListFinal)
+                    //console.log('returning',liftListFinal)
                     return liftListFinal;
                 }else if(flag==2){
-                    console.log('returning',weekListFinal)
+                    //console.log('returning',weekListFinal)
                     return weekListFinal;
                 }else{
-                    console.log('returning',normalDate)
+                    //console.log('returning',normalDate)
                     return normalDate;
                 }
 

@@ -63,6 +63,7 @@ app.directive('takeFocus', function($timeout) {
     };
 });
 
+
 app.directive('selectOnFocus', function () {
     return {
         restrict: 'A',

@@ -30,8 +30,8 @@
                 <ion-item  class="item-stable item-remove-animate lift-list" ng-class="{active : isSelected(lift)}"
                           ng-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText" ng-if="!custom ||(custom && lift.custom == true)">
                        <a   class="liftSelectEntry" ng-class="{'remove-lift':removeFlagB}" ng-click="setLift(lift,$index)">{{lift.name }} </a>
-                    <i class="icon ion-social-google-outline searchIcon" style="float:right; font-size: 1.2em; padding-right: .8em" ng-click="goToUrl(lift.name)"></i>
-                    <i class="icon ion-gear-a " style="float:right; font-size: 1.2em; padding-right: .8em" ng-click="editSettings(lift.name)"></i>
+                    <i class="icon ion-social-google-outline searchIcon" style="float:right; font-size: 1.4em; padding-right: .8em" ng-click="goToUrl(lift.name)"></i>
+                    <i class="icon ion-gear-a " style="float:right; font-size: 1.4em; padding-right: .8em" ng-click="editSettings(lift.name)"></i>
 
                     <!--<ion-delete-button class="ion-minus-circled your-class button"-->
                                        <!--ng-click="removeLiftEntry($index)" style="float:left;">-->

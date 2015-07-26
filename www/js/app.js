@@ -163,7 +163,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 notes: {notes: ''},
                 lifts: [{
                     'name': 'Barbell Bench Press',
-                    'sets': [{'reps': '5', wt: '225'}, {'reps': '3', wt: '265'}, {'reps': '1', wt: '285'}]
+                    'sets': [{'reps': '5', wt: '225'}, {'reps': '3', wt: '250'}, {'reps': '1', wt: '285'}]
                 },
                     {
                         'name': 'Barbell Curls',
@@ -199,7 +199,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 notes: {notes: ''},
                 lifts: [{
                     'name': 'Barbell Bench Press',
-                    'sets': [{'reps': '5', wt: '235'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '285'}]
+                    'sets': [{'reps': '5', wt: '235'}, {'reps': '3', wt: '260'}, {'reps': '1', wt: '285'}]
                 },
                     {
                         'name': 'Barbell Curls',
@@ -218,7 +218,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 notes: {notes: ''},
                 lifts: [{
                     'name': 'Barbell Bench Press',
-                    'sets': [{'reps': '5', wt: '245'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '290'}]
+                    'sets': [{'reps': '5', wt: '245'}, {'reps': '3', wt: '265'}, {'reps': '1', wt: '290'}]
                 },
                     {
                         'name': 'Barbell Curls',
@@ -234,26 +234,29 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 'date': 'Jul 12 2015',
                 bodyWeight: {wt: '210'},
                 name: {name: 'Legs'},
-                notes: {notes: ''},
-                lifts: [{
-                    'name': 'Standing Calf Raises',
-                    'sets': [{'reps': '5', wt: 400}, {'reps': '10', wt: '120'}, {'reps': '15', wt: '60'}]
+                notes: {notes: 'Workout notes.. lines between lifts indicate a super set. Use the blue arrow to load this workout to the editor'},
+                lifts: [
+                    {
+                        'name': 'Barbell Back Squat',
+                        'sets': [{'reps': '5', wt: '400'}, {'reps': '10', wt: '500'}, {'reps': '15', wt: '300'}]
+                    },
+                    {
+                    'name': 'Standing Machine Calf Raises',
+                        'super':true,
+                    'sets': [{'reps': '5', wt: '200'}, {'reps': '10', wt: '200'}, {'reps': '15', wt: '200'}]
                 },
                     {
                         'name': 'Barbell Curls',
                         'sets': [{'reps': '5', wt: '50'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '15'}]
                     },
-                    {
-                        'name': 'Barbell Back Squat',
-                        'sets': [{'reps': '5', wt: '400'}, {'reps': '10', wt: '500'}, {'reps': '15', wt: '300'}]
-                    }
+
                 ]
             },
             {
                 'date': 'Jul 25 2015',
                 bodyWeight: {wt: '215'},
                 name: {name: 'Arms'},
-                notes: {notes: 'Workout notes go here.. '},
+                notes: {notes: 'Try charting this data on the next tab. Select Barbell Bench Press and a rep, for example'},
                 lifts: [{
                     'name': 'Barbell Bench Press',
                     'sets': [{'reps': '5', wt: '255'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '295'}]
@@ -263,8 +266,13 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                         'sets': [{'reps': '5', wt: '50'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '15'}]
                     },
                     {
-                        'name': 'Barbell Back Squat',
-                        'sets': [{'reps': '5', wt: '400'}, {'reps': '10', wt: '500'}, {'reps': '15', wt: '300'}]
+                        'name': 'Dumbell Shoulder Press',
+                        'super':true,
+                        'sets': [{'reps': '5', wt: '185'}, {'reps': '10', wt: '185'}, {'reps': '15', wt: '185'}]
+                    },
+                    {
+                        'name': 'Seated Dumbell Shoulder Press',
+                        'sets': [{'reps': '10', wt: '200'}, {'reps': '10', wt: '250'}, {'reps': '15', wt: '250'}]
                     }
                 ]
             },
@@ -290,12 +298,12 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
     $rootScope.email = {email: ''};
 
     $ionicPlatform.ready(function () {
-        //console.log(winston != undefined)
+        ////console.log(winston != undefined)
         if ($rootScope.$storage.populated == false) {//load in dummy data for demos
             //$rootScope.$storage.dummy.reverse();
             angular.forEach($rootScope.$storage.dummy, function (workout, key) {
-                console.log('notes', workout)
-                localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes.notes)
+                //console.log('notes', workout)
+                localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes)
             })
             $rootScope.$storage.populated = true
         }
@@ -303,17 +311,18 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         if (!window.cordova) {
             if (typeof winston !== "undefined") {
                 $rootScope.stateW = 'heroku'
-                //console.log($rootScope.stateW)
+                ////console.log($rootScope.stateW)
             }
         }
         if (window.cordova) {
             $rootScope.stateW = 'cordova'
         }
-        console.log(typeof winston == undefined)
+        //console.log(typeof winston == undefined)
         if (typeof winston == "undefined" && !window.cordova) {
             $rootScope.stateW = 'local'
         }
-        console.log('state', $rootScope.stateW)
+        //determine state so we can track heroku demos/ show the email button
+        //console.log('state', $rootScope.stateW)
         if ($rootScope.stateW == 'heroku') {
             if ($rootScope.$storage.userId.length > 1) {//if they have a user id
                 ++$rootScope.$storage.visitCount
@@ -332,9 +341,9 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             //$cordovaKeyboard.disableScroll(true)
             //    .then(function(value) {
-            //  console.log('keyboard locked'); // Success!
+            //  //console.log('keyboard locked'); // Success!
             //}, function(reason) {
-            //  console.log('keyboard error '); // Error!
+            //  //console.log('keyboard error '); // Error!
             //});
             //window.open = cordova.InAppBrowser.open;
 

@@ -50,7 +50,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
             if ($rootScope.stateW =='heroku') {
                 winston.log('info', $scope.$storage.userId + ", closed timer info at " + new Date())
             }
-            console.log('Tapped!', res);
+            //console.log('Tapped!', res);
         });
 
     };
@@ -206,13 +206,13 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     }
 
     $scope.startStop = function(){
-        console.log($scope.startStopFlag);
+        //console.log($scope.startStopFlag);
         if($scope.startStopFlag){
             if($scope.timerClear){
                 $scope.$broadcast('timer-start');
                 //window.plugins.insomnia.keepAwake();
                 $scope.timerClear = false;
-                console.log($scope.timerClear)
+                //console.log($scope.timerClear)
             }
             else{
                 $scope.$broadcast('timer-resume');
@@ -228,7 +228,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     $scope.reset = function(){
 
         if($scope.timerClear == false){
-            console.log('reset');
+            //console.log('reset');
             $scope.$broadcast('timer-reset');
             $scope.minutes = 0;
             $scope.seconds = 0;

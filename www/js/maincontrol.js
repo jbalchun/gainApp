@@ -29,9 +29,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.editingShow = 0;
     $scope.lightHeavyMap = $scope.$storage.lightHeavyMap
     $scope.nameList = $scope.$storage.nameList;
-    $scope.lastAmount = 0;
-    $scope.lastAmount2 = 0;
-    $scope.lastAmount3 = 0;
+    var lastAmount = 0;
+    var lastAmount2 = 0;
+    var lastAmount3 = 0;
     $scope.uniqueNameSetsMap = {};
     $scope.resultsSourceNameMap = {};
     $scope.resultsSource = [];
@@ -66,7 +66,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.datePopup = function ($event, date) {
         document.body.classList.add('platform-ios');
         $scope.dateType = date;
-        console.log('day', date)
+        //console.log('day', date)
         if (date == "Day") {
             var numberArray = []
             for (var i = 1; i <= 31; i++) {
@@ -74,7 +74,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             }
             $scope.dateList = numberArray;
         } else if (date == "Month") {
-            console.log('day', date)
+            //console.log('day', date)
             $scope.dateList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         } else if (date == "Year") {
             $scope.dateList = ["2015", "2016", "2017", "2018", "2019", "2020"];
@@ -114,10 +114,10 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             });
             repListListUS.push(repListS);
         });
-        console.log(repListListUS)
+        //console.log(repListListUS)
         $scope.uniqueSortedReps = repListListUS;
-        console.log("resultsLifts", $scope.resultsLifts);
-        console.log("usreps", $scope.uniqueSortedReps);
+        //console.log("resultsLifts", $scope.resultsLifts);
+        //console.log("usreps", $scope.uniqueSortedReps);
     };
 
     $scope.populateBodyWeightResults = function () {
@@ -132,7 +132,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 return lift.wt;
             }).wt);
             $scope.lastList["Body Weight"] = Math.abs(Math.abs(bodyWeight) - bodyWeightList.slice(-1)[0].wt);
-            console.log($scope.maxList, bodyWeight);
+            //console.log($scope.maxList, bodyWeight);
 
             if (Number(maxDelta) > 0) {
                 plusMinusMax["Body Weight"] = 0;
@@ -166,7 +166,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             })
             $scope.uniqueNameSetsMap[lift.name] = uniqueSets;
             //_.uniq(personArray, function(person) { return person.age; });
-            console.log("uniqueSets", uniqueSets)
+            //console.log("uniqueSets", uniqueSets)
             angular.forEach(uniqueSets, function (set1, index) {
                 resultsSource.push($scope.populateResults(lift.name, set1.reps))
             });
@@ -175,10 +175,10 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         angular.forEach($scope.resultsSource, function (result, index) {
             $scope.resultsSourceNameMap[result.name + String(result.reps)] = result;
         });
-        console.log("uniqueNameSetsMap", $scope.uniqueNameSetsMap);
-        console.log("$scope.resultsSourceNameMap", $scope.resultsSourceNameMap);
+        //console.log("uniqueNameSetsMap", $scope.uniqueNameSetsMap);
+        //console.log("$scope.resultsSourceNameMap", $scope.resultsSourceNameMap);
         $scope.resultsSourceNameMap["Body Weight"] = $scope.populateBodyWeightResults();
-        console.log("bodywet", $scope.resultsSourceNameMap["Body Weight"])
+        //console.log("bodywet", $scope.resultsSourceNameMap["Body Weight"])
     };
 
     $scope.populateResults = function (name, reps) { // note we return the dates, if we want to add them. we should.
@@ -204,7 +204,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
         var maxItem = localStore.getMax(name, reps);
         var lastItem = localStore.getChartData(name, reps, 3).slice(-1)[0];
-        console.log('only1', maxItem.only1)
+        //console.log('only1', maxItem.only1)
         if (maxItem.only1 == true) {
             return {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: 0, last: 0}
         }
@@ -238,29 +238,29 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             if ($scope.editingNumber.id == 1) {
                 if (button) {
                     $scope.sets2[$scope.editingNumber.index].reps = amount;
-                    $scope.lastAmount = amount;
+                    lastAmount = amount;
                     $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].reps}
                     return
                 }
-                console.log("reps and amount", $scope.sets2[$scope.editingNumber.index].reps, amount)
-                $scope.lastAmount = $scope.sets2[$scope.editingNumber.index].reps + amount
-                console.log("reps and amount", $scope.sets2[$scope.editingNumber.index].reps, amount, $scope.lastAmount)
-                if ($scope.lastAmount >= 0) {
+                //console.log("reps and amount", $scope.sets2[$scope.editingNumber.index].reps, amount)
+                lastAmount = $scope.sets2[$scope.editingNumber.index].reps + amount
+                //console.log("reps and amount", $scope.sets2[$scope.editingNumber.index].reps, amount, lastAmount)
+                if (lastAmount >= 0) {
                     $scope.sets2[$scope.editingNumber.index].reps = Number($scope.sets2[$scope.editingNumber.index].reps) + amount;
                     $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].reps}
                 }
 
             } else if ($scope.editingNumber.id == 2) {
                 if (button) {
-                    $scope.lastAmount2 = amount;
+                    lastAmount2 = amount;
                     $scope.sets2[$scope.editingNumber.index].wt = amount;
                     $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].wt}
                     return
                 }
-                $scope.lastAmount2 = $scope.sets2[$scope.editingNumber.index].wt + amount
-                console.log('wts', $scope.sets2[$scope.editingNumber.index].wt, $scope.lastAmount2, amount);
-                if ($scope.lastAmount2 >= 0) {
-                    console.log('in', $scope.lastAmount2)
+                lastAmount2 = $scope.sets2[$scope.editingNumber.index].wt + amount
+                //console.log('wts', $scope.sets2[$scope.editingNumber.index].wt, lastAmount2, amount);
+                if (lastAmount2 >= 0) {
+                    //console.log('in', lastAmount2)
                     $scope.sets2[$scope.editingNumber.index].wt = Number($scope.sets2[$scope.editingNumber.index].wt) + amount;
                     $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].wt};
                 }
@@ -269,12 +269,12 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 var repsLocal = String($scope.sets2[$scope.editingNumber.index].reps);
                 var oldGoal = Number($scope.goalMapEdit[$scope.nameLift + repsLocal].wt);
                 if (button) { // go to amount
-                    $scope.lastAmount3 = amount;
+                    lastAmount3 = amount;
                     $scope.goalMapEdit[$scope.nameLift + repsLocal] = {wt: amount};
                     return
                 }
-                $scope.lastAmount3 = $scope.goalMapEdit[$scope.nameLift + repsLocal].wt + amount;
-                if ($scope.lastAmount3 >= 0) { // add to amount
+                lastAmount3 = $scope.goalMapEdit[$scope.nameLift + repsLocal].wt + amount;
+                if (lastAmount3 >= 0) { // add to amount
                     $scope.goalMapEdit[$scope.nameLift + repsLocal] = {wt: oldGoal + amount};
                 }
             }
@@ -312,7 +312,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.selectGoal = function (index) {
         $scope.wtSelectPress = index + String(3)
-        //console.log('zero',$scope.sets2[0]);
+        ////console.log('zero',$scope.sets2[0]);
         $scope.editingShow = {num: $scope.goalMapEdit[$scope.nameLift + String($scope.sets2[index].reps)]}
         $scope.editingNumber = {index: index, id: 3};
 
@@ -320,11 +320,11 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.onReleaseNumber = function () {
         if ($scope.editingNumber.id == 1) {
-            $scope.lastAmount = $scope.editingShow.num;
+            lastAmount = $scope.editingShow.num;
             $scope.sets2[$scope.editingNumber.index].reps = $scope.editingShow.num;
         } else if ($scope.editingNumber.id == 2) {
             $scope.sets2[$scope.editingNumber.index].wt = $scope.editingShow.num;
-            $scope.lastAmount2 = $scope.editingShow.num;
+            lastAmount2 = $scope.editingShow.num;
 
         }
     }
@@ -367,23 +367,24 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 }
             });
         }
-        console.log($scope.sets2)
+        //console.log($scope.sets2)
         $scope.sets2 = _.first($scope.sets2, 3);
         $scope.liftCards[$scope.indexLift].sets = $scope.sets2;
-        console.log($scope.sets2)
+        //console.log($scope.sets2)
     }
 
     $scope.historyPop = function (index) {
         if ($scope.liftCards[index].name == 'Select Lift' || ($scope.liftCards[index].sets[0].reps == 0 && $scope.liftCards[index].sets[0].wt == 0)) {
             return
         }
+
         $scope.histIndex = index;
         var listReps = [];
         var name = $scope.liftCards[index].name;
-        console.log("Index", index);
+        //console.log("Index", index);
         angular.forEach($scope.liftCards[index].sets, function (set1, index) {
             listReps.push(set1.reps)
-            console.log("index", set1.reps);
+            //console.log("index", set1.reps);
         });
         $scope.uniqueRepsHist = _.unique(listReps);
         $scope.maxList = {}
@@ -411,7 +412,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 ]
             });
             confirmPopup.then(function (res) {
-                console.log('Tapped!', res);
+                //console.log('Tapped!', res);
             });
         }
         else {
@@ -431,7 +432,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 ]
             });
             confirmPopup.then(function (res) {
-                console.log('Tapped!', res);
+                //console.log('Tapped!', res);
             });
         }
 
@@ -446,24 +447,26 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.namePopupSubmit = function ($event) {
         document.body.classList.add('platform-ios');
-        _.uniq($scope.nameList, false, name);
+        //console.log('nml', $scope.nameList)
+        _.uniq($scope.nameList, false);
         var nameArray = []
         angular.forEach($scope.nameList, function (val, key) {
-            console.log("KEYPOP", key, val);
+            //console.log("KEYPOP", key, val);
             if (val == "" && nameArray.indexOf("(No Name)") == -1) {
                 $scope.nameList[key] = "(No Name)"
-                nameArray.push($scope.nameList[key]);
             }
+            nameArray.push($scope.nameList[key]);
+
         })
-        _.uniq($scope.nameList, name);
-        if (Object.keys($scope.nameList).length > 0) {
-            console.log('show')
-            $scope.popover.show($event);
-        }
+        //console.log('nameArray',nameArray);
+
+        $scope.nameList=_.uniq(nameArray,false);
+        //console.log('namelist', $scope.nameList);
+        $scope.popover.show($event);
     };
 
     $scope.namePopupSelect = function (name) {
-        console.log('clearing')
+        //console.log('clearing')
         if (name == 'clear') {
             $scope.nameFilter = "Name"
             $scope.popover.hide();
@@ -489,9 +492,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             });
             errorPopup.then(function (res) {
                 if (res) {
-                    console.log('You are sure');
+                    //console.log('You are sure');
                 } else {
-                    console.log('You are not sure');
+                    //console.log('You are not sure');
                 }
             });
         }
@@ -512,7 +515,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     text: '<b >Done</b>',
                     type: 'button-dark',
                     onTap: function (e) {
-                        console.log('checkdate', localStore.checkDate($scope.liftDate));
+                        //console.log('checkdate', localStore.checkDate($scope.liftDate));
 
                     }
                 }
@@ -541,7 +544,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             ]
         });
         emailPop.then(function (res) {
-            console.log('Tapped!', res);
+            //console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
 
                 if ($rootScope.email.email.length < 1 || $rootScope.email.email.indexOf('@') == -1) {
@@ -585,7 +588,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             ]
         });
         confirmPopup.then(function (res) {
-            console.log('Tapped!', res);
+            //console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
                 var dateDiff = new Date() - datenew
                 winston.log('info', $scope.$storage.userId + ", closed home info after" + dateDiff)
@@ -603,7 +606,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.keyPressed = function (keyEvent, formModel) {
         if (keyEvent.keyCode == 13) {
-            console.log('gotit')
+            //console.log('gotit')
             $scope.s()
         }
     };
@@ -627,15 +630,15 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             ]
         });
         confirmPopup.then(function (res) {
-            console.log('Tapped!', res);
+            //console.log('Tapped!', res);
         });
 
     };
 
     $scope.submitWeight = function () {
-        console.log($scope.sets2);
+        //console.log($scope.sets2);
         $scope.liftCards[$scope.indexLift].sets = $scope.sets2;
-        console.log($scope.sets2);
+        //console.log($scope.sets2);
         $scope.closeModal('lift', 0, 2);
     }
 
@@ -773,8 +776,8 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $scope.focusIndex = 1;
             $scope.sets2 = $scope.liftCards[index].sets;
             $scope.editingNumber = $scope.sets2[0].reps;
-            console.log("editingNum" + $scope.editingNumber);
-            console.log("lightHeavyMap" + $scope.lightHeavyMap[name]);
+            //console.log("editingNum" + $scope.editingNumber);
+            //console.log("lightHeavyMap" + $scope.lightHeavyMap[name]);
             $scope.editingShow = {num: 0};
             if (hf) {
                 $scope.selectNumber(childIndex, 2);
@@ -826,11 +829,11 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     };
 
     $scope.$on('modal.hidden', function () {
-        console.log(hideModalFlag)
+        //console.log(hideModalFlag)
         var newLift = hideModalFlag.newLift
         var sets = hideModalFlag.sets
         var id = hideModalFlag.id
-        console.log(newLift);
+        //console.log(newLift);
         if (id == 1) {
             if (window.cordova) {
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -843,7 +846,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             if (newLift != 'no change') {
                 $scope.liftCards[$scope.$storage.editingLift.index].name = newLift.name;
                 $scope.$storage.lightHeavyMap[newLift.name] = newLift.weight;
-                console.log($scope.lightHeavyMap);
+                //console.log($scope.lightHeavyMap);
             }
             localStore.buildKgMap();
             $scope.kgMap = $scope.$storage.kgMap
@@ -875,9 +878,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     });
 
     $scope.closeModal = function (newLift, sets, id) {
-        console.log(newLift)
+        //console.log(newLift)
         hideModalFlag = {newLift: newLift, sets: sets, id: id};
-        console.log(hideModalFlag)
+        //console.log(hideModalFlag)
         $scope.blurFlag = false;
         if (id == 1) {
             $scope.modal.hide();

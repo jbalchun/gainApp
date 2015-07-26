@@ -49,7 +49,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     };
     var axisAdjust = function (zeroFlag, max, min) {//zeroflag true means Show the zero(body wt)
         if (zeroFlag) {//rounding is off if it's 2 digit
-            console.log(max, min, "passing in to axis");
+            //console.log(max, min, "passing in to axis");
             $scope.chartOptions.scaleOverride = true;
             var maxToStep = 20;//always want steps of 10
 
@@ -60,12 +60,12 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             //subtract, max -100, get the distance. add 20. this is our range from 100. divide by ten.
             var distance = ((Math.round(max / 10) * 10) - roundMin) + 10;
             var steps = distance / 10;
-            console.log(roundMin, distance, steps, "distance");
+            //console.log(roundMin, distance, steps, "distance");
             $scope.chartOptions.scaleSteps = steps;
             //MinCalc
         }
         else {
-            console.log("reset axis")
+            //console.log("reset axis")
             $scope.chartOptions.scaleOverride = false;
 
         }
@@ -75,8 +75,8 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         //went with a flag for returning data as last parameter. Kind of messy.
         $scope.reps3 = localStore.buildRepList($scope.liftName);
         //$scope.reps = $scope.reps3[0];
-        console.log("rep3");
-        console.log($scope.reps3);
+        //console.log("rep3");
+        //console.log($scope.reps3);
 
         $scope.repSelect(0, $scope.chartTable, true);
     }
@@ -110,7 +110,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             ]
         });
         confirmPopup.then(function (res) {
-            //console.log('Tapped!', res);
+            ////console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
                 var dateDiff = new Date() - datenew
                 winston.log('info', $scope.$storage.userId + ", closed data after" + dateDiff)
@@ -120,7 +120,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     };
     $scope.keyPressed = function (keyEvent, formModel) {
         //if (keyEvent.keyCode == 13) {
-        console.log(keyEvent)
+        //console.log(keyEvent)
         //$scope.
         // ()
         //}
@@ -131,13 +131,13 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             return
         }
 
-        console.log("reppero", $scope.repsChart.reps)
+        //console.log("reppero", $scope.repsChart.reps)
         var goalMap1 = {};
-        console.log("goal before update", $scope.goalNum.wt);
-        console.log("Bodywtflag", $scope.bodyWtFlag);
+        //console.log("goal before update", $scope.goalNum.wt);
+        //console.log("Bodywtflag", $scope.bodyWtFlag);
         if (!$scope.bodyWtFlag) {//if we've already drawn body weight
-            console.log("init");
-            console.log("reppero", $scope.repsChart.reps)
+            //console.log("init");
+            //console.log("reppero", $scope.repsChart.reps)
             goalMap1["BodyWt"] = $scope.goalNum.wt;
             localStore.updateGoals(goalMap1);
             //$scope.bodyWtFlag == true;
@@ -145,7 +145,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $scope.chartBodyWeight($scope.updateFlag);
 
         } else {
-            console.log("reppero", $scope.repsChart.reps)
+            //console.log("reppero", $scope.repsChart.reps)
             goalMap1[$scope.liftName + String($scope.repsGoal)] = $scope.goalNum.wt;
             localStore.updateGoals(goalMap1);
             $scope.repSelect($scope.repsGoal, $scope.chartTable);
@@ -170,17 +170,17 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     };
 
     $scope.repPopSelect = function (reps) {
-        console.log("reps here", reps)
+        //console.log("reps here", reps)
         $scope.repsChart.reps = reps;
         $scope.repsGoal = reps
-        console.log("reps here", $scope.repsChart.reps)
+        //console.log("reps here", $scope.repsChart.reps)
         $scope.selectedReps = String(reps + " reps")
         $scope.repSelect(reps, $scope.chartTable);
         $scope.popover.hide();
 
     }
     $scope.changeView = function (flag, reps) {
-        console.log('fagflag', $scope.chartTitle);
+        //console.log('fagflag', $scope.chartTitle);
         if (!$scope.bodyWtFlag) {
             $scope.chartBodyWeight(1, true)
         } else if ($scope.chartTitle == "Dummy Lift for xx reps") {
@@ -198,11 +198,11 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         axisAdjust(false);
         $scope.chartOptions.scaleOverride = false;
         //popover.hide(".liftSelectEntry"); //find out to hide popup
-        console.log('selected', $scope.selectedReps);
+        //console.log('selected', $scope.selectedReps);
         if ($scope.liftName != "Select Lift" && $scope.selectedReps != "Select Reps" && !clearFlag) {
             $scope.weightSet = undefined;
-            console.log("repSElect")
-            console.log($scope.repsChart.reps)
+            //console.log("repSElect")
+            //console.log($scope.repsChart.reps)
             $scope.weightSet = [];
             $scope.dateSet = [];
             $scope.dateSetFull = [];
@@ -217,26 +217,26 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 });
                 dateWeightObjectList.reverse();//realized my calendar was backwards, easy fix
                 //if (!viewFlag) {
-                //    console.log("earlybreak")
+                //    //console.log("earlybreak")
                 //    return
                 //}
                 $scope.weightSet = localStore.normalizeToWeeks(dateWeightObjectList, 1);
-                console.log("fullweightset", $scope.weightSet)
+                //console.log("fullweightset", $scope.weightSet)
                 $scope.dateSetFull = localStore.normalizeToWeeks(dateWeightObjectList, 2);
                 $scope.dateList = localStore.normalizeToWeeks(dateWeightObjectList, 3);
                 $scope.firstDateFull = $scope.dateList[0];
                 $scope.lastDate = $scope.dateList.slice(-1)[0];
-                console.log(_.max($scope.weightSet[0]), 'maxy')
+                //console.log(_.max($scope.weightSet[0]), 'maxy')
                 $scope.dateSet = angular.copy($scope.dateSetFull);
                 $scope.firstDate = angular.copy($scope.firstDateFull);
                 var goalArray = [];
                 if (getGoal()) {//if its not undefined, make the goal array
                     $scope.goalNum.wt = getGoal();
-                    console.log("print get goal", $scope.goalNum.wt);
+                    //console.log("print get goal", $scope.goalNum.wt);
                     angular.forEach($scope.dateSetFull, function (date, index) {
                         goalArray.push($scope.goalNum.wt.wt);
                     });
-                    console.log("print goal array", goalArray);
+                    //console.log("print goal array", goalArray);
                     $scope.weightSet.push(goalArray);
                     var zero = angular.copy($scope.weightSet[0]) // dont ask why unshift wouldnt work
                     var one = angular.copy($scope.weightSet[1])
@@ -269,27 +269,27 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         }
         $scope.spanSelect = span;
         var weekSpan = Number(_.last($scope.dateSetFull));
-        console.log('dtwt', $scope.dateSetFull, $scope.weightSetFull)
+        //console.log('dtwt', $scope.dateSetFull, $scope.weightSetFull)
         var weekSetFullCopy = angular.copy($scope.weightSetFull);
         if (span && span < weekSpan) {
             var dateSpan = weekSpan - span;
             var firstDateDate = new Date($scope.firstDateFull);
-            console.log(dateSpan, firstDateDate, "date stuff")
+            //console.log(dateSpan, firstDateDate, "date stuff")
             firstDateDate.setDate(firstDateDate.getDate() + dateSpan * 7);
             $scope.firstDate = (firstDateDate.getMonth() + 1) + '/' + firstDateDate.getDate() + '/' + firstDateDate.getFullYear()
             $scope.dateSet = _.last($scope.dateSetFull, span);
-            console.log("weightsetFUllGoals", $scope.weightSetFull[1])
+            //console.log("weightsetFUllGoals", $scope.weightSetFull[1])
             $scope.weightSet[0] = angular.copy(weekSetFullCopy[0].splice(weekSetFullCopy[0].length - span));
             $scope.weightSet[1] = angular.copy(weekSetFullCopy[1].splice(weekSetFullCopy[1].length - span));
-            console.log("weightset0", $scope.weightSet[0])
+            //console.log("weightset0", $scope.weightSet[0])
 
         } else {
-            console.log('else', $scope.weightSetFull[1])
+            //console.log('else', $scope.weightSetFull[1])
             $scope.dateSet = $scope.dateSetFull;
             $scope.firstDate = $scope.firstDateFull;
             $scope.weightSet[0] = angular.copy(weekSetFullCopy[0])
             $scope.weightSet[1] = angular.copy(weekSetFullCopy[1])
-            console.log('else', $scope.weightSetFull[1])
+            //console.log('else', $scope.weightSetFull[1])
         }
 
     }
@@ -319,22 +319,22 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 }
                 $scope.chartTitle = 'Body Weight';
                 var dateList = localStore.normalizeToWeeks($scope.dateWeightObjectList, 3);
-                console.log(dateList);
+                //console.log(dateList);
                 $scope.firstDateFull = dateList[0];
                 $scope.lastDate = dateList.slice(-1)[0];
                 $scope.dateSet = angular.copy($scope.dateSetFull);
                 $scope.firstDate = angular.copy($scope.firstDateFull);
-                console.log($scope.firstDate, 'date')
+                //console.log($scope.firstDate, 'date')
                 if (getGoal()) {//if its not undefined, make the goal array
                     var goalArray = [];
                     //var zeroArray = [];
                     $scope.goalNum.wt = getGoal();
-                    console.log("print get goal", $scope.goalNum.wt);
+                    //console.log("print get goal", $scope.goalNum.wt);
                     angular.forEach($scope.dateSetFull, function (date, index) {
                         goalArray.push($scope.goalNum.wt);
                         //zeroArray.push(0);
                     });
-                    console.log("print goal array", goalArray);
+                    //console.log("print goal array", goalArray);
                     $scope.weightSet.push(goalArray);
                     var zero = angular.copy($scope.weightSet[0]) // dont ask why unshift wouldnt work
                     var one = angular.copy($scope.weightSet[1])
@@ -353,7 +353,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 }
             })
         } else {//it's false, meaning we've drawn.
-            console.log('repsgoal,', $scope.repsGoal)
+            //console.log('repsgoal,', $scope.repsGoal)
             if ($scope.repsGoal == undefined) {
                 $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
                 $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -378,7 +378,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     };
 
     $scope.onClick = function (points, evt) {
-        console.log(points, evt);
+        //console.log(points, evt);
     };
 
     $ionicModal.fromTemplateUrl('modals/nav-liftselector.html', {
@@ -398,7 +398,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     $scope.closeModal = function (newLift, sets, id) {
         $scope.blurFlag = false;
         $scope.modal.hide();
-        console.log('neither');
+        //console.log('neither');
         if (newLift != "no change") {
             $scope.liftName = newLift.name;
             $scope.selectedReps = "Select Reps";

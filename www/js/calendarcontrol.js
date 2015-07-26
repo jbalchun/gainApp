@@ -57,10 +57,10 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             return true;
         }
         if ($scope.dateList.indexOf(2) > -1 && $scope.dateObj['Month'] != 'Month') {
-            console.log('filter Check')
+            //console.log('filter Check')
             return $scope.checkDayFiltered(date)
         } else if ($scope.dateList.indexOf(2) > -1 && $scope.dateObj['Month'] == 'Month') {
-            console.log('full Check')
+            //console.log('full Check')
             return localStore.checkDay(date)
         }
 
@@ -74,7 +74,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
 
             if (currentDay == numDay) {
                 resultFlag = true;
-                console.log(resultFlag)
+                //console.log(resultFlag)
             }
 
         });
@@ -89,9 +89,9 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             if (res) {
                 localStore.removeWorkout(workout);
                 $scope.filterList = angular.copy($scope.$storage.workouts);
-                console.log('You are sure');
+                //console.log('You are sure');
             } else {
-                console.log('You are not sure');
+                //console.log('You are not sure');
             }
         });
     };
@@ -131,7 +131,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             ]
         });
         confirmPopup.then(function (res) {
-            //console.log('Tapped!', res);
+            ////console.log('Tapped!', res);
             if (!window.cordova) {
                 var dateDiff = new Date() - datenew
                 winston.log('info', $scope.$storage.userId + ", closed calendar after" + dateDiff)
@@ -168,11 +168,11 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
 
     $scope.namePopup = function ($event) {
         document.body.classList.add('platform-ios');
-        console.log('nml', $scope.nameList)
+        //console.log('nml', $scope.nameList)
         _.uniq($scope.nameList, false);
         var nameArray = []
         angular.forEach($scope.nameList, function (val, key) {
-            console.log("KEYPOP", key, val);
+            //console.log("KEYPOP", key, val);
             if (val == "" && nameArray.indexOf("(No Name)") == -1) {
                 $scope.nameList[key] = "(No Name)"
 
@@ -180,10 +180,10 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                 nameArray.push($scope.nameList[key]);
 
         })
-        console.log('nameArray',nameArray);
+        //console.log('nameArray',nameArray);
 
         $scope.nameList=_.uniq(nameArray,false);
-        console.log('namelist', $scope.nameList);
+        //console.log('namelist', $scope.nameList);
         $scope.popover2.show($event);
     };
 
@@ -202,9 +202,9 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
     }
 
     $scope.namePopupSelect = function (name) {
-        console.log('clearing')
+        //console.log('clearing')
         if (name == 'clear') {
-            console.log('clearing')
+            //console.log('clearing')
             $scope.nameFilter = "Name"
             $scope.popover2.hide();
             $scope.filter();
@@ -220,7 +220,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
     }
 
     $scope.filter = function (clearFlag) {
-        console.log('filterListBefore', $scope.filterList)
+        //console.log('filterListBefore', $scope.filterList)
         $scope.filterList = []
         var monthFlag = false
         var dayFlag = false
@@ -247,14 +247,14 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         }
 
         angular.forEach($scope.workouts, function (workout, index) { //if the flag is on remove the matches. make a copy of the list and insert.
-            console.log("day, month, year", $scope.dateObj["Day"], $scope.dateObj["Month"], $scope.dateObj["Year"], $scope.nameFilter)
-            console.log("day, month, year,name,lift flag", dayFlag, monthFlag, yearFlag, nameFlag, liftFlag)
+            //console.log("day, month, year", $scope.dateObj["Day"], $scope.dateObj["Month"], $scope.dateObj["Year"], $scope.nameFilter)
+            //console.log("day, month, year,name,lift flag", dayFlag, monthFlag, yearFlag, nameFlag, liftFlag)
             var currentDate = new Date(workout.date)
 
             if (liftFlag) { //O(lifts.length*N) shouldn't be slow for a while
                 angular.forEach(workout.lifts, function (lift, index) {
                     if (lift.name == $scope.liftName) {
-                        console.log('lift name ', lift.name, 'scope liftname', $scope.liftName, liftFlag)
+                        //console.log('lift name ', lift.name, 'scope liftname', $scope.liftName, liftFlag)
                         liftArray.push(JSON.stringify(workout));
                     }
                 });
@@ -266,17 +266,17 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                 }
             }
             if (dayFlag) {
-                console.log("daynum", currentDate.getDate());
+                //console.log("daynum", currentDate.getDate());
                 if (currentDate.getDate() == $scope.dateObj["Day"]) {
                     dayArray.push(JSON.stringify(workout));
                 }
             }
 
             if (yearFlag) {
-                console.log('getyear', currentDate.getFullYear())
+                //console.log('getyear', currentDate.getFullYear())
                 if (currentDate.getFullYear() == String($scope.dateObj["Year"])) {
                     yearArray.push(JSON.stringify(workout));
-                    console.log("in year", Number($scope.dateObj["Year"]))
+                    //console.log("in year", Number($scope.dateObj["Year"]))
                 }
             }
 
@@ -298,9 +298,9 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             {flag: yearFlag, array: yearArray}, {flag: nameFlag, array: nameArray}, {flag: liftFlag, array: liftArray}];
         var breakOut = false;
         angular.forEach(flagCheckArray, function (flagItem, index) {
-            console.log("flag", flagItem.flag, " array", flagItem.array, " index ", index)
+            //console.log("flag", flagItem.flag, " array", flagItem.array, " index ", index)
             if (flagItem.flag == true && (flagItem.array === undefined || flagItem.array.length == 0 )) {
-                console.log('clear filter lsit')
+                //console.log('clear filter lsit')
                 $scope.filterList = [];
                 breakOut = true;
             }
@@ -311,31 +311,31 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         var arrayArray = [liftArray, monthArray, dayArray, yearArray, nameArray]
         var arrayArray2 = []
         angular.forEach(arrayArray, function (array1, index) {
-            console.log("each array1", array1)
+            //console.log("each array1", array1)
             if (array1.length >= 1) {
                 arrayArray2.push(array1)
-                console.log('array2', array1, arrayArray2)
+                //console.log('array2', array1, arrayArray2)
             }
         })
 
-        console.log('arrarr', arrayArray2)
-        console.log('none', noneFlag)
+        //console.log('arrarr', arrayArray2)
+        //console.log('none', noneFlag)
 
         var filterStringList = []
 
         if (arrayArray2.length > 1) {
             //intersect is not working properly
             filterStringList = _.intersection.apply(_, arrayArray2);
-            console.log('filterStringlist', filterStringList)
+            //console.log('filterStringlist', filterStringList)
         }
         else filterStringList = arrayArray2[0];
 
         angular.forEach(filterStringList, function (string, index) {
-            console.log('String', string)
+            //console.log('String', string)
             $scope.filterList.push(JSON.parse(string))
         })
 
-        console.log('filterList', $scope.filterList)
+        //console.log('filterList', $scope.filterList)
     }
 
     $scope.loadLiftOptions = function (index) {
@@ -369,9 +369,9 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         confirmPopup.then(function (res) {
             if (res) {
 
-                console.log('You are sure');
+                //console.log('You are sure');
             } else {
-                console.log('You are not sure');
+                //console.log('You are not sure');
             }
         });
     };
@@ -387,7 +387,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
     });
 
     $scope.openModal = function () {
-        console.log("opening")
+        //console.log("opening")
         $scope.blurFlag = true;
         $scope.modal.show();
     };

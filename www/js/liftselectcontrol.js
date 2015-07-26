@@ -51,7 +51,7 @@ app.controller('liftselectcontrol',
                 ]
             });
             confirmPopup.then(function (res) {
-                //console.log('Tapped!', res);
+                ////console.log('Tapped!', res);
                 if ($rootScope.stateW == 'heroku') {
                     var dateDiff = new Date() - datenew
                     winston.log('info', $scope.$storage.userId + ", closed liftselect after" + dateDiff)
@@ -67,7 +67,7 @@ app.controller('liftselectcontrol',
         //
         //    var newList1 =$scope.liftData;
         //    angular.forEach($scope.liftData,function(lift,index){
-        //        console.log('inforit')
+        //        //console.log('inforit')
         //        if(lift.name && $scope.selectedLiftNames2.indexOf(lift.name)> -1){
         //            newList1.splice(index,1);
         //        }
@@ -79,7 +79,7 @@ app.controller('liftselectcontrol',
 
 
         $scope.liftDataRm = function () {
-            console.log($scope.liftData);
+            //console.log($scope.liftData);
             return newList;
         }
 
@@ -114,7 +114,7 @@ app.controller('liftselectcontrol',
                 ]
             });
             confirmPopup.then(function (res) {
-                console.log('Tapped!', res);
+                //console.log('Tapped!', res);
             });
         }
 
@@ -179,7 +179,7 @@ app.controller('liftselectcontrol',
         }
 
         $scope.setLift = function (lift, index) {
-            console.log('remove', lift, index);
+            //console.log('remove', lift, index);
             if ($scope.removeFlagB) {
                 localStore.removeLiftEntry(lift.name);
                 return;
@@ -217,7 +217,7 @@ app.controller('liftselectcontrol',
 
         $scope.addLiftPopup = function () {
 
-            console.log("trying ");
+            //console.log("trying ");
             var addLiftPopup = $ionicPopup.show({
                 template: '<input type="text" ng-model="newLiftName.name" maxlength="30">',
                 title: 'Enter new lift name',
@@ -246,7 +246,7 @@ app.controller('liftselectcontrol',
             });
             addLiftPopup.then(function (res) {
                 $scope.addLiftFlag = !$scope.addLiftFlag
-                console.log('Tapped!', res);
+                //console.log('Tapped!', res);
             });
 
         };
