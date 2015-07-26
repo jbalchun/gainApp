@@ -175,10 +175,14 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             console.log("KEYPOP", key, val);
             if (val == "" && nameArray.indexOf("(No Name)") == -1) {
                 $scope.nameList[key] = "(No Name)"
-                nameArray.push($scope.nameList[key]);
+
             }
+                nameArray.push($scope.nameList[key]);
+
         })
-        _.uniq($scope.nameList, name);
+        console.log('nameArray',nameArray);
+
+        $scope.nameList=_.uniq(nameArray,false);
         console.log('namelist', $scope.nameList);
         $scope.popover2.show($event);
     };
@@ -372,7 +376,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         });
     };
 
-    $ionicModal.fromTemplateUrl('nav-liftselector.html', {
+    $ionicModal.fromTemplateUrl('modals/nav-liftselector.html', {
         id: '1',
         scope: $scope,
         backdropClickToClose: false,

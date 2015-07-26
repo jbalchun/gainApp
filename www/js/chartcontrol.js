@@ -293,7 +293,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
 
     }
 
-    $scope.chartBodyWeight = function (updateFlag, fromNav) {
+    $scope.chartBodyWeight = function (updateFlag, fromNav) {//this and repselect should be one method.
         $scope.firstDate = '';
         $scope.lastDate = '';
         if ($scope.bodyWtFlag || (updateFlag == 1 && !$scope.bodyWtFlag)) { //it's true, meaning we haven't drawn
@@ -309,6 +309,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 angular.forEach($scope.dateSetFull, function (date, index) {
                     $scope.dateWeightObjectList.push({date: date, wt: $scope.weightSet[0][index]})
                 });
+                $scope.dateWeightObjectList.reverse();
                 $scope.weightSet = localStore.normalizeToWeeks($scope.dateWeightObjectList, 1);
                 $scope.dateSetFull = localStore.normalizeToWeeks($scope.dateWeightObjectList, 2);
                 $scope.weightSetFull = angular.copy($scope.weightSet)
