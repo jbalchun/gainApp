@@ -93,31 +93,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pop-maininfo.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/pop-maininfo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.666666" vertical-offset="71" max-vertical-offset="765">
-              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.384615" vertical-offset="2600" max-vertical-offset="6960">
-              <caret line="200" column="13" selection-start-line="200" selection-start-column="13" selection-end-line="200" selection-end-column="13" />
+            <state vertical-scroll-proportion="-6.1538463" vertical-offset="2585" max-vertical-offset="6960">
+              <caret line="183" column="6" selection-start-line="183" selection-start-column="6" selection-end-line="183" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.076923" vertical-offset="4340" max-vertical-offset="10275">
-              <caret line="312" column="16" selection-start-line="312" selection-start-column="16" selection-end-line="312" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.3776435" vertical-offset="5270" max-vertical-offset="10275">
+              <caret line="368" column="37" selection-start-line="368" selection-start-column="37" selection-end-line="368" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -135,16 +125,6 @@
                 <element signature="n#style#0;n#ion-delete-button#0;n#ion-item#0;n#ion-list#0;n#div#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="postscontrol.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/postscontrol.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="69.80769" vertical-offset="2010" max-vertical-offset="14640">
-              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -169,14 +149,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pop-reps.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pop-reps.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/pop-reps.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.022590362" vertical-offset="0" max-vertical-offset="664">
-              <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+            <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="105">
+              <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
               <folding>
                 <element signature="n#style#0;n#ion-popover-view#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pop-liftnames.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/pop-liftnames.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="165">
+              <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="calendarcontrol.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.192307" vertical-offset="2120" max-vertical-offset="6765">
+              <caret line="159" column="38" selection-start-line="159" selection-start-column="38" selection-end-line="159" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -224,7 +224,6 @@
         <option value="$PROJECT_DIR$/www/lib/telltale.min.js" />
         <option value="$PROJECT_DIR$/www/tab-timer.html" />
         <option value="$PROJECT_DIR$/www/pop-email.html" />
-        <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/pop-confirm.html" />
         <option value="$PROJECT_DIR$/www/nav-goals.html" />
@@ -238,11 +237,12 @@
         <option value="$PROJECT_DIR$/www/pop-maininfo.html" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/www/js/postscontrol.js" />
-        <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/tab-charts.html" />
         <option value="$PROJECT_DIR$/www/pop-reps.html" />
+        <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
+        <option value="$PROJECT_DIR$/www/js/services.js" />
       </list>
     </option>
   </component>
@@ -716,13 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/pop-liftnames.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07317073" vertical-offset="0" max-vertical-offset="410">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newrelic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
@@ -783,14 +776,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="23276" max-vertical-offset="118770">
           <caret line="1590" column="13" selection-start-line="1590" selection-start-column="13" selection-end-line="1590" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4622" max-vertical-offset="6750">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -983,22 +968,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923" vertical-offset="4340" max-vertical-offset="10275">
-          <caret line="312" column="16" selection-start-line="312" selection-start-column="16" selection-end-line="312" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.384615" vertical-offset="2600" max-vertical-offset="6960">
-          <caret line="200" column="13" selection-start-line="200" selection-start-column="13" selection-end-line="200" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.038462" vertical-offset="11630" max-vertical-offset="19575">
@@ -1023,13 +992,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/pop-liftnames.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="165">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.1538463" vertical-offset="2585" max-vertical-offset="6960">
+          <caret line="183" column="6" selection-start-line="183" selection-start-column="6" selection-end-line="183" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/pop-reps.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.022590362" vertical-offset="0" max-vertical-offset="664">
-          <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+        <state vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="105">
+          <caret line="1" column="108" selection-start-line="1" selection-start-column="108" selection-end-line="1" selection-end-column="108" />
           <folding>
             <element signature="n#style#0;n#ion-popover-view#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.192307" vertical-offset="2120" max-vertical-offset="6765">
+          <caret line="159" column="38" selection-start-line="159" selection-start-column="38" selection-end-line="159" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3776435" vertical-offset="5270" max-vertical-offset="10275">
+          <caret line="368" column="37" selection-start-line="368" selection-start-column="37" selection-end-line="368" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

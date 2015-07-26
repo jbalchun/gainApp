@@ -156,7 +156,8 @@ app.controller('calendarcontrol', function ($scope, $ionicModal,$timeout,$ionicS
 
     $scope.namePopup = function($event){
         document.body.classList.add('platform-ios');
-        _.uniq($scope.nameList,false,name);
+        console.log('nml',$scope.nameList)
+        _.uniq($scope.nameList,false);
         var nameArray =[]
         angular.forEach($scope.nameList,function(val,key){
             console.log("KEYPOP",key, val);
