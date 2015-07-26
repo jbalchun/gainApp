@@ -747,7 +747,6 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
                     return
                 }
                 $scope.weightSet = localStore.normalizeToWeeks(dateWeightObjectList,1);
-
                 console.log("fullweightset",$scope.weightSetFull)
                 $scope.dateSetFull = localStore.normalizeToWeeks(dateWeightObjectList,2);
                 $scope.dateList = localStore.normalizeToWeeks(dateWeightObjectList,3);

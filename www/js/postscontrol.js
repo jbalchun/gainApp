@@ -11,7 +11,7 @@ app.controller('liftcontrol', function ($scope,$ionicModal,$localStorage, $rootS
     $scope.indexLift = 0;
     $scope.userId="userX";
     $scope.focusIndex = 0;
-    $scope.date = new Date();
+    $scope.date = new Date(2015,8,3);
     $scope.liftDate = String($scope.date).substring(4,15);
     //$scope.list1 = [1,2,3];
     $scope.workoutName = {name:''};

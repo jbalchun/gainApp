@@ -21,7 +21,7 @@ var app = angular.module('MyApp', [
   'autocomplete'
 ]);
 
-app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
+app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope,localStore) {
 
   //$ionicPlatform.ready(function() {
   //  navigator.splashscreen.hide();
@@ -55,6 +55,7 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     weightSet:[],
     dateSet:[],
     dateList:[],
+    populated:false,
     lightHeavyMap:{key:'val'},
     todaysLifts:[{
       'name': 'Select Lift',
@@ -182,16 +183,17 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     dummy:
      [
         {
-          'date': '6/2/2015',
-          bodyWeight:'200',
-          name:'Arms',
+          'date': 'Jun 02 2015',
+          bodyWeight:{wt:'200'},
+          'name':{name:'Arms'},
+          notes:{notes:'g'},
           lifts: [{
             'name': 'Barbell Bench Press',
             'sets': [{'reps': '5', wt: '225'}, {'reps': '3', wt: '265'}, {'reps': '1', wt: '285'}]
           },
             {
               'name': 'Curls',
-              'sets': [{'reps': '5', wt: '40'}, {'reps': '10', wt: '40'}, {'reps': '15', wt: '35'}]
+              'sets': [{'reps': '5', wt: 40}, {'reps': '10', wt: 40}, {'reps': '15', wt: '35'}]
             },
             {
               'name': 'Dumbell Pec Flys',
@@ -199,9 +201,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
             }
           ]
         },{
-          'date': '6/15/2015',
-          bodyWeight:'202',
-          name:'Legs',
+          'date': 'Jun 15 2015',
+       bodyWeight:{wt:'202'},
+          name:{name:'Legs'},
+       notes:{notes:''},
           lifts: [{
             'name': 'Barbell Back Squat',
             'sets': [{'reps': '8', wt: '315'}, {'reps': '8', wt: '335'}, {'reps': '8', wt: '355'}]
@@ -216,9 +219,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
             }
           ]
         },{
-          'date': '6/25/2015',
-          bodyWeight:'203',
-          name:'Arms',
+          'date': 'Jun 25 2015',
+       bodyWeight:{wt:'203'},
+          name:{name:'Arms'},
+       notes:{notes:''},
           lifts: [{
             'name': 'Barbell Bench Press',
             'sets': [{'reps': '5', wt: '235'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '285'}]
@@ -234,9 +238,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
           ]
         } ,
         {
-          'date': '7/3/2015',
-          bodyWeight:'210',
-          name:'Arms',
+          'date': 'Jul 03 2015',
+          bodyWeight:{wt:'204'},
+          name:{name:'Arms'},
+          notes:{notes:''},
           lifts: [{
             'name': 'Barbell Bench Press',
             'sets': [{'reps': '5', wt: '245'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '290'}]
@@ -252,9 +257,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
           ]
         },
         {
-          'date': '7/12/2015',
-          bodyWeight:'210',
-          name:'Legs',
+          'date': 'Jul 12 2015',
+          bodyWeight:{wt:'210'},
+          name:{name:'Legs'},
+          notes:{notes:''},
           lifts: [{
             'name': 'Standing Calf Raises',
             'sets': [{'reps': '5', wt: 400}, {'reps': '10', wt: '120'}, {'reps': '15', wt: '60'}]
@@ -270,9 +276,10 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
           ]
         },
        {
-         'date': '7/3/2015',
-         bodyWeight:'210',
-         name:'Arms',
+         'date': 'Jul 25 2015',
+         bodyWeight:{wt:'215'},
+         name:{name:'Arms'},
+         notes:{notes:''},
          lifts: [{
            'name': 'Barbell Bench Press',
            'sets': [{'reps': '5', wt: '255'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '295'}]
@@ -295,11 +302,21 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope) {
     $rootScope.$broadcast('closeKeyboard')
   }
 
+
   $rootScope.stateW = '';
   $rootScope.email = {email:''};
 
   $ionicPlatform.ready(function() {
     //console.log(winston != undefined)
+    if($rootScope.$storage.populated == false){
+      $rootScope.$storage.dummy.reverse();
+      angular.forEach($rootScope.$storage.dummy,function(workout,key){
+        console.log(workout.name)
+        localStore.saveLift(workout.date,workout.lifts,workout.name,workout.bodyWeight,workout.notes)
+      })
+      $rootScope.$storage.populated = true
+    }
+
     if(!window.cordova){
       if( typeof winston !== "undefined"){
         $rootScope.stateW = 'heroku'

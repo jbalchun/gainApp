@@ -301,6 +301,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':false})
         },
         saveLift: function (date,lifts,name,bodyWeight,notes) {
+            console.log('saving',{'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes})
             $rootScope.$storage.workouts.unshift({'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes}),
             $rootScope.$storage.nameList[name.name+date] = name.name;
 
@@ -364,7 +365,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             return returnFlag;
         },
         clearLifts:function(){
-            //$localStorage.$reset();
+            $localStorage.$reset();
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
@@ -401,11 +402,12 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             var tempMaxMap ={};
             angular.forEach($rootScope.$storage.workouts, function(day, index) {
                 angular.forEach(day.lifts, function(lift, index){
-                    console.log('day lifts',lift);
+                    //console.log('day lifts',lift);
                     if (lift.name == name){
                         angular.forEach(lift.sets,function(set1, index){
                             console.log('lift sets',set1);
                           if(Number(set1.reps) == Number(reps)){
+                              console.log('if number')
                               if(tempMaxMap[String(lift.name)+String(set1.reps)+String(day.date)] > 0){ // if we have an entry
                                  var lastLiftReps = Number(tempMaxMap[String(lift.name)+String(set1.reps)+String(day.date)]);
                                   if (lastLiftReps < set1.wt){// and if that entry is not the max
@@ -415,10 +417,12 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                                       weightDateSet.push({wt:Number(set1.wt),date:day.date});
                                   }
                               }else{
+                                  console.log('elser')
                                   tempMaxMap[String(lift.name)+String(set1.reps)+String(day.date)] = Number(set1.wt);
                                   weightSetTemp.push(Number(set1.wt));
                                   dateSetTemp.push(day.date);
                                   weightDateSet.push({wt:Number(set1.wt),date:day.date});
+                                  console.log(weightDateSet)
                               }
                           }
                         });
@@ -426,19 +430,24 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 });
             });
             if(flag == 1){
+                console.log('wtdt1',weightDateSet)
                 if(weightSetTemp.length == 0){
                     weightSetTemp = [0];
                 }
                 var weightSetBuild =[weightSetTemp,];
+                console.log('returning',weightSetBuild)
                 return weightSetBuild;
             }
             else if (flag == 2){
+                console.log('wtdt2',weightDateSet)
                 if(dateSetTemp.length == 0){
                 dateSetTemp=['','No Data Available']
                 }
+                console.log('returning',dateSetTemp)
                 return dateSetTemp;
             }
             else{
+                console.log('returning',weightDateSet)
                 return weightDateSet;
             }
         },
@@ -586,6 +595,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 var weekListFinal = [];
                 var liftListFinal =[];
                 var dateList =dateWeightList;
+                console.log('dwlist',dateWeightList)
                 var week = getWeek(  dateList[0].date)
                   dateShow = week;
 
@@ -625,21 +635,22 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                         repeatList[weekFrom] = {date:entry,wt:maxWt};
                     }
                 });
-
+            console.log('nmL',normalLifts)
                 var normalWeeks =[];//lets just make two arrays bc that's what the app takes.
                 var liftWrapArray =[];
                 var normalLifts =[];
                 var lastWeight = 0;
                 var lastDate;
                 var normalDate =[];
-
+                console.log('nmL',weekList)
                 //Maps entries to their week number if they are present that week, else take last weight.
-
+            console.log('wkl',normalLastWeek)
                 for(var i=0;i<normalLastWeek+1;i++){//for every week between start and finish
                     normalWeeks[i] =String(i);//add the week regardless
                     if(weekList[i] && weekList[i].hasOwnProperty('wt')){//if that week has a designated weight
                         normalLifts[i] = Number(weekList[i].wt);
                         normalDate[i] =weekList[i].date;
+                        console.log('nmL',normalLifts)
                         normalWeeks[i] = String(i);
                         lastWeight = weekList[i].wt
                         lastDate = new Date(weekList[i].date)
@@ -653,10 +664,13 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                   var liftListFinal = [normalLifts];
 
                 if(flag ==1){
+                    console.log('returning',liftListFinal)
                     return liftListFinal;
                 }else if(flag==2){
+                    console.log('returning',weekListFinal)
                     return weekListFinal;
                 }else{
+                    console.log('returning',normalDate)
                     return normalDate;
                 }
 
