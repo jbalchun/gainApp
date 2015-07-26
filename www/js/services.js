@@ -1,6 +1,3 @@
-/**
- * Created by Jbalchun on 12/26/14.
- */
 var app = angular.module('MyApp.services', ['ngStorage']);
 
 app.factory('Post', function () {
@@ -24,265 +21,10 @@ app.factory('Post', function () {
     };
 
 });
-
-//app.service('liftData', function () {
-//    var liftData = [{
-//        name: "Barbell Bench Press",
-//        attr1: "1",
-//        attr2: "1",
-//        attr3: "1",
-//        date: "14.01.2015"
-//    }, {
-//        name: "Supine Pull Ups",
-//        attr1: "2",
-//        attr2: "4",
-//        attr3: "2",
-//    }, {
-//        name: "Barbell Back Squat",
-//        attr1: "3",
-//        attr2: "1",
-//        attr3: "2",
-//    },
-//
-//        {
-//            name: "Russian Twists",
-//            attr1: "4",
-//            attr2: "4",
-//            attr3: "1",
-//        }, {
-//            name: "Seated Dumbell Shoulder Press",
-//            attr1: "1",
-//            attr2: "2",
-//            attr3: "1",
-//        }, {
-//            name: "Power Clean",
-//            attr1: "5",
-//            attr2: "1",
-//            attr3: "2",
-//        }, {
-//            name: "Seated Cable Row",
-//            attr1: "2",
-//            attr2: "3",
-//            attr3: "1",
-//        }, {
-//            name: "Barbell Curls",
-//            attr1: "2",
-//            attr2: "1",
-//            attr3: "2",
-//        }, {
-//            name: "Dumbell Pec Flys",
-//            attr1: "1",
-//            attr2: "2",
-//            attr3: "1",
-//        }, {
-//            name: "Standing Dumbell Side Raises",
-//            attr1: "1",
-//            attr2: "2",
-//            attr3: "2",
-//        }, {
-//            name: "Standing Bent Over Barbell Rows",
-//            attr1: "2",
-//            attr2: "1",
-//            attr3: "2",
-//        }, {
-//            name: "Seated Machine Calf Raises",
-//            attr1: "3",
-//            attr2: "3",
-//            attr3: "1",
-//        }, {
-//            name: "Inclined Crunches",
-//            attr1: "4",
-//            attr2: "4",
-//            attr3: "2",
-//        }, {
-//            name: "HyperExtensions",
-//            attr1: "4", // /^[-+](3|4)$/ how to do multiple matches?
-//            attr2: "4",
-//            attr3: "1",
-//        }, {
-//            name: "Barbell Upright Rows",
-//            attr1: "2",
-//            attr2: "1",
-//            attr3: "2",
-//        }, {
-//            name: "Dips",
-//            attr1: "1",
-//            attr2: "4",
-//            attr3: "2",
-//        },
-//    ];
-//
-//    return {
-//        getLiftData: function () {
-//            return liftData;
-//        },
-//        setLiftData: function (lift) {
-//            liftData.push(lift);
-//        },
-//        getCustomLiftData:function(){
-//            var customList=[];
-//            angular.forEach(liftData,function(lift,index){
-//                if(lift.custom){
-//                    customList.push(lift);
-//                }
-//            });
-//            return customList;
-//        }
-//    };
-//});
-
-//main service for data. user{workouts{date,lift,sets}}
 app.factory('UserData', function () {
-
-
-
-    //var userData =
-    //{
-    //    "users": [{
-    //        "username": "user1",
-    //        "workouts": [{
-    //            "date": "1-1-1",
-    //            "lifts": [{
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }, {
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }, {
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }, {
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            },
-    //
-    //
-    //            ]
-    //        }, {
-    //            "date": '1-2-1',
-    //            "lifts": [{
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }]
-    //        }
-    //        ]
-    //
-    //    }, {
-    //        "username": "user2",
-    //        "workouts": [{
-    //            "date": '1-1-1',
-    //            "lifts": [{
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }, {
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }, {
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }, {
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            },
-    //            ]
-    //        }, {
-    //            "date": '1-2-1',
-    //            "lifts": [{
-    //                "name": "Select",
-    //                "sets": ['', '', '']
-    //            }]
-    //        }
-    //        ]
-    //
-    //    },
-    //    ]
-    //};
-    //
-    //
-    //
-    //
-    ////var liftCards = [{
-    ////    name: "Barbell Bench Press",
-    ////    sets: "1",
-    ////    weights: "1"
-    ////
-    ////}, {
-    ////    name: "Barbell Curls",
-    ////    sets: "1",
-    ////    weights: "1"
-    ////}, {
-    ////    name: "Barbell Squat",
-    ////    sets: "1",
-    ////    weights: "1"
-    ////}, {
-    ////    name: "Dumbell Shoulder",
-    ////    sets: "1",
-    ////    weights: "1"
-    ////}, {
-    ////    name: "Hang Clean",
-    ////    sets: "1",
-    ////    weights: "1"
-    ////}];
-    //
-    ////var setLiftName= function (user,date,index,name) {
-    ////    userData.users[user].workouts[].lifts[index].name = name ;
-    ////}
-    ////var setLiftSet= function (user,date,liftIndex,setIndex,weight) {
-    ////    userData.users[user].workouts[date].lifts[liftIndex].sets[setIndex] = weight ;
-    ////}
-    //
-    //return  {
-    //
-    //    getLifts:function(user, date){
-    //        var lifts = [];
-    //        var i=0;
-    //        var j=0;
-    //        for (var userFromList in userData.users){
-    //            if(userFromList.username==user) {
-    //                for (var workout in userFromList.workouts) {
-    //                    if (workout.date == date) {
-    //                        for (var lift in workout.lifts) {
-    //                            lifts.push(lift);
-    //                        }
-    //                    }
-    //
-    //                }
-    //            }
-    //        }
-    //        return lifts;
-    //
-    //    //    angular.forEach(userData.users, function(user, index) {
-    //    //
-    //    //        angular.forEach(artist.albums, function(album, index){
-    //    //            $scope.albums.push(album);
-    //    //        });
-    //    //    });
-    //    //})
-    //    }
-    //    //setLiftName:setLiftName,
-    //    //setLiftSet:setLiftSet
-    //};
-    //    //getLifts: function (user,date) {
-    //    //    return userData.users[user].workouts[date].lifts;
-    //    //},
-    //    //setLiftName: function (user,date,index,name) {
-    //    //    userData.users[user].workouts[date].lifts[index].name = name ;
-    //    //},
-    //    //setLiftSet: function (user,date,liftIndex,setIndex,weight) {
-    //    //    userData.users[user].workouts[date].lifts[liftIndex].sets[setIndex] = weight ;
-    //    //},
-    //    //addWorkout: function (user, date, lift, sets) {
-    //    //    userData[user].workouts.date = date;
-    //    //    userData[user].workouts.lift = lift;
-    //    //    userData[user].workouts.sets = sets;
-    //    //}
-
 });
-//Don't show today's workouts live on the calendar. Show ll
+
 app.factory('localStore', function ($rootScope, $localStorage) {
-
-
-
     var getWeek = function(date1) {
         //Monday is first day of new week. Ok with this.
         var date = new Date(date1);
@@ -312,24 +54,6 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 'super':false
             },];
             $rootScope.$broadcast('calRefresh');
-
-            //{
-            //    'date': '2/2/2015',
-            //    bodyWeight:'202',
-            //    lifts: [{
-            //    'name': 'Barbell Bench Press',
-            //    'sets': [{'reps': '5', wt: 250}, {'reps': '10', wt: '130'}, {'reps': '15', wt: '70'}]
-            //},
-            //    {
-            //        'name': 'Curls',
-            //        'sets': [{'reps': '5', wt: '45'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '10'}]
-            //    },
-            //    {
-            //        'name': 'Barbell Back Squat',
-            //        'sets': [{'reps': '5', wt: 500}, {'reps': '10', wt: 400}, {'reps': '15', wt: 250}]
-            //    }
-            //]
-            //}
 
         },
 
@@ -365,7 +89,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             return returnFlag;
         },
         clearLifts:function(){
-            //$localStorage.$reset();
+            $localStorage.$reset();
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
@@ -395,7 +119,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
           })
             console.log('kgmap',$rootScope.$storage.kgMap)
         },
-        getDataAngular: function(name,reps,flag){ //its a monster, watch type stuff
+        getChartData: function(name,reps,flag){ //its a monster, watch type stuff
             var weightSetTemp = [];
             var dateSetTemp =[]
             var weightDateSet = [];
@@ -518,7 +242,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             console.log("repListF",repListF);
             return repListF;
         },
-        getBodyWeightData: function(flag){
+        getBodyWeightData: function(flag){//flag indicates dates or weights
             var bodyWeightData = [];
             var bodyWeightDates = [];
             angular.forEach($rootScope.$storage.workouts, function(day, index) {
@@ -526,7 +250,6 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                     bodyWeightData.push(day.bodyWeight);
                     bodyWeightDates.push(day.date);
                 }
-
             });
             if(flag ==1){
                 if(bodyWeightData.length == 0){
@@ -591,6 +314,8 @@ app.factory('localStore', function ($rootScope, $localStorage) {
         },
 
         normalizeToWeeks:function(dateWeightList,flag){
+            //   This mess converts all of our dates into weeks from the start date, because chartjs doesnt
+            //have time built into it's x axis'
                 var dateShow = 'none';
                 var weekListFinal = [];
                 var liftListFinal =[];

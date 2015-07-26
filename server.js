@@ -1,12 +1,9 @@
- //require('newrelic');
- //var logger = require('winston-papertrail').Papertrail;
- var cluster = require('cluster');
- var winstonExpress = require('winston-express')
- winston = require('winston');
+var cluster = require('cluster');
+var winstonExpress = require('winston-express')
+winston = require('winston');
 
- // winstonExpress takes two parameters,
- // an express app, and a winston logger instance.
- if (cluster.isMaster) {//TODO make sure we are routing to these
+//clustering to run 4 threads on one heroku dyno
+ if (cluster.isMaster) {//TODO test that clusters work
      // Count the machine's CPUs
      var cpuCount = require('os').cpus().length;
 
@@ -24,7 +21,6 @@
          console.log('Express server listening on port ' + app.get('port'));
      });
  }
- // Code to run if we're in a worker process
   else {
      console.log('Hello from Worker ' + cluster.worker.id);
      console.log('Worker ' + cluster.worker.id + ' running!');
