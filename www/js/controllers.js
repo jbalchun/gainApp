@@ -653,7 +653,7 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
     };
 
     $scope.updateGoal = function(){
-        if($scope.chartTitle = "Dummy Lift for xx reps"){
+        if($scope.chartTitle == "Dummy Lift for xx reps"){
             return
         }
 
@@ -789,11 +789,12 @@ app.controller("LineCtrl",  function ($scope ,$localStorage,localStore,$ionicMod
     }
 
     $scope.selectTimespan = function(span){
-        if($scope.chartTitle = "Dummy Lift for xx reps"){
+        if($scope.chartTitle == "Dummy Lift for xx reps"){
             return
         }
         $scope.spanSelect = span;
         var weekSpan= Number(_.last($scope.dateSetFull));
+        console.log('dtwt',$scope.dateSetFull,$scope.weightSetFull)
         var weekSetFullCopy = angular.copy($scope.weightSetFull);
         if(span && span <weekSpan){
             var dateSpan = weekSpan - span ;

@@ -311,7 +311,7 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope,localSt
     if($rootScope.$storage.populated == false){
       $rootScope.$storage.dummy.reverse();
       angular.forEach($rootScope.$storage.dummy,function(workout,key){
-        console.log(workout.name)
+        console.log('notes',workout)
         localStore.saveLift(workout.date,workout.lifts,workout.name,workout.bodyWeight,workout.notes)
       })
       $rootScope.$storage.populated = true
@@ -330,7 +330,7 @@ app.run(function($ionicPlatform,$timeout,$state,$localStorage,$rootScope,localSt
     if(typeof winston == "undefined" && !window.cordova){
       $rootScope.stateW = 'local'
     }
-    console.log($rootScope.stateW)
+    console.log('state',$rootScope.stateW)
     if ($rootScope.stateW == 'heroku'){
         if($rootScope.$storage.userId.length > 1){//if they have a user id
         ++$rootScope.$storage.visitCount
