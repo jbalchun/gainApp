@@ -4,6 +4,36 @@
 var app = angular.module('MyApp.chartcontrol', ['MyApp.services', 'ngStorage']);
 
 app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ionicModal, $timeout, $rootScope, $ionicPopup, $ionicPopover, $state) {
+    $scope.liftName = "Select Lift";
+    $scope.chartTitle = 'Dummy Lift for xx reps';
+    $scope.reps2 = "reps";
+    $scope.reps = {reps: 0};
+    $scope.reps3 = [{reps: 0},];
+    $scope.repsChart = {reps: 0};
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July", 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', "July", 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf'];
+    $scope.labels2 = ["January", "February", "March"];
+    $scope.series = ['Series A'];
+    $scope.selectedLift = "Barbell Bench"
+    $scope.data = [
+        [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
+    ];
+    $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+    $scope.bodyWeightData = [];
+    $scope.bodyWtFlag = true;
+    $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    $scope.firstDate = 'Start Date';
+    $scope.lastDate = 'End Date';
+    $scope.chartTable = true;
+    $scope.dateWeightObjectList = [];
+    $scope.goalNum = {wt: undefined};
+    $scope.updateFlag = undefined;
+    $scope.dateList = [];
+    $scope.dateSetFull = []
+    $scope.firstDateFull = '';
+    $scope.spanSelect = 0;
+    $scope.selectedReps = "Select Reps";
+
+
     $scope.infoFlag = 3;
     //AXIS MANIPULATION
     $scope.chartCeiling = undefined;
@@ -40,35 +70,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
 
         }
     }
-    $scope.liftName = "Select Lift";
-    $scope.chartTitle = 'Dummy Lift for xx reps';
-    $scope.reps2 = "reps";
-    $scope.reps = {reps: 0};
-    $scope.reps3 = [{reps: 0},];
-    $scope.repsChart = {reps: 0};
-    $scope.labels = ["January", "February", "March", "April", "May", "June", "July", 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', "July", 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf'];
-    $scope.labels2 = ["January", "February", "March"];
-    $scope.series = ['Series A'];
-    $scope.selectedLift = "Barbell Bench"
-    $scope.data = [
-        [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
-    ];
-    $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
-    $scope.bodyWeightData = [];
-    $scope.bodyWtFlag = true;
-    $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    $scope.firstDate = 'Start Date';
-    $scope.lastDate = 'End Date';
-    $scope.chartTable = true;
-    $scope.dateWeightObjectList = [];
-    $scope.goalNum = {wt: undefined};
-    $scope.updateFlag = undefined;
-    $scope.dateList = [];
-    $scope.dateSetFull = []
-    $scope.firstDateFull = '';
-    $scope.spanSelect = 0;
-    $scope.selectedReps = "Select Reps";
-    //broken
+
     $scope.getReps = function () {
         //went with a flag for returning data as last parameter. Kind of messy.
         $scope.reps3 = localStore.buildRepList($scope.liftName);
@@ -195,7 +197,6 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         $scope.repsChart.reps = reps;
         axisAdjust(false);
         $scope.chartOptions.scaleOverride = false;
-
         //popover.hide(".liftSelectEntry"); //find out to hide popup
         console.log('selected', $scope.selectedReps);
         if ($scope.liftName != "Select Lift" && $scope.selectedReps != "Select Reps" && !clearFlag) {
@@ -215,10 +216,10 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     dateWeightObjectList.push({date: date, wt: $scope.weightSet[0][index]})
                 });
                 dateWeightObjectList.reverse();//realized my calendar was backwards, easy fix
-                if (!viewFlag) {
-                    console.log("earlybreak")
-                    return
-                }
+                //if (!viewFlag) {
+                //    console.log("earlybreak")
+                //    return
+                //}
                 $scope.weightSet = localStore.normalizeToWeeks(dateWeightObjectList, 1);
                 console.log("fullweightset", $scope.weightSet)
                 $scope.dateSetFull = localStore.normalizeToWeeks(dateWeightObjectList, 2);
@@ -312,7 +313,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 $scope.dateWeightObjectList.reverse();
                 $scope.weightSet = localStore.normalizeToWeeks($scope.dateWeightObjectList, 1);
                 $scope.dateSetFull = localStore.normalizeToWeeks($scope.dateWeightObjectList, 2);
-                $scope.weightSetFull = angular.copy($scope.weightSet)
+                $scope.weightSetFull = angular.copy($scope.weightSet);
                 if (!fromNav) {
                     $scope.bodyWtFlag = false;
                 }

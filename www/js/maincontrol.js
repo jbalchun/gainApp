@@ -377,7 +377,6 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         if ($scope.liftCards[index].name == 'Select Lift' || ($scope.liftCards[index].sets[0].reps == 0 && $scope.liftCards[index].sets[0].wt == 0)) {
             return
         }
-
         $scope.histIndex = index;
         var listReps = [];
         var name = $scope.liftCards[index].name;
