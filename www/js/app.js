@@ -298,21 +298,23 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
     $rootScope.email = {email: ''};
 
     $ionicPlatform.ready(function () {
-        ////console.log(winston != undefined)
-        Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
 
-        Parse.FacebookUtils.logIn(null, {
-            success: function(user) {
-                if (!user.existed()) {
-                    alert("User signed up and logged in through Facebook!");
-                } else {
-                    alert("User logged in through Facebook!");
-                }
-            },
-            error: function(user, error) {
-                alert("User cancelled the Facebook login or did not fully authorize.");
-            }
-        });
+        //PARSE
+        ////console.log(winston != undefined)
+        //Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
+        //
+        //Parse.FacebookUtils.logIn(null, {
+        //    success: function(user) {
+        //        if (!user.existed()) {
+        //            alert("User signed up and logged in through Facebook!");
+        //        } else {
+        //            alert("User logged in through Facebook!");
+        //        }
+        //    },
+        //    error: function(user, error) {
+        //        alert("User cancelled the Facebook login or did not fully authorize.");
+        //    }
+        //});
         //
         //var TestObject = Parse.Object.extend("TestObject");
         //var testObject = new TestObject();
@@ -336,7 +338,6 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         //        alert("Error: " + error.code + " " + error.message);
         //    }
         //});
-
 
 
         if ($rootScope.$storage.populated == false) {//load in dummy data for demos
