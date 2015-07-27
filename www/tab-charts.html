@@ -54,10 +54,6 @@
             <div ng-if="chartTable ==false" class="item item-divider color-header">
             </div>
             <ion-item class="item item-remove-animate no-padding">
-
-                <a ng-if="!chartTable" style="float:left;padding-right:10px" class="ion-ios7-person"
-                   ng-click="chartBodyWeight()"></a>
-
                 <div ng-if="chartTable || (bodyWtFlag && !chartTable)" class="liftNameButton">
                     <button class="liftSelectEntry button button-clear button-positive" style="float:left;" ng-click="openModal()">{{liftName}}</button>
                     <button class="liftSelectEntry button button-clear button-positive" ng-click="repPopup($event)" style="float:right;">

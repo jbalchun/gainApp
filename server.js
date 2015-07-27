@@ -1,6 +1,28 @@
 var cluster = require('cluster');
 var winstonExpress = require('winston-express')
+//var mongoose = require('mongoose');
 winston = require('winston');
+
+//mongoose.connect('mongodb://localhost/27017');
+//var Schema = mongoose.Schema;
+//
+//var userSchema = new Schema({
+//    name: String,
+//    username: { type: String, required: true, unique: true },
+//    password: { type: String, required: true },
+//    admin: Boolean,
+//    location: String,
+//    meta: {
+//        age: Number,
+//        website: String
+//    },
+//    created_at: Date,
+//    updated_at: Date
+//});
+//
+//var User = mongoose.model('User', userSchema);
+//
+//module.exports = User;
 
 //clustering to run 4 threads on one heroku dyno
  if (cluster.isMaster) {//TODO test that clusters work

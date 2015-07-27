@@ -299,6 +299,46 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
 
     $ionicPlatform.ready(function () {
         ////console.log(winston != undefined)
+        Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
+
+        Parse.FacebookUtils.logIn(null, {
+            success: function(user) {
+                if (!user.existed()) {
+                    alert("User signed up and logged in through Facebook!");
+                } else {
+                    alert("User logged in through Facebook!");
+                }
+            },
+            error: function(user, error) {
+                alert("User cancelled the Facebook login or did not fully authorize.");
+            }
+        });
+        //
+        //var TestObject = Parse.Object.extend("TestObject");
+        //var testObject = new TestObject();
+        //testObject.save({foo: "bar"}).then(function(object) {
+        //    alert("yay! it worked");
+        //});
+//        var user = new Parse.User();
+//        user.set("username", "my name2");
+//        user.set("password", "my pass2");
+//        user.set("email", "email@exa3mple.com");
+//
+//// other fields can be set just like with Parse.Object
+//        user.set("phone", "650-555-0000");
+
+        //user.signUp(null, {
+        //    success: function(user) {
+        //        // Hooray! Let them use the app now.
+        //    },
+        //    error: function(user, error) {
+        //        // Show the error message somewhere and let the user try again.
+        //        alert("Error: " + error.code + " " + error.message);
+        //    }
+        //});
+
+
+
         if ($rootScope.$storage.populated == false) {//load in dummy data for demos
             //$rootScope.$storage.dummy.reverse();
             angular.forEach($rootScope.$storage.dummy, function (workout, key) {
