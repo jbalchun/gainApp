@@ -66,6 +66,11 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 }
 
             });
+            angular.forEach($rootScope.$storage.nameList,function(name,key){
+                if (workout.name == name){
+                    delete $rootScope.$storage.nameList[key];
+                }
+            })
         },
         checkDay:function(day){//for checking the whole list
           var resultFlag=false;

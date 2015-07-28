@@ -169,6 +169,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
     $scope.namePopup = function ($event) {
         document.body.classList.add('platform-ios');
         //console.log('nml', $scope.nameList)
+        $scope.nameList = $scope.$storage.nameList;
         _.uniq($scope.nameList, false);
         var nameArray = []
         angular.forEach($scope.nameList, function (val, key) {

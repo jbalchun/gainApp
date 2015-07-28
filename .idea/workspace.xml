@@ -77,8 +77,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4785" max-vertical-offset="6915">
-              <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
+            <state vertical-scroll-proportion="-15.384615" vertical-offset="155" max-vertical-offset="6915">
+              <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -87,18 +87,18 @@
       <file leaf-file-name="maincontrol.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3323263" vertical-offset="7385" max-vertical-offset="13590">
-              <caret line="507" column="159" selection-start-line="507" selection-start-column="159" selection-end-line="507" selection-end-column="159" />
+            <state vertical-scroll-proportion="0.10574018" vertical-offset="6605" max-vertical-offset="13605">
+              <caret line="445" column="26" selection-start-line="445" selection-start-column="11" selection-end-line="445" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liftselectcontrol.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/liftselectcontrol.js">
+      <file leaf-file-name="calendarcontrol.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8846154" vertical-offset="345" max-vertical-offset="3900">
-              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="60" selection-end-column="10" />
+            <state vertical-scroll-proportion="-10.192307" vertical-offset="2300" max-vertical-offset="6360">
+              <caret line="171" column="51" selection-start-line="171" selection-start-column="51" selection-end-line="171" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -168,21 +168,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="weightcontrol.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/weightcontrol.js">
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1052" max-vertical-offset="1740">
-              <caret line="96" column="11" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="11" />
+            <state vertical-scroll-proportion="-18.26923" vertical-offset="575" max-vertical-offset="6225">
+              <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pop-maininfo.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/pop/pop-maininfo.html">
+      <file leaf-file-name="weightcontrol.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/weightcontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.291667" vertical-offset="101" max-vertical-offset="765">
-              <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1052" max-vertical-offset="1740">
+              <caret line="96" column="11" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -229,7 +229,6 @@
         <option value="$PROJECT_DIR$/www/js/navcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
         <option value="$PROJECT_DIR$/www/js/directive.js" />
-        <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/chartcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/liftselectcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/timercontrol.js" />
@@ -239,7 +238,6 @@
         <option value="$PROJECT_DIR$/www/tab-posts.html" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/www/tab-charts.html" />
-        <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/modals/nav-results.html" />
         <option value="$PROJECT_DIR$/www/modals/nav-weightselector.html" />
@@ -249,6 +247,8 @@
         <option value="$PROJECT_DIR$/www/pop/pop-reps.html" />
         <option value="$PROJECT_DIR$/www/pop/pop-date.html" />
         <option value="$PROJECT_DIR$/www/pop/pop-liftnames.html" />
+        <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
+        <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
       </list>
     </option>
@@ -612,36 +612,36 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>221</line>
+          <line>226</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>228</line>
+          <line>233</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>155</line>
+          <line>160</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>157</line>
+          <line>162</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>166</line>
+          <line>171</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>179</line>
+          <line>184</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/www/js/services.js</url>
-          <line>242</line>
+          <line>247</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -910,14 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2036" max-vertical-offset="6150">
-          <caret line="121" column="8" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.291667" vertical-offset="956" max-vertical-offset="1620">
@@ -930,14 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7922" max-vertical-offset="9720">
           <caret line="556" column="24" selection-start-line="556" selection-start-column="5" selection-end-line="556" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.692308" vertical-offset="61" max-vertical-offset="6345">
-          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -992,14 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4785" max-vertical-offset="6915">
-          <caret line="334" column="16" selection-start-line="334" selection-start-column="16" selection-end-line="334" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.9493671" vertical-offset="90" max-vertical-offset="1410">
@@ -1044,10 +1020,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.192307" vertical-offset="2300" max-vertical-offset="6360">
+          <caret line="171" column="51" selection-start-line="171" selection-start-column="51" selection-end-line="171" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.26923" vertical-offset="575" max-vertical-offset="6225">
+          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.384615" vertical-offset="155" max-vertical-offset="6915">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323263" vertical-offset="7385" max-vertical-offset="13590">
-          <caret line="507" column="159" selection-start-line="507" selection-start-column="159" selection-end-line="507" selection-end-column="159" />
+        <state vertical-scroll-proportion="0.10574018" vertical-offset="6605" max-vertical-offset="13605">
+          <caret line="445" column="26" selection-start-line="445" selection-start-column="11" selection-end-line="445" selection-end-column="26" />
           <folding />
         </state>
       </provider>
