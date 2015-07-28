@@ -97,7 +97,7 @@
       <file leaf-file-name="tab-charts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="982" max-vertical-offset="1620">
+            <state vertical-scroll-proportion="-8.291667" vertical-offset="956" max-vertical-offset="1620">
               <caret line="77" column="54" selection-start-line="77" selection-start-column="54" selection-end-line="77" selection-end-column="54" />
               <folding />
             </state>
@@ -124,51 +124,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maincontrol.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53625375" vertical-offset="2660" max-vertical-offset="13605">
-              <caret line="201" column="39" selection-start-line="201" selection-start-column="39" selection-end-line="201" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nav-results.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nav-results.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/modals/nav-results.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.875" vertical-offset="270" max-vertical-offset="1065">
-              <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.8192771" vertical-offset="431" max-vertical-offset="1095">
+              <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tab-calendar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.7916667" vertical-offset="746" max-vertical-offset="1410">
-              <caret line="51" column="138" selection-start-line="51" selection-start-column="138" selection-end-line="51" selection-end-column="138" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/services.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2036" max-vertical-offset="6150">
-              <caret line="121" column="8" selection-start-line="121" selection-start-column="8" selection-end-line="121" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="137" max-vertical-offset="825">
-              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="7922" max-vertical-offset="9720">
+              <caret line="556" column="24" selection-start-line="556" selection-start-column="5" selection-end-line="556" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -209,7 +179,6 @@
         <option value="$PROJECT_DIR$/www/nav-goals.html" />
         <option value="$PROJECT_DIR$/www/nav-results.html" />
         <option value="$PROJECT_DIR$/www/lib/ionic/css/ionic.css" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/pop-maininfo.html" />
         <option value="$PROJECT_DIR$/www/pop-reps.html" />
         <option value="$PROJECT_DIR$/www/js/postscontrol.js" />
@@ -233,9 +202,10 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/www/tab-charts.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/www/modals/nav-results.html" />
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/modals/nav-results.html" />
       </list>
     </option>
   </component>
@@ -359,6 +329,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gainApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gainApp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -738,14 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.461538" vertical-offset="7430" max-vertical-offset="9435">
-          <caret line="510" column="7" selection-start-line="510" selection-start-column="1" selection-end-line="510" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2711" max-vertical-offset="14070">
@@ -933,14 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="982" max-vertical-offset="1620">
-          <caret line="77" column="54" selection-start-line="77" selection-start-column="54" selection-end-line="77" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4230" max-vertical-offset="6885">
@@ -957,26 +929,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-31.692308" vertical-offset="61" max-vertical-offset="6345">
-          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-posts.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-56.25" vertical-offset="0" max-vertical-offset="1455">
           <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/modals/nav-results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.875" vertical-offset="270" max-vertical-offset="1065">
-          <caret line="29" column="59" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -999,8 +955,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53625375" vertical-offset="2660" max-vertical-offset="13605">
-          <caret line="201" column="39" selection-start-line="201" selection-start-column="39" selection-end-line="201" selection-end-column="39" />
+        <state vertical-scroll-proportion="62.884617" vertical-offset="4455" max-vertical-offset="13605">
+          <caret line="188" column="19" selection-start-line="188" selection-start-column="19" selection-end-line="188" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.291667" vertical-offset="956" max-vertical-offset="1620">
+          <caret line="77" column="54" selection-start-line="77" selection-start-column="54" selection-end-line="77" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="7922" max-vertical-offset="9720">
+          <caret line="556" column="24" selection-start-line="556" selection-start-column="5" selection-end-line="556" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.692308" vertical-offset="61" max-vertical-offset="6345">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/modals/nav-results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8192771" vertical-offset="431" max-vertical-offset="1095">
+          <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
           <folding />
         </state>
       </provider>
