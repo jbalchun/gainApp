@@ -133,14 +133,6 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             }).wt);
             $scope.lastList["Body Weight"] = Math.abs(Math.abs(bodyWeight) - bodyWeightList.slice(-1)[0].wt);
             //console.log($scope.maxList, bodyWeight);
-
-            if (Number(maxDelta) > 0) {
-                plusMinusMax["Body Weight"] = 0;
-            } else plusMinusMax["Body Weight"] = 1;
-
-            if (Number(lastDelta) > 0) {
-                plusMinusLast["Body Weight"] = 0;
-            } else plusMinusLast["Body Weight"] = 1;
             return {
                 name: "Body Weight",
                 reps: 0,
@@ -148,7 +140,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 max: _.max(bodyWeightList, function (lift) {
                     return lift.wt;
                 }).wt,
-                last: bodyWeightList.slice(-1)[0].wt
+                last: bodyWeightList.reverse().slice(-2)[0].wt
             }
         }
         else {
@@ -203,9 +195,15 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $scope.todaysMaxs[name + String(reps)] = weightsMax.wt;//
 
         var maxItem = localStore.getMax(name, reps);
-        var lastItem = localStore.getChartData(name, reps, 3).slice(-1)[0];
+        var lastItemList = localStore.getChartData(name, reps, 3);
+        if(lastItemList.length == 1){
+            var lastItem = {wt:'None',date: lastItemList[0].date}
+
+        }else lastItem = lastItemList[1]
+
         //console.log('only1', maxItem.only1)
-        if (maxItem.only1 == true) {
+        console.log('lastItem',lastItem)
+        if (maxItem.only1 == true) {//if it's the only entry
             return {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: 0, last: 0}
         }
         if (maxItem < -1000 || !maxItem || maxItem > 1000) {
@@ -227,7 +225,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             } else plusMinusLast[name] = 1
         }
         //TODO intervene if max/last = the only one
-
+        console.log('lastItem',lastItem)
         return {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: maxItem, last: lastItem}
         //last clicked rep for a given lift
     };

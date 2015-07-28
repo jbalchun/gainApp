@@ -19,8 +19,8 @@
                     <ion-item class="no-padding borderless">
                         <div class="row">
                             <a class="col">{{resultsSourceNameMap["Body Weight"].todaysMax}}</a>
-                            <a class="col">{{resultsSourceNameMap["Body Weight"].max}}</a>
                             <a class="col">{{resultsSourceNameMap["Body Weight"].last}}</a>
+                            <a class="col">{{resultsSourceNameMap["Body Weight"].max}}</a>
                             <a class="col"> {{goalMap["Body Weight"].wt}}</a>
                         </div>
                     </ion-item>
@@ -44,8 +44,10 @@
                         <div  class="row">
                         <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].reps}}</a>
                         <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].todaysMax}}</a>
-                        <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt}}</a>
-                        <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].last.wt}}</a>
+                            <a class="col">{{resultsSourceNameMap[lift.name+set1.reps].last.wt}}</a>
+                        <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt > resultsSourceNameMap[lift.name+set1.reps].todaysMax" class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt}}</a>
+                            <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt == resultsSourceNameMap[lift.name+set1.reps].todaysMax"
+                               class="col button-balanced">{{resultsSourceNameMap[lift.name+set1.reps].max.wt}}</a>
                         <a class="col"> {{goalMap[lift.name+set1.reps].wt}}</a>
                         </div>
                     </ion-item>

@@ -280,8 +280,8 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                         var tempDayList = [];
                         angular.forEach(lift.sets,function(set1, index){
                             if(Number(set1.reps) == Number(reps)){
+                                console.log('reps',reps)
                                 tempDayList.push({wt:Number(set1.wt),date:day.date});
-
                             }
                         });
                         var tempMaxObj = _.max(tempDayList, function(lift){ return lift.wt;})
