@@ -505,7 +505,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.dateErrorPop = function () {
         var confirmPopup = $ionicPopup.show({
             title: 'You already lifted today!',
-            subTitle: "Slow down tiger! Only one workout per day! (otherwise our metrics get real messy)",
+            subTitle: "Slow down tiger! Only one workout per day! (otherwise our metrics get real messy). Delete today's lift from the calendar tab to re-enter",
             scope: $scope,
             buttons: [
                 {text: 'Cancel'},
@@ -861,15 +861,15 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
         } else {
             if (newLift == 1) { //TODO make sure date isn't today
-                //if(!localStore.checkDate($scope.liftDate)){
+                if(!localStore.checkDate($scope.liftDate)){
                 localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);
                 $scope.resultsLifts = $scope.liftCards;
                 $scope.liftCards = $scope.$storage.todaysLifts;
                 $scope.uniqueSortReps();
                 $scope.openModal('', '', '', '3');
-                //}else {
-                //    $scope.dateErrorPop();
-                //}
+                }else {
+                    $scope.dateErrorPop();
+                }
             }
         }
     });
