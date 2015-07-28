@@ -594,7 +594,6 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         });
     };
 
-
     $scope.removeLiftRow = function ($index) {
         if ($scope.removeFlag) {
             $scope.liftCards.splice($index, 1);

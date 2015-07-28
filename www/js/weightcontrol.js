@@ -71,6 +71,40 @@ app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
         $scope.closeModal('lift', 0, 2);
     }
 
+    $scope.showInfo = function () {
+        if ($rootScope.stateW == 'heroku') {
+            var datenew = new Date()
+            winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
+        }
+        $scope.infoFlag = 6;
+        var confirmPopup = $ionicPopup.show({
+            title: 'Add Weight',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+            scope: $scope,
+            templateUrl: 'pop/pop-maininfo.html',
+            buttons: [
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            ////console.log('Tapped!', res);
+            if ($rootScope.stateW == 'heroku') {
+                var dateDiff = new Date() - datenew
+                winston.log('info', $scope.$storage.userId + ", closed liftselect after" + dateDiff)
+            }
+        });
+
+    };
+
 
 });
 
