@@ -868,6 +868,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 $scope.liftCards = $scope.$storage.todaysLifts;
                 $scope.uniqueSortReps();
                 $scope.openModal('', '', '', '3');
+                $scope.workoutName.name ='';
+                $scope.notes.notes = '';
+                $scope.bodyWeight.wt = '';
                 }else {
                     $scope.dateErrorPop();
                 }
