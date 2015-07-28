@@ -17,25 +17,25 @@
     </ion-nav-buttons>
     <ion-content scroll="false"  class="has-header">
         <div class=" button-bar bar-positive" style="background-color:#ffffff;border-bottom: thin">
-            <a on-hold="clearHold('lift')" ng-class="{'button-filter':liftName != 'Lift'}" class="button button-clear button-dark col" ng-click=" openModal()" style="width:2em;" >
+            <a on-hold="clearHold('lift')" ng-class="{'button-dark':liftName != 'Lift'}" class="button button-clear button-positive col" ng-click=" openModal()" style="width:2em;" >
                 {{liftName}}
             </a>
 
-            <a on-hold="clearHold('name')" ng-class="{'button-filter':nameFilter != 'Name'}" class="button button-clear button-dark col" ng-click="namePopup($event)"  style="width:3em float:right;">
+            <a on-hold="clearHold('name')" ng-class="{'button-dark':nameFilter != 'Name'}" class="button button-clear button-positive col" ng-click="namePopup($event)"  style="width:3em float:right;">
                 {{nameFilter}}
             </a>
 
         </div>
         <div style="border-top: thick;"></div>
         <div class=" button-bar bar-positive" style="background-color:#ffffff; margin-top:3px; ">
-            <a on-hold="clearHold('month')" ng-class="{'button-filter':dateObj['Month'] != 'Month'}" class="button button-clear button-dark col " ng-click="datePopup($event,'Month')" style="width:3em">
+            <a on-hold="clearHold('month')" ng-class="{'button-dark':dateObj['Month'] != 'Month'}" class="button button-clear button-positive col " ng-click="datePopup($event,'Month')" style="width:3em">
                 {{dateObj['Month']}}
             </a>
 
-            <a on-hold="clearHold('day')" ng-class="{'button-filter':dateObj['Day'] != 'Day'}" class="button button-clear button-dark col" ng-click="datePopup($event,'Day')" style="width:3em">
+            <a on-hold="clearHold('day')" ng-class="{'button-dark':dateObj['Day'] != 'Day'}" class="button button-clear button-positive col" ng-click="datePopup($event,'Day')" style="width:3em">
                 {{dateObj['Day']}}
             </a>
-            <a on-hold="clearHold('year')" ng-class="{'button-filter':dateObj['Year'] != 'Year'}" class="button button-clear button-dark col" ng-click="datePopup($event,'Year')" style="width:3em float:right;">
+            <a on-hold="clearHold('year')" ng-class="{'button-dark':dateObj['Year'] != 'Year'}" class="button button-clear button-positive col" ng-click="datePopup($event,'Year')" style="width:3em float:right;">
                 {{dateObj['Year']}}
             </a>
 
