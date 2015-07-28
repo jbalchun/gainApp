@@ -342,11 +342,13 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
 
         if ($rootScope.$storage.populated == false) {//load in dummy data for demos
             //$rootScope.$storage.dummy.reverse();
+
             angular.forEach($rootScope.$storage.dummy, function (workout, key) {
                 //console.log('notes', workout)
                 localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes)
             })
             $rootScope.$storage.populated = true
+            location.reload();
         }
 
         if (!window.cordova) {
