@@ -94,12 +94,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maincontrol.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="maincontrol.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7175227" vertical-offset="12575" max-vertical-offset="13650">
-              <caret line="870" column="44" selection-start-line="870" selection-start-column="44" selection-end-line="870" selection-end-column="44" />
+            <state vertical-scroll-proportion="-5.576923" vertical-offset="12575" max-vertical-offset="13650">
+              <caret line="848" column="36" selection-start-line="848" selection-start-column="36" selection-end-line="848" selection-end-column="36" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav-liftselector.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/modals/nav-liftselector.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.453125" vertical-offset="966" max-vertical-offset="1350">
+              <caret line="76" column="188" selection-start-line="76" selection-start-column="188" selection-end-line="76" selection-end-column="188" />
+              <folding>
+                <element signature="n#style#0;n#a#3;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,26 +122,6 @@
             <state vertical-scroll-proportion="-10.192307" vertical-offset="2300" max-vertical-offset="6360">
               <caret line="171" column="51" selection-start-line="171" selection-start-column="51" selection-end-line="171" selection-end-column="51" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tab-calendar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.9493671" vertical-offset="90" max-vertical-offset="1410">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#2;n#div#2;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#1;n#div#0;n#div#0;n#div#0;n#ion-scroll#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -229,7 +221,6 @@
         <option value="$PROJECT_DIR$/www/js/chartcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/liftselectcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/timercontrol.js" />
-        <option value="$PROJECT_DIR$/www/modals/nav-liftselector.html" />
         <option value="$PROJECT_DIR$/www/pop/pop-maininfo.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/tab-posts.html" />
@@ -248,6 +239,7 @@
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/modals/nav-confirm.html" />
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
+        <option value="$PROJECT_DIR$/www/modals/nav-liftselector.html" />
       </list>
     </option>
   </component>
@@ -545,7 +537,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3980447" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33938548" sideWeight="0.5006954" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980973" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -918,14 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/modals/nav-liftselector.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="1350">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="18" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/liftselectcontrol.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.8846154" vertical-offset="345" max-vertical-offset="3900">
@@ -1046,9 +1030,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/maincontrol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7175227" vertical-offset="12575" max-vertical-offset="13650">
-          <caret line="870" column="44" selection-start-line="870" selection-start-column="44" selection-end-line="870" selection-end-column="44" />
+        <state vertical-scroll-proportion="-5.576923" vertical-offset="12575" max-vertical-offset="13650">
+          <caret line="848" column="36" selection-start-line="848" selection-start-column="36" selection-end-line="848" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/modals/nav-liftselector.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.453125" vertical-offset="966" max-vertical-offset="1350">
+          <caret line="76" column="188" selection-start-line="76" selection-start-column="188" selection-end-line="76" selection-end-column="188" />
+          <folding>
+            <element signature="n#style#0;n#a#3;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
