@@ -321,10 +321,10 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         //testObject.save({foo: "bar"}).then(function(object) {
         //    alert("yay! it worked");
         //});
-        var user = new Parse.User();
-        user.set("username", "my name2");
-        user.set("password", "my pass2");
-        user.set("email", "email@exa3mple.com");
+        //var user = new Parse.User();
+        //user.set("username", "my name2");
+        //user.set("password", "my pass2");
+        //user.set("email", "email@exa3mple.com");
 
 //// other fields can be set just like with Parse.Object
 //        user.set("phone", "650-555-0000");
@@ -370,14 +370,33 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             if ($rootScope.$storage.userId.length > 1) {//if they have a user id
                 ++$rootScope.$storage.visitCount
                 winston.log('info', 'user returning for the ' + $rootScope.$storage.visitCount + " time xlog:" + $rootScope.$storage.userId);
+                    Parse.User.logIn($rootScope.$storage.userId , "password", {
+                    success: function(user) {
+                        // Do stuff after successful login.
+                    },
+                    error: function(user, error) {
+                        // The login failed. Check error to see why.
+                    }
+                });
             } else {
                 $rootScope.$storage.userId = generateUUID()
                 winston.log('info', 'first visit for ' + $rootScope.$storage.userId);
                 ++$rootScope.$storage.visitCount
-                var user = new Parse.User();
-                user.set("username",$rootScope.$storage.userId );
-                user.set("password", "password");
 
+                var user = new Parse.User();
+                user.set("username",$rootScope.$storage.userId);
+                user.set("password", "password");
+                user.signUp(null, {
+                    success: function(user) {
+                        // Hooray! Let them use the app now.
+                    },
+                    error: function(user, error) {
+                        // Show the error message somewhere and let the user try again.
+                        //alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+
+                winston.log('info', 'parsed');
             }
         }
         if (window.cordova && window.cordova.plugins.Keyboard) {
