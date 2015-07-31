@@ -74,11 +74,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.461538" vertical-offset="875" max-vertical-offset="6915">
-              <caret line="73" column="25" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.4531722" vertical-offset="4920" max-vertical-offset="6975">
+              <caret line="348" column="14" selection-start-line="348" selection-start-column="14" selection-end-line="348" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -104,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nav-liftselector.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nav-liftselector.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/modals/nav-liftselector.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.453125" vertical-offset="966" max-vertical-offset="1350">
-              <caret line="76" column="188" selection-start-line="76" selection-start-column="188" selection-end-line="76" selection-end-column="188" />
+            <state vertical-scroll-proportion="-10.66" vertical-offset="712" max-vertical-offset="1350">
+              <caret line="83" column="7" selection-start-line="83" selection-start-column="7" selection-end-line="83" selection-end-column="7" />
               <folding>
                 <element signature="n#style#0;n#a#3;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -230,7 +230,6 @@
         <option value="$PROJECT_DIR$/www/modals/nav-results.html" />
         <option value="$PROJECT_DIR$/www/modals/nav-weightselector.html" />
         <option value="$PROJECT_DIR$/www/js/weightcontrol.js" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/tab-calendar.html" />
         <option value="$PROJECT_DIR$/www/pop/pop-reps.html" />
         <option value="$PROJECT_DIR$/www/pop/pop-date.html" />
@@ -240,6 +239,7 @@
         <option value="$PROJECT_DIR$/www/modals/nav-confirm.html" />
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
         <option value="$PROJECT_DIR$/www/modals/nav-liftselector.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
   </component>
@@ -537,7 +537,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3980447" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33938548" sideWeight="0.5006954" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980973" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -996,14 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.461538" vertical-offset="875" max-vertical-offset="6915">
-          <caret line="73" column="25" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gaindeck/www/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="688">
@@ -1038,11 +1030,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/modals/nav-liftselector.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.453125" vertical-offset="966" max-vertical-offset="1350">
-          <caret line="76" column="188" selection-start-line="76" selection-start-column="188" selection-end-line="76" selection-end-column="188" />
+        <state vertical-scroll-proportion="-10.66" vertical-offset="712" max-vertical-offset="1350">
+          <caret line="83" column="7" selection-start-line="83" selection-start-column="7" selection-end-line="83" selection-end-column="7" />
           <folding>
             <element signature="n#style#0;n#a#3;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4531722" vertical-offset="4920" max-vertical-offset="6975">
+          <caret line="348" column="14" selection-start-line="348" selection-start-column="14" selection-end-line="348" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

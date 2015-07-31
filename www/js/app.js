@@ -301,7 +301,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
 
         //PARSE
         ////console.log(winston != undefined)
-        //Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
+        Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
         //
         //Parse.FacebookUtils.logIn(null, {
         //    success: function(user) {
@@ -321,11 +321,11 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         //testObject.save({foo: "bar"}).then(function(object) {
         //    alert("yay! it worked");
         //});
-//        var user = new Parse.User();
-//        user.set("username", "my name2");
-//        user.set("password", "my pass2");
-//        user.set("email", "email@exa3mple.com");
-//
+        var user = new Parse.User();
+        user.set("username", "my name2");
+        user.set("password", "my pass2");
+        user.set("email", "email@exa3mple.com");
+
 //// other fields can be set just like with Parse.Object
 //        user.set("phone", "650-555-0000");
 
@@ -374,6 +374,10 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 $rootScope.$storage.userId = generateUUID()
                 winston.log('info', 'first visit for ' + $rootScope.$storage.userId);
                 ++$rootScope.$storage.visitCount
+                var user = new Parse.User();
+                user.set("username",$rootScope.$storage.userId );
+                user.set("password", "password");
+
             }
         }
         if (window.cordova && window.cordova.plugins.Keyboard) {
