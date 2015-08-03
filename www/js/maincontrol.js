@@ -550,6 +550,12 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     winston.log('info', $scope.$storage.userId + " closed with no email")
                 } else {
                     winston.log('info', $scope.$storage.userId + " closed with email" + $rootScope.email.email)
+
+                    var Email = Parse.Object.extend("Email");
+                    var email = new Email();
+                    email.save({address: $rootScope.email.email}).then(function(object) {
+                        //alert("yay! it worked");
+                    });
                     //$scope.$storage.email = angular.copy($rootScope.email.email);
                     //$rootScope.$storage.user.set("email",$rootScope.email.email);
                 }
