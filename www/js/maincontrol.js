@@ -550,7 +550,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     winston.log('info', $scope.$storage.userId + " closed with no email")
                     var Reddit = Parse.Object.extend("Reddit");
                     var reddit = new Reddit();
-                    reddit.save({username: $rootScope.email.email}).then(function(object) {
+                    reddit.save({username: $rootScope.email.email,uid:$rootScope.$storage.userId}).then(function(object) {
                         //alert("yay! it worked");
                     });
 
@@ -559,7 +559,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
                     var Email = Parse.Object.extend("Email");
                     var email = new Email();
-                    email.save({address: $rootScope.email.email}).then(function(object) {
+                    email.save({address: $rootScope.email.email,uid:$rootScope.$storage.userId}).then(function(object) {
                         //alert("yay! it worked");
                     });
                     //$scope.$storage.email = angular.copy($rootScope.email.email);

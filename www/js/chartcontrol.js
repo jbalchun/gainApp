@@ -134,7 +134,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         //console.log("reppero", $scope.repsChart.reps)
         var goalMap1 = {};
         //console.log("goal before update", $scope.goalNum.wt);
-        //console.log("Bodywtflag", $scope.bodyWtFlag);
+        console.log("Bodywtflag", $scope.bodyWtFlag);
         if (!$scope.bodyWtFlag) {//if we've already drawn body weight
             //console.log("init");
             //console.log("reppero", $scope.repsChart.reps)
@@ -329,16 +329,16 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     var goalArray = [];
                     //var zeroArray = [];
                     $scope.goalNum.wt = getGoal();
-                    //console.log("print get goal", $scope.goalNum.wt);
+                    console.log("print get goal", $scope.goalNum.wt);
                     angular.forEach($scope.dateSetFull, function (date, index) {
                         goalArray.push($scope.goalNum.wt);
                         //zeroArray.push(0);
                     });
-                    //console.log("print goal array", goalArray);
+                    console.log("print goal array", goalArray);
                     $scope.weightSet.push(goalArray);
-                    var zero = angular.copy($scope.weightSet[0]) // dont ask why unshift wouldnt work
+                    var zero = angular.copy($scope.weightSet[0]) // dont ask why unshift wouldnt work. formatting for chartjs
                     var one = angular.copy($scope.weightSet[1])
-                    $scope.weightSet[0] = one;
+                    $scope.weightSet[0] = one;//TODO somethings wrong, goal keeps coming at 180
                     $scope.weightSet[1] = zero;
                     $scope.weightSetFull = angular.copy($scope.weightSet)
                     var totalMax = _.max([_.max($scope.weightSet[0]), _.max($scope.weightSet[1])]);

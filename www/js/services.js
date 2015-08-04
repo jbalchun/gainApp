@@ -309,9 +309,9 @@ app.factory('localStore', function ($rootScope, $localStorage) {
 
         updateGoals: function(goalsMap){
           angular.forEach(goalsMap,function(value, key){
-              //console.log("inserted goal for:", key);
+              console.log("inserted goal for:", key);
               $rootScope.$storage.goalsMap[key]=value;
-              //console.log($rootScope.$storage.goalsMap)
+              console.log($rootScope.$storage.goalsMap)
           });
         },
         getGoal:function(key){
