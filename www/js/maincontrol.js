@@ -546,9 +546,15 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             //console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
 
-                if ($rootScope.email.email.length < 1 || $rootScope.email.email.indexOf('@') == -1) {
+                if ($rootScope.email.email.length > 3 && $rootScope.email.email.indexOf('@') == -1 ) {
                     winston.log('info', $scope.$storage.userId + " closed with no email")
-                } else {
+                    var Reddit = Parse.Object.extend("Reddit");
+                    var reddit = new Reddit();
+                    reddit.save({username: $rootScope.email.email}).then(function(object) {
+                        //alert("yay! it worked");
+                    });
+
+                } else if($rootScope.email.email.length > 3 ) {
                     winston.log('info', $scope.$storage.userId + " closed with email" + $rootScope.email.email)
 
                     var Email = Parse.Object.extend("Email");
@@ -560,7 +566,6 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     //$rootScope.$storage.user.set("email",$rootScope.email.email);
                 }
                 $scope.$broadcast('destroyEmail')
-
             }
 
         });

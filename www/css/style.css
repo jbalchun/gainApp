@@ -357,6 +357,13 @@ input[type="text"].workoutNameInput {
     color: #444444;
 
 }
+.color-header2-cal {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 3px !important;
+    color: #444444;
+
+}
 
 
 .color-header2 {

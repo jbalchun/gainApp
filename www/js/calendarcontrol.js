@@ -397,8 +397,8 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         $scope.blurFlag = false;
         $scope.modal.hide();
         if (newLift == 'clear') {
-            $scope.filter();
             $scope.liftName = "Lift"
+            $scope.filter();
             return
         }
         if (newLift != "no change") {
