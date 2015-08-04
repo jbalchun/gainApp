@@ -70,12 +70,12 @@
         </div>
         <div ng-click="removeFlag = !removeFlag;"></div>
     </ion-content>
-    <ion-footer-bar align-title="left" class="bar-dark" style="border-bottom: none">
-        <div class="button-bar">
+    <ion-footer-bar align-title="left" class="bar-dark tab2"  style="border-bottom: none">
+        <div class="button-bar" style="">
             <a ng-class="" ng-class="{'active': removeFlag == true}" ng-click="removeLift()" type="button" class="button button-assertive button-clear"
                style="border-left:none; border-top:none;border-bottom:none;font-size: 25px;">-</a>
 
-            <a ng-class="" ng-click="showConfirm()" type="button" class="button icon ion-android-done"
+            <a ng-class="" ng-click="showConfirm()" type="button" class="button icon ion-android-done tab2"
                style="border-top:none;border-bottom:none;">  </a>
             <!--<a ng-class="{'active': reorderFlag == true}" ng-click="reorderFlag = !reorderFlag;" type="button" class="button">Reorder Lifts</a>-->
             <a type="button " ng-click="addLift()"

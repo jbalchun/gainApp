@@ -395,7 +395,6 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                         //alert("Error: " + error.code + " " + error.message);
                     }
                 });
-
                 winston.log('info', 'parsed');
             }
         }

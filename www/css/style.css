@@ -345,13 +345,25 @@ input[type="text"].workoutNameInput {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
     min-height: 3px !important;
+    min-height: 4px !important;
     color: #444444;
 }
+
+.color-header-cal {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 3px !important;
+
+    color: #444444;
+
+}
+
 
 .color-header2 {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
     min-height: 3px !important;
+    min-height: 4px !important;
     color: #444444;
 
 }
@@ -552,25 +564,6 @@ button.ion-minus-circled:before {
     }
 
 }
-
-@media (orientation: landscape){
-    #mainContainerFooter {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        max-width: 400px;
-        max-height:700px;
-        margin-left: auto;
-        margin-right: auto;
-        border-left: #000000;
-        border-right: thick;
-        border: 10px solid  #4b555f;
-    }
-
-}
-
 
 @media (orientation: landscape){
     #background {
