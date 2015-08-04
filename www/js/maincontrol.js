@@ -51,7 +51,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.liftCards = $scope.$storage.todaysLifts;
 
 
-    $ionicPopover.fromTemplateUrl('pop-date.html', {
+    $ionicPopover.fromTemplateUrl('pop/pop-date.html', {
         scope: $scope
     }).then(function (popover2) {
         $scope.popover2 = popover2;
