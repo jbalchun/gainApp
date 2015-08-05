@@ -326,8 +326,8 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         //user.set("password", "my pass2");
         //user.set("email", "email@exa3mple.com");
 
-//// other fields can be set just like with Parse.Object
-//        user.set("phone", "650-555-0000");
+        //// other fields can be set just like with Parse.Object
+        //        user.set("phone", "650-555-0000");
 
         //user.signUp(null, {
         //    success: function(user) {
@@ -338,7 +338,6 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         //        alert("Error: " + error.code + " " + error.message);
         //    }
         //});
-
 
         if ($rootScope.$storage.populated == false) {//load in dummy data for demos
             //$rootScope.$storage.dummy.reverse();
@@ -370,26 +369,25 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             if ($rootScope.$storage.userId.length > 1) {//if they have a user id
                 ++$rootScope.$storage.visitCount
                 winston.log('info', 'user returning for the ' + $rootScope.$storage.visitCount + " time xlog:" + $rootScope.$storage.userId);
-                    Parse.User.logIn($rootScope.$storage.userId , "password", {
-                    success: function(user) {
-                        // Do stuff after successful login.
-                    },
-                    error: function(user, error) {
-                        // The login failed. Check error to see why.
-                    }
+                var ViewCount = Parse.Object.extend("ViewCount");
+                var viewCount = new ViewCount();
+                viewCount.save({uid: $rootScope.$storage.userId,viewCount:$rootScope.$storage.visitCount }).then(function(object) {
+                    //alert("yay! it worked");
                 });
+                    //Parse.User.logIn($rootScope.$storage.userId , "password", {
+                    //success: function(user) {
+                    //    // Do stuff after successful login.
+                    //},
+                    //error: function(user, error) {
+                    //    // The login failed. Check error to see why.
+                    //}
+                //});
             } else {
                 $rootScope.$storage.userId = generateUUID()
                 winston.log('info', 'first visit for ' + $rootScope.$storage.userId);
-                ++$rootScope.$storage.visitCount
-
-                var Email = Parse.Object.extend("Email");
-                var email = new Email();
-                email.save({address: $rootScope.email.email}).then(function(object) {
-                    //alert("yay! it worked");
-                });
-
-                var Uid = new Parse.Object.extend("UID");
+                ++$rootScope.$storage.visitCount;
+                console.log('parsing');
+                var Uid = Parse.Object.extend("Uid");
                 var uid = new Uid();
                 uid.save({uid: $rootScope.$storage.userId}).then(function(object) {
                     //alert("yay! it worked");
@@ -397,6 +395,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 winston.log('info', 'parsed');
             }
         }
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             window.addEventListener('native.keyboardhide', keyboardHideHandler);
             navigator.splashscreen.hide();
