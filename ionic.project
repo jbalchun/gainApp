@@ -3,7 +3,6 @@
   "app_id": "740bb40a",
   "gulpStartupTasks": [
     "templates"
-
   ],
   "watchPatterns": [
     "www/**/*",

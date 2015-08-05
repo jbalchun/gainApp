@@ -5,7 +5,7 @@ winston = require('winston');
 
 //var gulp = global.gulp  = require('gulp');
 //require('./gulpfile.js');
-//gulp.start('templates');
+
 //mongoose.connect('mongodb://localhost/27017');
 //var Schema = mongoose.Schema;
 //
@@ -40,6 +40,7 @@ winston = require('winston');
      var express = require('express'),
          app = express();
      winstonExpress(app, winston);
+     //gulp.start('templates');
      app.use(express.static('www'));
      app.set('port', process.env.PORT || 5000);
      app.listen(app.get('port'), function () {
