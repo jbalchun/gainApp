@@ -31,19 +31,19 @@ gulp.task('templates', function() {
       .pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['templates']);
 
-gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
-});
+//gulp.task('sass', function(done) {
+//  gulp.src('./scss/ionic.app.scss')
+//    .pipe(sass())
+//    .pipe(gulp.dest('./www/css/'))
+//    .pipe(minifyCss({
+//      keepSpecialComments: 0
+//    }))
+//    .pipe(rename({ extname: '.min.css' }))
+//    .pipe(gulp.dest('./www/css/'))
+//    .on('end', done);
+//});
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
