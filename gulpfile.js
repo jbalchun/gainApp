@@ -6,10 +6,29 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var templateCache = require('gulp-angular-templatecache');
+
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  templates: ['./www/js/**/*.scss'],
+  dist: ['./www']
 };
+//gulp.task('default', function () {
+//  return gulp.src('/app/templates/**/*.html')
+//      .pipe(templateCache())
+//      .pipe(gulp.dest('public'));
+//});
+
+gulp.task('templates', [], function() {
+  gulp.src(paths.templates)
+      //.pipe(minifyHtml({empty: true}))
+      .pipe(templateCache({
+        standalone: true,
+        root: 'js'
+      }))
+      .pipe(gulp.dest(paths.dist + '/js'));
+});
 
 gulp.task('default', ['sass']);
 

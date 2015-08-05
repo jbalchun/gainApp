@@ -13,6 +13,7 @@ var app = angular.module('MyApp', [
     'timer',
     'ngStorage',
     'ngCordova',
+    'templates'
 ]);
 
 app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore) {
@@ -421,7 +422,6 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-
         .state('tab', {
             url: "/tab",
             abstract: true,
@@ -469,7 +469,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     controller: 'navcontrol'
                 }
             }
-        })
+        });
     $urlRouterProvider.otherwise('/tab/posts');
 
 });

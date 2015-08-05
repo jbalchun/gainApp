@@ -1,6 +1,4 @@
-/**
- * Created by Jbalchun on 1/14/15.
- */
+
 
 var app = angular.module('MyApp.calendarcontrol', ['ionic', 'MyApp.services', 'ngStorage']);
 
