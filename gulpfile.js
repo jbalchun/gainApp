@@ -21,10 +21,13 @@ var paths = {
 //});
 
 gulp.task('templates', function() {
-  return gulp.src(paths.templates)
+  gulp.src(paths.templates)
       //.pipe(minifyHtml({empty: true}))
       //console.log('gulper')
-      .pipe(templateCache());
+      .pipe(templateCache({
+        standalone: true
+
+      }))
       .pipe(gulp.dest(paths.dist + '/js'));
 });
 

@@ -88,8 +88,8 @@
       <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gulpfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1140">
-              <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1185">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -115,32 +115,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="templates.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="templates.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/templates.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-              <caret line="39" column="1436" selection-start-line="39" selection-start-column="1436" selection-end-line="39" selection-end-column="1436" />
+              <caret line="0" column="104" selection-start-line="0" selection-start-column="104" selection-end-line="0" selection-end-column="104" />
               <folding>
-                <marker date="1438742382000" expanded="true" signature="25320:25335" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="26540:26550" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="28871:28886" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="28924:28962" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="29129:29167" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="46451:46465" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="46529:46543" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="46608:46622" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="46686:46700" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="47698:47712" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="47774:47788" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="47852:47866" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="47931:47945" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="48005:48019" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="49461:49510" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="66004:66043" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="66064:66085" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="67063:67138" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="1528738:1528749" placeholder="..." />
-                <marker date="1438742382000" expanded="true" signature="1529249:1529260" placeholder="..." />
+                <marker date="1438745790000" expanded="true" signature="1530847:1530858" placeholder="..." />
+                <marker date="1438745790000" expanded="true" signature="1531358:1531369" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -166,10 +148,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1659292" vertical-offset="0" max-vertical-offset="870">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
               <caret line="5" column="0" selection-start-line="5" selection-start-column="2" selection-end-line="7" selection-end-column="26" />
               <folding />
             </state>
@@ -253,11 +235,11 @@
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
-        <option value="$PROJECT_DIR$/www/js/templates.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/ionic.project" />
-        <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/gulpfile.js" />
+        <option value="$PROJECT_DIR$/www/js/templates.js" />
       </list>
     </option>
   </component>
@@ -1024,35 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/templates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <caret line="39" column="1436" selection-start-line="39" selection-start-column="1436" selection-end-line="39" selection-end-column="1436" />
-          <folding>
-            <marker date="1438742382000" expanded="true" signature="25320:25335" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="26540:26550" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="28871:28886" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="28924:28962" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="29129:29167" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="46451:46465" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="46529:46543" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="46608:46622" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="46686:46700" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="47698:47712" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="47774:47788" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="47852:47866" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="47931:47945" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="48005:48019" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="49461:49510" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="66004:66043" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="66064:66085" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="67063:67138" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="1528738:1528749" placeholder="..." />
-            <marker date="1438742382000" expanded="true" signature="1529249:1529260" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/gulp-angular-templatecache/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1995" max-vertical-offset="3030">
@@ -1061,19 +1014,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1140">
-          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="2" selection-end-line="7" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1659292" vertical-offset="0" max-vertical-offset="870">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="2" selection-end-line="7" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1185">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/templates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+          <caret line="0" column="104" selection-start-line="0" selection-start-column="104" selection-end-line="0" selection-end-column="104" />
+          <folding>
+            <marker date="1438745790000" expanded="true" signature="1530847:1530858" placeholder="..." />
+            <marker date="1438745790000" expanded="true" signature="1531358:1531369" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
