@@ -11,7 +11,7 @@ var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  templates: ['./www/js/**/*.html'],
+  templates: ['./www/**/*.html'],
   dist: ['./www']
 };
 //gulp.task('default', function () {
