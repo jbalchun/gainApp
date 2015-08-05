@@ -11,7 +11,7 @@ var templateCache = require('gulp-angular-templatecache');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  templates: ['./www/js/**/*.scss'],
+  templates: ['./www/js/**/*.html'],
   dist: ['./www']
 };
 //gulp.task('default', function () {
@@ -23,7 +23,7 @@ var paths = {
 gulp.task('templates', function() {
   gulp.src(paths.templates)
       //.pipe(minifyHtml({empty: true}))
-      console.log('gulper')
+      //console.log('gulper')
       .pipe(templateCache({
         standalone: true,
         root: 'js'
@@ -47,6 +47,7 @@ gulp.task('sass', function(done) {
 
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch('./www/templates/**/*.html', ['cache_templates']);
 });
 
 //gulp.task('install', ['git-check'], function() {
