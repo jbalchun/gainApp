@@ -3,9 +3,9 @@ var winstonExpress = require('winston-express')
 //var mongoose = require('mongoose');
 winston = require('winston');
 
-var gulp = global.gulp  = require('gulp');
-require('./gulpfile.js');
-gulp.start('templates');
+//var gulp = global.gulp  = require('gulp');
+//require('./gulpfile.js');
+//gulp.start('templates');
 //mongoose.connect('mongodb://localhost/27017');
 //var Schema = mongoose.Schema;
 //
