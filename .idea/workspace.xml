@@ -75,11 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.653846" vertical-offset="0" max-vertical-offset="7215">
-              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+            <state vertical-scroll-proportion="4.556338" vertical-offset="4389" max-vertical-offset="7215">
+              <caret line="422" column="55" selection-start-line="422" selection-start-column="55" selection-end-line="422" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -88,19 +88,50 @@
       <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gulpfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1185">
-              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="1185">
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/gulp-angular-templatecache/index.js">
+      <file leaf-file-name="templates.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/templates.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1995" max-vertical-offset="3030">
-              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+              <folding>
+                <marker date="1438820221000" expanded="true" signature="25334:25349" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="26554:26564" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="28885:28900" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="28938:28976" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="29143:29181" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="46465:46479" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="46543:46557" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="46622:46636" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="46700:46714" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="47712:47726" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="47788:47802" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="47866:47880" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="47945:47959" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="48019:48033" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="49475:49524" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="65608:65653" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="66018:66057" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="66078:66099" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="66465:66479" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="66539:66553" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="66613:66627" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="67077:67152" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="74215:74287" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1526971:1526982" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1527806:1527817" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1528752:1528763" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1529263:1529274" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1529896:1529916" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1530981:1530992" placeholder="..." />
+                <marker date="1438820221000" expanded="true" signature="1531492:1531503" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,52 +146,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="templates.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/templates.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-              <caret line="0" column="104" selection-start-line="0" selection-start-column="104" selection-end-line="0" selection-end-column="104" />
-              <folding>
-                <marker date="1438745994000" expanded="true" signature="25302:25317" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="26519:26529" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="28850:28865" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="28903:28941" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="29108:29146" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="46421:46435" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="46499:46513" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="46578:46592" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="46656:46670" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="47668:47682" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="47744:47758" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="47822:47836" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="47901:47915" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="47975:47989" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="49431:49480" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="65558:65603" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="65965:66004" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="66025:66046" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="66409:66423" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="66483:66497" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="66557:66571" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="67018:67093" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="74147:74219" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1526846:1526857" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1527681:1527692" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1528624:1528635" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1529135:1529146" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1529765:1529785" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1530847:1530858" placeholder="..." />
-                <marker date="1438745994000" expanded="true" signature="1531358:1531369" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0" vertical-offset="375" max-vertical-offset="1320">
-              <caret line="35" column="0" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="81" />
+            <state vertical-scroll-proportion="-4.24" vertical-offset="343" max-vertical-offset="1320">
+              <caret line="37" column="48" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -251,13 +241,13 @@
         <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/js/chartcontrol.js" />
         <option value="$PROJECT_DIR$/www/js/maincontrol.js" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/gulpfile.js" />
-        <option value="$PROJECT_DIR$/www/js/templates.js" />
         <option value="$PROJECT_DIR$/ionic.project" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/js/templates.js" />
+        <option value="$PROJECT_DIR$/gulpfile.js" />
       </list>
     </option>
   </component>
@@ -275,24 +265,18 @@
           </GulpTaskState>
           <GulpTaskState>
             <dependencies>
-              <dependency value="sass" />
+              <dependency value="templates" />
             </dependencies>
             <task-name>default</task-name>
-          </GulpTaskState>
-          <GulpTaskState>
-            <task-name>sass</task-name>
           </GulpTaskState>
           <GulpTaskState>
             <task-name>watch</task-name>
           </GulpTaskState>
           <GulpTaskState>
             <dependencies>
-              <dependency value="git-check" />
+              <dependency value="templates" />
             </dependencies>
-            <task-name>install</task-name>
-          </GulpTaskState>
-          <GulpTaskState>
-            <task-name>git-check</task-name>
+            <task-name>build</task-name>
           </GulpTaskState>
         </tasks>
       </GulpfileState>
@@ -424,16 +408,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Gulp.js.templates">
-    <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/www/js">
-      <RunnerSettings RunnerId="debuggableProgram" />
-      <ConfigurationWrapper RunnerId="debuggableProgram" />
-      <method />
-    </configuration>
-    <configuration default="false" name="postscontrol.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="postscontrol.js" working-dir="$PROJECT_DIR$/www/js">
-      <RunnerSettings RunnerId="debuggableProgram" />
-      <ConfigurationWrapper RunnerId="debuggableProgram" />
-      <method />
-    </configuration>
     <configuration default="false" name="default" type="js.build_tools.gulp" factoryName="Gulp.js" temporary="true">
       <node-options />
       <gulpfile>$PROJECT_DIR$/gulpfile.js</gulpfile>
@@ -446,16 +420,14 @@
       <ConfigurationWrapper RunnerId="Js.BuildTools.Gulp" />
       <method />
     </configuration>
-    <configuration default="false" name="templates" type="js.build_tools.gulp" factoryName="Gulp.js" temporary="true">
-      <node-options />
-      <gulpfile>$PROJECT_DIR$/gulpfile.js</gulpfile>
-      <tasks>
-        <task>templates</task>
-      </tasks>
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
-      <RunnerSettings RunnerId="Js.BuildTools.Gulp" />
-      <ConfigurationWrapper RunnerId="Js.BuildTools.Gulp" />
+    <configuration default="false" name="app.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="app.js" working-dir="$PROJECT_DIR$/www/js">
+      <RunnerSettings RunnerId="debuggableProgram" />
+      <ConfigurationWrapper RunnerId="debuggableProgram" />
+      <method />
+    </configuration>
+    <configuration default="false" name="postscontrol.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="postscontrol.js" working-dir="$PROJECT_DIR$/www/js">
+      <RunnerSettings RunnerId="debuggableProgram" />
+      <ConfigurationWrapper RunnerId="debuggableProgram" />
       <method />
     </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -495,22 +467,33 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="templates" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile>$PROJECT_DIR$/gulpfile.js</gulpfile>
+      <tasks>
+        <task>templates</task>
+      </tasks>
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <RunnerSettings RunnerId="Js.BuildTools.Gulp" />
+      <ConfigurationWrapper RunnerId="Js.BuildTools.Gulp" />
+      <method />
+    </configuration>
     <configuration default="false" name="tab-charts.html" type="JavascriptDebugType" factoryName="JavaScript Debug" nameIsGenerated="true" uri="http://localhost:63342/gainApp/www/tab-charts.html">
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.tab-charts.html" />
-      <item index="1" class="java.lang.String" itemvalue="Node.js.app.js" />
-      <item index="2" class="java.lang.String" itemvalue="Node.js.postscontrol.js" />
-      <item index="3" class="java.lang.String" itemvalue="Gulp.js.default" />
-      <item index="4" class="java.lang.String" itemvalue="Gulp.js.templates" />
+      <item index="0" class="java.lang.String" itemvalue="Gulp.js.templates" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.tab-charts.html" />
+      <item index="2" class="java.lang.String" itemvalue="Gulp.js.default" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.app.js" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.postscontrol.js" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Gulp.js.templates" />
-        <item index="1" class="java.lang.String" itemvalue="Gulp.js.default" />
-        <item index="2" class="java.lang.String" itemvalue="Node.js.postscontrol.js" />
-        <item index="3" class="java.lang.String" itemvalue="Node.js.app.js" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Gulp.js.default" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.postscontrol.js" />
+        <item index="2" class="java.lang.String" itemvalue="Node.js.app.js" />
       </list>
     </recent_temporary>
   </component>
@@ -558,7 +541,7 @@
     <frame x="3" y="23" width="1413" height="808" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2341954" sideWeight="0.5" order="3" side_tool="true" content_ui="combo" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2341954" sideWeight="0.5" order="3" side_tool="true" content_ui="combo" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -579,28 +562,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962447" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3547486" sideWeight="0.4993046" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3980447" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980973" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33938548" sideWeight="0.5006954" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2341954" sideWeight="0.5" order="3" side_tool="true" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24856322" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2341954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -988,42 +949,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.653846" vertical-offset="0" max-vertical-offset="7215">
-          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6330">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0" vertical-offset="375" max-vertical-offset="1320">
-          <caret line="35" column="0" selection-start-line="11" selection-start-column="79" selection-end-line="11" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/gulp-angular-templatecache/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1995" max-vertical-offset="3030">
           <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1185">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1052,42 +981,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.24" vertical-offset="343" max-vertical-offset="1320">
+          <caret line="37" column="48" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6330">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="1185">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/templates.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <caret line="0" column="104" selection-start-line="0" selection-start-column="104" selection-end-line="0" selection-end-column="104" />
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
           <folding>
-            <marker date="1438745994000" expanded="true" signature="25302:25317" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="26519:26529" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="28850:28865" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="28903:28941" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="29108:29146" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="46421:46435" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="46499:46513" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="46578:46592" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="46656:46670" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="47668:47682" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="47744:47758" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="47822:47836" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="47901:47915" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="47975:47989" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="49431:49480" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="65558:65603" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="65965:66004" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="66025:66046" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="66409:66423" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="66483:66497" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="66557:66571" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="67018:67093" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="74147:74219" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1526846:1526857" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1527681:1527692" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1528624:1528635" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1529135:1529146" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1529765:1529785" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1530847:1530858" placeholder="..." />
-            <marker date="1438745994000" expanded="true" signature="1531358:1531369" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="25334:25349" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="26554:26564" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="28885:28900" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="28938:28976" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="29143:29181" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="46465:46479" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="46543:46557" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="46622:46636" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="46700:46714" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="47712:47726" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="47788:47802" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="47866:47880" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="47945:47959" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="48019:48033" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="49475:49524" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="65608:65653" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="66018:66057" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="66078:66099" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="66465:66479" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="66539:66553" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="66613:66627" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="67077:67152" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="74215:74287" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1526971:1526982" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1527806:1527817" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1528752:1528763" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1529263:1529274" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1529896:1529916" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1530981:1530992" placeholder="..." />
+            <marker date="1438820221000" expanded="true" signature="1531492:1531503" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.556338" vertical-offset="4389" max-vertical-offset="7215">
+          <caret line="422" column="55" selection-start-line="422" selection-start-column="55" selection-end-line="422" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>

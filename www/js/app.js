@@ -16,7 +16,7 @@ var app = angular.module('MyApp', [
     'templates'
 ]);
 
-app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore) {
+app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache) {
     $rootScope.$storage = $localStorage.$default({
         x: 53,
         userId: '',

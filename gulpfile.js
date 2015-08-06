@@ -25,8 +25,8 @@ gulp.task('templates', function() {
       //.pipe(minifyHtml({empty: true}))
       //console.log('gulper')
       .pipe(templateCache({
-        standalone: true
-
+        standalone: true,
+        root: 'js'
       }))
       .pipe(gulp.dest(paths.dist + '/js'));
 });
