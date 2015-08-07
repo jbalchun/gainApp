@@ -18,7 +18,7 @@ var paths = {
 };
 
 gulp.task('min', function () {
-    return gulp.src('./www/**/*.js')
+    return gulp.src('./www/js/*.js')
         .pipe(ngAnnotate())
         .pipe(gulp.dest('dist'));
 });
@@ -54,7 +54,7 @@ gulp.task('templates', function() {
     gulp.src(paths.templates)
         //.pipe(minifyHtml({empty: true}))
         //console.log('gulper')
-        .pipe(templateCache())
+        .pipe(templateCache({standalone:true}))
         .pipe(gulp.dest('./www/dist'));
 });
 
