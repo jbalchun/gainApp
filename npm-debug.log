@@ -1,0 +1,71 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'sass' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'sass', null ]
+5 verbose cache add name=undefined spec="sass" args=["sass",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'sass',
+6 verbose parsed url   path: 'sass',
+6 verbose parsed url   href: 'sass' }
+7 silly lockFile 5d7463cd-sass sass
+8 verbose lock sass /Users/Jbalchun/.npm/5d7463cd-sass.lock
+9 silly lockFile 5d7463cd-sass sass
+10 silly lockFile 5d7463cd-sass sass
+11 verbose addNamed [ 'sass', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile abea0ec1-sass sass@
+14 verbose lock sass@ /Users/Jbalchun/.npm/abea0ec1-sass.lock
+15 silly addNameRange { name: 'sass', range: '*', hasData: false }
+16 verbose request where is /sass
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 258981e6a25c1447
+19 verbose url raw /sass
+20 verbose url resolving [ 'https://registry.npmjs.org/', './sass' ]
+21 verbose url resolved https://registry.npmjs.org/sass
+22 verbose request where is https://registry.npmjs.org/sass
+23 info trying registry request attempt 1 at 22:05:00
+24 http GET https://registry.npmjs.org/sass
+25 http 200 https://registry.npmjs.org/sass
+26 silly registry.get cb [ 200,
+26 silly registry.get   { 'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '0',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     date: 'Wed, 05 Aug 2015 02:05:02 GMT',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '21',
+26 silly registry.get     connection: 'keep-alive',
+26 silly registry.get     'x-served-by': 'cache-fra1229-FRA',
+26 silly registry.get     'x-cache': 'HIT',
+26 silly registry.get     'x-cache-hits': '1',
+26 silly registry.get     'x-timer': 'S1438740302.353465,VS0,VE0' } ]
+27 silly lockFile abea0ec1-sass sass@
+28 silly lockFile abea0ec1-sass sass@
+29 error Error: failed to fetch from registry: https://registry.npmjs.org/sass
+29 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/get.js:159:18)
+29 error     at cb (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:57:9)
+29 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:137:16)
+29 error     at cb (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:166:9)
+29 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:320:12)
+29 error     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:246:65)
+29 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:236:22)
+29 error     at Request.emit (events.js:98:17)
+29 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1142:14)
+29 error     at Request.emit (events.js:117:20)
+30 error If you need help, you may report this *entire* log,
+30 error including the npm and node versions, at:
+30 error     <http://github.com/npm/npm/issues>
+31 error System Darwin 14.4.0
+32 error command "node" "/usr/local/bin/npm" "install" "-g" "sass"
+33 error cwd /Users/Jbalchun/gainApp
+34 error node -v v0.10.33
+35 error npm -v 1.4.28
+36 verbose exit [ 1, true ]
