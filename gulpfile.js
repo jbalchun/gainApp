@@ -54,11 +54,8 @@ gulp.task('templates', function() {
     gulp.src(paths.templates)
         //.pipe(minifyHtml({empty: true}))
         //console.log('gulper')
-        .pipe(templateCache({
-            standalone: true,
-            root: 'js'
-        }))
-        .pipe(gulp.dest('./www/dist'+'/js'));
+        .pipe(templateCache())
+        .pipe(gulp.dest('./www/dist'));
 });
 
 gulp.task('default', ['templates']);
