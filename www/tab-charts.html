@@ -68,7 +68,7 @@
 
 
             </ion-item>
-            <ion-item ng-if="chartTable == false" ng-repeat="lift in dateWeightObjectList">
+            <ion-item ng-if="chartTable == false" ng-repeat="lift in dateWeightObjectList | reverse">
 
                 <a>{{lift.date}}</a>
                 <a style="float:right">{{lift.wt + " lbs"}}</a>

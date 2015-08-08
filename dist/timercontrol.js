@@ -2,8 +2,8 @@ var app = angular.module('MyApp.timercontrol', []);
 app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope", function($scope,$ionicPopup,$timeout,$rootScope) {
     //$scope.range = ($scope.rangeMin * 60 *10) + ($scope.rangeSec *10);
 
-    $scope.rangeMin = 1;
-    $scope.rangeSec = 30;
+    $scope.rangeMin = {min:1};
+    $scope.rangeSec = {sec:30};
     $scope.startStopFlag = true;
     $scope.timerClear = true;
     $scope.stringMin = String($scope.rangeMin);
@@ -55,6 +55,7 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
 
     };
 
+    //wtf? refactor to take sec,min
     $scope.timerPreset = function(index){
         if(index == 1){
             $scope.rangeMin = 0;
@@ -195,8 +196,24 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
     }
 
     $scope.onRelease = function(){
+        console.log('working')
         if($scope.startStopFlag) {
             $scope.$broadcast('timer-reset');
+            console.log('seconds',$scope.seconds);
+            //$scope.sseconds = $scope.rangeSec.sec < 10 ? '0' + $scope.rangeSec.sec : $scope.rangeSec.sec;
+            //$scope.mminutes = $scope.rangeMin.min < 10 ? '0' + $scope.rangeMin.min : $scope.rangeMin.min;
+            $scope.seconds = $scope.rangeSec.sec
+            $scope.minutes = $scope.rangeMin.min
+            $timeout(function(){
+                $scope.$broadcast('timer-reset');
+                //$scope.seconds = $scope.rangeSec.sec
+                //$scope.minutes = $scope.rangeMin.min
+                $scope.seconds = 10
+                $scope.minutes = 5
+                $scope.$broadcast('timer-reset');
+            });
+            console.log('seconds2',$scope.seconds);
+            console.log('scope.rangeSec',$scope.rangeSec.sec);
             //$scope.apply($scope.seconds1 = ($scope.rangeMin * 60 ) + ($scope.rangeSec ));
         }
     }

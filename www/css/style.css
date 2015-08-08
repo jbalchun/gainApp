@@ -328,6 +328,10 @@ input[type="text"].workoutNameInput {
 
 }
 
+.month-highlight{
+    color:#387ef5;
+}
+
 .resultText{
     color:#999797;
 }

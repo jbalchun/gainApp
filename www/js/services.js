@@ -62,15 +62,18 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 //console.log('workouts',workout,workout2)
                 if(workout.date == workout2.date){
                     //console.log('in to remove',index)
-                    $rootScope.$storage.workouts.splice(index,1)
+                    $rootScope.$storage.workouts.splice(index,1);
                 }
 
             });
             angular.forEach($rootScope.$storage.nameList,function(name,key){
-                if (workout.name == name){
-                    delete $rootScope.$storage.nameList[key];
-                }
-            })
+               console.log('name',name, 'key',key, 'targetttt', workout.name+workout.date);
+                delete $rootScope.$storage.nameList[workout.name+workout.date];
+
+            });
+
+            //delete $rootScope.$storage.nameList[name.name+date];
+
         },
         checkDay:function(day){//for checking the whole list
           var resultFlag=false;
@@ -197,14 +200,15 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 custom:true,
                 weight:'light'});
         },
-        loadLiftFromCalendar:function(index,template){
-            if(!template){
-                $rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
-            }
-            else{
-                $rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
+        loadLiftFromCalendar:function(workout){ //has to search, can't just go off index asshole.
 
-            }
+            angular.forEach($rootScope.$storage.workouts,function(workout2,ind){
+                console.log('name',workout.name,workout.date)
+                if(workout.name == workout2.name && workout.date == workout2.date){
+                    $rootScope.$storage.todaysLifts = angular.copy(workout2.lifts);
+                }
+            });
+                //$rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
             $rootScope.$broadcast("loadedFromCalendar");
         },
         wipeWeights:function(){

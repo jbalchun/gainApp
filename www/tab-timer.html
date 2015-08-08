@@ -13,58 +13,61 @@
         <div class="card">
             <div class="item item-divider color-header">
             </div>
+            <div class="row">
+                <div class="col-offset-20">
+                    <h3 style="font-size: 5.0em; color:#808080;">
+                        <timer interval="1000" countdown="seconds1()" finish-callback="finished()" auto-start="false"> {{mminutes}} : {{sseconds}} </timer>
+                    </h3>
+                </div>
+            </div>
             <div class ="row">
                 <div class="col-30 col-offset-33">
-                <h2 style="color:grey;" >Min:{{rangeMin}}</h2>
+                <a style="color:grey;" >Slider Preview:{{rangeMin.min}}:</a>
+                    <a class="" style="color:grey;">{{rangeSec.sec}}</a>
                 </div>
             </div>
                 <div class="range">
                     <i class="icon ion-minus-round timerMinus" ng-click="downOneMin()"></i>
-                    <input type="range" ng-model="rangeMin" ng-readonly="!startStopFlag"  min="0" max="30" on-release="onRelease()" />
+                    <input type="range" ng-model="rangeMin.min" ng-readonly="!startStopFlag"  min="0" max="30" on-release="onRelease()" />
                     <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()"  />-->
 
                     <i class="icon ion-plus-round timerPlus" ng-click="upOneMin()"></i>
                 </div>
 
-        <h2 class="col-offset-33" style="color:grey;">Sec:{{rangeSec}}</h2>
+
             <div class="range">
                 <i class="icon ion-minus-round timerMinus" ng-click="downOneSec()"></i>
-                <input type="range" ng-model="rangeSec" ng-readonly="!startStopFlag"  min="0" max="59" on-release="onRelease()" />
+                <input type="range" ng-model="rangeSec.sec" ng-readonly="!startStopFlag"  min="0" max="59" on-release="onRelease()" />
                 <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()" ng-if="!startStopFlag" disabled/>-->
                 <i class="icon ion-plus-round timerPlus" ng-click="upOneSec()"></i>
             </div>
+            
+
+
+            <div class="button-bar  liftSearchButtons">
+                <a ng-click="timerPreset(30,0)" type="button" class="button button-dark button-clear timerButtonSmall"
+                   style="border-left:none;border-top:none;border-bottom:none;">00:30</a>
+                <a ng-click="timerPreset(0,1)" type="button" class="button button-dark button-clear timerButtonSmall"
+                   style="border-top:none;border-bottom:none;">01:00</a>
+                <!--<a ng-class="{'active': reorderFlag == true}" ng-click="reorderFlag = !reorderFlag;" type="button" class="button">Reorder Lifts</a>-->
+                <a type="button"
+                   class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(30,1)" style="border-top:none;border-bottom:none;border-right:none;">01:30</a>
+                <a type="button"
+                   class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(0,2)" style="border-top:none;border-bottom:none;border-right:none;">02:00</a>
+                <a  type="button button-dark button-clear timerButtonSmall"
+                    class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(30,2)" style="border-top:none;border-bottom:none;border-right:none;">02:30</a>
+                <a type="button"
+                   class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(0,3)" style="border-top:none;border-bottom:none;border-right:none;">03:00</a>
+            </div>
+
 
             <div class="startStopReset row">
-                <button class="button button-clear col-40" ng-click="startStop()"   style="width:45%; float:left;padding-left: 2%; font-size: 2em" ng-class="{'button-balanced ion ion-ios-play':startStopFlag,'button-assertive ion ion-ios-pause':!startStopFlag}" ></button>
+                <div class="col col-offset-24">
+                <button class="button button-clear" ng-click="startStop()"   style="width:45%; float:left;padding-left: 2%; font-size: 4em" ng-class="{'button-balanced ion ion-ios-play':startStopFlag,'button-assertive ion ion-ios-pause':!startStopFlag}" ></button>
                 <!--<button class="button button-assertive col-40"  ng-click="startStop()" ng-if="!startStopFlag" style="width:45%;float:left;" >Stop</button>-->
-                <span style="width:5%"></span>
-                <button class="button button-dark button-clear col-40 ion ion-ios-refresh-outline" ng-click="reset()" type="submit"  value="Reset" style="width:45%; float:right; font-size: 2em" ></button>
-            </div>
-
-        <div class="button-bar  liftSearchButtons">
-            <a ng-click="timerPreset(1)" type="button" class="button button-dark button-clear timerButtonSmall"
-               style="border-left:none;border-top:none;border-bottom:none;">00:30</a>
-            <a ng-click="timerPreset(2)" type="button" class="button button-dark button-clear timerButtonSmall"
-               style="border-top:none;border-bottom:none;">01:00</a>
-            <!--<a ng-class="{'active': reorderFlag == true}" ng-click="reorderFlag = !reorderFlag;" type="button" class="button">Reorder Lifts</a>-->
-            <a type="button"
-               class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(3)" style="border-top:none;border-bottom:none;border-right:none;">01:30</a>
-            <a type="button"
-               class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(4)" style="border-top:none;border-bottom:none;border-right:none;">02:00</a>
-            <a  type="button button-dark button-clear timerButtonSmall"
-               class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(5)" style="border-top:none;border-bottom:none;border-right:none;">02:30</a>
-            <a type="button"
-               class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(6)" style="border-top:none;border-bottom:none;border-right:none;">03:00</a>
-        </div>
-
-
-        <div class="row">
-            <div class="col-offset-20">
-        <h3 style="font-size: 5.0em; color:#808080;">
-            <timer interval="1000" countdown="seconds1()" finish-callback="finished()" auto-start="false"> {{mminutes}} : {{sseconds}} </timer>
-        </h3>
-            </div>
-        </div>
+                <button class="button button-dark button-clear  ion ion-ios-refresh-outline" ng-click="reset()" type="submit"  value="Reset" style="width:45%; float:right; font-size: 4em" ></button>
+                </div>
+                </div>
 
 
 

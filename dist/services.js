@@ -66,11 +66,10 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                 }
 
             });
-            angular.forEach($rootScope.$storage.nameList,function(name,key){
-                if (workout.name == name){
-                    delete $rootScope.$storage.nameList[key];
-                }
-            })
+
+            delete $rootScope.$storage.nameList[name.name+date];
+
+
         },
         checkDay:function(day){//for checking the whole list
           var resultFlag=false;
@@ -197,9 +196,14 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                 custom:true,
                 weight:'light'});
         },
-        loadLiftFromCalendar:function(index,template){
+        loadLiftFromCalendar:function(workout,template){ //has to search, can't just go off index asshole.
             if(!template){
-                $rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
+                angular.forEach($scope.$storage.workouts,function(workout2,ind){
+                    if(workout.name == workout2.name && workout.date == workout2.date){
+                        $rootScope.$storage.todaysLifts = angular.copy(workout2);
+                    }
+                });
+                //$rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
             }
             else{
                 $rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
