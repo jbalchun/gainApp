@@ -595,6 +595,47 @@ button.ion-minus-circled:before {
 
 }
 
+
+@media (orientation: portrait){
+    #background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #363d44;
+        /*max-width: 384px;*/
+        /*max-height:683px;*/
+        /*margin-left: auto;*/
+        /*margin-right: auto;*/
+        /*border-left: #000000;*/
+        /*border-right: thick;*/
+        /*border: 10px solid black;*/
+    }
+
+}
+
+@media (orientation: portrait){
+    #mainContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-width: 400px;
+        max-height:700px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: #000000;
+        border-right: thick;
+        border: 1px solid  #4b555f;
+    }
+
+}
+
+
+
+
 .tabs { background-image: linear-gradient( 0deg, #b2b2b2, #b2b2b2 50%, transparent 50%); }
 
 
