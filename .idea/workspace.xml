@@ -78,8 +78,8 @@
       <file leaf-file-name="chartcontrol.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44561934" vertical-offset="2690" max-vertical-offset="6825">
-              <caret line="199" column="50" selection-start-line="199" selection-start-column="50" selection-end-line="199" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.46827793" vertical-offset="2675" max-vertical-offset="6840">
+              <caret line="199" column="43" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -128,8 +128,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-29.375" vertical-offset="0" max-vertical-offset="1515">
-              <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+            <state vertical-scroll-proportion="-2.86" vertical-offset="307" max-vertical-offset="1515">
+              <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -151,7 +151,7 @@
         <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="1620">
-              <caret line="18" column="42" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="42" />
+              <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="114" />
               <folding />
             </state>
           </provider>
@@ -845,36 +845,36 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
           <caret line="39" column="1433" selection-start-line="39" selection-start-column="1433" selection-end-line="39" selection-end-column="1433" />
           <folding>
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439069327000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439069587000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1066,14 +1066,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.75" vertical-offset="240" max-vertical-offset="1410">
-          <caret line="30" column="163" selection-start-line="30" selection-start-column="163" selection-end-line="30" selection-end-column="163" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/pop/pop-date.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="180">
@@ -1092,6 +1084,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.86" vertical-offset="307" max-vertical-offset="1515">
+          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="1620">
+          <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.75" vertical-offset="240" max-vertical-offset="1410">
+          <caret line="30" column="163" selection-start-line="30" selection-start-column="163" selection-end-line="30" selection-end-column="163" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.0" vertical-offset="1925" max-vertical-offset="6360">
@@ -1100,26 +1116,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.375" vertical-offset="0" max-vertical-offset="1515">
-          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="1620">
-          <caret line="18" column="42" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44561934" vertical-offset="2690" max-vertical-offset="6825">
-          <caret line="199" column="50" selection-start-line="199" selection-start-column="50" selection-end-line="199" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.46827793" vertical-offset="2675" max-vertical-offset="6840">
+          <caret line="199" column="43" selection-start-line="199" selection-start-column="43" selection-end-line="199" selection-end-column="43" />
           <folding />
         </state>
       </provider>
