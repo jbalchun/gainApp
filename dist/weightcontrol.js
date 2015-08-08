@@ -57,8 +57,26 @@ app.controller('weightcontrol', ["$scope", "$ionicPopup", "$rootScope", function
                 last
             );
         }
+        $scope.popAddSet();
+    };
 
-    }
+
+    //$scope.selectNumber = function (index, id) {
+    //    if (id == 1) {
+    //        $scope.rangeFlipFlag = true;
+    //        $scope.editingShow = {num: $scope.sets2[index].reps}
+    //        $scope.editingNumber = {index: index, id: id}
+    //        $scope.wtSelectPress = index + String(id)
+    //
+    //    }
+    //    else if (id == 2) {
+    //        $scope.rangeFlipFlag = false;
+    //        $scope.editingShow = {num: $scope.sets2[index].wt}
+    //        $scope.editingNumber = {index: index, id: id}
+    //        $scope.wtSelectPress = index + String(id)
+    //    }
+    //}
+
 
     $scope.removeSet = function ($index) {
         if ($scope.removeFlag) {

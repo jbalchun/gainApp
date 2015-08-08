@@ -18,9 +18,9 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
     });
 
     $scope.$watch('seconds',function(){
-        $scope.stringSec = String($scope.seconds)
+        $scope.stringSec = String($scope.seconds);
         if($scope.stringSec.length < 2){
-            $scope.stringSec = "0"+String($scope.seconds)
+            $scope.stringSec = "0"+String($scope.seconds);
         }
     });
 
@@ -54,95 +54,48 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
         });
 
     };
+    //
+    //$ionicPopover.fromTemplateUrl('pop/pop-time.html', {
+    //    scope: $scope
+    //}).then(function (popover) {
+    //    $scope.popover = popover;
+    //});
+    //$scope.timerSlideSet = function(sec, min){
+    //    var changeTime2 = function(sec,min){
+    //        $scope.$broadcast('timer-reset');
+    //        $scope.minutes = min;
+    //        $scope.seconds = sec;
+    //    };
+    //    changeTime2(min,sec);
+    //    $timeout(function(){
+    //        changeTime2(min,sec);
+    //    },5);
+    //    $scope.startStopFlag = true;
+    //};
 
-    //wtf? refactor to take sec,min
-    $scope.timerPreset = function(index){
-        if(index == 1){
-            $scope.rangeMin = 0;
-            $scope.rangeSec = 30;
+
+
+    $scope.timerPreset = function(sec, min){
+        console.log(sec,min)
+        var changeTime = function(sec,min){
+            $scope.rangeMin.min = min;
+            $scope.rangeSec.sec = sec;
             $scope.$broadcast('timer-reset');
-            $scope.minutes = 0;
-            $scope.seconds = 30;
-            $timeout(function(){
-                $scope.rangeMin = 0;
-                $scope.rangeSec = 30;
-                $scope.$broadcast('timer-reset');
-                $scope.minutes = 0;
-                $scope.seconds = 30;
-            },5);
-        }else if(index == 2){
-            $scope.rangeMin = 1;
-            $scope.rangeSec = 0;
-            $scope.$broadcast('timer-reset');
-            $scope.minutes = 1;
-            $scope.seconds = 0;
-            $timeout(function(){
-                $scope.rangeMin = 1;
-                $scope.rangeSec = 0;
-                $scope.$broadcast('timer-reset');
-                $scope.minutes = 1;
-                $scope.seconds = 0;
-            },5);
-        }else if(index == 3){
-            $scope.rangeMin = 1;
-            $scope.rangeSec = 30;
-            $scope.$broadcast('timer-reset');
-            $scope.minutes = 1;
-            $scope.seconds = 30;
-            $timeout(function(){
-                $scope.rangeMin = 1;
-                $scope.rangeSec = 30;
-                $scope.$broadcast('timer-reset');
-                $scope.minutes = 1;
-                $scope.seconds = 30;
-            },5);}
-        else if(index == 4){
-            $scope.rangeMin = 2;
-            $scope.rangeSec = 0;
-            $scope.$broadcast('timer-reset');
-            $scope.minutes = 2;
-            $scope.seconds = 0;
-            $timeout(function(){
-                $scope.rangeMin = 2;
-                $scope.rangeSec = 0;
-                $scope.$broadcast('timer-reset');
-                $scope.minutes = 2;
-                $scope.seconds = 0;
-            },5);}
-        else if(index == 5){
-            $scope.rangeMin = 2;
-            $scope.rangeSec = 30;
-            $scope.$broadcast('timer-reset');
-            $scope.minutes = 2;
-            $scope.seconds = 30;
-            $timeout(function(){
-                $scope.rangeMin = 2;
-                $scope.rangeSec = 30;
-                $scope.$broadcast('timer-reset');
-                $scope.minutes = 2;
-                $scope.seconds = 30;
-            },5);}
-        else if(index == 6){
-            $scope.rangeMin = 3;
-            $scope.rangeSec = 0;
-            $scope.$broadcast('timer-reset');
-            $scope.minutes = 3;
-            $scope.seconds = 0;
-            $timeout(function(){
-                $scope.rangeMin = 3;
-                $scope.rangeSec = 0;
-                $scope.$broadcast('timer-reset');
-                $scope.minutes = 3;
-                $scope.seconds = 0;
-            },5);}
+            $scope.minutes = min;
+            $scope.seconds = sec;
+        };
+        changeTime(sec,min);
+        $timeout(function(){
+            changeTime(sec,min);
+        },5);
         $scope.startStopFlag = true;
-    }
+    };
 
     // Add one second to the slider
     $scope.upOneMin = function() {
         if($scope.startStopFlag) {
-            if ($scope.rangeMin < 30) {
-                $scope.rangeMin = parseFloat($scope.rangeMin) + 1;
+            if ($scope.rangeMin.min < 30) {
+                $scope.rangeMin.min = parseFloat($scope.rangeMin.min) + 1;
                 $scope.$broadcast('timer-reset');
                 $timeout(function () {
                     $scope.$broadcast('timer-reset');
@@ -156,8 +109,8 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
     // Remove one second from the slider
     $scope.downOneMin = function() {
         if($scope.startStopFlag) {
-            if ($scope.rangeMin > 0) {
-                $scope.rangeMin = parseFloat($scope.rangeMin) - 1;
+            if ($scope.rangeMin.min > 0) {
+                $scope.rangeMin.min = parseFloat($scope.rangeMin.min) - 1;
                 $scope.$broadcast('timer-reset');
             }
             $timeout(function () {
@@ -169,8 +122,8 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
 
     $scope.upOneSec = function() {
         if($scope.startStopFlag) {
-            if ($scope.rangeSec < 59) {
-                $scope.rangeSec = parseFloat($scope.rangeSec) + 1;
+            if ($scope.rangeSec.sec < 59) {
+                $scope.rangeSec.sec = parseFloat($scope.rangeSec.sec) + 1;
                 $scope.$broadcast('timer-reset');
             }
             $timeout(function () {
@@ -179,12 +132,12 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
             }, 5);
         }
 
-    }
+    };
     // Remove one second from the slider
     $scope.downOneSec = function() {
-        if($scope.startStopFlag) {
+        if($scope.rangeSec.sec) {
             if ($scope.rangeSec > 0) {
-                $scope.rangeSec = parseFloat($scope.rangeSec) - 1;
+                $scope.rangeSec.sec = parseFloat($scope.rangeSec.sec) - 1;
                 $scope.$broadcast('timer-reset');
             }
             $timeout(function () {
@@ -193,33 +146,37 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
             }, 5);
         }
 
-    }
+    };
 
     $scope.onRelease = function(){
         console.log('working')
         if($scope.startStopFlag) {
-            $scope.$broadcast('timer-reset');
-            console.log('seconds',$scope.seconds);
-            //$scope.sseconds = $scope.rangeSec.sec < 10 ? '0' + $scope.rangeSec.sec : $scope.rangeSec.sec;
-            //$scope.mminutes = $scope.rangeMin.min < 10 ? '0' + $scope.rangeMin.min : $scope.rangeMin.min;
-            $scope.seconds = $scope.rangeSec.sec
-            $scope.minutes = $scope.rangeMin.min
-            $timeout(function(){
-                $scope.$broadcast('timer-reset');
-                //$scope.seconds = $scope.rangeSec.sec
-                //$scope.minutes = $scope.rangeMin.min
-                $scope.seconds = 10
-                $scope.minutes = 5
-                $scope.$broadcast('timer-reset');
-            });
-            console.log('seconds2',$scope.seconds);
-            console.log('scope.rangeSec',$scope.rangeSec.sec);
-            //$scope.apply($scope.seconds1 = ($scope.rangeMin * 60 ) + ($scope.rangeSec ));
+            console.log('working,',$scope.rangeSec.sec,$scope.rangeMin.min);
+            var min = Number($scope.rangeMin.min);
+            var sec = Number($scope.rangeSec.sec);
+            $scope.timerPreset(sec,min);
+            //$scope.$broadcast('timer-reset');
+            //console.log('seconds',$scope.seconds);
+            ////$scope.sseconds = $scope.rangeSec.sec < 10 ? '0' + $scope.rangeSec.sec : $scope.rangeSec.sec;
+            ////$scope.mminutes = $scope.rangeMin.min < 10 ? '0' + $scope.rangeMin.min : $scope.rangeMin.min;
+            //$scope.seconds = $scope.rangeSec.sec
+            //$scope.minutes = $scope.rangeMin.min
+            //$timeout(function(){
+            //    $scope.$broadcast('timer-reset');
+            //    //$scope.seconds = $scope.rangeSec.sec
+            //    //$scope.minutes = $scope.rangeMin.min
+            //    $scope.seconds = 10
+            //    $scope.minutes = 5
+            //    $scope.$broadcast('timer-reset');
+            //});
+            //console.log('seconds2',$scope.seconds);
+            //console.log('scope.rangeSec',$scope.rangeSec.sec);
+            ////$scope.apply($scope.seconds1 = ($scope.rangeMin * 60 ) + ($scope.rangeSec ));
         }
-    }
+    };
 
     $scope.seconds1 = function(){
-        return Number($scope.rangeMin * 60 ) + Number($scope.rangeSec);
+        return Number($scope.rangeMin.min * 60 ) + Number($scope.rangeSec.sec);
     }
 
     $scope.startStop = function(){
@@ -240,7 +197,7 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
             //window.plugins.insomnia.allowSleepAgain()
         }
         $scope.startStopFlag = !$scope.startStopFlag;
-    }
+    };
 
     $scope.reset = function(){
 

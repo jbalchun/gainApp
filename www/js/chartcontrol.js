@@ -69,7 +69,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $scope.chartOptions.scaleOverride = false;
 
         }
-    }
+    };
 
     $scope.getReps = function () {
         //went with a flag for returning data as last parameter. Kind of messy.
@@ -190,7 +190,30 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $scope.repSelect(reps, flag)
         }
         $scope.chartTable = flag;
-    }
+    };
+
+    $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
+        if( states.fromCache && states.stateName == "tab.charts" ) {
+            // do whatever
+            console.log('onit')
+            $scope.liftName = "Select Lift" ;
+            $scope.selectedReps = "Select Reps";
+            $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            $scope.dateSetFull = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            $scope.firstDate = 'Start Date';
+            $scope.lastDate = 'End Date';
+            $scope.goalNum.wt = getGoal();
+            $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+            $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        }
+    });
+
+    //$scope.$on('$ionicView.beforeLeave',function(event){
+    //    console.log('onit')
+    //    $scope.liftName = "Select Lift" ;
+    //    $scope.selectedReps = "Select Reps";
+    //    $scope.repSelect(0,false,false);
+    //});
 
     $scope.repSelect = function (reps, viewFlag, clearFlag) {
         $scope.chartTitle = $scope.liftName;
@@ -255,13 +278,13 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             });
         }
         else {
-            $scope.weightSet = [[], [200, 300, 400],];
-            $scope.dateSetFull = ['Jan', 'Feb', 'March'];
+            $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+            $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             $scope.dateWeightObjectList = [];
-            $scope.weightSetFull = angular.copy($scope.weightSet)
+            $scope.weightSetFull = angular.copy($scope.weightSet);
             $scope.bodyWtFlag = true;
         }
-    }
+    };
 
     $scope.selectTimespan = function (span) {
         if ($scope.chartTitle == "Dummy Lift for xx reps") {
@@ -297,6 +320,8 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     $scope.chartBodyWeight = function (updateFlag, fromNav) {//this and repselect should be one method.
         $scope.firstDate = '';
         $scope.lastDate = '';
+        $scope.liftName = "Select Lift" ;
+        $scope.selectedReps = "Select Reps";
         if ($scope.bodyWtFlag || (updateFlag == 1 && !$scope.bodyWtFlag)) { //it's true, meaning we haven't drawn
             if (updateFlag == 1) {
                 $scope.updateFlag = 0;
@@ -331,7 +356,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     $scope.goalNum.wt = getGoal();
                     console.log("print get goal", $scope.goalNum.wt);
                     angular.forEach($scope.dateSetFull, function (date, index) {
-                        goalArray.push($scope.goalNum.wt);
+                        goalArray.push($scope.goalNum.wt.wt);
                         //zeroArray.push(0);
                     });
                     console.log("print goal array", goalArray);
@@ -341,6 +366,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     $scope.weightSet[0] = one;//TODO somethings wrong, goal keeps coming at 180
                     $scope.weightSet[1] = zero;
                     $scope.weightSetFull = angular.copy($scope.weightSet)
+                    console.log("print full array",  $scope.weightSet);
                     var totalMax = _.max([_.max($scope.weightSet[0]), _.max($scope.weightSet[1])]);
                     var totalMin = _.min([_.min($scope.weightSet[0]), _.min($scope.weightSet[1])]);
                     axisAdjust(true, totalMax, totalMin);
@@ -349,9 +375,9 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     axisAdjust(true, _.max($scope.weightSet[0]), _.min($scope.weightSet[0]));
                     $scope.weightSet.unshift([]);
                     $scope.goalNum.wt = undefined;
-                    $scope.weightSetFull = angular.copy($scope.weightSet)
+                    $scope.weightSetFull = angular.copy($scope.weightSet);
                 }
-            })
+            });
         } else {//it's false, meaning we've drawn.
             //console.log('repsgoal,', $scope.repsGoal)
             if ($scope.repsGoal == undefined) {
@@ -359,8 +385,12 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                 $scope.firstDate = 'Start Date';
                 $scope.lastDate = 'End Date';
+                $scope.liftName = "Select Lift" ;
+                $scope.selectedReps = "Select Reps";
+
                 $scope.chartOptions.scaleOverride = false;
                 $scope.bodyWtFlag = true;
+                $scope.goalNum.wt = getGoal();
                 $scope.chartTitle = "Dummy Lift for xx reps"
                 return
             }

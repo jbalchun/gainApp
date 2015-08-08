@@ -9,6 +9,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
     $scope.filterList = angular.copy($scope.$storage.workouts);
     $scope.searchQuery = '';
     $scope.dateType = '';
+    $scope.today = new Date();
     $scope.dateObj = {'Year': 'Year', 'Month': 'Month', 'Day': 'Day'};
     $scope.$storage = $localStorage;
     $scope.nameList = $scope.$storage.nameList;
@@ -86,10 +87,13 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         confirmPopup.then(function (res) {
             if (res) {
                 localStore.removeWorkout(workout);
+
                 $scope.filterList = angular.copy($scope.$storage.workouts);
-                //console.log('You are sure');
+                $scope.clearAll();
+                $scope.nameList = angular.copy($scope.$storage.nameList);
+
             } else {
-                //console.log('You are not sure');
+
             }
         });
     };
@@ -173,12 +177,12 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         angular.forEach($scope.nameList, function (val, key) {
             //console.log("KEYPOP", key, val);
             if (val == "" && nameArray.indexOf("(No Name)") == -1) {
-                $scope.nameList[key] = "(No Name)"
+                $scope.nameList[key] = "(No Name)";
 
             }
                 nameArray.push($scope.nameList[key]);
 
-        })
+        });
         //console.log('nameArray',nameArray);
 
         $scope.nameList=_.uniq(nameArray,false);
@@ -349,7 +353,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
                     text: '<b>Load</b>',
                     type: 'button-dark',
                     onTap: function (e) {
-                        localStore.loadLiftFromCalendar(index);
+                        localStore.loadLiftFromCalendar($scope.filterList[index]);
                         $state.go('tab.posts');
                     }
                 },

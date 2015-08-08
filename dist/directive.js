@@ -17,6 +17,12 @@ app.filter('liftFilter', function() {
     };
 });
 
+app.filter('reverse', function() {
+    return function(items) {
+        return items.slice().reverse();
+    };
+});
+
 app.filter('customFilter', function() {
     return function(input, custom) {
         var out = [];

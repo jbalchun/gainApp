@@ -298,7 +298,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $scope.editingShow = {num: $scope.sets2[index].reps}
             $scope.editingNumber = {index: index, id: id}
             $scope.wtSelectPress = index + String(id)
-
+            console.log('main',$scope.wtSelectPress);
         }
         else if (id == 2) {
             $scope.rangeFlipFlag = false;
@@ -307,6 +307,25 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $scope.wtSelectPress = index + String(id)
         }
     }
+    $scope.popAddSet = function () {
+        //focus to last
+        var incrIndex = $scope.sets2.length-1
+        console.log(incrIndex)
+        if($scope.editingNumber.id ==1){
+            $scope.rangeFlipFlag = true;
+            $scope.editingShow = {num: $scope.sets2[incrIndex].reps};
+            $scope.editingNumber.index =incrIndex
+            $scope.wtSelectPress = incrIndex + String(1);
+        }else{
+
+            $scope.rangeFlipFlag = true;
+            $scope.editingShow = {num: $scope.sets2[incrIndex].wt};
+            $scope.editingNumber.index =incrIndex
+            $scope.wtSelectPress = incrIndex + String(2);
+        }
+        //$scope.wtSelectPress = angular.copy(Number($scope.editingNumber.index)+1 +String($scope.editingNumber.id))
+        //$scope.editingShow = angular.copy({num: $scope.sets2[$scope.editingNumber.index].wt})
+    };
 
     $scope.selectGoal = function (index) {
         $scope.wtSelectPress = index + String(3)
@@ -667,6 +686,8 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         if ($scope.liftCards[index].sets[0].reps != 0 || $scope.liftCards[index].sets[0].wt != 0) {
             localStore.addSet(index);
         }
+
+
     }
 
     $scope.removeSet = function (index) {
@@ -697,6 +718,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $scope.wtSelectPress = $scope.editingNumber.index + "2"
         $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].wt}
     }
+
 
 
     //MODALS

@@ -11,6 +11,7 @@
     </ion-nav-buttons>
     <ion-content class="has-header padding" >
         <div class="card">
+
             <div class="item item-divider color-header">
             </div>
             <div class="row">
@@ -21,11 +22,12 @@
                 </div>
             </div>
             <div class ="row">
-                <div class="col-30 col-offset-33">
-                <a style="color:grey;" >Slider Preview:{{rangeMin.min}}:</a>
-                    <a class="" style="color:grey;">{{rangeSec.sec}}</a>
+                <div class="col-30 col-offest-66" style="margin-left:44%">
+                <a style="color:grey;font-size:1.2em" >{{rangeMin.min < 10 ? '0' + rangeMin.min : rangeMin.min}}:</a>
+                    <a class="" style="color:grey; font-size:1.2em">{{rangeSec.sec < 10 ? '0' + rangeSec.sec  : rangeSec.sec }}</a>
                 </div>
             </div>
+            <ion-item>
                 <div class="range">
                     <i class="icon ion-minus-round timerMinus" ng-click="downOneMin()"></i>
                     <input type="range" ng-model="rangeMin.min" ng-readonly="!startStopFlag"  min="0" max="30" on-release="onRelease()" />
@@ -41,24 +43,26 @@
                 <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()" ng-if="!startStopFlag" disabled/>-->
                 <i class="icon ion-plus-round timerPlus" ng-click="upOneSec()"></i>
             </div>
-            
+
+
 
 
             <div class="button-bar  liftSearchButtons">
-                <a ng-click="timerPreset(30,0)" type="button" class="button button-dark button-clear timerButtonSmall"
+                <a ng-click="timerPreset(30,0)" type="button" class="button button-positive button-clear timerButtonSmall"
                    style="border-left:none;border-top:none;border-bottom:none;">00:30</a>
-                <a ng-click="timerPreset(0,1)" type="button" class="button button-dark button-clear timerButtonSmall"
+                <a ng-click="timerPreset(0,1)" type="button" class="button button-positive button-clear timerButtonSmall"
                    style="border-top:none;border-bottom:none;">01:00</a>
                 <!--<a ng-class="{'active': reorderFlag == true}" ng-click="reorderFlag = !reorderFlag;" type="button" class="button">Reorder Lifts</a>-->
                 <a type="button"
-                   class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(30,1)" style="border-top:none;border-bottom:none;border-right:none;">01:30</a>
+                   class="button button-positive button-clear timerButtonSmall" ng-click="timerPreset(30,1)" style="border-top:none;border-bottom:none;border-right:none;">01:30</a>
                 <a type="button"
-                   class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(0,2)" style="border-top:none;border-bottom:none;border-right:none;">02:00</a>
-                <a  type="button button-dark button-clear timerButtonSmall"
-                    class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(30,2)" style="border-top:none;border-bottom:none;border-right:none;">02:30</a>
+                   class="button button-positive button-clear timerButtonSmall" ng-click="timerPreset(0,2)" style="border-top:none;border-bottom:none;border-right:none;">02:00</a>
+                <a  type="button button-positive button-clear timerButtonSmall"
+                    class="button button-positive button-clear timerButtonSmall" ng-click="timerPreset(30,2)" style="border-top:none;border-bottom:none;border-right:none;">02:30</a>
                 <a type="button"
-                   class="button button-dark button-clear timerButtonSmall" ng-click="timerPreset(0,3)" style="border-top:none;border-bottom:none;border-right:none;">03:00</a>
+                   class="button button-positive button-clear timerButtonSmall" ng-click="timerPreset(0,3)" style="border-top:none;border-bottom:none;border-right:none;">03:00</a>
             </div>
+            </ion-item>
 
 
             <div class="startStopReset row">
