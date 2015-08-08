@@ -70,7 +70,6 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         angular.forEach($scope.filterList, function (workout, index) {
             var currentDay = Number(workout.date.slice(3, 6));
             var numDay = Number(day);
-
             if (currentDay == numDay) {
                 resultFlag = true;
                 //console.log(resultFlag)
@@ -136,7 +135,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
             ////console.log('Tapped!', res);
             if (!window.cordova) {
                 var dateDiff = new Date() - datenew
-                winston.log('info', $scope.$storage.userId + ", closed calendar after" + dateDiff)
+                winston.log('info', $scope.$storage.userId + ", closed calendar after" + dateDiff);
             }
         });
 
@@ -151,7 +150,6 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                 numberArray.push(i);
             }
             $scope.dateList = numberArray;
-
         } else if (date == "Month") {
             $scope.dateList = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         } else if (date == "Year") {
