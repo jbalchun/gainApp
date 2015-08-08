@@ -179,6 +179,14 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
         return Number($scope.rangeMin.min * 60 ) + Number($scope.rangeSec.sec);
     }
 
+    $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
+        if (!states.fromCache && states.stateName == "tab.timer") {
+            console.log('got it timer');
+            //to prohibit janky button load on first view.
+            $scope.startStopFlag = true;
+        }
+    });
+
     $scope.startStop = function(){
         //console.log($scope.startStopFlag);
         if($scope.startStopFlag){

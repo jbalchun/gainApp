@@ -33,6 +33,27 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.spanSelect = 0;
     $scope.selectedReps = "Select Reps";
 
+    $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
+        if( states.fromCache && states.stateName == "tab.charts" ) {
+            // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
+            console.log('onit')
+            $scope.chartTable = true;
+            axisAdjust(false);
+            $scope.bodyWtFlag = true;
+            $scope.liftName = "Select Lift" ;
+            $scope.chartTitle = "Dummy Lift";
+            $scope.repsChart.reps ='xx'
+            $scope.selectedReps = "Select Reps";
+            $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            $scope.dateSetFull = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            $scope.firstDate = 'Start Date';
+            $scope.lastDate = 'End Date';
+            $scope.goalNum.wt = getGoal();
+            $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+            $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        }
+    });
+
 
     $scope.infoFlag = 3;
     //AXIS MANIPULATION
@@ -192,23 +213,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.chartTable = flag;
     };
 
-    $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
-        if( states.fromCache && states.stateName == "tab.charts" ) {
-            // do whatever
-            console.log('onit')
-            $scope.liftName = "Select Lift" ;
-            $scope.chartTitle = "Dummy Lift";
-            $scope.repsChart.reps ='xx'
-            $scope.selectedReps = "Select Reps";
-            $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            $scope.dateSetFull = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            $scope.firstDate = 'Start Date';
-            $scope.lastDate = 'End Date';
-            $scope.goalNum.wt = getGoal();
-            $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
-            $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
-        }
-    });
+
 
     //$scope.$on('$ionicView.beforeLeave',function(event){
     //    console.log('onit')
@@ -289,9 +294,13 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     };
 
     $scope.selectTimespan = function (span) {
-        if ($scope.chartTitle == "Dummy Lift for xx reps") {
-            return
+        if ($scope.chartTitle == "Dummy Lift for xx reps" || $scope.weightSet == [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],] ) {
+            return;
         }
+        if($scope.liftName == "Select Lift"  || $scope.selectedReps == "Select Reps"){
+            return;
+        }
+
         $scope.spanSelect = span;
         var weekSpan = Number(_.last($scope.dateSetFull));
         //console.log('dtwt', $scope.dateSetFull, $scope.weightSetFull)
@@ -317,7 +326,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             //console.log('else', $scope.weightSetFull[1])
         }
 
-    }
+    };
 
     $scope.chartBodyWeight = function (updateFlag, fromNav) {//this and repselect should be one method.
         $scope.firstDate = '';
