@@ -33,24 +33,28 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     $scope.spanSelect = 0;
     $scope.selectedReps = "Select Reps";
 
+
+    var refresh = function(){
+        $scope.chartTable = true;
+        axisAdjust(false);
+        $scope.bodyWtFlag = true;
+        $scope.liftName = "Select Lift" ;
+        $scope.chartTitle = "Dummy Lift";
+        $scope.repsChart.reps ='xx'
+        $scope.selectedReps = "Select Reps";
+        $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        $scope.dateSetFull = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        $scope.firstDate = 'Start Date';
+        $scope.lastDate = 'End Date';
+        $scope.goalNum.wt = getGoal();
+        $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+    };
+
     $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
         if( states.fromCache && states.stateName == "tab.charts" ) {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
-            console.log('onit')
-            $scope.chartTable = true;
-            axisAdjust(false);
-            $scope.bodyWtFlag = true;
-            $scope.liftName = "Select Lift" ;
-            $scope.chartTitle = "Dummy Lift";
-            $scope.repsChart.reps ='xx'
-            $scope.selectedReps = "Select Reps";
-            $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            $scope.dateSetFull = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            $scope.firstDate = 'Start Date';
-            $scope.lastDate = 'End Date';
-            $scope.goalNum.wt = getGoal();
-            $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
-            $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+            refresh();
         }
     });
 
@@ -149,7 +153,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     text: '<b>Close</b>',
                     type: 'button-dark',
                     onTap: function (e) {
-
+                        refresh();
                     }
                 },
                 {
@@ -201,7 +205,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             localStore.updateGoals(goalMap1);
             $scope.repSelect($scope.repsGoal, $scope.chartTable);
         }
-    }
+    };
 
     //$ionicPopover.fromTemplateUrl('../pop-reps.html', function(popover) {
     //    $scope.popover = popover;
@@ -269,10 +273,11 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $scope.dateSetFull = [];
             $timeout(function () {//needed to force redraw on this janky angular chart thing
                 $scope.weightSet = localStore.getChartData($scope.liftName, reps, 1);
-                console.log($scope.weightSet)
-                if($scope.weightSet.length <= 1 && $scope.chartTable){
+
+                //if we only have 1 data pt
+                if($scope.weightSet[0].length <= 1 && $scope.chartTable){
                     $scope.noDataPop();
-                    return
+                    return;
                 }
                 $scope.dateSetFull = localStore.getChartData($scope.liftName, reps, 2);
                 var dateWeightObjectList = [];
@@ -306,12 +311,12 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     var one = angular.copy($scope.weightSet[1])
                     $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
-                    $scope.weightSetFull = angular.copy($scope.weightSet)
+                    $scope.weightSetFull = angular.copy($scope.weightSet);
                 }
                 else {
                     $scope.weightSet.unshift([]);
                     $scope.goalNum.wt = undefined;
-                    $scope.weightSetFull = angular.copy($scope.weightSet)
+                    $scope.weightSetFull = angular.copy($scope.weightSet);
                 }
                 $scope.dateWeightObjectList = [];
                 $scope.dateWeightObjectList = dateWeightObjectList;
@@ -375,6 +380,10 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $timeout(function () {
                 $scope.weightSet = localStore.getBodyWeightData(1);
                 $scope.dateSetFull = localStore.getBodyWeightData(2);
+                if($scope.weightSet[0].length <= 1 && $scope.chartTable){
+                    $scope.noDataPop();
+                    return;
+                }
                 $scope.dateWeightObjectList = [];
                 angular.forEach($scope.dateSetFull, function (date, index) {
                     $scope.dateWeightObjectList.push({date: date, wt: $scope.weightSet[0][index]})
@@ -407,7 +416,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     $scope.weightSet.push(goalArray);
                     var zero = angular.copy($scope.weightSet[0]) // dont ask why unshift wouldnt work. formatting for chartjs
                     var one = angular.copy($scope.weightSet[1])
-                    $scope.weightSet[0] = one;//TODO somethings wrong, goal keeps coming at 180
+                    $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
                     $scope.weightSetFull = angular.copy($scope.weightSet)
                     console.log("print full array",  $scope.weightSet);

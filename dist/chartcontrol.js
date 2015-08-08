@@ -306,12 +306,12 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                     var one = angular.copy($scope.weightSet[1])
                     $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
-                    $scope.weightSetFull = angular.copy($scope.weightSet)
+                    $scope.weightSetFull = angular.copy($scope.weightSet);
                 }
                 else {
                     $scope.weightSet.unshift([]);
                     $scope.goalNum.wt = undefined;
-                    $scope.weightSetFull = angular.copy($scope.weightSet)
+                    $scope.weightSetFull = angular.copy($scope.weightSet);
                 }
                 $scope.dateWeightObjectList = [];
                 $scope.dateWeightObjectList = dateWeightObjectList;
