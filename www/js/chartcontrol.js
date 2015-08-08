@@ -139,6 +139,36 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         });
 
     };
+    $scope.noDataPop = function () {
+        var confirmPopup = $ionicPopup.show({
+            title: 'Not Enough Data to Chart',
+            subTitle: "We chart weekly max for a given lift and number of reps, so you need at least 2 weeks worth of this lift to see a trend. You can view your lifts in the table until then",
+            scope: $scope,
+            buttons: [
+                {
+                    text: '<b>Close</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                },
+                {
+                    text: '<b>See Table</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        $scope.repSelect($scope.repsChart.reps, $scope.chartTable);
+                        $scope.chartTable = !$scope.chartTable;
+
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            ////console.log('Tapped!', res);
+
+        });
+
+    };
     $scope.keyPressed = function (keyEvent, formModel) {
         //if (keyEvent.keyCode == 13) {
         //console.log(keyEvent)
@@ -199,7 +229,8 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         $scope.repSelect(reps, $scope.chartTable);
         $scope.popover.hide();
 
-    }
+    };
+
     $scope.changeView = function (flag, reps) {
         //console.log('fagflag', $scope.chartTitle);
         if (!$scope.bodyWtFlag) {
@@ -238,8 +269,11 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $scope.dateSetFull = [];
             $timeout(function () {//needed to force redraw on this janky angular chart thing
                 $scope.weightSet = localStore.getChartData($scope.liftName, reps, 1);
-                //$scope.weightSet[1].reverse();
-                //$scope.weightSet[1] = $scope.weightSet[1].reverse()
+                console.log($scope.weightSet)
+                if($scope.weightSet.length <= 1 && $scope.chartTable){
+                    $scope.noDataPop();
+                    return
+                }
                 $scope.dateSetFull = localStore.getChartData($scope.liftName, reps, 2);
                 var dateWeightObjectList = [];
                 angular.forEach($scope.dateSetFull, function (date, index) {
@@ -300,7 +334,6 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         if($scope.liftName == "Select Lift"  || $scope.selectedReps == "Select Reps"){
             return;
         }
-
         $scope.spanSelect = span;
         var weekSpan = Number(_.last($scope.dateSetFull));
         //console.log('dtwt', $scope.dateSetFull, $scope.weightSetFull)

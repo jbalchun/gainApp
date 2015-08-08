@@ -626,9 +626,9 @@ button.ion-minus-circled:before {
         max-height:700px;
         margin-left: auto;
         margin-right: auto;
-        border-left: #000000;
-        border-right: thick;
-        border: 1px solid  #4b555f;
+        /*border-left: #000000;*/
+        /*border-right: thick;*/
+        /*border: 1px solid  #4b555f;*/
     }
 
 }

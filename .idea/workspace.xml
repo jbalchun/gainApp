@@ -75,31 +75,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2885" max-vertical-offset="7215">
+              <caret line="228" column="43" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="chartcontrol.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.346154" vertical-offset="4205" max-vertical-offset="6975">
-              <caret line="300" column="19" selection-start-line="300" selection-start-column="19" selection-end-line="300" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parse-1.5.0.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/lib/parse/parse-1.5.0.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
-              <caret line="2" column="27238" selection-start-line="2" selection-start-column="27238" selection-end-line="2" selection-end-column="27238" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tab-calendar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.75" vertical-offset="240" max-vertical-offset="1410">
-              <caret line="30" column="163" selection-start-line="30" selection-start-column="163" selection-end-line="30" selection-end-column="163" />
+            <state vertical-scroll-proportion="-13.653846" vertical-offset="2015" max-vertical-offset="7470">
+              <caret line="158" column="51" selection-start-line="158" selection-start-column="51" selection-end-line="158" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -125,32 +115,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tab-timer.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/tab-timer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68373495" vertical-offset="581" max-vertical-offset="1275">
-              <caret line="69" column="136" selection-start-line="69" selection-start-column="136" selection-end-line="69" selection-end-column="136" />
-              <folding>
-                <element signature="n#style#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#2;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#3;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#4;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#5;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#div#3;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.66" vertical-offset="442" max-vertical-offset="1515">
+            <state vertical-scroll-proportion="0.36520377" vertical-offset="442" max-vertical-offset="1515">
               <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="56" selection-end-column="50" />
               <folding />
             </state>
@@ -160,21 +128,9 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="8567" max-vertical-offset="10395">
-              <caret line="597" column="0" selection-start-line="597" selection-start-column="0" selection-end-line="597" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="8852" max-vertical-offset="10395">
+              <caret line="626" column="4" selection-start-line="626" selection-start-column="4" selection-end-line="627" selection-end-column="27" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pop-date.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/pop/pop-date.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="180">
-              <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-              <folding>
-                <element signature="n#style#0;n#ion-popover-view#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -182,8 +138,18 @@
       <file leaf-file-name="tab-charts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="1620">
+            <state vertical-scroll-proportion="19.208334" vertical-offset="731" max-vertical-offset="1620">
               <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="114" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="directive.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/directive.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="2145">
+              <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -247,10 +213,10 @@
         <option value="$PROJECT_DIR$/www/js/calendarcontrol.js" />
         <option value="$PROJECT_DIR$/www/lib/parse/parse-1.5.0.min.js" />
         <option value="$PROJECT_DIR$/www/js/timercontrol.js" />
+        <option value="$PROJECT_DIR$/www/tab-timer.html" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/js/chartcontrol.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
-        <option value="$PROJECT_DIR$/www/tab-timer.html" />
       </list>
     </option>
   </component>
@@ -870,36 +836,36 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
           <caret line="39" column="1433" selection-start-line="39" selection-start-column="1433" selection-end-line="39" selection-end-column="1433" />
           <folding>
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1439071301000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1439072470000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -935,14 +901,6 @@
           <folding>
             <element signature="n#style#0;n#a#2;n#div#0;n#ion-footer-bar#0;n#ion-view#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/directive.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="2145">
-          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,14 +980,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.230769" vertical-offset="3695" max-vertical-offset="7215">
-          <caret line="271" column="54" selection-start-line="271" selection-start-column="52" selection-end-line="271" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/pop/pop-email.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="180">
@@ -1059,16 +1009,8 @@
         <state vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="180">
           <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#ion-popover-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ion-popover-view#0;n#!!top" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.25" vertical-offset="0" max-vertical-offset="1620">
-          <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="114" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1076,14 +1018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
           <caret line="2" column="27238" selection-start-line="2" selection-start-column="27238" selection-end-line="2" selection-end-column="27238" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0" vertical-offset="1925" max-vertical-offset="6360">
-          <caret line="137" column="99" selection-start-line="137" selection-start-column="99" selection-end-line="137" selection-end-column="99" />
           <folding />
         </state>
       </provider>
@@ -1104,30 +1038,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.346154" vertical-offset="4205" max-vertical-offset="6975">
-          <caret line="300" column="19" selection-start-line="300" selection-start-column="19" selection-end-line="300" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.66" vertical-offset="442" max-vertical-offset="1515">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="56" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8567" max-vertical-offset="10395">
-          <caret line="597" column="0" selection-start-line="597" selection-start-column="0" selection-end-line="597" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-calendar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.75" vertical-offset="240" max-vertical-offset="1410">
@@ -1136,10 +1046,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8852" max-vertical-offset="10395">
+          <caret line="626" column="4" selection-start-line="626" selection-start-column="4" selection-end-line="627" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2885" max-vertical-offset="7215">
+          <caret line="228" column="43" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/directive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="2145">
+          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/tab-timer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68373495" vertical-offset="581" max-vertical-offset="1275">
-          <caret line="69" column="136" selection-start-line="69" selection-start-column="136" selection-end-line="69" selection-end-column="136" />
+        <state vertical-scroll-proportion="0.77409637" vertical-offset="371" max-vertical-offset="1275">
+          <caret line="59" column="79" selection-start-line="59" selection-start-column="79" selection-end-line="59" selection-end-column="79" />
           <folding>
             <element signature="n#style#0;n#h3#0;n#div#0;n#div#1;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -1151,8 +1085,41 @@
             <element signature="n#style#0;n#a#3;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#4;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#5;n#div#2;n#ion-item#0;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#3;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#3;n#div#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/calendarcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.0" vertical-offset="1925" max-vertical-offset="6360">
+          <caret line="137" column="99" selection-start-line="137" selection-start-column="99" selection-end-line="137" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/tab-charts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="19.208334" vertical-offset="731" max-vertical-offset="1620">
+          <caret line="18" column="100" selection-start-line="18" selection-start-column="100" selection-end-line="18" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/chartcontrol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.653846" vertical-offset="2015" max-vertical-offset="7470">
+          <caret line="158" column="51" selection-start-line="158" selection-start-column="51" selection-end-line="158" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36520377" vertical-offset="442" max-vertical-offset="1515">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="56" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
