@@ -197,6 +197,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             // do whatever
             console.log('onit')
             $scope.liftName = "Select Lift" ;
+            $scope.chartTitle = "Dummy Lift for xx reps";;
             $scope.selectedReps = "Select Reps";
             $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             $scope.dateSetFull = [1, 2, 3, 4, 5, 6, 7, 8, 9];
