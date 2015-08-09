@@ -508,6 +508,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     $scope.deltaBody='';
     $scope.goalProject = '';
     $scope.deltaWtBody = '';
+    $scope.showWeeks = false;
 
     $scope.loadAnalytics = function(){
         getDeltaWeeks();
@@ -558,11 +559,14 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         var diff = goal-lastWeight
         if(percentWeeklyInc < 0){
             $scope.goalProject = 'Never'
+            $scope.showWeeks = false;
         }else if(goal<=lastWeight || !goal ){
             $scope.goalProject = 'Goal Reached or Empty'
+            $scope.showWeeks = false;
         }
         else{
             console.log('inc',1+(percentWeeklyInc/100), '  ')
+            $scope.showWeeks = true;
             $scope.goalProject = Math.ceil(diff/(lastWeight*((percentWeeklyInc/100))));
         }
     }

@@ -78,19 +78,26 @@
             <ion-item ng-show="chartTable == 3" class="item item-remove-animate no-padding">
                 <ion-item>
                     <a>Avg change per week:</a>
+
                     <a style="float:right" ng-class="{'pr-color':deltaWeeks>0,'last-less-color':deltaWeeks<0}">{{deltaWeeks}}%</a>
+                    <a style="float:right" class="pr-color" ng-show="deltaWeeks>0">+</a>
+                    <a style="float:right" class="last-less-color" ng-show="deltaWeeks<0">-</a>
                 </ion-item>
                 <ion-item>
                     <a>Avg body wt change per week:</a>
-                    <a style="float:right" ng-class="{'pr-color':deltaWeeks>0,'last-less-color':deltaWeeks<0}">{{deltaBody}}%</a>
+                    <a style="float:right" ng-class="{'pr-color':deltaBody>0,'last-less-color':deltaBody<0}">{{deltaBody}}%</a>
+                    <a style="float:right" class="pr-color" ng-show="deltaBody>0">+</a>
+                    <a style="float:right" class="last-less-color" ng-show="deltaBody<0">-</a>
                 </ion-item>
                 <ion-item>
                     <a>Projected weeks till goal: </a>
-                    <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{goalProject}}</a>
+                    <a style="float:right;color:#387ef5;"  ng-show="showWeeks"> wks</a>
+                    <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{goalProject}}&nbsp; </a>
+
                 </ion-item>
                 <ion-item>
-                    <a>Change in weight/Change in body weight:</a>
-                    <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{deltaWtBody}}</a>
+                    <a style="font-size:.9em;">Change in weight/Change in body weight:</a>
+                    <a style="float:right ;" ng-class="{'pr-color':deltaWtBody>1,'last-less-color':deltaWtBody<1}">{{deltaWtBody}}</a>
                 </ion-item>
             </ion-item>
             <ion-item ng-show="chartTable == 1" ng-repeat="lift in dateWeightObjectList | reverse">
