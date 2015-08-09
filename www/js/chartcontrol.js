@@ -554,7 +554,9 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
 
     var getGoalProject = function(){
         var percentWeeklyInc = $scope.deltaWeeks;
-        var goal = $scope.goalNum.wt.wt;
+        if($scope.goalNum ===  'undefined'){
+            var goal = $scope.goalNum.wt.wt;
+        }
         var lastWeight = $scope.weightSetFull[1][$scope.weightSetFull[1].length - 1];
         var diff = goal-lastWeight
         if(percentWeeklyInc < 0){
