@@ -561,7 +561,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $scope.goalProject = 'Never'
             $scope.showWeeks = false;
         }else if(goal<=lastWeight || !goal ){
-            $scope.goalProject = 'Goal Reached or Empty'
+            $scope.goalProject = 'Reached or Empty'
             $scope.showWeeks = false;
         }
         else{
