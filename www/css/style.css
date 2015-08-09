@@ -350,7 +350,7 @@ input[type="text"].workoutNameInput {
     padding-bottom: 0px !important;
     min-height: 3px !important;
     min-height: 4px !important;
-    color: #444444;
+    color: #565656;
 }
 
 .color-header-cal {
@@ -369,12 +369,31 @@ input[type="text"].workoutNameInput {
 
 }
 
-
 .color-header2 {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-    min-height: 3px !important;
+    height: 2px !important;
+    min-height: 3px;!important;
+    /*min-height: 4px !important;*/
+    color: #444444;
+
+}
+
+.color-header3 {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    /*height: 2px !important;*/
+    min-height: 3px;!important;
     min-height: 4px !important;
+    color: #444444;
+
+}
+
+.item.item-divider.super-header2 {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    min-height: 3px !important;
+    height: 2px;
     color: #444444;
 
 }
@@ -392,6 +411,14 @@ input[type="text"].workoutNameInput {
 }
 .borderless2 {
     border-top: none !important;
+}
+
+.pr-color{
+    color:#00B16A;
+}
+
+.last-less-color{
+    color:#ef473a;
 }
 
 .stop{

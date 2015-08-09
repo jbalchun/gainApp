@@ -408,9 +408,9 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         $scope.lastList = {}
         angular.forEach($scope.uniqueRepsHist, function (uRep, index) {
             if (localStore.getMax(name, uRep).wt) {
-
                 $scope.maxList[uRep] = localStore.getMax(name, uRep).wt;
-                $scope.lastList[uRep] = localStore.getChartData(name, uRep, 3).slice(-1)[0].wt
+                //needed reverse here because of the feed order change.
+                $scope.lastList[uRep] = localStore.getChartData(name, uRep, 3).reverse().slice(-1)[0].wt
             }
         })
         if ($scope.maxList.length == 0 && $scope.lastList.length == 0) {
