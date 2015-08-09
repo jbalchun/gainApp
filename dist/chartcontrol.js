@@ -23,7 +23,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     $scope.firstDate = 'Start Date';
     $scope.lastDate = 'End Date';
-    $scope.chartTable = true;
+    $scope.chartTable = 0;
     $scope.dateWeightObjectList = [];
     $scope.goalNum = {wt: undefined};
     $scope.updateFlag = undefined;
@@ -35,7 +35,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
 
 
     var refresh = function(){
-        $scope.chartTable = true;
+        $scope.chartTable = 0;
         axisAdjust(false);
         $scope.bodyWtFlag = true;
         $scope.liftName = "Select Lift" ;
@@ -275,7 +275,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                 $scope.weightSet = localStore.getChartData($scope.liftName, reps, 1);
 
                 //if we only have 1 data pt
-                if($scope.weightSet[0].length <= 1 && $scope.chartTable){
+                if($scope.weightSet[0].length <= 1 && $scope.chartTable == 0){
                     $scope.noDataPop();
                     return;
                 }
@@ -380,7 +380,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             $timeout(function () {
                 $scope.weightSet = localStore.getBodyWeightData(1);
                 $scope.dateSetFull = localStore.getBodyWeightData(2);
-                if($scope.weightSet[0].length <= 1 && $scope.chartTable){
+                if($scope.weightSet[0].length <= 1 && $scope.chartTable == 0){
                     $scope.noDataPop();
                     return;
                 }
@@ -447,7 +447,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                 $scope.chartTitle = "Dummy Lift for xx reps"
                 return
             }
-            $scope.repSelect($scope.repsGoal, $scope.chartTable);
+            $scope.repSelect($scope.repsGoal, $scope.chartTable == 0);
             $scope.bodyWtFlag = true;
         }
     }

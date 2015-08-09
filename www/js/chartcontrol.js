@@ -23,7 +23,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     $scope.firstDate = 'Start Date';
     $scope.lastDate = 'End Date';
-    $scope.chartTable = true;
+    $scope.chartTable = 0;
     $scope.dateWeightObjectList = [];
     $scope.goalNum = {wt: undefined};
     $scope.updateFlag = undefined;
@@ -35,7 +35,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
 
 
     var refresh = function(){
-        $scope.chartTable = true;
+        $scope.chartTable = 0;
         axisAdjust(false);
         $scope.bodyWtFlag = true;
         $scope.liftName = "Select Lift" ;
@@ -49,6 +49,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         $scope.goalNum.wt = getGoal();
         $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        resetAnalytics();
     };
 
     $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
@@ -275,7 +276,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 $scope.weightSet = localStore.getChartData($scope.liftName, reps, 1);
 
                 //if we only have 1 data pt
-                if($scope.weightSet[0].length <= 1 && $scope.chartTable){
+                if($scope.weightSet[0].length <= 1 && $scope.chartTable == 0){
                     $scope.noDataPop();
                     return;
                 }
@@ -312,15 +313,18 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
                     $scope.weightSetFull = angular.copy($scope.weightSet);
+
                 }
                 else {
                     $scope.weightSet.unshift([]);
                     $scope.goalNum.wt = undefined;
                     $scope.weightSetFull = angular.copy($scope.weightSet);
                 }
+
                 $scope.dateWeightObjectList = [];
                 $scope.dateWeightObjectList = dateWeightObjectList;
                 $scope.bodyWtFlag = true;
+                $scope.loadAnalytics();
             });
         }
         else {
@@ -370,6 +374,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         $scope.firstDate = '';
         $scope.lastDate = '';
         $scope.liftName = "Select Lift" ;
+        resetAnalytics();
         $scope.selectedReps = "Select Reps";
         if ($scope.bodyWtFlag || (updateFlag == 1 && !$scope.bodyWtFlag)) { //it's true, meaning we haven't drawn
             if (updateFlag == 1) {
@@ -380,7 +385,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
             $timeout(function () {
                 $scope.weightSet = localStore.getBodyWeightData(1);
                 $scope.dateSetFull = localStore.getBodyWeightData(2);
-                if($scope.weightSet[0].length <= 1 && $scope.chartTable){
+                if($scope.weightSet[0].length <= 1 && $scope.chartTable == 0){
                     $scope.noDataPop();
                     return;
                 }
@@ -447,7 +452,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                 $scope.chartTitle = "Dummy Lift for xx reps"
                 return
             }
-            $scope.repSelect($scope.repsGoal, $scope.chartTable);
+            $scope.repSelect($scope.repsGoal, $scope.chartTable == 0);
             $scope.bodyWtFlag = true;
         }
     }
@@ -497,5 +502,104 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         }
 
     };
+    //ANALYTICS
+    ///////////////////////////////////
+    $scope.deltaWeeks ='' ;
+    $scope.deltaBody='';
+    $scope.goalProject = '';
+    $scope.deltaWtBody = '';
+
+    $scope.loadAnalytics = function(){
+        getDeltaWeeks();
+        getGoalProject();
+        getDeltaWtBody();
+    };
+
+    var resetAnalytics = function(){
+        $scope.deltaWeeks ='' ;
+        $scope.deltaBody='';
+        $scope.goalProject = '';
+        $scope.deltaWtBody = '';
+    }
+
+    var getDeltaWeeks = function(arr){
+        console.log('wtset',arr ||$scope.weightSetFull[1] )
+        var wtSet = arr || $scope.weightSetFull[1];
+        var total = 0;
+        var count = wtSet.length - 1;
+        for (var i = 0; i < count; i++) {
+            console.log('this ', wtSet[i], ' next ', wtSet[i+1])
+            if (wtSet[i+1] < wtSet[i ]) {
+                total += (-1 * ( wtSet[i+1] / wtSet[i]));
+                console.log('total ', total, ' subbed ', (-1 * ( wtSet[i+1] / wtSet[i])))
+            }
+            else {
+                total += ((wtSet[i + 1] / wtSet[i]));
+                console.log('total ', total, ' added ', ((wtSet[i + 1] / wtSet[i])));
+            };
+        };
+        console.log(total,count,total/count,((total/count)-1))
+        var num  = ((total/count)-1)*100
+
+        //if i passed an array i'm using it for something else and i want a return
+        if(arr){
+            return num
+            console.log('num',num)
+        }
+        $scope.deltaWeeks = num.toFixed(2);
+    };
+
+
+
+    var getGoalProject = function(){
+        var percentWeeklyInc = $scope.deltaWeeks;
+        var goal = $scope.goalNum.wt.wt;
+        var lastWeight = $scope.weightSetFull[1][$scope.weightSetFull[1].length - 1];
+        var diff = goal-lastWeight
+        if(percentWeeklyInc < 0){
+            $scope.goalProject = 'Never'
+        }else if(goal<=lastWeight || !goal ){
+            $scope.goalProject = 'Goal Reached or Empty'
+        }
+        else{
+            console.log('inc',1+(percentWeeklyInc/100), '  ')
+            $scope.goalProject = Math.ceil(diff/(lastWeight*((percentWeeklyInc/100))));
+        }
+    }
+
+    var getDeltaWtBody = function(){
+        var wtInc = $scope.deltaWeeks;
+        var bodArray = getBodyWtArray();
+        var bodInc = getDeltaWeeks(bodArray);
+        $scope.deltaBody = bodInc.toFixed(2);
+        console.log('bod delta',bodArray,bodInc)
+        var num = wtInc/bodInc;
+        $scope.deltaWtBody = num.toFixed(4);
+    }
+
+
+    var getBodyWtArray = function(){
+        var bodArray =[];
+         bodArray = localStore.getBodyWeightData(1);
+
+        var dateBodArray = localStore.getBodyWeightData(2);
+        if(bodArray[0].length <= 1 && $scope.chartTable == 0){
+            $scope.noDataPop();
+            return;
+        }
+        var dtWtObjs = [];
+        angular.forEach(dateBodArray, function (date, index) {
+            dtWtObjs.push({date: date, wt: bodArray[0][index]})
+        });
+        dtWtObjs.reverse();
+        bodArray = localStore.normalizeToWeeks(dtWtObjs, 1);
+        dateBodArray = localStore.normalizeToWeeks(dtWtObjs, 2);
+        console.log('bod',bodArray[0])
+        return bodArray[0];
+    }
+
+
+
+
 
 });
