@@ -221,8 +221,10 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     });
 
     $scope.repPopup = function ($event) {
-        document.body.classList.add('platform-ios');
-        $scope.popover.show($event);
+        if($scope.liftName != 'Select Lift'){
+            document.body.classList.add('platform-ios');
+            $scope.popover.show($event);
+        }
     };
 
     $scope.repPopSelect = function (reps) {

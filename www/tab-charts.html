@@ -64,7 +64,7 @@
                             ng-click="openModal()">{{liftName}}
                     </button>
                     <button class="liftSelectEntry button button-clear button-positive" ng-click="repPopup($event)"
-                            style="float:right;">
+                            style="float:right;" ng-class="{'active':liftName == 'Select Lift'}">
                         {{selectedReps}}
                     </button>
                     <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
