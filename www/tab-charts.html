@@ -90,14 +90,18 @@
                     <a style="float:right" class="last-less-color" ng-show="deltaBody<0">-</a>
                 </ion-item>
                 <ion-item>
+                    <a style="font-size:.9em;">Change in weight/Change in body weight:</a>
+                    <a style="float:right ;" ng-class="{'pr-color':deltaWtBody>1,'last-less-color':deltaWtBody<1}">{{deltaWtBody}}</a>
+                </ion-item>
+                <ion-item>
+                    <a>Goal:</a>
+                    <a style="float:right;color:#387ef5;" >{{goalNum.wt.wt || 'None'}}</a>
+                </ion-item>
+                <ion-item>
                     <a>Projected weeks till goal: </a>
                     <a style="float:right;color:#387ef5;"  ng-show="showWeeks"> wks</a>
                     <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{goalProject}}&nbsp; </a>
 
-                </ion-item>
-                <ion-item>
-                    <a style="font-size:.9em;">Change in weight/Change in body weight:</a>
-                    <a style="float:right ;" ng-class="{'pr-color':deltaWtBody>1,'last-less-color':deltaWtBody<1}">{{deltaWtBody}}</a>
                 </ion-item>
             </ion-item>
             <ion-item ng-show="chartTable == 1" ng-repeat="lift in dateWeightObjectList | reverse">
