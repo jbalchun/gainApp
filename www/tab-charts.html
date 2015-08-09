@@ -1,22 +1,24 @@
-<ion-view title="Data" ng-controller="chartcontrol" cache-view="true" >
+<ion-view title="Data" ng-controller="chartcontrol" cache-view="true">
     <ion-nav-buttons side="left">
-        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
+        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em'
+                ng-click="showInfo()">
 
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
+        <button class="button button-balanced " ng-show="stateW == 'heroku'" style='font-size: 1.2em'
+                ng-click="emailPop()">
             Like it?
         </button>
     </ion-nav-buttons>
 
     <ion-content class="has-header has-footer">
-        <div ng-if="chartTable" class="card ">
+        <div ng-if="chartTable == 0" class="card ">
             <div class="item item-divider color-header">
             </div>
             <div class="row">
                 <div class="col-40 col-offset-20">
-                    <a class=>{{chartTitle}}</a><a ng-if="bodyWtFlag && repsChart.reps">{{ " for " +repsChart.reps + " reps"}}</a>
+                    <a class=>{{chartTitle}}</a><a ng-show="bodyWtFlag && repsChart.reps">{{ " for " +repsChart.reps + "reps"}}</a>
                 </div>
             </div>
 
@@ -27,7 +29,8 @@
             </div>
             <div class="item-input-wrapper">
 
-                <input ng-submit="keyPressed($event.keyCode)" class="col col-33 col-offset-34" type="tel" placeholder="Goal" maxlength="3"
+                <input ng-submit="keyPressed($event.keyCode)" class="col col-33 col-offset-34" type="tel"
+                       placeholder="Goal" maxlength="3"
                        ng-model="goalNum.wt.wt">
                 <button class="button button-clear" ng-click="updateGoal(repsChart.reps)">Update
                 </button>
@@ -51,34 +54,63 @@
             </div>
         </div>
         <div class="card">
-            <div ng-if="chartTable ==false" class="item item-divider color-header">
+            <div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">
             </div>
+
+
             <ion-item class="item item-remove-animate no-padding">
-                <div ng-if="chartTable || (bodyWtFlag && !chartTable)" class="liftNameButton">
-                    <button class="liftSelectEntry button button-clear button-positive" style="float:left;" ng-click="openModal()">{{liftName}}</button>
-                    <button class="liftSelectEntry button button-clear button-positive" ng-click="repPopup($event)" style="float:right;">
+                <div ng-show="chartTable==0|| chartTable == 3 || (bodyWtFlag && chartTable == 1)" class="liftNameButton">
+                    <button class="liftSelectEntry button button-clear button-positive" style="float:left;"
+                            ng-click="openModal()">{{liftName}}
+                    </button>
+                    <button class="liftSelectEntry button button-clear button-positive" ng-click="repPopup($event)"
+                            style="float:right;">
                         {{selectedReps}}
                     </button>
-                    <!--<a class="liftSelectEntry"  ng-if="liftName != 'Select Lift'">Set Goal</a>-->
+                    <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
                 </div>
-                <div ng-if="  (!bodyWtFlag && !chartTable)" class="liftNameButton" style="float:left;">
+                <div ng-show="  (!bodyWtFlag && chartTable == 1 )" class="liftNameButton" style="float:left;">
                     <a class="liftSelectEntry" ng-click="openModal()">Body Weight (tap to select lift)</a>
-                    <!--<a class="liftSelectEntry"  ng-if="liftName != 'Select Lift'">Set Goal</a>-->
+                    <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
                 </div>
-
-
             </ion-item>
-            <ion-item ng-if="chartTable == false" ng-repeat="lift in dateWeightObjectList | reverse">
+            <!--Analytics view-->
+            <ion-item ng-show="chartTable == 3" class="item item-remove-animate no-padding">
+                <ion-item>
+                    <a>Avg change per week:</a>
+
+                    <a style="float:right" ng-class="{'pr-color':deltaWeeks>0,'last-less-color':deltaWeeks<0}">{{deltaWeeks}}%</a>
+                    <a style="float:right" class="pr-color" ng-show="deltaWeeks>0">+</a>
+                    <a style="float:right" class="last-less-color" ng-show="deltaWeeks<0">-</a>
+                </ion-item>
+                <ion-item>
+                    <a>Avg body wt change per week:</a>
+                    <a style="float:right" ng-class="{'pr-color':deltaBody>0,'last-less-color':deltaBody<0}">{{deltaBody}}%</a>
+                    <a style="float:right" class="pr-color" ng-show="deltaBody>0">+</a>
+                    <a style="float:right" class="last-less-color" ng-show="deltaBody<0">-</a>
+                </ion-item>
+                <ion-item>
+                    <a>Projected weeks till goal: </a>
+                    <a style="float:right;color:#387ef5;"  ng-show="showWeeks"> wks</a>
+                    <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{goalProject}}&nbsp; </a>
+
+                </ion-item>
+                <ion-item>
+                    <a style="font-size:.9em;">Change in weight/Change in body weight:</a>
+                    <a style="float:right ;" ng-class="{'pr-color':deltaWtBody>1,'last-less-color':deltaWtBody<1}">{{deltaWtBody}}</a>
+                </ion-item>
+            </ion-item>
+            <ion-item ng-show="chartTable == 1" ng-repeat="lift in dateWeightObjectList | reverse">
 
                 <a>{{lift.date}}</a>
                 <a style="float:right">{{lift.wt + " lbs"}}</a>
 
             </ion-item>
-            <ion-item ng-if="chartTable" class="item  item-remove-animate no-padding">
+            <ion-item ng-show="chartTable == 0" class="item  item-remove-animate no-padding">
                 <div class="row" style="padding:8px ">
-                    <a class="col col-offset-25 liftSelectEntry" ng-click="chartBodyWeight()" ng-if="bodyWtFlag">Chart
+                    <a class="col col-offset-25 liftSelectEntry" ng-click="chartBodyWeight()" ng-show="bodyWtFlag">Chart
                         Body Weight</a>
-                    <a class="col col-offset-25 chartSwitch" ng-click="chartBodyWeight()" ng-if="!bodyWtFlag">Chart
+                    <a class="col col-offset-25 chartSwitch" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag">Chart
                         current lift</a>
                 </div>
             </ion-item>
@@ -87,15 +119,16 @@
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark tab2">
         <div class="button-bar tab2">
-            <a ng-class="{'active': chartTable == true}" ng-click="changeView(true,repsChart.reps)" type="button"
+            <a ng-class="{'active': chartTable == 0}" ng-click="changeView(0,repsChart.reps)" type="button"
                class="button icon ion-arrow-graph-up-right tab2"
                style="border-top:none;border-bottom:none;border-left:none;font-size: 2.0em;"></a>
-            <a ng-class="{'active': chartTable == false}" ng-click="changeView( false,repsChart.reps)" type="button"
+            <a ng-class="{'active': chartTable == 1}" ng-click="changeView( 1,repsChart.reps)" type="button"
                class="button icon ion-ios-list-outline tab2"
                style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"></a>
-            <!--<a  ng-click="analytics = !analytics;" ng-class="{'active': analytics == false}"  type="button"-->
-               <!--class="button icon ion-ios-lightbulb-outline"-->
-               <!--style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"></a>-->
+            <a ng-class="{'active': chartTable == 3}" type="button"
+               class="button icon ion-ios-lightbulb-outline"
+               style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"
+               ng-click="changeView(3,repsChart.reps)"></a>
         </div>
 
     </ion-footer-bar>
