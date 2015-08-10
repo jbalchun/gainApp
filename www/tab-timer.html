@@ -66,8 +66,9 @@
 
 
             <div class="startStopReset row">
-                <div class="col col-offset-24">
-                <button class="button button-clear" ng-click="startStop()"   style="width:45%; float:left;padding-left: 2%; font-size: 3em" ng-class="{'button-balanced ion ion-ios-play':startStopFlag,'button-assertive ion ion-ios-pause':!startStopFlag}" ></button>
+                <div class="col col-offset-24" >
+                <button class="button button-clear button-balanced ion ion-ios-play ng-cloak" ng-click="startStop()"   style="width:45%; float:left;padding-left: 2%; font-size: 3em"
+                        ng-class="{'button-balanced ion ion-ios-play':startStopFlag,'button-assertive ion ion-ios-pause':!startStopFlag}" ng-cloak></button>
                 <!--<button class="button button-assertive col-40"  ng-click="startStop()" ng-if="!startStopFlag" style="width:45%;float:left;" >Stop</button>-->
                 <button class="button button-dark button-clear  ion ion-ios-refresh-outline" ng-click="reset()" type="submit"  value="Reset" style="width:45%; float:right; font-size: 3em" ></button>
                 </div>
