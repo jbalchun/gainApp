@@ -674,6 +674,11 @@ div.row.no-padding.borderless{
     display: none !important;
 }
 
+.ng-hide-add,
+.ng-hide-remove {
+    display: none !important;
+}
+
 /*.progress-bar {*/
 /*background: #191919;*/
 /*height: 120px;*/

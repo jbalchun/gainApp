@@ -1,4 +1,4 @@
-<ion-view  title="Data" ng-controller="chartcontrol" cache-view="true" ng-cloak>
+<ion-view  title="Data" ng-controller="chartcontrol" cache-view="true">
     <ion-nav-buttons side="left">
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em'
                 ng-click="showInfo()">
@@ -75,7 +75,7 @@
                 </div>
             </ion-item>
             <!--Analytics view-->
-            <ion-item ng-show="chartTable == 3" class="item item-remove-animate no-padding">
+            <ion-item ng-show="chartTable == 3" class="item item-remove-animate no-padding ng-cloak ng-hide" ng-cloak>
                 <ion-item>
                     <a>Avg change per week:</a>
 
