@@ -359,7 +359,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                     text: '<b>Load Template</b>',
                     type: 'button-dark',
                     onTap: function (e) {
-                        localStore.loadLiftFromCalendar(index);
+                        localStore.loadLiftFromCalendar($scope.filterList[index]);
                         localStore.wipeWeights();
                         $state.go('tab.posts');
                     }
