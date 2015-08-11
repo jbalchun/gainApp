@@ -56,8 +56,6 @@
         <div class="card">
             <div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">
             </div>
-
-
             <ion-item class="item item-remove-animate no-padding">
                 <div ng-show="chartTable==0|| chartTable == 3 || (bodyWtFlag && chartTable == 1)" class="liftNameButton">
                     <button class="liftSelectEntry button button-clear button-positive" style="float:left;"
@@ -110,11 +108,11 @@
                 <a style="float:right">{{lift.wt + " lbs"}}</a>
 
             </ion-item>
-            <ion-item ng-show="chartTable == 0" class="item  item-remove-animate no-padding">
+            <ion-item ng-if="chartTable == 0" class="item  item-remove-animate no-padding">
                 <div class="row" style="padding:8px ">
-                    <a class="col col-offset-25 liftSelectEntry" ng-click="chartBodyWeight()" ng-show="bodyWtFlag">Chart
+                    <a class="col col-offset-25 liftSelectEntry ng-cloak" ng-click="chartBodyWeight()" ng-show="bodyWtFlag" ng-cloak>Chart
                         Body Weight</a>
-                    <a class="col col-offset-25 chartSwitch" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag">Chart
+                    <a class="col col-offset-25 chartSwitch ng-cloak" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag" ng-cloak>Chart
                         current lift</a>
                 </div>
             </ion-item>
@@ -122,17 +120,17 @@
 
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark tab2">
-        <div class="button-bar tab2">
+        <div class="button-bar tab2 ng-cloak" ng-cloak>
             <a ng-class="{'active': chartTable == 0}" ng-click="changeView(0,repsChart.reps)" type="button"
-               class="button icon ion-arrow-graph-up-right tab2"
-               style="border-top:none;border-bottom:none;border-left:none;font-size: 2.0em;"></a>
+               class="button icon ion-arrow-graph-up-right tab2 ng-cloak"
+               style="border-top:none;border-bottom:none;border-left:none;font-size: 2.0em;" ng-cloak></a>
             <a ng-class="{'active': chartTable == 1}" ng-click="changeView( 1,repsChart.reps)" type="button"
-               class="button icon ion-ios-list-outline tab2"
-               style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"></a>
+               class="button icon ion-ios-list-outline tab2 ng-cloak"
+               style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;" ng-cloak></a>
             <a ng-class="{'active': chartTable == 3}" type="button"
-               class="button icon ion-ios-lightbulb-outline"
+               class="button icon ion-ios-lightbulb-outline ng-cloak"
                style="border-top:none;border-bottom:none;border-right:none;font-size: 2.0em;"
-               ng-click="changeView(3,repsChart.reps)"></a>
+               ng-click="changeView(3,repsChart.reps)" ng-cloak></a>
         </div>
 
     </ion-footer-bar>

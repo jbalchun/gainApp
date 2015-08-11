@@ -35,7 +35,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
 
 
     var refresh = function () {
-        $scope.chartTable = 0;
+        //$scope.chartTable = 0;
         axisAdjust(false);
         $scope.bodyWtFlag = true;
         $scope.liftName = "Select Lift";
@@ -170,9 +170,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         });
         confirmPopup.then(function (res) {
             ////console.log('Tapped!', res);
-
         });
-
     };
     $scope.keyPressed = function (keyEvent, formModel) {
         //if (keyEvent.keyCode == 13) {

@@ -97,7 +97,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
             return returnFlag;
         },
         clearLifts:function(){
-            $localStorage.$reset();
+            //$localStorage.$reset();
             //location.reload()
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
@@ -202,7 +202,6 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                 weight:'light'});
         },
         loadLiftFromCalendar:function(workout){ //has to search, can't just go off index asshole.
-
             angular.forEach($rootScope.$storage.workouts,function(workout2,ind){
                 console.log('name',workout.name,workout.date)
                 if(workout.name == workout2.name && workout.date == workout2.date){

@@ -36,7 +36,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
     $scope.$on('calRefresh', function () {
         $scope.filterList = angular.copy($scope.$storage.workouts);
 
-    })
+    });
     $scope.toggleGroup = function (group) {
         if ($scope.isGroupShown(group)) {
             $scope.shownGroup = null;
@@ -192,14 +192,14 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         if (date == 'clear') {
             $scope.dateObj[angular.copy($scope.dateType)] = angular.copy($scope.dateType);
             $scope.popover.hide();
-            $scope.filter()
+            $scope.filter();
             //$scope.filterList = angular.copy($scope.workouts);
             return
         }
         $scope.dateObj[angular.copy($scope.dateType)] = date;
         $scope.dateType = '';
         $scope.popover.hide();
-        $scope.filter()
+        $scope.filter();
     }
 
     $scope.namePopupSelect = function (name) {
