@@ -1,4 +1,4 @@
-<ion-popover-view style="height:{{(35 * dateList) + 'px'}};  overflow-y: scroll; width:100px ">
+<ion-popover-view style="height:{{(35 * dateList.length) + 'px'}};  overflow-y: scroll; width:100px ">
     <ion-list>
         <ion-item  ng-click="datePopupSelect('clear')">Clear Filter</ion-item>
         <ion-item  ng-if="isLiftDay(date)" ng-repeat="date in dateList track by $index"   ng-click="datePopupSelect(date)"

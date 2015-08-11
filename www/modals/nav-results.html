@@ -25,7 +25,6 @@
                         </div>
                     </ion-item>
                 </ion-list>
-
             </div>
             <div class="card" ng-repeat="lift in resultsLifts">
                 <div class="item item-divider" ng-class-even="'month-divider'" ng-class-odd="'month-divider-odd'">
@@ -48,18 +47,18 @@
                             <a class="col"
                                ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt
                                ||resultsSourceNameMap[lift.name+set1.reps].todaysMax >goalMap[lift.name+set1.reps].wt ,
-                               'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].todaysMax}}</a>
+                               'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].todaysMax || 'None'}}</a>
                             <!--last-->
-                            <a class="col" ng-class="{'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].last.wt}}</a>
+                            <a class="col" ng-class="{'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].last.wt || 'None'}}</a>
                             <!--PR-->
                             <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt > resultsSourceNameMap[lift.name+set1.reps].todaysMax"
                                ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt}"
-                               class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt}}</a>
+                               class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt || 'None'}}</a>
                             <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt == resultsSourceNameMap[lift.name+set1.reps].todaysMax"
                                class="col"
-                               ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].max.wt}}</a>
+                               ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].max.wt || 'None'}}</a>
                             <!--goal-->
-                            <a class="col" ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax >goalMap[lift.name+set1.reps].wt}"> {{goalMap[lift.name+set1.reps].wt}}</a>
+                            <a class="col" ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax >goalMap[lift.name+set1.reps].wt}"> {{goalMap[lift.name+set1.reps].wt || 'None'}}</a>
                         </div>
                     </ion-item>
                 </ion-list>
