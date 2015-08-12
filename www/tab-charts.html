@@ -1,4 +1,4 @@
-<ion-view  title="Data" ng-controller="chartcontrol" cache-view="true">
+<ion-view title="Data" ng-controller="chartcontrol" cache-view="true">
     <ion-nav-buttons side="left">
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em'
                 ng-click="showInfo()">
@@ -18,37 +18,38 @@
             <!--</div>-->
             <div class="row">
                 <div class="col-40 col-offset-20">
-                    <a class=>{{chartTitle}}</a><a ng-show="bodyWtFlag && repsChart.reps">{{ " for " +repsChart.reps + "reps"}}</a>
+
                 </div>
             </div>
-
+            <div style="min-height:200px;">
             <canvas id="line" class="chart chart-line" data="weightSet" labels="dateSet"
                     legend="true" click="" options="chartOptions"></canvas>
             <div>
                 <a>{{firstDate}}</a> <a style="float:right;">{{lastDate}}</a>
+            </div>
             </div>
             <div class="item-input-wrapper">
 
                 <input ng-submit="keyPressed($event.keyCode)" class="col col-33 col-offset-34" type="tel"
                        placeholder="Goal" maxlength="3"
                        ng-model="goalNum.wt.wt">
-                <button class="button button-clear" ng-click="updateGoal(repsChart.reps)">Update
+                <button ng-if="stateW = 'heroku'" class="button button-clear" ng-click="updateGoal(repsChart.reps)">Update
                 </button>
             </div>
             <div class="button-bar liftSearchButtons" style="padding:0px">
                 <a type="button"
-                   class="button button-clear timerButtonSmall" ng-class="{'active': spanSelect ==5 }"
+                   class="button button-clear button-positive button-positive timerButtonSmall" ng-class="{'active': spanSelect ==5 }"
                    ng-click="selectTimespan(5)" style="border-top:none;border-bottom:none;border-right:none;">5 wks</a>
                 <a type="button"
-                   class="button button-clear timerButtonSmall" ng-class="{'active': spanSelect ==10}"
+                   class="button button-clear button-positive timerButtonSmall" ng-class="{'active': spanSelect ==10}"
                    ng-click="selectTimespan(10)" style="border-top:none;border-bottom:none;border-right:none;">10
                     wks</a>
                 <a type="button button-clear timerButtonSmall"
-                   class="button button-clear timerButtonSmall" ng-class="{'active': spanSelect ==20 }"
+                   class="button button-clear button-positive timerButtonSmall" ng-class="{'active': spanSelect ==20 }"
                    ng-click="selectTimespan(20)" style="border-top:none;border-bottom:none;border-right:none;">20
                     wks</a>
                 <a type="button button-clear timerButtonSmall"
-                   class="button button-clear timerButtonSmall" ng-class="{'active': !spanSelect }"
+                   class="button button-clear button-positive timerButtonSmall" ng-class="{'active': !spanSelect }"
                    ng-click="selectTimespan(false)"
                    style="border-top:none;border-bottom:none;border-right:none;">All</a>
             </div>
@@ -57,7 +58,8 @@
             <!--<div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">-->
             <!--</div>-->
             <ion-item class="item item-remove-animate no-padding">
-                <div ng-show="chartTable==0|| chartTable == 3 || (bodyWtFlag && chartTable == 1)" class="liftNameButton">
+                <div ng-show="chartTable==0|| chartTable == 3 || (bodyWtFlag && chartTable == 1)"
+                     class="liftNameButton">
                     <button class="liftSelectEntry button button-clear button-positive" style="float:left;"
                             ng-click="openModal()">{{liftName}}
                     </button>
@@ -72,51 +74,72 @@
                     <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
                 </div>
             </ion-item>
-            <!--Analytics view-->
-            <ion-item ng-show="chartTable == 3" class="item item-remove-animate no-padding ng-cloak ng-hide" ng-cloak>
-                <ion-item>
-                    <a>Avg change per week:</a>
+        </div>
+        <!--Analytics view-->
 
-                    <a style="float:right" ng-class="{'pr-color':deltaWeeks>0,'last-less-color':deltaWeeks<0}">{{deltaWeeks}}%</a>
-                    <a style="float:right" class="pr-color" ng-show="deltaWeeks>0">+</a>
-                    <a style="float:right" class="last-less-color" ng-show="deltaWeeks<0">-</a>
-                </ion-item>
-                <ion-item>
-                    <a>Avg body wt change per week:</a>
-                    <a style="float:right" ng-class="{'pr-color':deltaBody>0,'last-less-color':deltaBody<0}">{{deltaBody}}%</a>
-                    <a style="float:right" class="pr-color" ng-show="deltaBody>0">+</a>
-                    <a style="float:right" class="last-less-color" ng-show="deltaBody<0">-</a>
-                </ion-item>
-                <ion-item>
-                    <a style="font-size:.9em;">Change in weight/Change in body weight:</a>
-                    <a style="float:right ;" ng-class="{'pr-color':deltaWtBody>1,'last-less-color':deltaWtBody<1}">{{deltaWtBody}}</a>
-                </ion-item>
-                <ion-item>
-                    <a>Goal:</a>
-                    <a style="float:right;color:#387ef5;" >{{goalNum.wt.wt || 'None'}}</a>
-                </ion-item>
-                <ion-item>
-                    <a>Projected weeks till goal: </a>
-                    <a style="float:right;color:#387ef5;"  ng-show="showWeeks"> wks</a>
-                    <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{goalProject}}&nbsp; </a>
+        <div class="card" class="item item-remove-animate no-padding ng-cloak ng-hide" ng-show="chartTable == 3"
+             ng-cloak>
+            <ion-item>
+                <a>Avg change per week:</a>
 
-                </ion-item>
+                <a style="float:right" ng-class="{'pr-color':deltaWeeks>0,'last-less-color':deltaWeeks<0}">{{deltaWeeks}}%</a>
+                <a style="float:right" class="pr-color" ng-show="deltaWeeks>0">+</a>
+                <a style="float:right" class="last-less-color" ng-show="deltaWeeks<0">-</a>
             </ion-item>
-            <ion-item ng-show="chartTable == 1" ng-repeat="lift in dateWeightObjectList | reverse">
-
-                <a>{{lift.date}}</a>
-                <a style="float:right">{{lift.wt + " lbs"}}</a>
-
+            <ion-item>
+                <a>Avg body wt change per week:</a>
+                <a style="float:right"
+                   ng-class="{'pr-color':deltaBody>0,'last-less-color':deltaBody<0}">{{deltaBody}}%</a>
+                <a style="float:right" class="pr-color" ng-show="deltaBody>0">+</a>
+                <a style="float:right" class="last-less-color" ng-show="deltaBody<0">-</a>
             </ion-item>
-            <ion-item ng-if="chartTable == 0" class="item  item-remove-animate no-padding">
-                <div class="row" style="padding:8px ">
-                    <a class="col col-offset-25 liftSelectEntry ng-cloak" ng-click="chartBodyWeight()" ng-show="bodyWtFlag" ng-cloak>Chart
-                        Body Weight</a>
-                    <a class="col col-offset-25 chartSwitch ng-cloak" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag" ng-cloak>Chart
-                        current lift</a>
-                </div>
+            <ion-item>
+                <a style="font-size:.9em;">Change in weight/Change in body weight:</a>
+                <a style="float:right ;" ng-class="{'pr-color':deltaWtBody>1,'last-less-color':deltaWtBody<1}">{{deltaWtBody}}</a>
             </ion-item>
         </div>
+
+        <div class="card" class="item item-remove-animate no-padding ng-cloak ng-hide" ng-show="chartTable == 3"
+             ng-cloak>
+            <ion-item>
+                <a>Goal:</a>
+                <a style="float:right;color:#387ef5;">{{goalNum.wt.wt || 'None'}}</a>
+            </ion-item>
+            <ion-item>
+                <a>Last Recorded Weight:</a>
+                <a style="float:right;color:#387ef5;">{{lastWt || 'None'}}</a>
+            </ion-item>
+            <ion-item>
+                <a>Projected weeks till goal: </a>
+                <a style="float:right;color:#387ef5;" ng-show="showWeeks"> wks</a>
+                <a style="float:right;color:#387ef5;" ng-class="{'last-less-color':goalProject=='Never'}">{{goalProject}}&nbsp; </a>
+            </ion-item>
+        </div>
+
+        <div class="card" ng-show="chartTable == 1 && dateWeightObjectList.length > 0">
+            <ion-scroll ng-class="scrollbox" zooming="true" direction="y" style="height:{{(35 * dateWeightObjectList.length) + 'px'}}; max-height: 80%;">
+
+            <ion-list show-delete="removeFlag">
+                <ion-item  ng-repeat="lift in dateWeightObjectList | reverse">
+
+                    <a>{{lift.date}}</a>
+                    <a style="float:right">{{lift.wt + " lbs"}}</a>
+
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div ng-show="chartTable == 0" class="card item  item-remove-animate no-padding ng-cloak ng-hide" ng-cloak>
+            <div class="row" style="padding:8px ">
+                <a class="col col-offset-25 liftSelectEntry ng-cloak" ng-click="chartBodyWeight()" ng-show="bodyWtFlag"
+                   ng-cloak>Chart
+                    Body Weight</a>
+                <a class="col col-offset-25 chartSwitch ng-cloak" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag"
+                   ng-cloak>Chart
+                    current lift</a>
+            </div>
+        </div>
+
 
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark tab2">
