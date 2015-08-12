@@ -53,6 +53,14 @@
                    ng-click="selectTimespan(false)"
                    style="border-top:none;border-bottom:none;border-right:none;">All</a>
             </div>
+            <div class="row item" style="padding:8px;  ">
+                <a class="col liftSelectEntry ng-cloak" style="margin-left:29%" ng-click="chartBodyWeight()" ng-show="bodyWtFlag"
+                   ng-cloak>Chart
+                    Body Weight</a>
+                <a class="col chartSwitch ng-cloak" style="margin-left:29%" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag"
+                   ng-cloak>Chart
+                    current lift</a>
+            </div>
         </div>
         <div class="card">
             <!--<div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">-->
@@ -128,18 +136,6 @@
                 </ion-item>
             </ion-list>
         </div>
-
-        <div ng-show="chartTable == 0" class="card item  item-remove-animate no-padding ng-cloak ng-hide" ng-cloak>
-            <div class="row" style="padding:8px ">
-                <a class="col col-offset-25 liftSelectEntry ng-cloak" ng-click="chartBodyWeight()" ng-show="bodyWtFlag"
-                   ng-cloak>Chart
-                    Body Weight</a>
-                <a class="col col-offset-25 chartSwitch ng-cloak" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag"
-                   ng-cloak>Chart
-                    current lift</a>
-            </div>
-        </div>
-
 
     </ion-content>
     <ion-footer-bar align-title="left" class="bar-dark tab2">
