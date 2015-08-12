@@ -508,6 +508,8 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.goalProject = '';
     $scope.deltaWtBody = '';
     $scope.showWeeks = false;
+    $scope.lastWt = '';
+    $scope.goalDiff ='';
 
     $scope.loadAnalytics = function () {
         getDeltaWeeks();
@@ -523,10 +525,10 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     }
 
     var getDeltaWeeks = function (arr) {
-        console.log('wtset', arr || $scope.weightSetFull[1])
         var wtSet = arr || $scope.weightSetFull[1];
         var total = 0;
         var count = wtSet.length - 1;
+        $scope.lastWt = $scope.weightSetFull[1][$scope.weightSetFull[1].length-1];
         for (var i = 0; i < count; i++) {
             console.log('this ', wtSet[i], ' next ', wtSet[i + 1])
             if (wtSet[i + 1] < wtSet[i]) {
@@ -560,6 +562,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             if (typeof $scope.goalNum.wt != 'undefined') {
                 if (typeof $scope.goalNum.wt.wt !== 'undefined') {
                     goal = $scope.goalNum.wt.wt;
+
                 }
             }
         }
