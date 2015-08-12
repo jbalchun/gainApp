@@ -54,11 +54,11 @@
                    style="border-top:none;border-bottom:none;border-right:none;">All</a>
             </div>
             <div class="row item" style="padding:8px;  ">
-                <a class="col liftSelectEntry ng-cloak" style="margin-left:29%" ng-click="chartBodyWeight()" ng-show="bodyWtFlag"
-                   ng-cloak>Chart
+                <a class="col liftSelectEntry" style="margin-left:29%" ng-click="chartBodyWeight()" ng-if="bodyWtFlag"
+                   >Chart
                     Body Weight</a>
-                <a class="col chartSwitch ng-cloak" style="margin-left:29%" ng-click="chartBodyWeight()" ng-show="!bodyWtFlag"
-                   ng-cloak>Chart
+                <a class="col chartSwitch " style="margin-left:29%" ng-click="chartBodyWeight()" ng-if="!bodyWtFlag"
+                   >Chart
                     current lift</a>
             </div>
         </div>
