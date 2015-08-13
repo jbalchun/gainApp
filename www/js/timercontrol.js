@@ -9,6 +9,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     $scope.stringMin = String($scope.rangeMin);
     $scope.stringSec = String($scope.rangeSec);
     $scope.infoFlag = 4;
+    $scope.loopFlag = false;
 
     $scope.$watch('minutes',function(){
         $scope.stringMin = String($scope.minutes)
@@ -23,6 +24,12 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
             $scope.stringSec = "0"+String($scope.seconds);
         }
     });
+
+    $scope.cycle = function(){
+        $scope.loopFlag = !$scope.loopFlag;
+        $scope.startStop();
+
+    };
 
     $scope.showInfo = function(){
         if ($rootScope.stateW =='heroku') {
@@ -202,6 +209,9 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
             }
         }
         else{$scope.$broadcast('timer-stop');
+            if($scope.loopFlag){
+                $scope.loopFlag = false;
+            }
             //window.plugins.insomnia.allowSleepAgain()
         }
         $scope.startStopFlag = !$scope.startStopFlag;
@@ -216,7 +226,8 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
             $scope.seconds = 0;
             $scope.startStopFlag = true;
         }
-    }
+    };
+
     $scope.finished = function(){
         //TODO local notification, works outside of app.
         $scope.startStopFlag = true;
@@ -224,10 +235,15 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
             title: 'Times up!',
             template: ''
         });
+        if($scope.loopFlag){
+            alertPopup.close();
+            $scope.$broadcast('timer-reset');
+            $scope.startStop();
+        }
         alertPopup.then(function(res) {
 
         });
-    }
+    };
 
 
 

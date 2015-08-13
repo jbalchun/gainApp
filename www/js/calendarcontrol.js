@@ -109,9 +109,13 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
     });
 
     $scope.showInfo = function () {
+        $timeout(function(){
+            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
+            $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+        },3);
         if ($rootScope.stateW == 'heroku') {
             var datenew = new Date()
-            winston.log('info', $scope.$storage.userId + ", viewed calendar info")
+            winston.log('info', $scope.$storage.userId + ", viewed calendar info");
         }
         var confirmPopup = $ionicPopup.show({
             title: 'Calendar',
@@ -126,6 +130,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                     text: '<b>Done</b>',
                     type: 'button-dark',
                     onTap: function (e) {
+
 
                     }
                 }
@@ -294,6 +299,14 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
 
 
         })
+
+        //$scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+        //    if (states.fromCache && states.stateName == "tab.charts") {TODO something like this
+        //        // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
+        //        refresh();
+        //    }
+        //});
+        //
 
         var flagCheckArray = [{flag: dayFlag, array: dayArray}, {flag: monthFlag, array: monthArray},
             {flag: yearFlag, array: yearArray}, {flag: nameFlag, array: nameArray}, {flag: liftFlag, array: liftArray}];

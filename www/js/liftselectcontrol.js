@@ -89,14 +89,14 @@ app.controller('liftselectcontrol',
             } else {
                 $scope.liftObjectForSettingsChange['weight'] = index2;
             }
-        }
+        };
 
         $scope.editSettings = function (name) {
             $scope.liftForSettingsChange = name;
 
-            angular.forEach($scope.$storage.liftData, function (lift, index) {
+            angular.forEach($scope.$storage.liftData, function (lift, index) {//todo this should be in the localstore
                 if (name == lift.name) {
-                    $scope.liftObjectForSettingsChange = lift
+                    $scope.liftObjectForSettingsChange = lift;
                 }
             });
             var confirmPopup = $ionicPopup.show({
@@ -116,7 +116,7 @@ app.controller('liftselectcontrol',
             confirmPopup.then(function (res) {
                 //console.log('Tapped!', res);
             });
-        }
+        };
 
         $scope.listSort = function (cat, val) {
             $ionicScrollDelegate.scrollTop();
@@ -235,11 +235,16 @@ app.controller('liftselectcontrol',
                                 //TODO focus snap
                                 e.preventDefault();
                             } else {
+
                                 localStore.addLiftToList($scope.newLiftName.name);
+                                //$scope.editSettings($scope.newLiftName.name);TODO get this to work properly
                                 $scope.newLiftName.name = '';
                                 $scope.liftData = $localStorage.liftData;
+
                                 $scope.filterCustom(true);
+
                             }
+
                         }
                     }
                 ]

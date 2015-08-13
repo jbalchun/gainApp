@@ -2,7 +2,7 @@
  * Created by Jbalchun on 12/26/14.
  */
 var app = angular.module('MyApp.maincontrol', ['ionic', 'MyApp.services', 'ngStorage', 'ngCordova']);
-app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootScope", "localStore", "$ionicPopup", "$ionicPopover", "$ionicPlatform", "$timeout", "$ionicScrollDelegate", function ($scope, $ionicModal, $localStorage, $rootScope, localStore, $ionicPopup, $ionicPopover, $ionicPlatform, $timeout, $ionicScrollDelegate) {
+app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootScope", "$state", "localStore", "$ionicPopup", "$ionicPopover", "$ionicPlatform", "$timeout", "$ionicScrollDelegate", function ($scope, $ionicModal, $localStorage, $rootScope,$state, localStore, $ionicPopup, $ionicPopover, $ionicPlatform, $timeout, $ionicScrollDelegate) {
 
     $scope.removeFlag = false;
     //$scope.reorderFlag=false;
@@ -539,7 +539,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                 }
             ]
         })
-    }
+    };
 
 
     $rootScope.emailPop = function () {
@@ -905,6 +905,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                 $scope.workoutName.name ='';
                 $scope.notes.notes = '';
                 $scope.bodyWeight.wt = '';
+                $state.go('tab.calendar')//TODO reset filter etc so that it's showing via broadcast or emit
                 }else {
                     $scope.dateErrorPop();
                 }
