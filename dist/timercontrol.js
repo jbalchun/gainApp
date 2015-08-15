@@ -27,6 +27,8 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
 
     $scope.cycle = function(){
         $scope.loopFlag = !$scope.loopFlag;
+        $scope.startStop();
+
     };
 
     $scope.showInfo = function(){
@@ -207,12 +209,21 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
             }
         }
         else{$scope.$broadcast('timer-stop');
+            if($scope.loopFlag){
+                $scope.loopFlag = false;
+            }
             //window.plugins.insomnia.allowSleepAgain()
         }
         $scope.startStopFlag = !$scope.startStopFlag;
     };
 
     $scope.reset = function(){
+        console.log($scope.loopFlag)
+        if($scope.loopFlag){
+            console.log('init')
+            $scope.loopFlag = false;
+            $scope.$broadcast('timer-reset');
+        }
 
         if($scope.timerClear == false){
             //console.log('reset');
@@ -231,7 +242,9 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$timeout", "$rootScope
             template: ''
         });
         if($scope.loopFlag){
-            alertPopup.hide();
+            alertPopup.close();
+            $scope.$broadcast('timer-reset');
+            $scope.startStop();
         }
         alertPopup.then(function(res) {
 

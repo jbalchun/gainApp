@@ -218,6 +218,12 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     };
 
     $scope.reset = function(){
+        console.log($scope.loopFlag)
+        if($scope.loopFlag){
+            console.log('init')
+            $scope.loopFlag = false;
+            $scope.$broadcast('timer-reset');
+        }
 
         if($scope.timerClear == false){
             //console.log('reset');
