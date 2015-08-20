@@ -26,7 +26,8 @@
     "https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-splashscreen.git",
-    "https://github.com/apache/cordova-plugin-whitelist"
+    "https://github.com/apache/cordova-plugin-whitelist",
+    "https://github.com/katzer/cordova-plugin-local-notifications"
   ],
   "cordovaPlatforms": [
     "ios"

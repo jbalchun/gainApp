@@ -64,97 +64,97 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             weight: 'heavy'
         },
 
-            {
-                name: "Russian Twists",
-                attr1: "4",
-                attr2: "4",
-                attr3: "1",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Seated Dumbell Shoulder Press",
-                attr1: "1",
-                attr2: "2",
-                attr3: "1",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Power Clean",
-                attr1: "5",
-                attr2: "1",
-                attr3: "2",
-                goals: {},
-                weight: 'heavy'
-            }, {
-                name: "Seated Cable Row",
-                attr1: "2",
-                attr2: "3",
-                attr3: "1",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Barbell Barbell Curls",
-                attr1: "2",
-                attr2: "1",
-                attr3: "2",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Dumbell Pec Flys",
-                attr1: "1",
-                attr2: "2",
-                attr3: "1",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Standing Dumbell Side Raises",
-                attr1: "1",
-                attr2: "2",
-                attr3: "2",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Standing Bent Over Barbell Rows",
-                attr1: "2",
-                attr2: "1",
-                attr3: "2",
-                goals: {},
-                weight: 'heavy'
-            }, {
-                name: "Seated Machine Calf Raises",
-                attr1: "3",
-                attr2: "3",
-                attr3: "1",
-                weight: 'light'
-            }, {
-                name: "Inclined Crunches",
-                attr1: "4",
-                attr2: "4",
-                attr3: "2",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "HyperExtensions",
-                attr1: "4", // /^[-+](3|4)$/ how to do multiple matches?
-                attr2: "4",
-                attr3: "1",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Barbell Upright Rows",
-                attr1: "2",
-                attr2: "1",
-                attr3: "2",
-                goals: {},
-                weight: 'light'
-            }, {
-                name: "Dips",
-                attr1: "1",
-                attr2: "4",
-                attr3: "2",
-                goals: {},
-                weight: 'light'
-            },
+        {
+            name: "Russian Twists",
+            attr1: "4",
+            attr2: "4",
+            attr3: "1",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Seated Dumbell Shoulder Press",
+            attr1: "1",
+            attr2: "2",
+            attr3: "1",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Power Clean",
+            attr1: "5",
+            attr2: "1",
+            attr3: "2",
+            goals: {},
+            weight: 'heavy'
+        }, {
+            name: "Seated Cable Row",
+            attr1: "2",
+            attr2: "3",
+            attr3: "1",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Barbell Curls",
+            attr1: "2",
+            attr2: "1",
+            attr3: "2",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Dumbell Pec Flys",
+            attr1: "1",
+            attr2: "2",
+            attr3: "1",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Standing Dumbell Side Raises",
+            attr1: "1",
+            attr2: "2",
+            attr3: "2",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Standing Bent Over Barbell Rows",
+            attr1: "2",
+            attr2: "1",
+            attr3: "2",
+            goals: {},
+            weight: 'heavy'
+        }, {
+            name: "Seated Machine Calf Raises",
+            attr1: "3",
+            attr2: "3",
+            attr3: "1",
+            weight: 'light'
+        }, {
+            name: "Inclined Crunches",
+            attr1: "4",
+            attr2: "4",
+            attr3: "2",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "HyperExtensions",
+            attr1: "4", // /^[-+](3|4)$/ how to do multiple matches?
+            attr2: "4",
+            attr3: "1",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Barbell Upright Rows",
+            attr1: "2",
+            attr2: "1",
+            attr3: "2",
+            goals: {},
+            weight: 'light'
+        }, {
+            name: "Dips",
+            attr1: "1",
+            attr2: "4",
+            attr3: "2",
+            goals: {},
+            weight: 'light'
+        },
         ],
         dummy: [
             {
@@ -165,7 +165,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 lifts: [{
                     'name': 'Barbell Bench Press',
                     'sets': [{'reps': '5', wt: '225'}, {'reps': '3', wt: '250'}, {'reps': '1', wt: '285'}]
-                },
+                    },
                     {
                         'name': 'Barbell Curls',
                         'sets': [{'reps': '5', wt: 40}, {'reps': '10', wt: 40}, {'reps': '15', wt: '35'}]
@@ -174,7 +174,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                         'name': 'Dumbell Pec Flys',
                         'sets': [{'reps': '10', wt: '25'}, {'reps': '10', wt: '25'}, {'reps': '10', wt: '25'}]
                     }
-                ]
+                    ]
             }, {
                 'date': 'Jun 15 2015',
                 bodyWeight: {wt: '202'},
@@ -183,16 +183,17 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 lifts: [{
                     'name': 'Barbell Back Squat',
                     'sets': [{'reps': '8', wt: '315'}, {'reps': '8', wt: '335'}, {'reps': '8', wt: '355'}]
-                },
+                    },
                     {
-                        'name': 'Standing Calf Raises',
-                        'sets': [{'reps': '10', wt: '45'}, {'reps': '10', wt: '55'}, {'reps': '10', wt: '55'}]
+                        'name': 'Standing Machine Calf Raises',
+                        'super':true,
+                        'sets': [{'reps': '5', wt: '180'}, {'reps': '10', wt: '180'}, {'reps': '15', wt: '180'}]
                     },
                     {
                         'name': 'HyperExtensions',
-                        'sets': [{'reps': '5', wt: 500}, {'reps': '10', wt: 400}, {'reps': '15', wt: 250}]
+                        'sets': [{'reps': '5', wt: 45}, {'reps': '10', wt: 25}, {'reps': '15', wt: 10}]
                     }
-                ]
+                    ]
             }, {
                 'date': 'Jun 25 2015',
                 bodyWeight: {wt: '203'},
@@ -201,16 +202,16 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 lifts: [{
                     'name': 'Barbell Bench Press',
                     'sets': [{'reps': '5', wt: '235'}, {'reps': '3', wt: '260'}, {'reps': '1', wt: '285'}]
-                },
+                    },
                     {
                         'name': 'Barbell Curls',
                         'sets': [{'reps': '5', wt: '50'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '15'}]
                     },
                     {
-                        'name': 'Barbell Back Squat',
-                        'sets': [{'reps': '5', wt: '700'}, {'reps': '10', wt: '500'}, {'reps': '15', wt: '300'}]
+                        'name': 'Dumbell Pec Flys',
+                        'sets': [{'reps': '10', wt: '30'}, {'reps': '10', wt: '30'}, {'reps': '10', wt: '30'}]
                     }
-                ]
+                    ]
             },
             {
                 'date': 'Jul 03 2015',
@@ -220,16 +221,16 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 lifts: [{
                     'name': 'Barbell Bench Press',
                     'sets': [{'reps': '5', wt: '245'}, {'reps': '3', wt: '265'}, {'reps': '1', wt: '290'}]
-                },
+                    },
                     {
                         'name': 'Barbell Curls',
                         'sets': [{'reps': '5', wt: '50'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '15'}]
                     },
                     {
-                        'name': 'Barbell Back Squat',
-                        'sets': [{'reps': '5', wt: '400'}, {'reps': '10', wt: '500'}, {'reps': '15', wt: '300'}]
+                        'name': 'Dumbell Pec Flys',
+                        'sets': [{'reps': '10', wt: '35'}, {'reps': '10', wt: '35'}, {'reps': '10', wt: '35'}]
                     }
-                ]
+                    ]
             },
             {
                 'date': 'Jul 12 2015',
@@ -239,16 +240,16 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 lifts: [
                     {
                         'name': 'Barbell Back Squat',
-                        'sets': [{'reps': '5', wt: '400'}, {'reps': '10', wt: '500'}, {'reps': '15', wt: '300'}]
+                        'sets': [{'reps': '8', wt: '335'}, {'reps': '8', wt: '365'}, {'reps': '8', wt: '385'}]
                     },
                     {
                     'name': 'Standing Machine Calf Raises',
                         'super':true,
                     'sets': [{'reps': '5', wt: '200'}, {'reps': '10', wt: '200'}, {'reps': '15', wt: '200'}]
-                },
+                    },
                     {
-                        'name': 'Barbell Curls',
-                        'sets': [{'reps': '5', wt: '50'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '15'}]
+                        'name': 'HyperExtensions',
+                        'sets': [{'reps': '5', wt: 55}, {'reps': '10', wt: 45}, {'reps': '15', wt: 25}]
                     },
 
                 ]
@@ -261,7 +262,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 lifts: [{
                     'name': 'Barbell Bench Press',
                     'sets': [{'reps': '5', wt: '255'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '295'}]
-                },
+                    },
                     {
                         'name': 'Barbell Curls',
                         'sets': [{'reps': '5', wt: '50'}, {'reps': '10', wt: '35'}, {'reps': '15', wt: '15'}]

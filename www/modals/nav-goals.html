@@ -19,7 +19,8 @@
                         <button class="button weight-pad button-clear  button-positive"  >{{set.reps +" Reps"}}</button>
                     </div>
                     <div style="float:right;">
-                        <button class="button button-outline button-positive" ng-class="{'button-selected-lift':wtSelectPress == $index+'3','button-noborder':wtSelectPress != $index+'3'}" style="padding-right: 5px" ng-click="selectGoal($index,2)">{{"Goal: "+ goalMapEdit[nameLift+set.reps].wt  +" lbs"}}</button>
+                        <button class="button button-outline button-positive" ng-class="{'button-selected-lift':wtSelectPress == $index+'3','button-noborder':wtSelectPress != $index+'3'}" style="margin-right:10px" ng-click="selectGoal($index,2)">
+                            {{"Goal: "+ goalMapEdit[nameLift+set.reps].wt  +" lbs"}}</button>
                     </div>
                     <ion-delete-button class="ion-minus-circled"
                                        ng-click="removeSet($index)" style="float:left">

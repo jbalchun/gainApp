@@ -199,6 +199,16 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
         if($scope.startStopFlag){
             if($scope.timerClear){
                 $scope.$broadcast('timer-start');
+                if(window.cordova){
+                    var now = new Date().getTime(),
+                        timeUp  = new Date(now + $scope.seconds*1000+$scope.minutes*60*1000);
+                    cordova.plugins.notification.local.schedule({
+                        text: "Delayed Notification",
+                        at: timeUp,
+                        led: "FF0000",
+                        sound: null
+                    });
+                }
                 //window.plugins.insomnia.keepAwake();
                 $scope.timerClear = false;
                 //console.log($scope.timerClear)
@@ -237,6 +247,8 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     $scope.finished = function(){
         //TODO local notification, works outside of app.
         $scope.startStopFlag = true;
+
+
         var alertPopup = $ionicPopup.alert({
             title: 'Times up!',
             template: ''
