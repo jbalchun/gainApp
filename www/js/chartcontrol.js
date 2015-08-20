@@ -339,7 +339,10 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         if ($scope.chartTitle == "Dummy Lift for xx reps" || $scope.weightSet == [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],]) {
             return;
         }
-        if ($scope.liftName == "Select Lift" || $scope.selectedReps == "Select Reps") {
+        if (($scope.liftName == "Select Lift" || $scope.selectedReps == "Select Reps") && $scope.bodyWtFlag) {
+            if($scope.bodyWtFlag){//TODO bodywt resets span
+                $scope.spanSelect = span;
+            }
             return;
         }
         $scope.spanSelect = span;
@@ -375,6 +378,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         $scope.liftName = "Select Lift";
         resetAnalytics();
         $scope.selectedReps = "Select Reps";
+        $scope.selectTimespan(false);
         if ($scope.bodyWtFlag || (updateFlag == 1 && !$scope.bodyWtFlag)) { //it's true, meaning we haven't drawn
             if (updateFlag == 1) {
                 $scope.updateFlag = 0;

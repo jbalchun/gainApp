@@ -339,7 +339,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         if ($scope.chartTitle == "Dummy Lift for xx reps" || $scope.weightSet == [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],]) {
             return;
         }
-        if ($scope.liftName == "Select Lift" || $scope.selectedReps == "Select Reps") {
+        if (($scope.liftName == "Select Lift" || $scope.selectedReps == "Select Reps") && $scope.bodyWtFlag) {
             return;
         }
         $scope.spanSelect = span;
