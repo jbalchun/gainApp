@@ -293,130 +293,137 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
     };
 
     function keyboardHideHandler(e) {
-        $rootScope.$broadcast('closeKeyboard')
+        $rootScope.$broadcast('closeKeyboard');
     }
 
     $rootScope.stateW = '';
     $rootScope.email = {email: ''};
 
-    $ionicPlatform.ready(function () {
+    $rootScope.$on('$ionicView.loaded', function() {
+        $ionicPlatform.ready(function () {
 
-        //PARSE
-        ////console.log(winston != undefined)
-        Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
-        //
-        //Parse.FacebookUtils.logIn(null, {
-        //    success: function(user) {
-        //        if (!user.existed()) {
-        //            alert("User signed up and logged in through Facebook!");
-        //        } else {
-        //            alert("User logged in through Facebook!");
-        //        }
-        //    },
-        //    error: function(user, error) {
-        //        alert("User cancelled the Facebook login or did not fully authorize.");
-        //    }
-        //});
-        //
-        //var TestObject = Parse.Object.extend("TestObject");
-        //var testObject = new TestObject();
-        //testObject.save({foo: "bar"}).then(function(object) {
-        //    alert("yay! it worked");
-        //});
-        //var user = new Parse.User();
-        //user.set("username", "my name2");
-        //user.set("password", "my pass2");
-        //user.set("email", "email@exa3mple.com");
-
-        //// other fields can be set just like with Parse.Object
-        //        user.set("phone", "650-555-0000");
-
-        //user.signUp(null, {
-        //    success: function(user) {
-        //        // Hooray! Let them use the app now.
-        //    },
-        //    error: function(user, error) {
-        //        // Show the error message somewhere and let the user try again.
-        //        alert("Error: " + error.code + " " + error.message);
-        //    }
-        //});
-
-        if ($rootScope.$storage.populated == false) {//load in dummy data for demos
-            //$rootScope.$storage.dummy.reverse();
-
-            angular.forEach($rootScope.$storage.dummy, function (workout, key) {
-                //console.log('notes', workout)
-                localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes)
-            })
-            $rootScope.$storage.populated = true
-            location.reload();
-        }
-
-        if (!window.cordova) {
-            if (typeof winston !== "undefined") {
-                $rootScope.stateW = 'heroku'
-                ////console.log($rootScope.stateW)
+            //PARSE
+            ////console.log(winston != undefined)
+            Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
+            if(navigator && navigator.splashscreen) {
+                navigator.splashscreen.hide();
             }
-        }
-        if (window.cordova) {
-            $rootScope.stateW = 'cordova'
-        }
-        //console.log(typeof winston == undefined)
-        if (typeof winston == "undefined" && !window.cordova) {
-            $rootScope.stateW = 'local'
-        }
-        //determine state so we can track heroku demos/ show the email button
-        //console.log('state', $rootScope.stateW)
-        if ($rootScope.stateW == 'heroku') {
-            if ($rootScope.$storage.userId.length > 1) {//if they have a user id
-                ++$rootScope.$storage.visitCount
-                winston.log('info', 'user returning for the ' + $rootScope.$storage.visitCount + " time xlog:" + $rootScope.$storage.userId);
-                var ViewCount = Parse.Object.extend("ViewCount");
-                var viewCount = new ViewCount();
-                viewCount.save({uid: $rootScope.$storage.userId,viewCount:$rootScope.$storage.visitCount }).then(function(object) {
-                    //alert("yay! it worked");
-                });
-                    //Parse.User.logIn($rootScope.$storage.userId , "password", {
-                    //success: function(user) {
-                    //    // Do stuff after successful login.
-                    //},
-                    //error: function(user, error) {
-                    //    // The login failed. Check error to see why.
-                    //}
-                //});
-            } else {
-                $rootScope.$storage.userId = generateUUID()
-                winston.log('info', 'first visit for ' + $rootScope.$storage.userId);
-                ++$rootScope.$storage.visitCount;
-                console.log('parsing');
-                var Uid = Parse.Object.extend("Uid");
-                var uid = new Uid();
-                uid.save({uid: $rootScope.$storage.userId}).then(function(object) {
-                    //alert("yay! it worked");
-                });
-                winston.log('info', 'parsed');
-            }
-        }
-
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            window.addEventListener('native.keyboardhide', keyboardHideHandler);
-            navigator.splashscreen.hide();
-            //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            cordova.plugins.Keyboard.disableScroll(true);
-            //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            //$cordovaKeyboard.disableScroll(true)
-            //    .then(function(value) {
-            //  //console.log('keyboard locked'); // Success!
-            //}, function(reason) {
-            //  //console.log('keyboard error '); // Error!
+            //
+            //Parse.FacebookUtils.logIn(null, {
+            //    success: function(user) {
+            //        if (!user.existed()) {
+            //            alert("User signed up and logged in through Facebook!");
+            //        } else {
+            //            alert("User logged in through Facebook!");
+            //        }
+            //    },
+            //    error: function(user, error) {
+            //        alert("User cancelled the Facebook login or did not fully authorize.");
+            //    }
             //});
-            //window.open = cordova.InAppBrowser.open;
+            //
+            //var TestObject = Parse.Object.extend("TestObject");
+            //var testObject = new TestObject();
+            //testObject.save({foo: "bar"}).then(function(object) {
+            //    alert("yay! it worked");
+            //});
+            //var user = new Parse.User();
+            //user.set("username", "my name2");
+            //user.set("password", "my pass2");
+            //user.set("email", "email@exa3mple.com");
 
-        }
-        //if (window.StatusBar) {
-        //  // org.apache.cordova.statusbar required
-        //  StatusBar.styleDefault();
-        //}
+            //// other fields can be set just like with Parse.Object
+            //        user.set("phone", "650-555-0000");
+
+            //user.signUp(null, {
+            //    success: function(user) {
+            //        // Hooray! Let them use the app now.
+            //    },
+            //    error: function(user, error) {
+            //        // Show the error message somewhere and let the user try again.
+            //        alert("Error: " + error.code + " " + error.message);
+            //    }
+            //});
+
+
+
+            if ($rootScope.$storage.populated == false) {//load in dummy data for demos
+                //$rootScope.$storage.dummy.reverse();
+
+                angular.forEach($rootScope.$storage.dummy, function (workout, key) {
+                    //console.log('notes', workout)
+                    localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes)
+                })
+                $rootScope.$storage.populated = true
+                location.reload();
+            }
+
+            if (!window.cordova) {
+                if (typeof winston !== "undefined") {
+                    $rootScope.stateW = 'heroku'
+                    ////console.log($rootScope.stateW)
+                }
+            }
+            if (window.cordova) {
+                $rootScope.stateW = 'cordova'
+            }
+            //console.log(typeof winston == undefined)
+            if (typeof winston == "undefined" && !window.cordova) {
+                $rootScope.stateW = 'local'
+            }
+            //determine state so we can track heroku demos/ show the email button
+            //console.log('state', $rootScope.stateW)
+            if ($rootScope.stateW == 'heroku') {
+                if ($rootScope.$storage.userId.length > 1) {//if they have a user id
+                    ++$rootScope.$storage.visitCount
+                    winston.log('info', 'user returning for the ' + $rootScope.$storage.visitCount + " time xlog:" + $rootScope.$storage.userId);
+                    var ViewCount = Parse.Object.extend("ViewCount");
+                    var viewCount = new ViewCount();
+                    viewCount.save({uid: $rootScope.$storage.userId,viewCount:$rootScope.$storage.visitCount }).then(function(object) {
+                        //alert("yay! it worked");
+                    });
+                        //Parse.User.logIn($rootScope.$storage.userId , "password", {
+                        //success: function(user) {
+                        //    // Do stuff after successful login.
+                        //},
+                        //error: function(user, error) {
+                        //    // The login failed. Check error to see why.
+                        //}
+                    //});
+                } else {
+                    $rootScope.$storage.userId = generateUUID()
+                    winston.log('info', 'first visit for ' + $rootScope.$storage.userId);
+                    ++$rootScope.$storage.visitCount;
+                    console.log('parsing');
+                    var Uid = Parse.Object.extend("Uid");
+                    var uid = new Uid();
+                    uid.save({uid: $rootScope.$storage.userId}).then(function(object) {
+                        //alert("yay! it worked");
+                    });
+                    winston.log('info', 'parsed');
+                }
+            }
+
+            if (window.cordova && window.cordova.plugins.Keyboard) {
+                window.addEventListener('native.keyboardhide', keyboardHideHandler);
+                navigator.splashscreen.hide();
+                //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                cordova.plugins.Keyboard.disableScroll(true);
+                //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                //$cordovaKeyboard.disableScroll(true)
+                //    .then(function(value) {
+                //  //console.log('keyboard locked'); // Success!
+                //}, function(reason) {
+                //  //console.log('keyboard error '); // Error!
+                //});
+                //window.open = cordova.InAppBrowser.open;
+
+            }
+            //if (window.StatusBar) {
+            //  // org.apache.cordova.statusbar required
+            //  StatusBar.styleDefault();
+            //}
+        });
     });
 });
 

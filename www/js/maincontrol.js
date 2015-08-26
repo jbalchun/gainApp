@@ -391,7 +391,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     }
 
     $scope.historyPop = function (index) {
-        if ($scope.liftCards[index].name == 'Select Lift' || ($scope.liftCards[index].sets[0].reps == 0 && $scope.liftCards[index].sets[0].wt == 0)) {
+        if ($scope.liftCards[index].name == 'Select Lift' ||
+            ($scope.liftCards[index].sets[0].reps == 0 &&
+            $scope.liftCards[index].sets[0].wt == 0)) {
             return
         }
 
@@ -683,7 +685,8 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     };
 
     $scope.addSet = function (index) {
-        if ($scope.liftCards[index].sets[0].reps != 0 || $scope.liftCards[index].sets[0].wt != 0) {
+        if ($scope.liftCards[index].sets[0].reps != 0 ||
+            $scope.liftCards[index].sets[0].wt != 0) {
             localStore.addSet(index);
         }
 
@@ -826,7 +829,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $scope.buildResultsObject();
             $scope.modal3.show();
         } else if (id == 4) {
-            if ($scope.liftCards[index].name == 'Select Lift' || ($scope.liftCards[index].sets[0].reps == 0 && $scope.liftCards[index].sets[0].wt == 0)) {
+            if ($scope.liftCards[index].name == 'Select Lift' ||
+                ($scope.liftCards[index].sets[0].reps == 0 &&
+                $scope.liftCards[index].sets[0].wt == 0)) {
                 return
             }
             $scope.blurFlag = true;

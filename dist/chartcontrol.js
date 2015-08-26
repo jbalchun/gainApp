@@ -340,6 +340,9 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             return;
         }
         if (($scope.liftName == "Select Lift" || $scope.selectedReps == "Select Reps") && $scope.bodyWtFlag) {
+            if($scope.bodyWtFlag){//TODO bodywt resets span
+                $scope.spanSelect = span;
+            }
             return;
         }
         $scope.spanSelect = span;
@@ -375,6 +378,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.liftName = "Select Lift";
         resetAnalytics();
         $scope.selectedReps = "Select Reps";
+        $scope.selectTimespan(false);
         if ($scope.bodyWtFlag || (updateFlag == 1 && !$scope.bodyWtFlag)) { //it's true, meaning we haven't drawn
             if (updateFlag == 1) {
                 $scope.updateFlag = 0;

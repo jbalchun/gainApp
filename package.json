@@ -29,7 +29,5 @@
     "https://github.com/apache/cordova-plugin-whitelist",
     "https://github.com/katzer/cordova-plugin-local-notifications"
   ],
-  "cordovaPlatforms": [
-    "ios"
-  ]
+  "cordovaPlatforms": []
 }
