@@ -27,7 +27,8 @@
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-splashscreen.git",
     "https://github.com/apache/cordova-plugin-whitelist",
-    "https://github.com/katzer/cordova-plugin-local-notifications"
+    "https://github.com/katzer/cordova-plugin-local-notifications",
+    "https://github.com/apache/cordova-plugin-splashscreen.git"
   ],
   "cordovaPlatforms": []
 }

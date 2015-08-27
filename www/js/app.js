@@ -301,13 +301,13 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
 
     $rootScope.$on('$ionicView.loaded', function() {
         $ionicPlatform.ready(function () {
-
-            //PARSE
-            ////console.log(winston != undefined)
-            Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
             if(navigator && navigator.splashscreen) {
                 navigator.splashscreen.hide();
             }
+            //PARSE
+            ////console.log(winston != undefined)
+            Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
+
             //
             //Parse.FacebookUtils.logIn(null, {
             //    success: function(user) {

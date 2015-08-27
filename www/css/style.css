@@ -269,10 +269,16 @@ input[type="tel"].setInput {
 
 .timerMinus{
     color :#ef473a;
+    font-size:1.6em;
+    margin-left:0px;
+    padding-left:0px
 }
 
 .timerPlus{
     color :#33cd5f;
+    font-size:1.6em;
+    margin-right:0px;
+    padding-right:0px
 }
 
 /*.popup-buttons*/

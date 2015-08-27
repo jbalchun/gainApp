@@ -505,6 +505,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         }
 
     };
+
     //ANALYTICS
     ///////////////////////////////////
     $scope.deltaWeeks = '';
@@ -529,26 +530,23 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     }
 
     var getDeltaWeeks = function (arr) {
+        //input: array of weights
+        //calc:count+= (1-(i+1/i))
+        // count/weeks
+        //
         var wtSet = arr || $scope.weightSetFull[1];
         var total = 0;
         var count = wtSet.length - 1;
+        //var runningTotal = 0
         $scope.lastWt = $scope.weightSetFull[1][$scope.weightSetFull[1].length-1];
-        for (var i = 0; i < count; i++) {
-            console.log('this ', wtSet[i], ' next ', wtSet[i + 1])
-            if (wtSet[i + 1] < wtSet[i]) {
-                total += (-1 * ( wtSet[i + 1] / wtSet[i]));
-                console.log('total ', total, ' subbed ', (-1 * ( wtSet[i + 1] / wtSet[i])))
+        for (var i = 0; i <= count; i++) {
+            console.log('this ', wtSet[i], ' last ', wtSet[i - 1])
+            if(i != 0){
+                total += ((wtSet[i]/wtSet[i-1])-1)
             }
-            else {
-                total += ((wtSet[i + 1] / wtSet[i]));
-                console.log('total ', total, ' added ', ((wtSet[i + 1] / wtSet[i])));
-            }
-            ;
-        }
-        ;
-        console.log(total, count, total / count, ((total / count) - 1))
-        var num = ((total / count) - 1) * 100
-
+        };
+        console.log('total',total,'count', count, total / count, ((total / count) - 1))
+        var num = ((total / count)) * 100
         //if i passed an array i'm using it for something else and i want a return
         if (arr) {
             return num

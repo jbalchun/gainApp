@@ -29,19 +29,19 @@
             </div>
             <ion-item>
                 <div class="range">
-                    <i class="icon ion-minus-round timerMinus" ng-click="downOneMin()"></i>
+                    <button class="button-icon ion-minus-round timerMinus" ng-click="downOneMin()"></button>
                     <input type="range" ng-model="rangeMin.min" ng-readonly="!startStopFlag"  min="0" max="30" on-release="onRelease()" />
                     <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()"  />-->
 
-                    <i class="icon ion-plus-round timerPlus" ng-click="upOneMin()"></i>
+                    <button class="button-icon ion-plus-round timerPlus"  ng-click="upOneMin()"></button>
                 </div>
 
 
             <div class="range">
-                <i class="icon ion-minus-round timerMinus" ng-click="downOneSec()"></i>
+                <button class="button-icon ion-minus-round timerMinus" ng-click="downOneSec()"></button>
                 <input type="range" ng-model="rangeSec.sec" ng-readonly="!startStopFlag"  min="0" max="59" on-release="onRelease()" />
                 <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()" ng-if="!startStopFlag" disabled/>-->
-                <i class="icon ion-plus-round timerPlus" ng-click="upOneSec()"></i>
+                <button class="button-icon ion-plus-round timerPlus" ng-click="upOneSec()"></button>
             </div>
 
 
