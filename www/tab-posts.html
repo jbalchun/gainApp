@@ -11,7 +11,7 @@
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
         </button>
     </ion-nav-buttons>
-    <ion-content class="has-footer" has-header="true" ng-click="outRemove()">
+    <ion-content delegate-handle="small"  class="has-footer" has-header="true" ng-click="outRemove()">
         <div>
             <div class="list card">
                 <!--<div class="item item-divider color-header">-->
@@ -36,7 +36,6 @@
                             <button class="button button-clear button-assertive plusMinus" ng-class="{'active':lift.sets[0].reps == 0 && lift.sets[0].wt==0 || lift.sets.length ==1}" ng-click="removeSet($index)"
                                     style="float:right;">-
                             </button>
-
                         </div>
                         <div ng-if="lift.sets[0].reps == 0 && lift.sets[0].wt==0">
                         <button ng-class="{'active':lift.name =='Select Lift'}" class="button button-clear button-positive button-text-wrap liftNameButton"

@@ -84,6 +84,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
     $scope.addLift = function () {
         localStore.addLift('Select Lift', [{'reps': '0', wt: '0'}]);
+
+        $ionicScrollDelegate.$getByHandle('small').scrollBottom();
     }
 
     $scope.$on('loadedFromCalendar', function (event, args) {
