@@ -348,7 +348,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
             //console.log('String', string)
             $scope.filterList.push(JSON.parse(string))
         })
-        $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+        //$ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 
         //console.log('filterList', $scope.filterList)
     }
