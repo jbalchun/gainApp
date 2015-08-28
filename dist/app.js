@@ -298,6 +298,8 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$rootScope", 
 
     $rootScope.stateW = '';
     $rootScope.email = {email: ''};
+    $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+    $rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
 
     $rootScope.$on('$ionicView.loaded', function() {
         $ionicPlatform.ready(function () {

@@ -17,7 +17,8 @@
 
         </button>
     </ion-nav-buttons>
-    <ion-content scroll="false" class="has-header">
+    <ion-content scroll="false" class="has-header" >
+        <div style="background-color: #dbdbdb">
         <div class=" button-bar bar-positive" style="background-color:#ffffff;border-bottom: thin">
             <a on-hold="clearHold('lift')" ng-class="{'button-dark':liftName != 'Lift'}"
                class="button button-clear button-positive col" ng-click=" openModal()" style="width:2em;">
@@ -31,7 +32,7 @@
             </a>
 
         </div>
-        <div style="border-top: thick;"></div>
+        <!--<div style="border-top: thick;"></div>-->
         <div class=" button-bar bar-positive" style="background-color:#ffffff; margin-top:3px; ">
             <a on-hold="clearHold('month')" ng-class="{'button-dark':dateObj['Month'] != 'Month'}"
                class="button button-clear button-positive col " ng-click="datePopup($event,'Month')" style="width:3em">
@@ -49,10 +50,11 @@
             </a>
 
         </div>
+        </div>
         <div class="item item-divider color-header-cal" style="background-color:black">
         </div>
 
-        <ion-scroll delegate-handle="mainScroll" class="scrollbox" zooming="false"  scrollbar-x="false" direction="y"
+        <ion-content delegate-handle="mainScroll" class="scrollbox scroller" zooming="false" style="z-index: -1;padding-top: 90px;" overflow-scroll="true" scrollbar-x="false" direction="y"
                     style="border-top: thick; height:600px">
             <ion-list>
                 <div class="list" style=" height:700px">
@@ -98,6 +100,6 @@
                     </div>
                 </div>
             </ion-list>
-        </ion-scroll>
+        </ion-content>
     </ion-content>
 </ion-view>

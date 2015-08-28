@@ -110,8 +110,8 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
 
     $scope.showInfo = function () {
         $timeout(function(){
-            $ionicScrollDelegate.$getByHandle('mainScroll').resize();
-            $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
+            //$ionicScrollDelegate.$getByHandle('mainScroll').resize();
+            //$ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
         },3);
         if ($rootScope.stateW == 'heroku') {
             var datenew = new Date()
@@ -348,6 +348,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
             //console.log('String', string)
             $scope.filterList.push(JSON.parse(string))
         })
+        $ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 
         //console.log('filterList', $scope.filterList)
     }

@@ -217,6 +217,9 @@ input[type="tel"].setInput {
     padding-left: 0px;
 
 }
+.scroller{
+    -webkit-overflow-scrolling: touch;
+}
 .plusMinusGoal {
     font-size: 1.1em;
     padding: 0;

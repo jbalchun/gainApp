@@ -17,7 +17,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.data = [
         [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
     ];
-    $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+    $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
     $scope.bodyWeightData = [];
     $scope.bodyWtFlag = true;
     $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -47,8 +47,8 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.firstDate = 'Start Date';
         $scope.lastDate = 'End Date';
         $scope.goalNum.wt = getGoal();
-        $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
-        $scope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        //$rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        //$rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         resetAnalytics();
     };
 
@@ -265,14 +265,14 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         //popover.hide(".liftSelectEntry"); //find out to hide popup
         //console.log('selected', $scope.selectedReps);
         if ($scope.liftName != "Select Lift" && $scope.selectedReps != "Select Reps" && !clearFlag) {
-            $scope.weightSet = undefined;
+            $rootScope.weightSet = undefined;
             //console.log("repSElect")
             //console.log($scope.repsChart.reps)
-            $scope.weightSet = [];
+            $rootScope.weightSet = [];
             $scope.dateSet = [];
             $scope.dateSetFull = [];
             $timeout(function () {//needed to force redraw on this janky angular chart thing
-                $scope.weightSet = localStore.getChartData($scope.liftName, reps, 1);
+                $rootScope.weightSet = localStore.getChartData($scope.liftName, reps, 1);
 
                 //if we only have 1 data pt
                 if ($scope.weightSet[0].length <= 1 && $scope.chartTable == 0) {
@@ -289,7 +289,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                 //    //console.log("earlybreak")
                 //    return
                 //}
-                $scope.weightSet = localStore.normalizeToWeeks(dateWeightObjectList, 1);
+                $rootScope.weightSet = localStore.normalizeToWeeks(dateWeightObjectList, 1);
                 //console.log("fullweightset", $scope.weightSet)
                 $scope.dateSetFull = localStore.normalizeToWeeks(dateWeightObjectList, 2);
                 $scope.dateList = localStore.normalizeToWeeks(dateWeightObjectList, 3);
@@ -311,13 +311,13 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                     var one = angular.copy($scope.weightSet[1])
                     $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
-                    $scope.weightSetFull = angular.copy($scope.weightSet);
+                    $rootScope.weightSetFull = angular.copy($scope.weightSet);
 
                 }
                 else {
                     $scope.weightSet.unshift([]);
                     $scope.goalNum.wt = undefined;
-                    $scope.weightSetFull = angular.copy($scope.weightSet);
+                    $rootScope.weightSetFull = angular.copy($scope.weightSet);
                 }
 
                 $scope.dateWeightObjectList = [];
@@ -327,16 +327,16 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             });
         }
         else {
-            $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+            $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
             $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             $scope.dateWeightObjectList = [];
-            $scope.weightSetFull = angular.copy($scope.weightSet);
+            $rootScope.weightSetFull = angular.copy($scope.weightSet);
             $scope.bodyWtFlag = true;
         }
     };
 
     $scope.selectTimespan = function (span) {
-        if ($scope.chartTitle == "Dummy Lift for xx reps" || $scope.weightSet == [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],]) {
+        if ($scope.chartTitle == "Dummy Lift for xx reps" || $rootScope.weightSet == [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],]) {
             return;
         }
         if (($scope.liftName == "Select Lift" || $scope.selectedReps == "Select Reps") && $scope.bodyWtFlag) {
@@ -347,8 +347,8 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         }
         $scope.spanSelect = span;
         var weekSpan = Number(_.last($scope.dateSetFull));
-        //console.log('dtwt', $scope.dateSetFull, $scope.weightSetFull)
-        var weekSetFullCopy = angular.copy($scope.weightSetFull);
+        //console.log('dtwt', $scope.dateSetFull, $rootScope.weightSetFull)
+        var weekSetFullCopy = angular.copy($rootScope.weightSetFull);
         if (span && span < weekSpan) {
             var dateSpan = weekSpan - span;
             var firstDateDate = new Date($scope.firstDateFull);
@@ -356,18 +356,18 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             firstDateDate.setDate(firstDateDate.getDate() + dateSpan * 7);
             $scope.firstDate = (firstDateDate.getMonth() + 1) + '/' + firstDateDate.getDate() + '/' + firstDateDate.getFullYear()
             $scope.dateSet = _.last($scope.dateSetFull, span);
-            //console.log("weightsetFUllGoals", $scope.weightSetFull[1])
+            //console.log("weightsetFUllGoals", $rootScope.weightSetFull[1])
             $scope.weightSet[0] = angular.copy(weekSetFullCopy[0].splice(weekSetFullCopy[0].length - span));
             $scope.weightSet[1] = angular.copy(weekSetFullCopy[1].splice(weekSetFullCopy[1].length - span));
             //console.log("weightset0", $scope.weightSet[0])
 
         } else {
-            //console.log('else', $scope.weightSetFull[1])
+            //console.log('else', $rootScope.weightSetFull[1])
             $scope.dateSet = $scope.dateSetFull;
             $scope.firstDate = $scope.firstDateFull;
             $scope.weightSet[0] = angular.copy(weekSetFullCopy[0])
             $scope.weightSet[1] = angular.copy(weekSetFullCopy[1])
-            //console.log('else', $scope.weightSetFull[1])
+            //console.log('else', $rootScope.weightSetFull[1])
         }
 
     };
@@ -383,10 +383,10 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             if (updateFlag == 1) {
                 $scope.updateFlag = 0;
             }
-            $scope.weightSet = [];
+            $rootScope.weightSet = [];
             $scope.dateSet = [];
             $timeout(function () {
-                $scope.weightSet = localStore.getBodyWeightData(1);
+                $rootScope.weightSet = localStore.getBodyWeightData(1);
                 $scope.dateSetFull = localStore.getBodyWeightData(2);
                 if ($scope.weightSet[0].length <= 1 && $scope.chartTable == 0) {
                     $scope.noDataPop();
@@ -397,9 +397,9 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                     $scope.dateWeightObjectList.push({date: date, wt: $scope.weightSet[0][index]})
                 });
                 $scope.dateWeightObjectList.reverse();
-                $scope.weightSet = localStore.normalizeToWeeks($scope.dateWeightObjectList, 1);
+                $rootScope.weightSet = localStore.normalizeToWeeks($scope.dateWeightObjectList, 1);
                 $scope.dateSetFull = localStore.normalizeToWeeks($scope.dateWeightObjectList, 2);
-                $scope.weightSetFull = angular.copy($scope.weightSet);
+                $rootScope.weightSetFull = angular.copy($scope.weightSet);
                 if (!fromNav) {
                     $scope.bodyWtFlag = false;
                 }
@@ -426,7 +426,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                     var one = angular.copy($scope.weightSet[1])
                     $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
-                    $scope.weightSetFull = angular.copy($scope.weightSet)
+                    $rootScope.weightSetFull = angular.copy($scope.weightSet)
                     console.log("print full array", $scope.weightSet);
                     var totalMax = _.max([_.max($scope.weightSet[0]), _.max($scope.weightSet[1])]);
                     var totalMin = _.min([_.min($scope.weightSet[0]), _.min($scope.weightSet[1])]);
@@ -436,13 +436,13 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                     axisAdjust(true, _.max($scope.weightSet[0]), _.min($scope.weightSet[0]));
                     $scope.weightSet.unshift([]);
                     $scope.goalNum.wt = undefined;
-                    $scope.weightSetFull = angular.copy($scope.weightSet);
+                    $rootScope.weightSetFull = angular.copy($scope.weightSet);
                 }
             });
         } else {//it's false, meaning we've drawn.
             //console.log('repsgoal,', $scope.repsGoal)
             if ($scope.repsGoal == undefined) {
-                $scope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+                $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
                 $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                 $scope.firstDate = 'Start Date';
                 $scope.lastDate = 'End Date';
@@ -527,6 +527,9 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.deltaBody = '';
         $scope.goalProject = '';
         $scope.deltaWtBody = '';
+        $scope.lastWt = '';
+        $scope.goalDiff ='';
+        $scope.goalProject = '';
     }
 
     var getDeltaWeeks = function (arr) {
@@ -534,11 +537,11 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         //calc:count+= (1-(i+1/i))
         // count/weeks
         //
-        var wtSet = arr || $scope.weightSetFull[1];
+        var wtSet = arr || $rootScope.weightSetFull[1];
         var total = 0;
         var count = wtSet.length - 1;
         //var runningTotal = 0
-        $scope.lastWt = $scope.weightSetFull[1][$scope.weightSetFull[1].length-1];
+        $scope.lastWt = $rootScope.weightSetFull[1][$rootScope.weightSetFull[1].length-1];
         for (var i = 0; i <= count; i++) {
             console.log('this ', wtSet[i], ' last ', wtSet[i - 1])
             if(i != 0){
@@ -569,7 +572,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             }
         }
         console.log('goal', goal)
-        var lastWeight = $scope.weightSetFull[1][$scope.weightSetFull[1].length - 1];
+        var lastWeight = $rootScope.weightSetFull[1][$rootScope.weightSetFull[1].length - 1];
         var diff = goal - lastWeight
         if (percentWeeklyInc < 0) {
             $scope.goalProject = 'Never'
@@ -583,7 +586,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             $scope.showWeeks = true;
             $scope.goalProject = Math.ceil(diff / (lastWeight * ((percentWeeklyInc / 100))));
         }
-    }
+    };
 
     var getDeltaWtBody = function () {
         var wtInc = $scope.deltaWeeks;
@@ -593,7 +596,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         console.log('bod delta', bodArray, bodInc)
         var num = wtInc / bodInc;
         $scope.deltaWtBody = num.toFixed(4);
-    }
+    };
 
 
     var getBodyWtArray = function () {
@@ -614,7 +617,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         dateBodArray = localStore.normalizeToWeeks(dtWtObjs, 2);
         console.log('bod', bodArray[0])
         return bodArray[0];
-    }
+    };
 
 
 }]);

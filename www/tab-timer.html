@@ -36,16 +36,12 @@
                     <button class="button-icon ion-plus-round timerPlus"  ng-click="upOneMin()"></button>
                 </div>
 
-
             <div class="range">
                 <button class="button-icon ion-minus-round timerMinus" ng-click="downOneSec()"></button>
                 <input type="range" ng-model="rangeSec.sec" ng-readonly="!startStopFlag"  min="0" max="59" on-release="onRelease()" />
                 <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()" ng-if="!startStopFlag" disabled/>-->
                 <button class="button-icon ion-plus-round timerPlus" ng-click="upOneSec()"></button>
             </div>
-
-
-
 
             <div class="button-bar  liftSearchButtons">
                 <a ng-click="timerPreset(30,0)" type="button" class="button button-positive button-clear timerButtonSmall"
@@ -75,9 +71,6 @@
 
                 </div>
                 </div>
-
-
-
-
+            </div>
     </ion-content>
 </ion-view>
