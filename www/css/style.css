@@ -187,6 +187,25 @@ body {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
 }
+
+.inline-liftselect{
+    display: inline-block;
+    height:25px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px
+}
+.nopad .item-content {
+    padding: 0 !important;
+}
+
+.month-divider-filler {
+    background-color: #dbdbdb;
+    color:#dbdbdb;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
 .month-divider-odd {
     background-color: #8b8b8b;
     color:#ffffff;

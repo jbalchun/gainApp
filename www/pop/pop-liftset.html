@@ -1,7 +1,7 @@
 
 <style>.popup { width:90% !important; }</style>
         <ion-item>
-<a style="font-size:1.2em;">{{liftObjectForSettingsChange.name}}</a>
+<a style="font-size:1.2em;">{{'Filter Settings: '}}{{liftObjectForSettingsChange.name}}</a>
         </ion-item>
         <ion-item>
 <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
@@ -32,7 +32,6 @@
                 <a ng-class="{'button-highlight': liftObjectForSettingsChange.weight == 'heavykg'}" ng-click="changeSort(4,'heavykg')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Barbell (kg)</a>
             </div>
             <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
-
                 <a ng-class="{'button-highlight': liftObjectForSettingsChange.weight == 'light'}" ng-click="changeSort(4,'light')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Dumbell Light</a>
                 <a ng-class="{'button-highlight': liftObjectForSettingsChange.weight == 'heavytens'}" ng-click="changeSort(4,'heavytens')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Dumbell Heavy</a>
             </div>

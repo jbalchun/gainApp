@@ -51,7 +51,7 @@
                             <!--last-->
                             <a class="col" ng-class="{'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].last.wt || 'None'}}</a>
                             <!--PR-->
-                            <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt > resultsSourceNameMap[lift.name+set1.reps].todaysMax"
+                            <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt > resultsSourceNameMap[lift.name+set1.reps].todaysMax || !resultsSourceNameMap[lift.name+set1.reps].max.wt"
                                ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt}"
                                class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt || 'None'}}</a>
                             <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt == resultsSourceNameMap[lift.name+set1.reps].todaysMax"

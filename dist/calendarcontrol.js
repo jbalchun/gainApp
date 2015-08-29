@@ -50,6 +50,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
 
     $scope.clearSearch = function () {
         $scope.searchQuery = '';
+
     };
     $scope.isLiftDay = function (date) {
         if (date.length > 2) {
@@ -168,6 +169,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         $scope.nameFilter = "Name";
         $scope.liftName = "Lift";
         $scope.filterList = angular.copy($scope.$storage.workouts);
+        $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
     };
 
 
@@ -250,6 +252,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         var noneFlag = 1;
         if ((!nameFlag && !monthFlag && !yearFlag && !dayFlag && !liftFlag) || clearFlag == 'clear') {
             $scope.filterList = angular.copy($scope.$storage.workouts);
+            $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
         }
 
         angular.forEach($scope.workouts, function (workout, index) { //if the flag is on remove the matches. make a copy of the list and insert.
@@ -295,10 +298,10 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
                 }
 
             }
-            $ionicScrollDelegate.scrollTop();
 
+            $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
 
-        })
+        });
 
         //$scope.$on("$ionicView.beforeEnter", function (scopes, states) {
         //    if (states.fromCache && states.stateName == "tab.charts") {TODO something like this
@@ -351,13 +354,13 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         //$ionicScrollDelegate.$getByHandle('mainScroll').scrollBottom();
 
         //console.log('filterList', $scope.filterList)
-    }
+    };
 
     $scope.loadLiftOptions = function (index) {
         var confirmPopup = $ionicPopup.show({
             title: 'Load workout to editor?',
             scope: $scope,
-            subTitle: 'Editor content will be overwritten. "Load Template to load lifts and sets without weights',
+            subTitle: 'Editor content will be overwritten. Tap "Load Template" to load lifts and sets without weights',
             template: "<style>.popup { width:90% !important; }</style>",
             buttons: [
                 {text: 'Cancel'},
@@ -408,22 +411,31 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
     };
 
     $scope.closeModal = function (newLift) {
+        $scope.newLiftModal = newLift
         $scope.blurFlag = false;
         $scope.modal.hide();
-        if (newLift == 'clear') {
+    };
+
+    $scope.$on('modal.hidden', function () {
+        if ($scope.newLiftModal == 'clear') {
             $scope.liftName = "Lift"
             $scope.filter();
+            $timeout(function () {
+                $scope.$broadcast('reset-liftselect');
+            }, 500);
             return
         }
-        if (newLift != "no change") {
-            $scope.liftName = newLift.name;
+        if ($scope.newLiftModal != "no change") {
+            $scope.liftName = $scope.newLiftModal .name;
             if ($scope.liftName.length < 2 || $scope.liftName == "Lift") {
                 $scope.liftName = "Lift";
             }
             $scope.filter();
         }
-
-    };
+        $timeout(function () {
+            $scope.$broadcast('reset-liftselect');
+        }, 500);
+    });
 
 
 }]);

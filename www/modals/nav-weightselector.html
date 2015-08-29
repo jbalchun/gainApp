@@ -28,7 +28,7 @@
             </div>
         <ion-list  show-delete="removeFlag" class="col-50  col-offset-25"  >
 
-            <ion-item class="item" ng-repeat="set in sets2 track by $index" >
+            <ion-item class="item item-content nopad" ng-repeat="set in sets2 track by $index" style="margin-top: 0%" >
                 <div style="float:left; width:30%;">
                 <!--<input ng-model="set.reps"  type="tel" maxlength="2"  ng-if="$index == focusIndex" select-on-click select-on-focus take-focus>-->
                     <button class="button weight-pad button-outline  button-positive" ng-class="{'button-selected-lift': wtSelectPress == $index+'1','button-noborder':wtSelectPress != $index+'1'}" ng-click="selectNumber($index,1)">{{set.reps +" Reps"}}</button>

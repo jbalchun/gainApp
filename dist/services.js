@@ -195,11 +195,11 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
 
         },
         addLiftToList: function(name){
-            $rootScope.$storage.liftData.push({'name':name,attr1: ".",
+            $rootScope.$storage.liftData.unshift({'name':name,attr1: ".",
                 attr2: ".",
                 attr3: ".",
                 custom:true,
-                weight:'light'});
+                weight:'heavy'});
         },
         loadLiftFromCalendar:function(workout){ //has to search, can't just go off index asshole.
             angular.forEach($rootScope.$storage.workouts,function(workout2,ind){

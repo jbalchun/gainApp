@@ -34,7 +34,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.selectedReps = "Select Reps";
 
 
-    var refresh = function () {
+    $scope.refresh = function () {
         //$scope.chartTable = 0;
         axisAdjust(false);
         $scope.bodyWtFlag = true;
@@ -47,15 +47,15 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.firstDate = 'Start Date';
         $scope.lastDate = 'End Date';
         $scope.goalNum.wt = getGoal();
-        //$rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
-        //$rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        $rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         resetAnalytics();
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
         if (states.fromCache && states.stateName == "tab.charts") {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
-            refresh();
+            $scope.refresh();
         }
     });
 
@@ -206,11 +206,6 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         }
     };
 
-    //$ionicPopover.fromTemplateUrl('../pop-reps.html', function(popover) {
-    //    $scope.popover = popover;
-    //    popover.show(".ion-more");
-    //
-    //});
 
     $ionicPopover.fromTemplateUrl('pop/pop-reps.html', {
         scope: $scope
@@ -238,8 +233,10 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
 
     $scope.changeView = function (flag, reps) {
         //console.log('fagflag', $scope.chartTitle);
+        $scope.selectTimespan(false);
+        //$scope.loadAnalytics();
         if (!$scope.bodyWtFlag) {
-            $scope.chartBodyWeight(1, true)
+            $scope.chartBodyWeight(1, true);
         } else if ($scope.chartTitle == "Dummy Lift for xx reps") {
             $scope.chartTable = flag;
             return
@@ -369,7 +366,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             $scope.weightSet[1] = angular.copy(weekSetFullCopy[1])
             //console.log('else', $rootScope.weightSetFull[1])
         }
-
+        $scope.loadAnalytics();
     };
 
     $scope.chartBodyWeight = function (updateFlag, fromNav) {//this and repselect should be one method.
@@ -488,23 +485,24 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
 
     $scope.closeModal = function (newLift, sets, id) {
         $scope.blurFlag = false;
+        $scope.newLiftModal = newLift
         $scope.modal.hide();
-        //console.log('neither');
-        if (newLift != "no change") {
-            $scope.liftName = newLift.name;
+    };
+
+    $scope.$on('modal.hidden',function(){
+        if ( $scope.newLiftModal != "no change") {
+            $scope.liftName =  $scope.newLiftModal.name;
             $scope.selectedReps = "Select Reps";
-            $timeout(function () {
-
-            })
-
             if ($scope.liftName.length < 2 || $scope.liftName == "Select Lift") {
                 $scope.liftName = "Select Lift";
             }
             $scope.getReps();
-
         }
+        $timeout(function () {
+            $scope.$broadcast('reset-liftselect');
+        }, 500);
+    });
 
-    };
 
     //ANALYTICS
     ///////////////////////////////////
@@ -530,6 +528,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.lastWt = '';
         $scope.goalDiff ='';
         $scope.goalProject = '';
+
     }
 
     var getDeltaWeeks = function (arr) {
@@ -537,11 +536,11 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         //calc:count+= (1-(i+1/i))
         // count/weeks
         //
-        var wtSet = arr || $rootScope.weightSetFull[1];
+        var wtSet = arr || $rootScope.weightSet[1];
         var total = 0;
         var count = wtSet.length - 1;
         //var runningTotal = 0
-        $scope.lastWt = $rootScope.weightSetFull[1][$rootScope.weightSetFull[1].length-1];
+        $scope.lastWt = $rootScope.weightSet[1][$rootScope.weightSet[1].length-1];
         for (var i = 0; i <= count; i++) {
             console.log('this ', wtSet[i], ' last ', wtSet[i - 1])
             if(i != 0){
@@ -572,7 +571,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             }
         }
         console.log('goal', goal)
-        var lastWeight = $rootScope.weightSetFull[1][$rootScope.weightSetFull[1].length - 1];
+        var lastWeight = $rootScope.weightSet[1][$rootScope.weightSet[1].length - 1];
         var diff = goal - lastWeight
         if (percentWeeklyInc < 0) {
             $scope.goalProject = 'Never'

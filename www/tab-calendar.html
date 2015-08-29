@@ -54,7 +54,7 @@
         <div class="item item-divider color-header-cal" style="background-color:black">
         </div>
 
-        <ion-content delegate-handle="mainScroll" scrollbar-y="true" class="scrollbox scroller" zooming="false" style="z-index: -1;padding-top: 90px;" overflow-scroll="true" scrollbar-x="false" direction="y"
+        <ion-content delegate-handle="mainScroll" scrollbar-y="true" class="scrollbox scroller" zooming="false" style="z-index: -1;padding-top: 90px;" overflow-scroll="false" scrollbar-x="false" direction="y"
                     style="border-top: thick; height:600px">
             <ion-list>
                 <div class="list" style=" height:700px">
@@ -76,7 +76,7 @@
                                           ng-class="{active: isGroupShown(lift),'border-top-cal':lift.super}">
                                     <i class="icon" ng-class="isGroupShown(lift) ? 'ion-minus' : 'ion-plus'"></i>
                                     {{lift.name+": "}}
-                                    <span ng-repeat="set in lift.sets">{{set.reps}} {{$last ? '':','}}</span>
+                                    <span ng-repeat="set in lift.sets">{{set.reps}}{{$last ? '' : ', '}}</span>
                                 </ion-item>
 
                                 <ion-item class="item-accordion"
@@ -98,6 +98,33 @@
                         </ion-list>
 
                     </div>
+
+                    <div  class=''>
+                        <div class="item item-divider month-divider-filler calendar">
+
+                        </div>
+
+                    </div>
+                    <div  class=''>
+                        <div class="item item-divider month-divider-filler calendar">
+
+                        </div>
+
+                    </div>
+                    <div  class=''>
+                        <div class="item item-divider month-divider-filler calendar">
+
+                        </div>
+
+                    </div>
+                    <div  class=''>
+                        <div class="item item-divider month-divider-filler calendar">
+
+                        </div>
+
+                    </div>
+
+
                 </div>
             </ion-list>
         </ion-content>

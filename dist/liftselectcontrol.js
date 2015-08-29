@@ -85,6 +85,9 @@ app.controller('liftselectcontrol',
 
         $scope.changeSort = function (index, index2) {
             if (index != 4) {//if we aren't selecting the weight Rack
+                if($scope.liftObjectForSettingsChange['attr' + String(index)] == index2){
+                    $scope.liftObjectForSettingsChange['attr' + String(index)] = '.';
+                }
                 $scope.liftObjectForSettingsChange['attr' + String(index)] = index2;
             } else {
                 $scope.liftObjectForSettingsChange['weight'] = index2;

@@ -5,22 +5,43 @@
   Chart.defaults.global.multiTooltipTemplate = '<%if (datasetLabel){%><%=datasetLabel%>: <%}%><%= value %>';
 
   Chart.defaults.global.colours = [
-    {
-
-      // red
-      fillColor: 'rgba(247,70,74,0.2)',
-      strokeColor: 'rgba(247,70,74,1)',
-      pointColor: 'rgba(247,70,74,1)',
+    { // green135, 211, 124
+      fillColor: 'rgba(135,211,124,0.2)',
+      strokeColor: 'rgba(135,211,124,1)',
+      pointColor: 'rgba(135,211,124,1)',
       pointStrokeColor: '#fff',
       pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(247,70,74,0.8)'
-    //// blue
-    //  fillColor: 'rgba(151,187,205,0.2)',
-    //  strokeColor: 'rgba(151,187,205,1)',
-    //  pointColor: 'rgba(151,187,205,1)',
-    //  pointStrokeColor: '#fff',
-    //  pointHighlightFill: '#fff',
-    //  pointHighlightStroke: 'rgba(151,187,205,0.8)'
+      pointHighlightStroke: 'rgba(70,191,189,0.8)'
+    },
+    {
+      // blue
+      fillColor: 'rgba(151,187,205,0.2)',
+      strokeColor: 'rgba(151,187,205,1)',
+      pointColor: 'rgba(151,187,205,1)',
+      pointStrokeColor: '#fff',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(151,187,205,0.8)'
+      //red
+      //fillColor: 'rgba(247,70,74,0.2)',
+      //strokeColor: 'rgba(247,70,74,1)',
+      //pointColor: 'rgba(247,70,74,1)',
+      //pointStrokeColor: '#fff',
+      //pointHighlightFill: '#fff',
+      //pointHighlightStroke: 'rgba(247,70,74,0.8)'
+      //// green
+      //fillColor: 'rgba(70,191,189,0.2)',
+      //strokeColor: 'rgba(70,191,189,1)',
+      //pointColor: 'rgba(70,191,189,1)',
+      //pointStrokeColor: '#fff',
+      //pointHighlightFill: '#fff',
+      //pointHighlightStroke: 'rgba(70,191,189,0.8)'
+      //// light grey
+      //  fillColor: 'rgba(220,220,220,0.2)',
+      //  strokeColor: 'rgba(220,220,220,1)',
+      //  pointColor: 'rgba(220,220,220,1)',
+      //  pointStrokeColor: '#fff',
+      //  pointHighlightFill: '#fff',
+      //  pointHighlightStroke: 'rgba(220,220,220,0.8)'
     },
     {
       // blue
@@ -60,14 +81,7 @@
       pointHighlightFill: '#fff',
       pointHighlightStroke: 'rgba(247,70,74,0.8)'
     },
-    { // green
-      fillColor: 'rgba(70,191,189,0.2)',
-      strokeColor: 'rgba(70,191,189,1)',
-      pointColor: 'rgba(70,191,189,1)',
-      pointStrokeColor: '#fff',
-      pointHighlightFill: '#fff',
-      pointHighlightStroke: 'rgba(70,191,189,0.8)'
-    },
+
     { // yellow
       fillColor: 'rgba(253,180,92,0.2)',
       strokeColor: 'rgba(253,180,92,1)',

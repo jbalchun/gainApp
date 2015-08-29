@@ -4,12 +4,17 @@
                 ng-click="showInfo()">
 
         </button>
+
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-ios-refresh-outline"
+                ng-click="refresh()">
+        </button>
         <button class="button button-balanced " ng-show="stateW == 'heroku'" style='font-size: 1.2em'
                 ng-click="emailPop()">
             Like it?
         </button>
+
     </ion-nav-buttons>
 
     <ion-content class="has-header has-footer">
@@ -36,7 +41,7 @@
                 <button ng-if="stateW = 'heroku'" class="button button-clear" ng-click="updateGoal(repsChart.reps)">Update
                 </button>
             </div>
-            <div class="button-bar liftSearchButtons" style="padding:0px">
+            <div ng-if="chartTable == 0 || chartTable == 3" class="button-bar liftSearchButtons" style="padding:0px">
                 <a type="button"
                    class="button button-clear button-positive button-positive timerButtonSmall" ng-class="{'active': spanSelect ==5 }"
                    ng-click="selectTimespan(5)" style="border-top:none;border-bottom:none;border-right:none;">5 wks</a>
@@ -62,6 +67,7 @@
                     current lift</a>
             </div>
         </div>
+
         <div class="card">
             <!--<div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">-->
             <!--</div>-->
@@ -135,6 +141,26 @@
 
                 </ion-item>
             </ion-list>
+        </div>
+
+        <div class="card" ng-if="chartTable == 3">
+            <div  class="button-bar liftSearchButtons" style="padding:0px">
+                <a type="button"
+                   class="button button-clear button-positive button-positive timerButtonSmall" ng-class="{'active': spanSelect ==5 }"
+                   ng-click="selectTimespan(5)" style="border-top:none;border-bottom:none;border-right:none;">5 wks</a>
+                <a type="button"
+                   class="button button-clear button-positive timerButtonSmall" ng-class="{'active': spanSelect ==10}"
+                   ng-click="selectTimespan(10)" style="border-top:none;border-bottom:none;border-right:none;">10
+                    wks</a>
+                <a type="button button-clear timerButtonSmall"
+                   class="button button-clear button-positive timerButtonSmall" ng-class="{'active': spanSelect ==20 }"
+                   ng-click="selectTimespan(20)" style="border-top:none;border-bottom:none;border-right:none;">20
+                    wks</a>
+                <a type="button button-clear timerButtonSmall"
+                   class="button button-clear button-positive timerButtonSmall" ng-class="{'active': !spanSelect }"
+                   ng-click="selectTimespan(false)"
+                   style="border-top:none;border-bottom:none;border-right:none;">All</a>
+            </div>
         </div>
 
     </ion-content>
