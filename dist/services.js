@@ -201,6 +201,15 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                 custom:true,
                 weight:'heavy'});
         },
+        getLiftByName: function(name){
+            var liftObj = {};
+            angular.forEach($rootScope.$storage.liftData, function (lift, index) {//todo this should be in services
+                if (name == lift.name) {
+                     liftObj = lift;
+                }
+            });
+            return liftObj;
+        },
         loadLiftFromCalendar:function(workout){ //has to search, can't just go off index asshole.
             angular.forEach($rootScope.$storage.workouts,function(workout2,ind){
                 console.log('name',workout.name,workout.date)

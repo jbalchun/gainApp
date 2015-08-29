@@ -206,6 +206,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         //console.log('only1', maxItem.only1)
         console.log('lastItem',lastItem)
         if (maxItem.only1 == true) {//if it's the only entry
+            //todaysMax and last are showing none
+            console.log('results preview lastone', {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: false, last: 0});
             return {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: 0, last: 0}
         }
         if (maxItem < -1000 || !maxItem || maxItem > 1000) {
@@ -227,7 +229,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             } else plusMinusLast[name] = 1
         }
         //TODO intervene if max/last = the only one
-        console.log('lastItem',lastItem)
+        console.log('results preview', {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: maxItem, last: lastItem});
         return {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: maxItem, last: lastItem}
         //last clicked rep for a given lift
     };

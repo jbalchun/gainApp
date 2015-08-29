@@ -34,8 +34,9 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
     $scope.selectedReps = "Select Reps";
 
 
-    $scope.refresh = function () {
+    $scope.refreshCharts = function (button) {
         //$scope.chartTable = 0;
+
         axisAdjust(false);
         $scope.bodyWtFlag = true;
         $scope.liftName = "Select Lift";
@@ -50,6 +51,9 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
         $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         $rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         resetAnalytics();
+        if(button){
+            $state.go($state.current, {}, {reload: true});
+        }
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {

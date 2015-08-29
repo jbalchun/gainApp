@@ -3,7 +3,7 @@
  */
 var app = angular.module('MyApp.liftselectcontrol', ['MyApp.services', 'ngStorage', 'ngCordova']);
 app.controller('liftselectcontrol',
-    ["$scope", "$ionicScrollDelegate", "$ionicPlatform", "$localStorage", "localStore", "$ionicPopup", "$rootScope", function ($scope, $ionicScrollDelegate, $ionicPlatform, $localStorage, localStore, $ionicPopup, $rootScope) {
+    ["$scope", "$ionicScrollDelegate", "$ionicPlatform", "$localStorage", "$timeout", "localStore", "$ionicPopup", "$rootScope", function ($scope, $ionicScrollDelegate, $ionicPlatform, $localStorage,$timeout, localStore, $ionicPopup, $rootScope) {
 
         $scope.liftData = $localStorage.liftData;
         $scope.matchedLifts = [];
@@ -85,8 +85,12 @@ app.controller('liftselectcontrol',
 
         $scope.changeSort = function (index, index2) {
             if (index != 4) {//if we aren't selecting the weight Rack
+                console.log('reverted',$scope.liftObjectForSettingsChange['attr' + String(index)],index2);
+
                 if($scope.liftObjectForSettingsChange['attr' + String(index)] == index2){
                     $scope.liftObjectForSettingsChange['attr' + String(index)] = '.';
+                    console.log('revebrted',$scope.liftObjectForSettingsChange.attr1 == '1');
+                    return;
                 }
                 $scope.liftObjectForSettingsChange['attr' + String(index)] = index2;
             } else {
@@ -96,12 +100,8 @@ app.controller('liftselectcontrol',
 
         $scope.editSettings = function (name) {
             $scope.liftForSettingsChange = name;
+            $scope.liftObjectForSettingsChange = localStore.getLiftByName(name);
 
-            angular.forEach($scope.$storage.liftData, function (lift, index) {//todo this should be in the localstore
-                if (name == lift.name) {
-                    $scope.liftObjectForSettingsChange = lift;
-                }
-            });
             var confirmPopup = $ionicPopup.show({
                 templateUrl: 'pop/pop-liftset.html',
                 title: 'Settings for lift',
@@ -156,7 +156,8 @@ app.controller('liftselectcontrol',
             $scope.attr2Pressed = '.';
             $scope.attr3Pressed = '.';
             $scope.selected = '.';
-        }
+            $scope.custom = false;
+        };
         // $scope.selected = 0;
 
 
@@ -166,11 +167,11 @@ app.controller('liftselectcontrol',
 
         $scope.$on('reset-liftselect', function () {
             $scope.reset();
-        })
+        });
 
         $scope.isSelected = function (lift) {
             return $scope.selected === lift;
-        }
+        };
 
         $scope.removeLiftEntry = function (index) {
 
@@ -199,10 +200,14 @@ app.controller('liftselectcontrol',
             $scope.closeModal("", 0, 1);
         }
 
-        $scope.addLift = function () {
-            $scope
-        }
-
+        //$scope.addLift = function () {
+        //    $scope
+        //}
+        $scope.$on('edit-settings',function(event,args){
+            $timeout(function () {
+                $scope.editSettings(args.name);
+            }, 500);
+        });
         $scope.goToUrl = function (name, $ionicPlatform) {
             var namePlus = name.replace(/ /g, "+");
             var link = 'https://www.google.com/search?q=' + namePlus;
@@ -240,11 +245,14 @@ app.controller('liftselectcontrol',
                             } else {
 
                                 localStore.addLiftToList($scope.newLiftName.name);
-                                //$scope.editSettings($scope.newLiftName.name);TODO get this to work properly
-                                $scope.newLiftName.name = '';
-                                $scope.liftData = $localStorage.liftData;
+                                // TODO get this to work properly
 
+                                $scope.liftData = $localStorage.liftData;
                                 $scope.filterCustom(true);
+                                    //$rootScope.email.email = ''
+                                $rootScope.$broadcast('edit-settings',{name:angular.copy($scope.newLiftName.name)});
+                                //$scope.editSettings($scope.newLiftName.name);
+                                $scope.newLiftName.name = '';
 
                             }
 

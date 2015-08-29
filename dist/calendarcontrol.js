@@ -360,7 +360,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         var confirmPopup = $ionicPopup.show({
             title: 'Load workout to editor?',
             scope: $scope,
-            subTitle: 'Editor content will be overwritten. Tap "Load Template" to load lifts and sets without weights',
+            subTitle: 'Editor content will be overwritten. "Load Template to load lifts and sets without weights',
             template: "<style>.popup { width:90% !important; }</style>",
             buttons: [
                 {text: 'Cancel'},
