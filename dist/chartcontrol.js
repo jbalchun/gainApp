@@ -30,13 +30,13 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.dateList = [];
     $scope.dateSetFull = []
     $scope.firstDateFull = '';
-    $scope.spanSelect = 0;
+    $scope.spanSelect = 20;
     $scope.selectedReps = "Select Reps";
-
+    $state.enterCount = 0;
 
     $scope.refreshCharts = function (button) {
         //$scope.chartTable = 0;
-
+        //console.log('timeout')
         axisAdjust(false);
         $scope.bodyWtFlag = true;
         $scope.liftName = "Select Lift";
@@ -48,20 +48,43 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         $scope.firstDate = 'Start Date';
         $scope.lastDate = 'End Date';
         $scope.goalNum.wt = getGoal();
+        $scope.chartTable=4;
+        $scope.spanSelect = 20;
+        //$scope.chartTable=0
         $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         $rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+        $timeout(function () {
+            $scope.chartTable=0;
+            $scope.spanSelect = 20;
+            console.log('reset');
+        },1);
+
         resetAnalytics();
         if(button){
             $state.go($state.current, {}, {reload: true});
         }
+
+        $scope.selectTimespan(20);
+        //$scope.$emit('reset-fromapp');
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
         if (states.fromCache && states.stateName == "tab.charts") {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
-            $scope.refresh();
+            $scope.refreshCharts();
         }
     });
+
+    //$scope.$on('reset-chart',function(){
+    //    $timeout(function () {
+    //        console.log('resetchart');
+    //        $scope.refreshCharts();
+    //        $state.enterCount = 0;
+    //    },500);
+    //});
+
+
+
 
 
     $scope.infoFlag = 3;
@@ -325,6 +348,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
                 $scope.dateWeightObjectList = dateWeightObjectList;
                 $scope.bodyWtFlag = true;
                 $scope.loadAnalytics();
+                $scope.selectTimespan(20);
             });
         }
         else {
@@ -333,6 +357,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             $scope.dateWeightObjectList = [];
             $rootScope.weightSetFull = angular.copy($scope.weightSet);
             $scope.bodyWtFlag = true;
+            $scope.selectTimespan(20);
         }
     };
 
@@ -599,6 +624,9 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
         console.log('bod delta', bodArray, bodInc)
         var num = wtInc / bodInc;
         $scope.deltaWtBody = num.toFixed(4);
+        if(!$scope.bodyWtFlag){
+            $scope.deltaWtBody = 1
+        }
     };
 
 

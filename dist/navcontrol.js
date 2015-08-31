@@ -27,6 +27,7 @@ app.controller('navcontrol', ["$scope", "$location", "$state", "$rootScope", fun
         if(window.cordova){
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
         }
+        //$rootScope.$broadcast('reset-charts');
     };
 
     $scope.timerNav=function(){

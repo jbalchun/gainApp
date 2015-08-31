@@ -361,7 +361,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
             title: 'Load workout to editor?',
             scope: $scope,
             subTitle: 'Editor content will be overwritten. "Load Template to load lifts and sets without weights',
-            template: "<style>.popup { width:90% !important; }</style>",
+            template: "<style>.popup { width:380px !important; }</style>", //todo web demo only
             buttons: [
                 {text: 'Cancel'},
                 {

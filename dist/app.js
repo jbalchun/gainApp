@@ -220,7 +220,7 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$rootScope", 
                 notes: {notes: ''},
                 lifts: [{
                     'name': 'Barbell Bench Press',
-                    'sets': [{'reps': '5', wt: '245'}, {'reps': '3', wt: '265'}, {'reps': '1', wt: '290'}]
+                    'sets': [{'reps': '5', wt: '255'}, {'reps': '3', wt: '265'}, {'reps': '1', wt: '290'}]
                     },
                     {
                         'name': 'Barbell Curls',
@@ -258,10 +258,10 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$rootScope", 
                 'date': 'Jul 25 2015',
                 bodyWeight: {wt: '215'},
                 name: {name: 'Arms'},
-                notes: {notes: 'Try charting this data on the next tab. Select Barbell Bench Press and a rep, for example'},
+                notes: {notes: 'Try charting this data on the next tab. Select Barbell Bench Press for 5 reps, for example'},
                 lifts: [{
                     'name': 'Barbell Bench Press',
-                    'sets': [{'reps': '5', wt: '255'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '295'}]
+                    'sets': [{'reps': '5', wt: '245'}, {'reps': '3', wt: '270'}, {'reps': '1', wt: '295'}]
                     },
                     {
                         'name': 'Barbell Curls',
@@ -275,6 +275,15 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$rootScope", 
                     {
                         'name': 'Seated Dumbell Shoulder Press',
                         'sets': [{'reps': '10', wt: '200'}, {'reps': '10', wt: '250'}, {'reps': '15', wt: '250'}]
+                    },
+                    {
+                        'name': 'Dips',
+                        'super':true,
+                        'sets': [{'reps': '8', wt: '45'}, {'reps': '8', wt: '45'}, {'reps': '8', wt: '45'}]
+                    },
+                    {
+                        'name': 'Standing Dumbell Side Raises',
+                        'sets': [{'reps': '10', wt: '200'}, {'reps': '10', wt: '250'}, {'reps': '15', wt: '250'}]
                     }
                 ]
             },
@@ -282,7 +291,7 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$rootScope", 
         ]
     });
 
-    function generateUUID() {
+    var  generateUUID = function () {
         var d = new Date().getTime();
         var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = (d + Math.random() * 16) % 16 | 0;
@@ -295,6 +304,8 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$rootScope", 
     function keyboardHideHandler(e) {
         $rootScope.$broadcast('closeKeyboard');
     }
+
+
 
     $rootScope.stateW = '';
     $rootScope.email = {email: ''};

@@ -157,6 +157,7 @@ app.controller('liftselectcontrol',
             $scope.attr3Pressed = '.';
             $scope.selected = '.';
             $scope.custom = false;
+            $scope.removeFlagB = false;
         };
         // $scope.selected = 0;
 
