@@ -360,7 +360,7 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
         var confirmPopup = $ionicPopup.show({
             title: 'Load workout to editor?',
             scope: $scope,
-            subTitle: 'Editor content will be overwritten. "Load Template to load lifts and sets without weights',
+            subTitle: 'Editor content will be overwritten. "Load lifts only" only pulls in the lift names, "Load sets clean" loads all sets with weights set to 0',
             template: "<style>.popup { width:380px !important; }</style>", //todo web demo only
             buttons: [
                 {text: 'Cancel'},
@@ -373,7 +373,16 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                     }
                 },
                 {
-                    text: '<b>Load Template</b>',
+                    text: '<b>Load lifts only</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        localStore.loadLiftFromCalendar($scope.filterList[index]);
+                        localStore.liftsOnly($scope.filterList[index]);
+                        $state.go('tab.posts');
+                    }
+                },
+                {
+                    text: '<b>Load sets clean</b>',
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.loadLiftFromCalendar($scope.filterList[index]);

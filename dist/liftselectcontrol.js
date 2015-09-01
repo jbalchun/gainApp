@@ -24,7 +24,7 @@ app.controller('liftselectcontrol',
             //cordova.plugins.Keyboard.hide()
             document.activeElement.blur();
             document.activeElement.blur()
-        }
+        };
 
         $scope.showInfo = function () {
             if ($rootScope.stateW == 'heroku') {
@@ -148,7 +148,10 @@ app.controller('liftselectcontrol',
             else if (!dontFlip) {
                 $scope.custom = !$scope.custom;
             }
-            $ionicScrollDelegate.scrollTop();
+            $timeout(function(){
+                $ionicScrollDelegate.$getByHandle('liftBox').scrollTop();
+            },100);
+
         };
 
         $scope.reset = function () {
@@ -156,7 +159,7 @@ app.controller('liftselectcontrol',
             $scope.attr2Pressed = '.';
             $scope.attr3Pressed = '.';
             $scope.selected = '.';
-            $scope.custom = false;
+            //$scope.custom = false;
             $scope.removeFlagB = false;
         };
         // $scope.selected = 0;

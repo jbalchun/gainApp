@@ -224,8 +224,13 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             angular.forEach( $rootScope.$storage.todaysLifts,function(lift,ind){
                 angular.forEach(lift.sets,function(set1,ind){
                     set1.wt = 0;
-                })
-            })
+                });
+            });
+        },
+        liftsOnly:function(){
+            angular.forEach( $rootScope.$storage.todaysLifts,function(lift,ind){
+                lift.sets = [{'reps': '0', wt: '0'}];
+            });
         },
 
         buildRepList:function(name){

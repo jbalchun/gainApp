@@ -1,85 +1,111 @@
 <html>
 <head>
-<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height" />
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, height=device-height"/>
 </head>
 <body>
 <div id="mainContainer">
 
-<ion-view ng-keypress="keyPressed()" ng-controller="liftselectcontrol" class="transparent" >
-    <ion-header-bar class="bar-dark">
-        <div class="buttons ">
-            <button class="button icon ion-arrow-left-c" style="border:none;"
-                    ng-click="backFrom()"></button>
+    <ion-view ng-keypress="keyPressed()" ng-controller="liftselectcontrol" class="transparent">
+        <ion-header-bar class="bar-dark">
+            <div class="buttons ">
+                <button class="button icon ion-arrow-left-c" style="border:none;"
+                        ng-click="backFrom()"></button>
 
-        </div>
-
-        <h1 class="title">{{liftSelectorState}}</h1>
-        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
-
-        </button>
-    </ion-header-bar>
-
-    <ion-content scroll="false" class="has-header has-footer" on-swipe-left="swipeLeftLift()" >
-        <div class="card">
-            <div class="item item-divider color-header">
             </div>
-        <div >
-        <ion-scroll ng class="scrollbox" zooming="true" direction="y" style="height:22em;" >
 
-            <ion-list show-delete="removeFlag">
-                <ion-item  class="item-stable item-remove-animate lift-list" ng-class="{active : isSelected(lift)}"
-                          ng-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText" ng-if="!custom ||(custom && lift.custom == true)">
-                       <a   class="liftSelectEntry inline-liftselect" ng-class="{'remove-lift':removeFlagB}"  ng-click="setLift(lift,$index)">{{lift.name }} </a>
-                    <i class="icon ion-social-google-outline inline-liftselect searchIcon" style="float:right; font-size: 1.4em; padding-right: .8em" ng-click="goToUrl(lift.name)"></i>
-                    <i class="icon ion-gear-a inline-liftselect " style="float:right; font-size: 1.4em; padding-right: .8em" ng-click="editSettings(lift.name)"></i>
+            <h1 class="title">{{liftSelectorState}}</h1>
+            <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em'
+                    ng-click="showInfo()">
 
-                    <!--<ion-delete-button class="ion-minus-circled your-class button"-->
-                                       <!--ng-click="removeLiftEntry($index)" style="float:left;">-->
-                    <!--</ion-delete-button>-->
-                </ion-item>
-            </ion-list>
+            </button>
+        </ion-header-bar>
 
-        </ion-scroll>
-        <div class="item item-input-inset no-padding borderless">
-        <label class="item-input-wrapper" on-swipe-left="swipeLeftLift()">
-        <input ng-model="searchText" ng-enter="closeKeyboard()" type="search" placeholder="Search" >
-        </label>
-        </div>
-            <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
-                <a ng-class="{'button-highlight': attr1Pressed == '1'}" ng-click="listSort(1,'1')" type="button" class="button button-positive button-row1 button-clear liftSearchButtonSmall" >Push</a>
-                <a ng-class="{'button-highlight': attr1Pressed == '2'}" ng-click="listSort(1,'2')" type="button" class="button button-positive button-row1 button-clear liftSearchButtonSmall ">Pull</a>
-                <a ng-class="{'button-highlight': attr1Pressed == '3'}" ng-click="listSort(1,'3')" type="button" class="button button-positive button-row1 button-clear liftSearchButtonSmall">Legs</a>
-                <a ng-class="{'button-highlight': attr1Pressed == '4'}" ng-click="listSort(1,'4')" type="button" class="button button-positive button-row1 button-clear liftSearchButtonSmall">Core</a>
-                <a ng-class="{'button-highlight': attr1Pressed == '5'}" ng-click="listSort(1,'5')" type="button" class="button button-positive button-row1 button-clear liftSearchButtonSmall">Cross</a>
-            </div>
-            <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
-                <a ng-class="{'button-highlight': attr2Pressed == '1'}" ng-click="listSort(2,'1')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Barbell</a>
-                <a ng-class="{'button-highlight': attr2Pressed == '2'}" ng-click="listSort(2,'2')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Dumbell</a>
-                <a ng-class="{'button-highlight': attr2Pressed == '3'}" ng-click="listSort(2,'3')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Machine</a>
-                <a ng-class="{'button-highlight': attr2Pressed == '4'}" ng-click="listSort(2,'4')" type="button" class="button  button-positive button-clear  liftSearchButtonSmall">Body
-                    Wt</a>
-            </div>
-            <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
-                <a ng-class="{'button-highlight': attr3Pressed == '1'}" ng-click="listSort(3,'1')" type="button" class="button  button-positive button-row3 button-clear  liftSearchButtonSmall">Seated/Laying</a>
-                <a ng-class="{'button-highlight': attr3Pressed == '2'}" ng-click="listSort(3,'2')" type="button" class="button  button-positive button-row3 button-clear  liftSearchButtonSmall">Standing</a>
-            </div>
-            <div class="padding" on-swipe-left="swipeLeftLift()">
-            </div>
-        </div>
-        </div>
-    </ion-content>
+        <ion-content scroll="false" class="has-header has-footer" on-swipe-left="swipeLeftLift()">
+            <div class="card">
+                <div class="item item-divider color-header">
+                </div>
+                <div>
+                    <ion-scroll ng class="scrollbox" delegate-handle="liftBox" zooming="true" direction="y" style="height:22em;">
 
-    <ion-footer-bar align-title="left" class="bar-dark">
-        <div class="button-bar">
-            <a  ng-click="removeFlagB = !removeFlagB" ng-class="{'active': removeFlagB}"  type="button" class="button button-assertive button-clear" style="border-left:none; border-top:none;border-bottom:none; font-size: 1.8em;">-</a>
-            <a  ng-click="filterCustom()" ng-class="{'active': custom}" ng-if="!custom"  type="button" class="button" style=" border-top:none;border-bottom:none;">View Added</a>
-            <a  ng-click="filterCustom()" ng-class="{'active': custom}" ng-if="custom"  type="button" class="button" style=" border-top:none;border-bottom:none;">View All</a>
-            <a ng-if ="nameFilter"  ng-click="closeModal('clear')" ng-class="{'active': custom}" ng-if="custom"  type="button" class="button" style=" border-top:none;border-bottom:none;">Clear Filter</a>
-            <a  ng-click="addLiftPopup()" type="button" class="button button-clear button-balanced " style="border-color:black;border-top:none;border-bottom:none;border-right:none;font-size: 1.8em;">+</a>
-        </div>
-    </ion-footer-bar>
-</ion-view>
-    </div>
+                        <ion-list show-delete="removeFlag">
+                            <ion-item class="item-stable item-remove-animate lift-list"
+                                      ng-class="{active : isSelected(lift)}"
+                                      ng-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText"
+                                      ng-if="!custom ||(custom && lift.custom == true)">
+                                <a class="liftSelectEntry inline-liftselect" ng-class="{'remove-lift':removeFlagB}"
+                                   ng-click="setLift(lift,$index)">{{lift.name }} </a>
+                                <i class="icon ion-social-google-outline inline-liftselect searchIcon"
+                                   style="float:right; font-size: 1.4em; padding-right: .8em"
+                                   ng-click="goToUrl(lift.name)"></i>
+                                <i class="icon ion-gear-a inline-liftselect "
+                                   style="float:right; font-size: 1.4em; padding-right: .8em"
+                                   ng-click="editSettings(lift.name)"></i>
+
+                                <!--<ion-delete-button class="ion-minus-circled your-class button"-->
+                                <!--ng-click="removeLiftEntry($index)" style="float:left;">-->
+                                <!--</ion-delete-button>-->
+                            </ion-item>
+                        </ion-list>
+
+                    </ion-scroll>
+                    <div class="item item-input-inset no-padding borderless">
+                        <label class="item-input-wrapper" on-swipe-left="swipeLeftLift()">
+                            <input ng-model="searchText" ng-enter="closeKeyboard()" type="search" placeholder="Search">
+                        </label>
+                    </div>
+                    <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
+                        <a ng-class="{'button-highlight': attr1Pressed == '1'}" ng-click="listSort(1,'1')" type="button"
+                           class="button button-positive button-row1 button-clear liftSearchButtonSmall">Push</a>
+                        <a ng-class="{'button-highlight': attr1Pressed == '2'}" ng-click="listSort(1,'2')" type="button"
+                           class="button button-positive button-row1 button-clear liftSearchButtonSmall ">Pull</a>
+                        <a ng-class="{'button-highlight': attr1Pressed == '3'}" ng-click="listSort(1,'3')" type="button"
+                           class="button button-positive button-row1 button-clear liftSearchButtonSmall">Legs</a>
+                        <a ng-class="{'button-highlight': attr1Pressed == '4'}" ng-click="listSort(1,'4')" type="button"
+                           class="button button-positive button-row1 button-clear liftSearchButtonSmall">Core</a>
+                        <a ng-class="{'button-highlight': attr1Pressed == '5'}" ng-click="listSort(1,'5')" type="button"
+                           class="button button-positive button-row1 button-clear liftSearchButtonSmall">Cross</a>
+                    </div>
+                    <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
+                        <a ng-class="{'button-highlight': attr2Pressed == '1'}" ng-click="listSort(2,'1')" type="button"
+                           class="button  button-positive button-clear  liftSearchButtonSmall">Barbell</a>
+                        <a ng-class="{'button-highlight': attr2Pressed == '2'}" ng-click="listSort(2,'2')" type="button"
+                           class="button  button-positive button-clear  liftSearchButtonSmall">Dumbell</a>
+                        <a ng-class="{'button-highlight': attr2Pressed == '3'}" ng-click="listSort(2,'3')" type="button"
+                           class="button  button-positive button-clear  liftSearchButtonSmall">Machine</a>
+                        <a ng-class="{'button-highlight': attr2Pressed == '4'}" ng-click="listSort(2,'4')" type="button"
+                           class="button  button-positive button-clear  liftSearchButtonSmall">Body
+                            Wt</a>
+                    </div>
+                    <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
+                        <a ng-class="{'button-highlight': attr3Pressed == '1'}" ng-click="listSort(3,'1')" type="button"
+                           class="button  button-positive button-row3 button-clear  liftSearchButtonSmall">Seated/Laying</a>
+                        <a ng-class="{'button-highlight': attr3Pressed == '2'}" ng-click="listSort(3,'2')" type="button"
+                           class="button  button-positive button-row3 button-clear  liftSearchButtonSmall">Standing</a>
+                    </div>
+                    <div class="padding" on-swipe-left="swipeLeftLift()">
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+
+        <ion-footer-bar align-title="left" class="bar-dark">
+            <div class="button-bar">
+                <a ng-click="removeFlagB = !removeFlagB" ng-class="{'active': removeFlagB}" type="button"
+                   class="button button-assertive button-clear"
+                   style="border-left:none; border-top:none;border-bottom:none; font-size: 1.8em;">-</a>
+                <a ng-click="filterCustom()" ng-class="{'active': custom}" ng-if="!custom" type="button" class="button"
+                   style=" border-top:none;border-bottom:none;">View Added</a>
+                <a ng-click="filterCustom()" ng-class="{'active': custom}" ng-if="custom" type="button" class="button"
+                   style=" border-top:none;border-bottom:none;">View All</a>
+                <a ng-if="nameFilter" ng-click="closeModal('clear')" ng-class="{'active': custom}" ng-if="custom"
+                   type="button" class="button" style=" border-top:none;border-bottom:none;">Clear Filter</a>
+                <a ng-click="addLiftPopup()" type="button" class="button button-clear button-balanced "
+                   style="border-color:black;border-top:none;border-bottom:none;border-right:none;font-size: 1.8em;">+</a>
+            </div>
+        </ion-footer-bar>
+    </ion-view>
+</div>
 
 </body>
 </html>

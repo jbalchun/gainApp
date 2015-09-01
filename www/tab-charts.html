@@ -69,34 +69,6 @@
             </div>
         </div>
 
-        <div class="card" ng-show="chartTable==0||( chartTable == 3 && bodyWtFlag   )|| (bodyWtFlag && chartTable == 1)">
-            <!--<div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">-->
-            <!--</div>-->
-            <ion-item class="item item-remove-animate no-padding">
-                <div
-                     class="liftNameButton">
-                    <button class="liftSelectEntry button button-clear button-positive" style="float:left;"
-                            ng-click="openModal()">{{liftName}}
-                    </button>
-                    <button class="liftSelectEntry button button-clear button-positive ng-cloak"
-                            ng-click="repPopup($event)"
-                            style="float:right;" ng-class="{'active':liftName == 'Select Lift'}" ng-cloak>
-                        {{selectedReps}}
-                    </button>
-                    <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
-                </div>
-                <div ng-show="  (!bodyWtFlag && (chartTable == 1 || chartTable == 3 ))" class="liftNameButton"
-                     style="float:left;">
-                    <button class="liftSelectEntry button button-clear button-positive" ng-click="openModal()">Body
-                        Weight (tap to select lift)
-                    </button>
-                    <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
-                </div>
-            </ion-item>
-        </div>
-
-
-
 
 
 
@@ -147,12 +119,18 @@
             </div>
         </div>
 
-        <div ng-if="chartTable == 4" class="card">
+
+<!--end janky block-->
+
+
+
+
+        <div class="card" ng-show="chartTable==0 ||chartTable==4||( chartTable == 3 && bodyWtFlag   )|| (bodyWtFlag && chartTable == 1)">
             <!--<div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">-->
             <!--</div>-->
             <ion-item class="item item-remove-animate no-padding">
-                <div ng-show="chartTable==4"
-                     class="liftNameButton">
+                <div
+                        class="liftNameButton">
                     <button class="liftSelectEntry button button-clear button-positive" style="float:left;"
                             ng-click="openModal()">{{liftName}}
                     </button>
@@ -163,10 +141,15 @@
                     </button>
                     <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
                 </div>
+                <div ng-show="  (!bodyWtFlag && (chartTable == 1 || chartTable == 3 ))" class="liftNameButton"
+                     style="float:left;">
+                    <button class="liftSelectEntry button button-clear button-positive" ng-click="openModal()">Body
+                        Weight (tap to select lift)
+                    </button>
+                    <!--<a class="liftSelectEntry"  ng-show="liftName != 'Select Lift'">Set Goal</a>-->
+                </div>
             </ion-item>
         </div>
-<!--end janky block-->
-
 
 
 
