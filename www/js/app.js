@@ -21,6 +21,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         x: 53,
         userId: '',
         visitCount: 0,
+        tabTitle:'Lift',
         editingLift: [],
         goalsMap: {},
         kgMap: {},

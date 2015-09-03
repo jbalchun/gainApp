@@ -15,6 +15,7 @@ app.controller('liftselectcontrol',
         $scope.newLiftName = {name: ''};
         $scope.custom = false;
         $scope.customLifts = [];
+        
         $scope.removeFlagB = false;
         $scope.liftForSettingsChange = '';
         $scope.liftObjectForSettingsChange = {};
@@ -161,6 +162,8 @@ app.controller('liftselectcontrol',
             $scope.selected = '.';
             //$scope.custom = false;
             $scope.removeFlagB = false;
+            $scope.searchTextC = '';
+            $scope.searchText = '';
         };
         // $scope.selected = 0;
 

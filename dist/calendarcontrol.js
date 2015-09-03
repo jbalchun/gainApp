@@ -370,6 +370,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
                     onTap: function (e) {
                         localStore.loadLiftFromCalendar($scope.filterList[index]);
                         $state.go('tab.posts');
+                        $rootScope.$broadcast('load-calendar',{name1:$scope.filterList[index].name})
                     }
                 },
                 {

@@ -41,7 +41,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.dateList = [];
     $scope.calendar1 = false;
     $scope.infoFlag = 1;
-    var hideModalFlag = {'newlift': '', 'sets': '', 'id': ''}
+    $scope.tabTitle = $scope.$storage.tabTitle;
+    var hideModalFlag = {'newlift': '', 'sets': '', 'id': ''};
 
     //prevent selection of the same lift, unless its "new lift"
     //for autoselect in weightselect modal
@@ -50,6 +51,12 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.autoRepChoice = [3, 5, 6, 8, 10]
     $scope.liftCards = $scope.$storage.todaysLifts;
 
+    $scope.$on('load-calendar',function(event,args){
+        if(args.name1.length > 0){
+            $scope.$storage.tabTitle = args.name1;
+            $scope.tabTitle = $scope.$storage.tabTitle;
+        }
+    });
 
     $ionicPopover.fromTemplateUrl('pop/pop-date.html', {
         scope: $scope
@@ -60,8 +67,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.closeKeyboard = function () {
         //cordova.plugins.Keyboard.hide()
         document.activeElement.blur();
-        document.activeElement.blur()
-    }
+        document.activeElement.blur();
+    };
 
     $scope.datePopup = function ($event, date) {
         document.body.classList.add('platform-ios');
@@ -96,7 +103,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         if ($scope.liftCards.length > 1) {
             $scope.removeFlag = !$scope.removeFlag
         }
-    }
+    };
 
     $scope.uniqueSortReps = function () {
         $scope.sets = $scope.resultsLifts;
@@ -104,11 +111,11 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         angular.forEach($scope.resultsLifts, function (lift, index) {
             var repList2 = []
             angular.forEach(lift.sets, function (setr, index) {
-                repList2.push(setr.reps)
+                repList2.push(setr.reps);
             });
             repListList.push(repList2);
         });
-        var repListListUS = []
+        var repListListUS = [];
         angular.forEach(repListList, function (list, index) {
             var repListU = _.unique(list);
             var repListS = repListU.sort(function (a, b) {
@@ -659,6 +666,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                     onTap: function (e) {
                         localStore.clearLifts();
                         $scope.liftCards = $scope.$storage.todaysLifts;
+                        $scope.$storage.tabTitle= 'Lift';
+                        $scope.tabTitle='Lift';
                         $ionicScrollDelegate.scrollTop();
                     }
                 }
@@ -829,9 +838,11 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         }
         else if (id == 3) {
             $scope.blurFlag = true;
+
             $scope.populateBodyWeightResults();
             $scope.buildResultsObject();
             $scope.modal3.show();
+
         } else if (id == 4) {
             if ($scope.liftCards[index].name == 'Select Lift' ||
                 ($scope.liftCards[index].sets[0].reps == 0 &&
@@ -863,6 +874,10 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             $scope.modal4.show();
         }
         else {
+            console.log('go',$scope.$storage.tabTitle,$scope.workoutName.name);
+            if($scope.tabTitle != "Lift"){
+                $scope.workoutName.name = angular.copy($scope.$storage.tabTitle);
+            }
             $scope.blurFlag = true;
             $scope.modal5.show()
 
@@ -896,14 +911,17 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             }, 500);
         }
         else if (id == 2) {
-        } else if (id == 3) {
+        }
+        else if (id == 3) {
             $timeout(function () {
                 $scope.clearResults();
             }, 3000);
 
-        } else if (id == 4) {
+        }
+        else if (id == 4) {
 
-        } else {
+        }
+        else {
             if (newLift == 1) { //TODO make sure date isn't today
                 if(!localStore.checkDate($scope.liftDate)){
                 localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);

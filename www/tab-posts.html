@@ -1,4 +1,6 @@
-<ion-view ng-controller="liftcontrol" ng-class="{true:'blurBackground'}[blurFlag]" title="Lift">
+<ion-view ng-controller="liftcontrol" ng-class="{true:'blurBackground'}[blurFlag]" >
+    <ion-nav-title> {{tabTitle}}
+    </ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-clear icon ion-trash-b" style='font-size: .8em' ng-click="clearLifts()">
 

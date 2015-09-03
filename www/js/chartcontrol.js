@@ -181,7 +181,7 @@ app.controller("chartcontrol", function ($scope, $localStorage, localStore, $ion
                     text: '<b>Close</b>',
                     type: 'button-dark',
                     onTap: function (e) {
-                        refresh();
+                        $scope.refreshCharts();
                     }
                 },
                 {
