@@ -20,11 +20,22 @@ app.controller('liftselectcontrol',
         $scope.liftForSettingsChange = '';
         $scope.liftObjectForSettingsChange = {};
         $scope.liftSelectorState = 'All Lifts';
+        $scope.keyBoardUp = false;
+        window.addEventListener('native.hidekeyboard', keyboardHideHandler);
+        window.addEventListener('native.showkeyboard', keyboardShowHandler);
+        function keyboardHideHandler(e){
+            //alert('Goodnight, sweet prince');
+            $scope.keyBoardUp = false;
+        }
+        function keyboardShowHandler(e){
+            $scope.keyboardUp = true;
+        }
+
 
         $scope.closeKeyboard = function () {
             //cordova.plugins.Keyboard.hide()
             document.activeElement.blur();
-            document.activeElement.blur()
+            document.activeElement.blur();
         };
 
         $scope.showInfo = function () {
@@ -187,7 +198,7 @@ app.controller('liftselectcontrol',
                 //$scope.removeFlag = false;
             }
             //$scope.removeFlag = false;
-        }
+        };
 
         $scope.setLift = function (lift, index) {
             //console.log('remove', lift, index);
@@ -230,16 +241,28 @@ app.controller('liftselectcontrol',
 
         }
 
+        $scope.hideFlag = true;
         $scope.addLiftPopup = function () {
-
             //console.log("trying ");
             var addLiftPopup = $ionicPopup.show({
-                template: '<input type="text" ng-model="newLiftName.name" maxlength="30">',
+                template: '<input ng-readonly="!hideFlag" type="text" ng-model="newLiftName.name" maxlength="30">',
                 title: 'Enter new lift name',
                 subTitle: "Press 'View Added' Button to filter to your added lifts",
                 scope: $scope,
                 buttons: [
-                    {text: 'Cancel'},
+                    {text: 'Cancel',
+                        onTap: function (e) {
+                            $scope.hideFlag = false;
+                            e.preventDefault();
+                            $timeout(function() {//this was to prevent the keyboard from opening when this popup closed. WEIRD
+                                addLiftPopup.close();
+                            }, 300);
+                            $timeout(function() {
+                                $scope.hideFlag = true;
+                            }, 500);
+
+                        }//todo test this on device
+                    },
                     {
                         text: '<b>Add</b>',
                         type: 'button-dark',
@@ -260,6 +283,7 @@ app.controller('liftselectcontrol',
                                 $rootScope.$broadcast('edit-settings',{name:angular.copy($scope.newLiftName.name)});
                                 //$scope.editSettings($scope.newLiftName.name);
                                 $scope.newLiftName.name = '';
+                                //e.preventDefault();
 
                             }
 

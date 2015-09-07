@@ -17,9 +17,9 @@
   <preference name="SplashScreenDelay" value="10000"/>
   <preference name="auto-hide-splash-screen" value="false"/>
   <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
-  <preference name="ShowSplashScreenSpinner" value="false" />
-  <preference name="FadeSplashScreen" value="true" />
-  <preference name="FadeSplashScreenDuration" value="1.0" />
+  <preference name="ShowSplashScreenSpinner" value="false"/>
+  <preference name="FadeSplashScreen" value="true"/>
+  <preference name="FadeSplashScreenDuration" value="1.0"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
@@ -52,11 +52,11 @@
     <splash src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
   </platform>
   <platform name="browser">
-    <preference name="SplashScreen" value="resources/ios/splash/Default-568h@2x~iphone.png"  /> <!-- defaults to "img/logo.png" -->
-    <preference name="SplashScreenDelay" value="10000" /> <!-- defaults to "3000" -->
-    <preference name="ShowSplashScreen" value="true" /> <!-- defaults to "true" -->
-    <preference name="SplashScreenWidth" value="600" /> <!-- defaults to "170" -->
-    <preference name="SplashScreenHeight" value="300" />
+    <preference name="SplashScreen" value="resources/ios/splash/Default-568h@2x~iphone.png"/>
+    <preference name="SplashScreenDelay" value="10000"/>
+    <preference name="ShowSplashScreen" value="true"/>
+    <preference name="SplashScreenWidth" value="600"/>
+    <preference name="SplashScreenHeight" value="300"/>
   </platform>
   <icon src="resources/ios/icon/icon-small@3x.png"/>
 </widget>

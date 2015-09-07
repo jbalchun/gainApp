@@ -73,7 +73,8 @@
                                 </div>
                                 <ion-item class="item-stable no-back"
                                           ng-click="toggleGroup(lift)"
-                                          ng-class="{active: isGroupShown(lift),'border-top-cal':lift.super}">
+                                          ng-class="{active: isGroupShown(lift),'border-top-cal':lift.super}" style="padding-top: 1px;padding-bottom:1px;
+                                          padding-left: 2px">
                                     <i class="icon" ng-class="isGroupShown(lift) ? 'ion-minus' : 'ion-plus'"></i>
                                     {{lift.name+": "}}
                                     <span ng-repeat="set in lift.sets">{{set.reps}}{{$last ? '' : ', '}}</span>
@@ -81,7 +82,9 @@
 
                                 <ion-item class="item-accordion"
                                           ng-repeat="set in lift.sets"
-                                          ng-show="isGroupShown(lift)">
+                                          ng-show="isGroupShown(lift)"
+                                          style="padding-top: 0px;padding-bottom:0px;
+                                          padding-left: 15px">
                                     {{set.reps + ' X ' + set.wt }}
                                 </ion-item>
                             </div>
@@ -89,8 +92,7 @@
                                 <div class="item item-divider color-header-cal">
                                 </div>
                                 <ion-item class="item-stable  no-back item-text-wrap"
-                                          style="border-bottom: none;padding-bottom: none;margin-bottom: none;"
-                                          ng-click="toggleGroup(lift)"
+                                          style="border-bottom:none;padding-bottom: 0px;margin-bottom: 0px; padding-top: 0px;"
                                           ng-class="{'border-top-cal':lift.super}">
                                     {{workout.notes}}
                                 </ion-item>

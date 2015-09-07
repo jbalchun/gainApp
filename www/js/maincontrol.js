@@ -51,6 +51,15 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.autoRepChoice = [3, 5, 6, 8, 10]
     $scope.liftCards = $scope.$storage.todaysLifts;
 
+    $ionicPlatform.ready(function(){
+        if(window.cordova){
+            $rootScope.checkAndDoUpdate();
+        }
+    });
+
+
+
+
     $scope.$on('load-calendar',function(event,args){
         if(args.name1.length > 0){
             $scope.$storage.tabTitle = args.name1;
@@ -654,6 +663,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     };
 
     $scope.clearLifts = function () {
+        if($scope.removeFlag){
+            $scope.removeFlag = false
+        }
         var confirmPopup = $ionicPopup.show({
             title: 'Clear Lifts?',
             subTitle: "Today's data will be removed",
@@ -665,6 +677,35 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.clearLifts();
+                        $scope.liftCards = $scope.$storage.todaysLifts;
+                        $scope.$storage.tabTitle= 'Lift';
+                        $scope.tabTitle='Lift';
+                        $ionicScrollDelegate.scrollTop();
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            //console.log('Tapped!', res);
+        });
+
+    };
+
+    $scope.clearAll = function () {
+        if($scope.removeFlag){
+            $scope.removeFlag = false
+        }
+        var confirmPopup = $ionicPopup.show({
+            title: 'Clear ALL APP DATA i love you?',
+            subTitle: "All data you have inputted will be cleared from the app. Proceed? (just tap the icon to clear today only)",
+            scope: $scope,
+            buttons: [
+                {text: 'Cancel'},
+                {
+                    text: '<b>Clear</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        localStore.clearAll();
                         $scope.liftCards = $scope.$storage.todaysLifts;
                         $scope.$storage.tabTitle= 'Lift';
                         $scope.tabTitle='Lift';

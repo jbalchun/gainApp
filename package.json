@@ -28,7 +28,15 @@
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-splashscreen.git",
     "https://github.com/apache/cordova-plugin-whitelist",
     "https://github.com/katzer/cordova-plugin-local-notifications",
-    "https://github.com/apache/cordova-plugin-splashscreen.git"
+    "https://github.com/apache/cordova-plugin-splashscreen.git",
+    "https://github.com/driftyco/ionic-plugins-deploy",
+    {
+      "locator": "https://github.com/driftyco/ionic-plugins-deploy",
+      "id": "ionic-plugin-deploy"
+    },
+    "cordova-plugin-whitelist"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }

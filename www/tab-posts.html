@@ -2,7 +2,7 @@
     <ion-nav-title> {{tabTitle}}
     </ion-nav-title>
     <ion-nav-buttons side="right">
-        <button class="button button-clear icon ion-trash-b" style='font-size: .8em' ng-click="clearLifts()">
+        <button class="button button-clear icon ion-trash-b" on-hold="clearAll()" style='font-size: .8em' ng-click="clearLifts()">
 
         </button>
         <button class="button button-balanced " ng-if= "stateW == 'heroku'"  style='font-size: 1.2em' ng-click="emailPop()">

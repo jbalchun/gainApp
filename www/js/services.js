@@ -104,6 +104,16 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 'sets': [{'reps': '0', wt: '0'}]
             },];
         },
+        clearAll:function(){
+            console.log('resetting' +
+            '')
+            $localStorage.$reset();
+            //location.reload(); TODO, make talk to app.js so it doesn't reload.
+            $rootScope.$storage.todaysLifts = [{
+                'name': 'Select Lift',
+                'sets': [{'reps': '0', wt: '0'}]
+            },];
+        },
         addSet: function (index) {
             if ($rootScope.$storage.todaysLifts[index].sets.length < 10 ) {
                 var lastSet = angular.copy( _.last( $rootScope.$storage.todaysLifts[index].sets));

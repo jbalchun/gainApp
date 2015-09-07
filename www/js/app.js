@@ -1,5 +1,5 @@
 var app = angular.module('MyApp', [
-    'ionic',
+    'ionic','ionic.service.core','ionic.service.deploy',
     'MyApp.controllers',
     'MyApp.services',
     'ui.bootstrap',
@@ -16,7 +16,7 @@ var app = angular.module('MyApp', [
     'templates'
 ]);
 
-app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache) {
+app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache,$ionicDeploy) {
     $rootScope.$storage = $localStorage.$default({
         x: 53,
         userId: '',
@@ -306,8 +306,42 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         $rootScope.$broadcast('closeKeyboard');
     }
 
+    $rootScope.checkAndDoUpdate = function(){
+        console.log('Ionic Deploy: Checking for updates');
+        $ionicDeploy.check().then(function(hasUpdate) {
+            console.log('Ionic Deploy: Update available: ' + hasUpdate);
+            $rootScope.hasUpdate = hasUpdate;
+            alert('Updating your app in the background. The screen will refresh in a few seconds with updates, use as normal till then')
+            $rootScope.doUpdate();
+            alert(hasUpdate);
+        }, function(err) {
+            console.error('Ionic Deploy: Unable to check for updates', err);
+            alert(err);
+        });
+    }
 
+    $rootScope.checkForUpdates = function() {
+        console.log('Ionic Deploy: Checking for updates');
+        $ionicDeploy.check().then(function(hasUpdate) {
+            console.log('Ionic Deploy: Update available: ' + hasUpdate);
+            $rootScope.hasUpdate = hasUpdate;
 
+        }, function(err) {
+            console.error('Ionic Deploy: Unable to check for updates', err);
+        });
+    };
+    $rootScope.doUpdate = function() {
+        $ionicDeploy.update().then(function(res) {
+            console.log('Ionic Deploy: Update Success! ', res);
+            alert('Successfully Hot-Updated Gain ;)');
+        }, function(err) {
+            console.log('Ionic Deploy: Update error! ', err);
+        }, function(prog) {
+            console.log('Ionic Deploy: Progress... ', prog);
+        });
+    };
+
+    $rootScope.hasUpdate = '';
     $rootScope.stateW = '';
     $rootScope.email = {email: ''};
     $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
@@ -319,48 +353,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 navigator.splashscreen.hide();
             }
             //PARSE
-            ////console.log(winston != undefined)
             Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
-
-            //
-            //Parse.FacebookUtils.logIn(null, {
-            //    success: function(user) {
-            //        if (!user.existed()) {
-            //            alert("User signed up and logged in through Facebook!");
-            //        } else {
-            //            alert("User logged in through Facebook!");
-            //        }
-            //    },
-            //    error: function(user, error) {
-            //        alert("User cancelled the Facebook login or did not fully authorize.");
-            //    }
-            //});
-            //
-            //var TestObject = Parse.Object.extend("TestObject");
-            //var testObject = new TestObject();
-            //testObject.save({foo: "bar"}).then(function(object) {
-            //    alert("yay! it worked");
-            //});
-            //var user = new Parse.User();
-            //user.set("username", "my name2");
-            //user.set("password", "my pass2");
-            //user.set("email", "email@exa3mple.com");
-
-            //// other fields can be set just like with Parse.Object
-            //        user.set("phone", "650-555-0000");
-
-            //user.signUp(null, {
-            //    success: function(user) {
-            //        // Hooray! Let them use the app now.
-            //    },
-            //    error: function(user, error) {
-            //        // Show the error message somewhere and let the user try again.
-            //        alert("Error: " + error.code + " " + error.message);
-            //    }
-            //});
-
-
-
             if ($rootScope.$storage.populated == false) {//load in dummy data for demos
                 //$rootScope.$storage.dummy.reverse();
 
@@ -373,6 +366,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             }
 
             if (!window.cordova) {
+                $rootScope.$broadcast('do-update');
                 if (typeof winston !== "undefined") {
                     $rootScope.stateW = 'heroku'
                     ////console.log($rootScope.stateW)
@@ -423,20 +417,12 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 navigator.splashscreen.hide();
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
-                //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                //$cordovaKeyboard.disableScroll(true)
-                //    .then(function(value) {
-                //  //console.log('keyboard locked'); // Success!
-                //}, function(reason) {
-                //  //console.log('keyboard error '); // Error!
-                //});
-                //window.open = cordova.InAppBrowser.open;
-
             }
-            //if (window.StatusBar) {
-            //  // org.apache.cordova.statusbar required
-            //  StatusBar.styleDefault();
-            //}
+            //lastly, check for updates!
+
+
+
+
         });
     });
 });
