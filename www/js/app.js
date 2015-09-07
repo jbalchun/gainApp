@@ -306,41 +306,6 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         $rootScope.$broadcast('closeKeyboard');
     }
 
-    $rootScope.checkAndDoUpdate = function(){
-        console.log('Ionic Deploy: Checking for updates');
-        $ionicDeploy.check().then(function(hasUpdate) {
-            console.log('Ionic Deploy: Update available: ' + hasUpdate);
-            $rootScope.hasUpdate = hasUpdate;
-            alert('Updating your app in the background. The screen will refresh in a few seconds with updates, use as normal till then')
-            $rootScope.doUpdate();
-            alert(hasUpdate);
-        }, function(err) {
-            console.error('Ionic Deploy: Unable to check for updates', err);
-            alert(err);
-        });
-    }
-
-    $rootScope.checkForUpdates = function() {
-        console.log('Ionic Deploy: Checking for updates');
-        $ionicDeploy.check().then(function(hasUpdate) {
-            console.log('Ionic Deploy: Update available: ' + hasUpdate);
-            $rootScope.hasUpdate = hasUpdate;
-
-        }, function(err) {
-            console.error('Ionic Deploy: Unable to check for updates', err);
-        });
-    };
-    $rootScope.doUpdate = function() {
-        $ionicDeploy.update().then(function(res) {
-            console.log('Ionic Deploy: Update Success! ', res);
-            alert('Successfully Hot-Updated Gain ;)');
-        }, function(err) {
-            console.log('Ionic Deploy: Update error! ', err);
-        }, function(prog) {
-            console.log('Ionic Deploy: Progress... ', prog);
-        });
-    };
-
     $rootScope.hasUpdate = '';
     $rootScope.stateW = '';
     $rootScope.email = {email: ''};
@@ -354,9 +319,9 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             }
             //PARSE
             Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
+
             if ($rootScope.$storage.populated == false) {//load in dummy data for demos
                 //$rootScope.$storage.dummy.reverse();
-
                 angular.forEach($rootScope.$storage.dummy, function (workout, key) {
                     //console.log('notes', workout)
                     localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes)
@@ -418,9 +383,6 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
             }
-            //lastly, check for updates!
-
-
 
 
         });

@@ -34,7 +34,8 @@
       "locator": "https://github.com/driftyco/ionic-plugins-deploy",
       "id": "ionic-plugin-deploy"
     },
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "cordova-plugin-network-information"
   ],
   "cordovaPlatforms": [
     "ios"

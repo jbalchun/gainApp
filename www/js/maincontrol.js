@@ -2,7 +2,7 @@
  * Created by Jbalchun on 12/26/14.
  */
 var app = angular.module('MyApp.maincontrol', ['ionic', 'MyApp.services', 'ngStorage', 'ngCordova']);
-app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $rootScope,$state, localStore, $ionicPopup, $ionicPopover, $ionicPlatform, $timeout, $ionicScrollDelegate) {
+app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $rootScope,$state, localStore, $ionicPopup, $ionicPopover, $ionicPlatform, $timeout, $ionicScrollDelegate,$ionicDeploy) {
 
     $scope.removeFlag = false;
     //$scope.reorderFlag=false;
@@ -52,8 +52,12 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.liftCards = $scope.$storage.todaysLifts;
 
     $ionicPlatform.ready(function(){
+        //var networkStateA = navigator.connection.type;
+        //alert(networkStateA);
         if(window.cordova){
-            $rootScope.checkAndDoUpdate();
+            alert('hascord')
+            var networkState = navigator.connection.type;
+            $rootScope.checkAndDoUpdate(networkState);
         }
     });
 
@@ -348,6 +352,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     };
 
     $scope.selectGoal = function (index) {
+
         $scope.wtSelectPress = index + String(3)
         ////console.log('zero',$scope.sets2[0]);
         $scope.editingShow = {num: $scope.goalMapEdit[$scope.nameLift + String($scope.sets2[index].reps)]}
@@ -999,6 +1004,72 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         } else {
             $scope.modal5.hide()
         }
+    };
+
+    //Updates
+    $rootScope.checkAndDoUpdate = function(networkState){
+        console.log('Ionic Deploy: Checking for updates');
+        $ionicDeploy.check().then(function(hasUpdate) {
+            $rootScope.hasUpdate = hasUpdate;
+            if(networkState == 'wifi'){
+                $rootScope.doUpdate();
+                var confirmPopup0 = $ionicPopup.show({
+                    title: 'Update Available',
+                    subTitle: "Hot-updating your app, the screen will soon refresh with the latest version. (I only do this automatically over wifi!)",
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: '<b>Ok</b>',
+                            type: 'button-dark'
+                        }
+                    ]
+                });
+                confirmPopup0.then(function (res) {
+                    //console.log('Tapped!', res);
+                });
+            }
+            else{
+                var confirmPopup1 = $ionicPopup.show({
+                    title: 'Update Available',
+                    subTitle: "Click OK to *hot-update* your app (Automatically, no redirect to app store)",
+                    scope: $scope,
+                    buttons: [
+                        {text: 'Cancel'},
+                        {
+                            text: '<b >Done</b>',
+                            type: 'button-dark',
+                            onTap: function (e) {
+                                $rootScope.doUpdate();
+                            }
+                        }
+                    ]
+                });
+                confirmPopup1.then(function (res) {
+                });
+            }
+        }, function(err) {
+            console.error('Ionic Deploy: Unable to check for updates', err);
+        });
+    };
+
+    $rootScope.checkForUpdates = function() {
+        console.log('Ionic Deploy: Checking for updates');
+        $ionicDeploy.check().then(function(hasUpdate) {
+            console.log('Ionic Deploy: Update available: ' + hasUpdate);
+            $rootScope.hasUpdate = hasUpdate;
+
+        }, function(err) {
+            console.error('Ionic Deploy: Unable to check for updates', err);
+        });
+    };
+    $rootScope.doUpdate = function() {
+        $ionicDeploy.update().then(function(res) {
+            console.log('Ionic Deploy: Update Success! ', res);
+        }, function(err) {
+            console.log('Ionic Deploy: Update error! ', err);
+        }, function(prog) {
+            console.log('Ionic Deploy: Progress... ', prog);
+        });
     };
 
 });

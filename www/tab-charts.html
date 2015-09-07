@@ -195,7 +195,7 @@
             </ion-item>
         </div>
 
-        <div class="card" ng-show="chartTable == 1 && dateWeightObjectList.length > 0">
+        <div class="card ng-cloak" ng-show="chartTable == 1 && dateWeightObjectList.length > 0"  ng-cloak>
             <ion-scroll ng-class="scrollbox" zooming="true" direction="y"
                         style="height:{{(35 * dateWeightObjectList.length) + 'px'}}; max-height: 80%;">
 
@@ -209,7 +209,7 @@
                 </ion-list>
         </div>
 
-        <div class="card" ng-if="chartTable == 3">
+        <div class="card  ng-cloak" ng-if="chartTable == 3"  ng-cloak>
             <div class="button-bar liftSearchButtons" style="padding:0px">
                 <a type="button"
                    class="button button-clear button-positive button-positive timerButtonSmall"
