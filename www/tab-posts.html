@@ -12,7 +12,10 @@
     <ion-nav-buttons side="left">
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
         </button>
+        <a ng-if="percentage > 0 && percentage < 100">{{"updating " + percentage+"%"}}</a>
+        <a ng-if="updated">updated</a>
     </ion-nav-buttons>
+
     <ion-content delegate-handle="small"  class="has-footer" has-header="true" ng-click="outRemove()">
         <div>
             <div class="list card">
@@ -64,7 +67,6 @@
                         </ion-delete-button>
                     </ion-item>
 
-
                 </ion-list>
             </div>
         </div>
@@ -78,7 +80,7 @@
             <a ng-class="" ng-click="showConfirm()" type="button" class="button icon ion-android-done tab2"
                style="border-top:none;border-bottom:none;">  </a>
             <!--<a ng-class="{'active': reorderFlag == true}" ng-click="reorderFlag = !reorderFlag;" type="button" class="button">Reorder Lifts</a>-->
-            <a type="button " ng-click="addLift()"
+            <a type="button" on-hold="addLift(true)" ng-click="addLift(false)"
                class="button button-balanced button-clear " style="border-color:black;border-top:none;border-bottom:none;border-right:none;font-size: 25px;">+</a>
         </div>
 

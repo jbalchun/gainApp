@@ -39,8 +39,8 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
     };
 
     return {
-        addLift: function (name, sets) {
-            $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':false})
+        addLift: function (name, sets,superFlag) {
+            $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':superFlag})
         },
         saveLift: function (date,lifts,name,bodyWeight,notes) {
             //console.log('saving',{'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes})
@@ -227,8 +227,12 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                     $rootScope.$storage.todaysLifts = angular.copy(workout2.lifts);
                 }
             });
+            if(workout.name){
+                $rootScope.$storage.tabTitle = workout.name;
+            }
+
                 //$rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
-            $rootScope.$broadcast("loadedFromCalendar");
+
         },
         wipeWeights:function(){
             angular.forEach( $rootScope.$storage.todaysLifts,function(lift,ind){
@@ -236,11 +240,13 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                     set1.wt = 0;
                 });
             });
+            $rootScope.$broadcast("loadedFromCalendar");
         },
         liftsOnly:function(){
             angular.forEach( $rootScope.$storage.todaysLifts,function(lift,ind){
                 lift.sets = [{'reps': '0', wt: '0'}];
             });
+            $rootScope.$broadcast("loadedFromCalendar");
         },
 
         buildRepList:function(name){
@@ -308,19 +314,24 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
 
             angular.forEach($rootScope.$storage.workouts, function(day, index) {
                 bodyWeight.push({wt:day.bodyWeight,date:day.date})
-                angular.forEach(day.lifts, function(lift, index){
-                    if (lift.name == name){
-                        var tempDayList = [];
-                        angular.forEach(lift.sets,function(set1, index){
-                            if(Number(set1.reps) == Number(reps)){
-                                console.log('reps',reps)
-                                tempDayList.push({wt:Number(set1.wt),date:day.date});
-                            }
-                        });
-                        var tempMaxObj = _.max(tempDayList, function(lift){ return lift.wt;})
-                        weightsDates.push(tempMaxObj);
+                angular.forEach(day.lifts, function(lift, index2){
+                    if(index>0) {
+                        if (lift.name == name) {
+                            var tempDayList = [];
+                            angular.forEach(lift.sets, function (set1, index3) {
+                                if (Number(set1.reps) == Number(reps)) {
+                                    console.log('reps', reps)
+                                    tempDayList.push({wt: Number(set1.wt), date: day.date});
+                                }
+                            });
+                            var tempMaxObj = _.max(tempDayList, function (lift) {
+                                return lift.wt;
+                            });
+                            weightsDates.push(tempMaxObj);
+                        }
                     }
                 });
+
             });
 
             var maxObj = _.max(weightsDates, function(lift){ return lift.wt;})

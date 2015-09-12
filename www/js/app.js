@@ -1,5 +1,5 @@
 var app = angular.module('MyApp', [
-    'ionic','ionic.service.core','ionic.service.deploy',
+    'ionic','ionic.service.core','ionic.service.deploy','ionic.service.analytics',
     'MyApp.controllers',
     'MyApp.services',
     'ui.bootstrap',
@@ -16,11 +16,12 @@ var app = angular.module('MyApp', [
     'templates'
 ]);
 
-app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache,$ionicDeploy) {
+app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicAnalytics) {
     $rootScope.$storage = $localStorage.$default({
         x: 53,
         userId: '',
         visitCount: 0,
+        updating:false,
         tabTitle:'Lift',
         editingLift: [],
         goalsMap: {},
@@ -318,6 +319,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 navigator.splashscreen.hide();
             }
             //PARSE
+            $ionicAnalytics.register();
             Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
 
             if ($rootScope.$storage.populated == false) {//load in dummy data for demos

@@ -369,8 +369,9 @@ app.controller('calendarcontrol', function ($scope, $ionicModal, $timeout, $ioni
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.loadLiftFromCalendar($scope.filterList[index]);
+                        $rootScope.$broadcast("loadedFromCalendar");
                         $state.go('tab.posts');
-                        $rootScope.$broadcast('load-calendar',{name1:$scope.filterList[index].name})
+
                     }
                 },
                 {

@@ -45,18 +45,13 @@
                             <a class="col ">{{resultsSourceNameMap[lift.name+set1.reps].reps}}</a>
                             <!--today-->
                             <a class="col"
-                               ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt
-                               ||resultsSourceNameMap[lift.name+set1.reps].todaysMax >goalMap[lift.name+set1.reps].wt ,
-                               'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].todaysMax || 'None'}}</a>
+                               ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax >goalMap[lift.name+set1.reps].wt || resultsSourceNameMap[lift.name+set1.reps].todaysMax > resultsSourceNameMap[lift.name+set1.reps].max.wt ,
+                               'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].last.wt}">{{resultsSourceNameMap[lift.name+set1.reps].todaysMax || 'None'}}</a>
                             <!--last-->
-                            <a class="col" ng-class="{'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].last.wt || 'None'}}</a>
+                            <a class="col" ng-class="{'last-less-color': resultsSourceNameMap[lift.name+set1.reps].todaysMax <  resultsSourceNameMap[lift.name+set1.reps].last.wt}">{{resultsSourceNameMap[lift.name+set1.reps].last.wt || 'None'}}</a>
                             <!--PR-->
-                            <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt > resultsSourceNameMap[lift.name+set1.reps].todaysMax || !resultsSourceNameMap[lift.name+set1.reps].max.wt"
-                               ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt}"
+                            <a ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax > resultsSourceNameMap[lift.name+set1.reps].max.wt}"
                                class="col">{{resultsSourceNameMap[lift.name+set1.reps].max.wt || 'None'}}</a>
-                            <a ng-if="resultsSourceNameMap[lift.name+set1.reps].max.wt == resultsSourceNameMap[lift.name+set1.reps].todaysMax"
-                               class="col"
-                               ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax == resultsSourceNameMap[lift.name+set1.reps].max.wt}">{{resultsSourceNameMap[lift.name+set1.reps].max.wt || 'None'}}</a>
                             <!--goal-->
                             <a class="col" ng-class="{'pr-color':resultsSourceNameMap[lift.name+set1.reps].todaysMax >goalMap[lift.name+set1.reps].wt}"> {{goalMap[lift.name+set1.reps].wt || 'None'}}</a>
                         </div>

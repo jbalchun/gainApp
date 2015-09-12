@@ -3,6 +3,7 @@
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em'
                 ng-click="showInfo()">
         </button>
+
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
@@ -118,19 +119,13 @@
                     current lift</a>
             </div>
         </div>
-
-
 <!--end janky block-->
 
-
-
-
-        <div class="card" ng-show="chartTable==0 ||chartTable==4||( chartTable == 3 && bodyWtFlag   )|| (bodyWtFlag && chartTable == 1)">
+        <div class="card" >
             <!--<div ng-show="chartTable == 1 || chartTable == 3" class="item item-divider color-header">-->
             <!--</div>-->
             <ion-item class="item item-remove-animate no-padding">
-                <div
-                        class="liftNameButton">
+                <div ng-show="  (bodyWtFlag || (!bodyWtFlag && chartTable == 0 ))" class="liftNameButton">
                     <button class="liftSelectEntry button button-clear button-positive" style="float:left;"
                             ng-click="openModal()">{{liftName}}
                     </button>
@@ -150,9 +145,6 @@
                 </div>
             </ion-item>
         </div>
-
-
-
 
         <!--Analytics view-->
 

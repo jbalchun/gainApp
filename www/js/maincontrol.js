@@ -50,26 +50,36 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.autoSetChoice = [{set1: 3}, {set1: 4}, {set1: 5}, {set1: 6}];
     $scope.autoRepChoice = [3, 5, 6, 8, 10]
     $scope.liftCards = $scope.$storage.todaysLifts;
-
+    $scope.updated = $scope.$storage.updated;
     $ionicPlatform.ready(function(){
         //var networkStateA = navigator.connection.type;
         //alert(networkStateA);
         if(window.cordova){
-            alert('hascord')
+            //alert('hascord')
             var networkState = navigator.connection.type;
             $rootScope.checkAndDoUpdate(networkState);
+            if($scope.$storage.updated){
+                $scope.$storage.updated = false;
+                var confirmPopup3 = $ionicPopup.show({
+                    title: 'Gain Updated',
+                    subTitle: "Changes:" +
+                    "Minor bug fixes and enhancements",
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: '<b>Ok</b>',
+                            type: 'button-dark'
+                        }
+                    ]
+                });
+                confirmPopup3.then(function (res) {
+                    //console.log('Tapped!', res);
+                });
+            }
+
         }
     });
 
-
-
-
-    $scope.$on('load-calendar',function(event,args){
-        if(args.name1.length > 0){
-            $scope.$storage.tabTitle = args.name1;
-            $scope.tabTitle = $scope.$storage.tabTitle;
-        }
-    });
 
     $ionicPopover.fromTemplateUrl('pop/pop-date.html', {
         scope: $scope
@@ -102,16 +112,15 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $scope.popover2.show($event);
     };
 
-    $scope.addLift = function () {
-        localStore.addLift('Select Lift', [{'reps': '0', wt: '0'}]);
+    $scope.addLift = function (superFlag) {
+        localStore.addLift('Select Lift', [{'reps': '0', wt: '0'}],superFlag);
 
         $ionicScrollDelegate.$getByHandle('small').scrollBottom();
-    }
+    };
 
     $scope.$on('loadedFromCalendar', function (event, args) {
         $scope.liftCards = $scope.$storage.todaysLifts;
     });
-
     $scope.removeLift = function () {
         if ($scope.liftCards.length > 1) {
             $scope.removeFlag = !$scope.removeFlag
@@ -177,25 +186,20 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         angular.forEach($scope.resultsLifts, function (lift, index) {
             var uniqueSets = _.uniq(lift.sets, function (set1) {
                 return set1.reps;
-            })
-            $scope.uniqueNameSetsMap[lift.name] = uniqueSets;
-            //_.uniq(personArray, function(person) { return person.age; });
-            //console.log("uniqueSets", uniqueSets)
-            angular.forEach(uniqueSets, function (set1, index) {
-                resultsSource.push($scope.populateResults(lift.name, set1.reps))
             });
-        })
+            $scope.uniqueNameSetsMap[lift.name] = uniqueSets;
+            angular.forEach(uniqueSets, function (set1, index) {
+                resultsSource.push($scope.populateResults(lift.name, set1.reps));
+            });
+        });
         $scope.resultsSource = resultsSource;
         angular.forEach($scope.resultsSource, function (result, index) {
             $scope.resultsSourceNameMap[result.name + String(result.reps)] = result;
         });
-        //console.log("uniqueNameSetsMap", $scope.uniqueNameSetsMap);
-        //console.log("$scope.resultsSourceNameMap", $scope.resultsSourceNameMap);
         $scope.resultsSourceNameMap["Body Weight"] = $scope.populateBodyWeightResults();
-        //console.log("bodywet", $scope.resultsSourceNameMap["Body Weight"])
     };
 
-    $scope.populateResults = function (name, reps) { // note we return the dates, if we want to add them. we should.
+    $scope.populateResults = function (name, reps,maxItem) { // note we return the dates, if we want to add them. we should.
         //TODO no one needs duplicate lifts, limit that.
         // find the max of that rep and pass the delta to the key
         var weightListTemp = [];
@@ -243,7 +247,6 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
         } else {
             $scope.lastList[name] = Math.abs(weightsMax.wt - Number(lastItem.wt));
-
             if (weightsMax.wt && weightsMax.wt - Number(lastItem.wt) > 0) {
                 plusMinusLast[name] = 0;
             } else plusMinusLast[name] = 1
@@ -256,16 +259,17 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
 
     $scope.changeNumber = function (amount, button) {//A mess.. if (button) means if it's a button pressed. behave different.
+        console.log(amount)
+
         if ($scope.editingNumber.id) {//if a number has focus
-            if ($scope.editingNumber.id == 1) {
+            if ($scope.editingNumber.id == 1) { // if reps?
                 if (button) {
                     $scope.sets2[$scope.editingNumber.index].reps = amount;
-                    lastAmount = amount;
                     $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].reps}
                     return
                 }
                 //console.log("reps and amount", $scope.sets2[$scope.editingNumber.index].reps, amount)
-                lastAmount = $scope.sets2[$scope.editingNumber.index].reps + amount
+                lastAmount = Number($scope.sets2[$scope.editingNumber.index].reps ) + amount;
                 //console.log("reps and amount", $scope.sets2[$scope.editingNumber.index].reps, amount, lastAmount)
                 if (lastAmount >= 0) {
                     $scope.sets2[$scope.editingNumber.index].reps = Number($scope.sets2[$scope.editingNumber.index].reps) + amount;
@@ -279,7 +283,8 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     $scope.editingShow = {num: $scope.sets2[$scope.editingNumber.index].wt}
                     return
                 }
-                lastAmount2 = $scope.sets2[$scope.editingNumber.index].wt + amount
+                lastAmount2 = Number($scope.sets2[$scope.editingNumber.index].wt) + amount;
+                console.log(lastAmount2);
                 //console.log('wts', $scope.sets2[$scope.editingNumber.index].wt, lastAmount2, amount);
                 if (lastAmount2 >= 0) {
                     //console.log('in', lastAmount2)
@@ -967,9 +972,10 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         else if (id == 4) {
 
         }
-        else {
+        else {//confirm
             if (newLift == 1) { //TODO make sure date isn't today
                 if(!localStore.checkDate($scope.liftDate)){
+
                 localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);
                 $scope.resultsLifts = $scope.liftCards;
                 $scope.liftCards = $scope.$storage.todaysLifts;
@@ -1011,11 +1017,11 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         console.log('Ionic Deploy: Checking for updates');
         $ionicDeploy.check().then(function(hasUpdate) {
             $rootScope.hasUpdate = hasUpdate;
-            if(networkState == 'wifi'){
+            if(networkState == 'wifi' && hasUpdate ){
                 $rootScope.doUpdate();
                 var confirmPopup0 = $ionicPopup.show({
                     title: 'Update Available',
-                    subTitle: "Hot-updating your app, the screen will soon refresh with the latest version. (I only do this automatically over wifi!)",
+                    subTitle: "Hot-updating your app, updates will appear next time the app is opened. (I only do this automatically over wifi!)",
                     scope: $scope,
                     buttons: [
                         {
@@ -1028,17 +1034,18 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     //console.log('Tapped!', res);
                 });
             }
-            else{
+            else if (hasUpdate){
                 var confirmPopup1 = $ionicPopup.show({
                     title: 'Update Available',
-                    subTitle: "Click OK to *hot-update* your app (Automatically, no redirect to app store)",
+                    subTitle: "Tap Ok to *hot-update* your app over cellular (Automatically, no redirect to app store. Alternatively wait for wifi)",
                     scope: $scope,
                     buttons: [
-                        {text: 'Cancel'},
+                        {text: 'Later'},
                         {
-                            text: '<b >Done</b>',
+                            text: '<b>Ok</b>',
                             type: 'button-dark',
                             onTap: function (e) {
+                                $scope.$storage.updating = true;
                                 $rootScope.doUpdate();
                             }
                         }
@@ -1052,24 +1059,35 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         });
     };
 
-    $rootScope.checkForUpdates = function() {
-        console.log('Ionic Deploy: Checking for updates');
-        $ionicDeploy.check().then(function(hasUpdate) {
-            console.log('Ionic Deploy: Update available: ' + hasUpdate);
-            $rootScope.hasUpdate = hasUpdate;
 
-        }, function(err) {
-            console.error('Ionic Deploy: Unable to check for updates', err);
-        });
-    };
+    $scope.percentage = '';
     $rootScope.doUpdate = function() {
-        $ionicDeploy.update().then(function(res) {
-            console.log('Ionic Deploy: Update Success! ', res);
-        }, function(err) {
-            console.log('Ionic Deploy: Update error! ', err);
-        }, function(prog) {
-            console.log('Ionic Deploy: Progress... ', prog);
+
+        $ionicDeploy.download().then(function() {
+            // called when the download has completed successfully
+
+            $ionicDeploy.extract().then(function() {
+                // called when the extraction completes succesfully
+                $scope.$storage.updated = true;
+            }, function(error) {
+                // called when an error occurs
+
+            }, function(deployExtractionProgress) {
+                // this is a progress callback, so it will be called a lot
+                // deployExtractionProgress will be an Integer representing the current
+                // completion percentage.
+                $scope.percentage = deployExtractionProgress;
+            });
+        }, function(deployDownloadError) {
+            // called when an error occurs
+            alert(deployDownloadError)
+        }, function(deployDownloadProgress) {
+            // this is a progress callback, so it will be called a lot
+            // deployDownloadProgress will be an Integer representing the current
+            // completion percentage.
+            $scope.percentage = deployDownloadProgress;
         });
+
     };
 
 });

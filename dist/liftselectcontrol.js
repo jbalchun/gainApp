@@ -15,7 +15,7 @@ app.controller('liftselectcontrol',
         $scope.newLiftName = {name: ''};
         $scope.custom = false;
         $scope.customLifts = [];
-        
+        $scope.preventFlag= true;
         $scope.removeFlagB = false;
         $scope.liftForSettingsChange = '';
         $scope.liftObjectForSettingsChange = {};
@@ -113,7 +113,6 @@ app.controller('liftselectcontrol',
         $scope.editSettings = function (name) {
             $scope.liftForSettingsChange = name;
             $scope.liftObjectForSettingsChange = localStore.getLiftByName(name);
-
             var confirmPopup = $ionicPopup.show({
                 templateUrl: 'pop/pop-liftset.html',
                 title: 'Settings for lift',
@@ -123,7 +122,7 @@ app.controller('liftselectcontrol',
                         text: '<b >Done</b>',
                         type: 'button-dark',
                         onTap: function (e) {
-
+                            $scope.preventFlag = true;
                         }
                     }
                 ]
@@ -171,7 +170,16 @@ app.controller('liftselectcontrol',
             $scope.attr2Pressed = '.';
             $scope.attr3Pressed = '.';
             $scope.selected = '.';
-            //$scope.custom = false;
+            $scope.removeFlagB = false;
+            $scope.searchTextC = '';
+            $scope.searchText = '';
+        };
+        $scope.resetClose = function () {
+            $scope.attr1Pressed = '.';
+            $scope.attr2Pressed = '.';
+            $scope.attr3Pressed = '.';
+            $scope.selected = '.';
+            $scope.custom = false;
             $scope.removeFlagB = false;
             $scope.searchTextC = '';
             $scope.searchText = '';
@@ -184,7 +192,7 @@ app.controller('liftselectcontrol',
         };
 
         $scope.$on('reset-liftselect', function () {
-            $scope.reset();
+            $scope.resetClose();
         });
 
         $scope.isSelected = function (lift) {
@@ -224,8 +232,10 @@ app.controller('liftselectcontrol',
         $scope.$on('edit-settings',function(event,args){
             $timeout(function () {
                 $scope.editSettings(args.name);
+                $scope.newLiftName.name = '';
             }, 500);
         });
+
         $scope.goToUrl = function (name, $ionicPlatform) {
             var namePlus = name.replace(/ /g, "+");
             var link = 'https://www.google.com/search?q=' + namePlus;
@@ -239,9 +249,10 @@ app.controller('liftselectcontrol',
             });
             //ref.addEventListener('exit', function(event) { alert(event.type); });
 
-        }
+        };
 
         $scope.hideFlag = true;
+        $scope.hideFlag2 = true;
         $scope.addLiftPopup = function () {
             //console.log("trying ");
             var addLiftPopup = $ionicPopup.show({
@@ -273,18 +284,23 @@ app.controller('liftselectcontrol',
                                 //TODO focus snap
                                 e.preventDefault();
                             } else {
-
                                 localStore.addLiftToList($scope.newLiftName.name);
                                 // TODO get this to work properly
-
                                 $scope.liftData = $localStorage.liftData;
                                 $scope.filterCustom(true);
-                                    //$rootScope.email.email = ''
-                                $rootScope.$broadcast('edit-settings',{name:angular.copy($scope.newLiftName.name)});
-                                //$scope.editSettings($scope.newLiftName.name);
-                                $scope.newLiftName.name = '';
-                                //e.preventDefault();
-
+                                $scope.hideFlag = false;
+                                e.preventDefault();
+                                $timeout(function() {//this was to prevent the keyboard from opening when this popup closed. WEIRD
+                                    addLiftPopup.close();
+                                    if($scope.preventFlag) {
+                                        $scope.preventFlag = false;
+                                        $rootScope.$broadcast('edit-settings', {name: angular.copy($scope.newLiftName.name)});
+                                    }
+                                }, 300);
+                                $timeout(function() {
+                                    $scope.hideFlag = true;
+                                }, 500);
+                                
                             }
 
                         }
