@@ -706,7 +706,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $scope.removeFlag = false
         }
         var confirmPopup = $ionicPopup.show({
-            title: 'Clear ALL APP DATA i love you?',
+            title: 'Clear ALL APP DATA?',
             subTitle: "All data you have inputted will be cleared from the app. Proceed? (just tap the icon to clear today only)",
             scope: $scope,
             buttons: [
@@ -1069,9 +1069,9 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $ionicDeploy.extract().then(function() {
                 // called when the extraction completes succesfully
                 $scope.$storage.updated = true;
+                $scope.updated = true;
             }, function(error) {
                 // called when an error occurs
-
             }, function(deployExtractionProgress) {
                 // this is a progress callback, so it will be called a lot
                 // deployExtractionProgress will be an Integer representing the current
@@ -1080,7 +1080,6 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             });
         }, function(deployDownloadError) {
             // called when an error occurs
-            alert(deployDownloadError)
         }, function(deployDownloadProgress) {
             // this is a progress callback, so it will be called a lot
             // deployDownloadProgress will be an Integer representing the current

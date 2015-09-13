@@ -1,5 +1,5 @@
 var app = angular.module('MyApp.timercontrol', []);
-app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) {
+app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,localStore) {
     //$scope.range = ($scope.rangeMin * 60 *10) + ($scope.rangeSec *10);
 
     $scope.rangeMin = {min:1};
@@ -10,6 +10,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     $scope.stringSec = String($scope.rangeSec);
     $scope.infoFlag = 4;
     $scope.loopFlag = false;
+    $scope.startedAt = '';
 
     $scope.$watch('minutes',function(){
         $scope.stringMin = String($scope.minutes)
@@ -33,7 +34,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
 
     $scope.showInfo = function(){
         if ($rootScope.stateW =='heroku') {
-            winston.log('info', $scope.$storage.userId + ", viewed timer info at " + new Date())
+
         }
         var confirmPopup = $ionicPopup.show({
             title: 'Timer',
@@ -55,7 +56,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
         });
         confirmPopup.then(function (res) {
             if ($rootScope.stateW =='heroku') {
-                winston.log('info', $scope.$storage.userId + ", closed timer info at " + new Date())
+
             }
             //console.log('Tapped!', res);
         });
@@ -156,7 +157,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
     };
 
     $scope.onRelease = function(){
-        console.log('working')
+        console.log('working');
         if($scope.startStopFlag) {
             console.log('working,',$scope.rangeSec.sec,$scope.rangeMin.min);
             var min = Number($scope.rangeMin.min);
@@ -184,21 +185,30 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
 
     $scope.seconds1 = function(){
         return Number($scope.rangeMin.min * 60 ) + Number($scope.rangeSec.sec);
-    }
+    };
 
     $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
         if (!states.fromCache && states.stateName == "tab.timer") {
+            if(localStore.getStartTime()){
+
+            }
+
             console.log('got it timer');
             //to prohibit janky button load on first view.
             $scope.startStopFlag = true;
+
+
         }
     });
+
+
 
     $scope.startStop = function(){
         //console.log($scope.startStopFlag);
         if($scope.startStopFlag){
             if($scope.timerClear){
                 $scope.$broadcast('timer-start');
+                localStore.setStartTime();
                 //if(window.cordova){tbd
                 //    var now = new Date().getTime(),
                 //        timeUp  = new Date(now + $scope.seconds*1000+$scope.minutes*60*1000);
@@ -222,19 +232,20 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope) 
             if($scope.loopFlag){
                 $scope.loopFlag = false;
             }
+
             //window.plugins.insomnia.allowSleepAgain()
         }
         $scope.startStopFlag = !$scope.startStopFlag;
     };
 
     $scope.reset = function(){
-        console.log($scope.loopFlag)
+        console.log($scope.loopFlag);
+        localStore.resetStartTime();
         if($scope.loopFlag){
             console.log('init')
             $scope.loopFlag = false;
             $scope.$broadcast('timer-reset');
         }
-
         if($scope.timerClear == false){
             //console.log('reset');
             $scope.$broadcast('timer-reset');

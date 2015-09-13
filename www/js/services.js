@@ -356,7 +356,15 @@ app.factory('localStore', function ($rootScope, $localStorage) {
         getGoal:function(key){
             return  $rootScope.$storage.goalsMap[key];
         },
-
+        setStartTime:function(){
+            $rootScope.$storage.startTime = +new Date()
+        },
+        getStartTime:function(){
+            return $rootScope.$storage.startTime;
+        },
+        resetStartTime:function(){
+            $rootScope.$storage.startTime = 0;
+        },
         normalizeToWeeks:function(dateWeightList,flag){
             //   This mess converts all of our dates into weeks from the start date, because chartjs doesnt
             //have time built into it's x axis'

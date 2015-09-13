@@ -3,7 +3,7 @@
  */
 var app = angular.module('MyApp.chartcontrol', ['MyApp.services', 'ngStorage']);
 
-app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionicModal", "$timeout", "$rootScope", "$ionicPopup", "$ionicPopover", "$state", function ($scope, $localStorage, localStore, $ionicModal, $timeout, $rootScope, $ionicPopup, $ionicPopover, $state) {
+app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout", "$rootScope", "$ionicPopup", "$ionicPopover", "$state", function ($scope, localStore, $ionicModal, $timeout, $rootScope, $ionicPopup, $ionicPopover, $state) {
     $scope.liftName = "Select Lift";
     $scope.chartTitle = 'Dummy Lift for xx reps';
     $scope.reps2 = "reps";
@@ -13,7 +13,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.labels = ["January", "February", "March", "April", "May", "June", "July", 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', "July", 'asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf'];
     $scope.labels2 = ["January", "February", "March"];
     $scope.series = ['Series A'];
-    $scope.selectedLift = "Barbell Bench"
+    $scope.selectedLift = "Barbell Bench";
     $scope.data = [
         [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
     ];
@@ -28,7 +28,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.goalNum = {wt: undefined};
     $scope.updateFlag = undefined;
     $scope.dateList = [];
-    $scope.dateSetFull = []
+    $scope.dateSetFull = [];
     $scope.firstDateFull = '';
     $scope.spanSelect = 20;
     $scope.selectedReps = "Select Reps";
@@ -142,7 +142,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
     $scope.showInfo = function () {
         if ($rootScope.stateW == 'heroku') {
             var datenew = new Date()
-            winston.log('info', $scope.$storage.userId + ", viewed data info")
+
         }
         var confirmPopup = $ionicPopup.show({
             title: 'Data',
@@ -166,7 +166,7 @@ app.controller("chartcontrol", ["$scope", "$localStorage", "localStore", "$ionic
             ////console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
                 var dateDiff = new Date() - datenew
-                winston.log('info', $scope.$storage.userId + ", closed data after" + dateDiff)
+
             }
         });
 

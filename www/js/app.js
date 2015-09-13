@@ -16,12 +16,13 @@ var app = angular.module('MyApp', [
     'templates'
 ]);
 
-app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicAnalytics) {
+app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicUser,$ionicAnalytics) {
     $rootScope.$storage = $localStorage.$default({
         x: 53,
         userId: '',
         visitCount: 0,
         updating:false,
+        startTime:'',
         tabTitle:'Lift',
         editingLift: [],
         goalsMap: {},
@@ -307,6 +308,10 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
         $rootScope.$broadcast('closeKeyboard');
     }
 
+    $rootScope.refreshUpdate = function(){
+        location.reload();
+    };
+
     $rootScope.hasUpdate = '';
     $rootScope.stateW = '';
     $rootScope.email = {email: ''};
@@ -320,6 +325,9 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             }
             //PARSE
             $ionicAnalytics.register();
+
+
+
             Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
 
             if ($rootScope.$storage.populated == false) {//load in dummy data for demos
@@ -384,6 +392,11 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
                 navigator.splashscreen.hide();
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
+                $ionicUser.identify({
+                    // Generate GUID
+                    // OR, user the device's UUID
+                    user_id:device.uuid
+                });
             }
 
 
