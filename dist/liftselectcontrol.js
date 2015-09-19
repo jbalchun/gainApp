@@ -216,15 +216,15 @@ app.controller('liftselectcontrol',
             }
             $scope.selected = lift;
             $scope.closeModal(lift, 0, 1);
-        }
+        };
 
         $scope.backFrom = function () {
             $scope.closeModal('no change', 0, 1);
 
-        }
+        };
         $scope.swipeLeftLift = function () {
             $scope.closeModal("", 0, 1);
-        }
+        };
 
         //$scope.addLift = function () {
         //    $scope

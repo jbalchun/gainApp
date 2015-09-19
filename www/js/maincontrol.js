@@ -60,6 +60,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $rootScope.checkAndDoUpdate(networkState);
             if($scope.$storage.updated){
                 $scope.$storage.updated = false;
+                $scope.updated = $scope.$storage.updated;
                 var confirmPopup3 = $ionicPopup.show({
                     title: 'Gain Updated',
                     subTitle: "Changes:" +
@@ -120,10 +121,12 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.$on('loadedFromCalendar', function (event, args) {
         $scope.liftCards = $scope.$storage.todaysLifts;
+        $scope.tabTitle = $scope.$storage.tabTitle
     });
     $scope.removeLift = function () {
         if ($scope.liftCards.length > 1) {
-            $scope.removeFlag = !$scope.removeFlag
+            $scope.removeFlag = !$scope.removeFlag;
+
         }
     };
 
@@ -662,6 +665,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         if ($scope.removeFlag) {
             $scope.liftCards.splice($index, 1);
         }
+        $scope.removeFlag = !$scope.removeFlag;
     }
 
 
@@ -985,6 +989,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 $scope.notes.notes = '';
                 $scope.bodyWeight.wt = '';
                 $state.go('tab.calendar')//TODO reset filter etc so that it's showing via broadcast or emit
+                    $scope.tabTitle = "Lift"
                 }else {
                     $scope.dateErrorPop();
                 }

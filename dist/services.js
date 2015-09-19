@@ -227,10 +227,11 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                     $rootScope.$storage.todaysLifts = angular.copy(workout2.lifts);
                 }
             });
+            console.log('name', workout.name);
             if(workout.name){
+                console.log("adding name");
                 $rootScope.$storage.tabTitle = workout.name;
             }
-
                 //$rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
 
         },
@@ -247,6 +248,37 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                 lift.sets = [{'reps': '0', wt: '0'}];
             });
             $rootScope.$broadcast("loadedFromCalendar");
+        },
+        makeCalendar:function(){
+         return   {
+                $storage : $localStorage,
+                workouts : $storage.workouts,
+                filterList : angular.copy($storage.workouts),
+                searchQuery : '',
+                dateType : '',
+                today : new Date(),
+                dateObj : {'Year': 'Year', 'Month': 'Month', 'Day': 'Day'},
+                $storage : $localStorage,
+                nameList : $storage.nameList,
+                nameFilter : "Name",
+                liftName : "Lift",
+                monthMap : {
+                    'Jan': 1,
+                    'Feb': 2,
+                    'Mar': 3,
+                    'Apr': 4,
+                    'May': 5,
+                    'Jun': 6,
+                    'Jul': 7,
+                    'Aug': 8,
+                    'Sep': 9,
+                    'Oct': 10,
+                    'Nov': 11,
+                    'Dec': 12
+                },
+                calendar1 : true,
+                infoFlag : 2
+            };
         },
 
         buildRepList:function(name){

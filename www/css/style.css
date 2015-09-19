@@ -804,10 +804,48 @@ div.row.no-padding.borderless{
 .spinner-spiral.spinner-dark .stop2 {
     stop-color: #444; }
 
+div.spinner {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    height: 85px;
+    text-align: center;
+}
+.spinner svg {
+    width: 30px !important;
+    height: 30px !important;
+}
 
+.spinner {
+    width: 19% !important;
+    height: 85px !important;
+}
 
+.chartlistborder {
+    border-bottom: 2px solid black;
 
+}
 
+[collection-repeat] {
+    /* Position is set by transforms */
+    left: 0 !important;
+    top: 0 !important;
+    position: absolute !important;
+    z-index: 1; }
+
+.collection-repeat-container {
+    position: relative;
+    z-index: 1; }
+
+.collection-repeat-after-container {
+    z-index: 0;
+    display: block;
+    /* when scrolling horizontally, make sure the after container doesn't take up 100% width */ }
+.collection-repeat-after-container.horizontal {
+    display: inline-block; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+    display: none !important; }
 
 
 

@@ -4,6 +4,7 @@
 var app = angular.module('MyApp.chartcontrol', ['MyApp.services', 'ngStorage']);
 
 app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout", "$rootScope", "$ionicPopup", "$ionicPopover", "$state", function ($scope, localStore, $ionicModal, $timeout, $rootScope, $ionicPopup, $ionicPopover, $state) {
+    $scope.chartTable=0
     $scope.liftName = "Select Lift";
     $scope.chartTitle = 'Dummy Lift for xx reps';
     $scope.reps2 = "reps";
@@ -14,16 +15,15 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
     $scope.labels2 = ["January", "February", "March"];
     $scope.series = ['Series A'];
     $scope.selectedLift = "Barbell Bench";
-    $scope.data = [
-        [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
-    ];
-    $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
+    //$scope.data = [
+    //    [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
+    //];
+    //$rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
     $scope.bodyWeightData = [];
     $scope.bodyWtFlag = true;
     $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     $scope.firstDate = 'Start Date';
     $scope.lastDate = 'End Date';
-    $scope.chartTable = 0;
     $scope.dateWeightObjectList = [];
     $scope.goalNum = {wt: undefined};
     $scope.updateFlag = undefined;
@@ -33,12 +33,15 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
     $scope.spanSelect = 20;
     $scope.selectedReps = "Select Reps";
     $state.enterCount = 0;
+    $scope.loading = true;
 
     $scope.refreshCharts = function (button) {
         //$scope.chartTable = 0;
         //console.log('timeout')
+        $scope.chartTable=0
         axisAdjust(false);
         $scope.bodyWtFlag = true;
+        $scope.dateWeightObjectList = [];
         $scope.liftName = "Select Lift";
         $scope.chartTitle = "Dummy Lift";
         $scope.repsChart.reps = 'xx'
@@ -48,7 +51,7 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
         $scope.firstDate = 'Start Date';
         $scope.lastDate = 'End Date';
         $scope.goalNum.wt = getGoal();
-        $scope.chartTable=4;
+        $scope.chartTable=0;
         $scope.spanSelect = 20;
         //$scope.chartTable=0
         $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
@@ -72,20 +75,15 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
         if (states.fromCache && states.stateName == "tab.charts") {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
             $scope.refreshCharts();
+            $scope.loading = false;
+        }
+        else if (!states.fromCache && states.stateName == "tab.charts") {
+            $timeout(function(){
+                $scope.refreshCharts();
+                $scope.loading = false;
+            },200);
         }
     });
-
-    //$scope.$on('reset-chart',function(){
-    //    $timeout(function () {
-    //        console.log('resetchart');
-    //        $scope.refreshCharts();
-    //        $state.enterCount = 0;
-    //    },500);
-    //});
-
-
-
-
 
     $scope.infoFlag = 3;
     //AXIS MANIPULATION
@@ -250,7 +248,7 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
     $scope.repPopSelect = function (reps) {
         //console.log("reps here", reps)
         $scope.repsChart.reps = reps;
-        $scope.repsGoal = reps
+        $scope.repsGoal = reps;
         //console.log("reps here", $scope.repsChart.reps)
         $scope.selectedReps = String(reps + " reps")
         $scope.repSelect(reps, $scope.chartTable);
@@ -260,17 +258,22 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
 
     $scope.changeView = function (flag, reps) {
         //console.log('fagflag', $scope.chartTitle);
+        console.log('switch');
         $scope.selectTimespan(false);
+
         //$scope.loadAnalytics();
+        console.log($scope.chartTable);
         if (!$scope.bodyWtFlag) {
             $scope.chartBodyWeight(1, true);
         } else if ($scope.chartTitle == "Dummy Lift for xx reps") {
             $scope.chartTable = flag;
+            console.log($scope.chartTable);
             return
         } else {
             $scope.repSelect(reps, flag)
         }
         $scope.chartTable = flag;
+        console.log($scope.chartTable);
     };
 
 
@@ -404,7 +407,7 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
         $scope.liftName = "Select Lift";
         resetAnalytics();
         $scope.selectedReps = "Select Reps";
-        $scope.selectTimespan(false);
+        $scope.selectTimespan(20);
         if ($scope.bodyWtFlag || (updateFlag == 1 && !$scope.bodyWtFlag)) { //it's true, meaning we haven't drawn
             if (updateFlag == 1) {
                 $scope.updateFlag = 0;
@@ -467,6 +470,7 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
             });
         } else {//it's false, meaning we've drawn.
             //console.log('repsgoal,', $scope.repsGoal)
+            $scope.refreshCharts();
             if ($scope.repsGoal == undefined) {
                 $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
                 $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -646,7 +650,14 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
         dtWtObjs.reverse();
         bodArray = localStore.normalizeToWeeks(dtWtObjs, 1);
         dateBodArray = localStore.normalizeToWeeks(dtWtObjs, 2);
-        console.log('bod', bodArray[0])
+        console.log('bod',$scope.spanSelect, bodArray[0])
+        if($scope.spanSelect < bodArray[0].length && $scope.spanSelect){
+            var spanArray =  bodArray[0].slice(Math.max(bodArray[0].length - $scope.spanSelect, 1))
+            console.log('bodspan',$scope.spanSelect, spanArray)
+            return spanArray
+            console.log('bod', bodArray[0])
+        }
+        //var spanArray =  bodArray[0]
         return bodArray[0];
     };
 

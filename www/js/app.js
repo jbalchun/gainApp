@@ -16,7 +16,7 @@ var app = angular.module('MyApp', [
     'templates'
 ]);
 
-app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicUser,$ionicAnalytics) {
+app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicUser,$ionicAnalytics) {
     $rootScope.$storage = $localStorage.$default({
         x: 53,
         userId: '',
@@ -323,6 +323,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage, $rootScope, l
             if(navigator && navigator.splashscreen) {
                 navigator.splashscreen.hide();
             }
+            $http.get('tab-calendar.html', { cache: $templateCache });
             //PARSE
             $ionicAnalytics.register();
 

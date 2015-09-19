@@ -1,4 +1,5 @@
 <ion-view ng-controller="liftcontrol" ng-class="{true:'blurBackground'}[blurFlag]" >
+    <ion-nav-bar class="bar-dark nav-title-slide-ios8 ng-cloak" ng-controller="navcontrol" title="GAIN" ng-cloak>
     <ion-nav-title> {{tabTitle}}
     </ion-nav-title>
     <ion-nav-buttons side="right">
@@ -16,7 +17,7 @@
         <button ng-if="updated" class="button button-clear icon ion-loop" style='font-size: .8em' ng-click="refreshUpdate()">
         </button>
     </ion-nav-buttons>
-
+</ion-nav-bar>
     <ion-content delegate-handle="small"  class="has-footer" has-header="true" ng-click="outRemove()">
         <div>
             <div class="list card">
