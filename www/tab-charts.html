@@ -17,21 +17,21 @@
             </button>
         </ion-nav-buttons>
     </ion-nav-bar>
+
     <ion-content class="has-header has-footer">
         <div ng-switch on="chartTable">
             <!--chart card-->
             <div ng-switch-when="0">
+
                 <div class="card ">
                     <div class="row">
                         <div class="col-40 col-offset-20">
                         </div>
                     </div>
                     <div ng-switch on="loading">
-                        <div  style="height: 220px;display: block" ng-switch-when="true">
-                            <div style="height:180px;" >
-                            <div class="spinner">
-                            <ion-spinner style="margin-bottom:100px" class="ios"></ion-spinner>
-                            </div>
+                        <div style="height: 220px;display: block" ng-switch-when="true">
+                            <div class="spinner-chart">
+                                <ion-spinner style="margin-bottom:100px; padding-bottom: 50px;" class="ios"></ion-spinner>
                             </div>
                         </div>
                         <div ng-switch-when="false" style="min-height:220px;">
@@ -95,7 +95,7 @@
 
             <!--list scroll    -->
             <div ng-switch-when="1" class="card ng-cloak" ng-cloak style="background-color: white">
-                <ion-item class="item-stable lift-list chartlistborder" style="border-bottom: 2px solid lightgrey;" >
+                <ion-item class="item-stable lift-list chartlistborder" style="border-bottom: 2px solid lightgrey;">
                     <a class="month-highlight">Date</a>
                     <a class="month-highlight" style="float:right">Weight</a>
                 </ion-item>

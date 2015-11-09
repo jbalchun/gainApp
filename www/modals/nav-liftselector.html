@@ -28,7 +28,10 @@
                 <div>
                     <ion-scroll ng class="scrollbox" delegate-handle="liftBox" zooming="true" direction="y" style="height:22em;">
 
-                        <ion-list show-delete="removeFlag">
+                        <div class="spinner" ng-if="loading" style="height: 100%">
+                            <ion-spinner class="ios"></ion-spinner>
+                        </div>
+                        <ion-list ng-if="!loading" show-delete="removeFlag">
                             <ion-item class="item-stable item-remove-animate lift-list"
                                       ng-class="{active : isSelected(lift)}"
                                       collection-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText"

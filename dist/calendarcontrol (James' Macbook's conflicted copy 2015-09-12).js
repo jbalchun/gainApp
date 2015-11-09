@@ -2,47 +2,55 @@
 
 var app = angular.module('MyApp.calendarcontrol', ['ionic', 'MyApp.services', 'ngStorage']);
 
-app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicScrollDelegate", "$ionicLoading", "$rootScope", "$localStorage", "$state", "localStore", "$ionicPopup", "$ionicPopover", function ($scope, $ionicModal, $timeout, $ionicScrollDelegate,$ionicLoading, $rootScope, $localStorage, $state, localStore, $ionicPopup, $ionicPopover) {
-    //$ionicLoading.show({
-    //    template: 'loading'
-    //});
+app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicScrollDelegate", "$rootScope", "$localStorage", "$state", "localStore", "$ionicPopup", "$ionicPopover", function ($scope, $ionicModal, $timeout, $ionicScrollDelegate, $rootScope, $localStorage, $state, localStore, $ionicPopup, $ionicPopover) {
 
-    //$scope.$on('$ionicView.beforeEnter', function () {
-    //    ionic.DomUtil.ready(function () {
-    //        $ionicLoading.hide();
-    //    });
-    //});
-
-
-    $scope.$storage = $localStorage;
-
-    $scope.workouts = $scope.$storage.workouts;
-    $scope.filterList = angular.copy($scope.$storage.workouts);
-    $scope.searchQuery = '';
-    $scope.dateType = '';
-    $scope.today = new Date();
     $scope.dateObj = {'Year': 'Year', 'Month': 'Month', 'Day': 'Day'};
-    $scope.$storage = $localStorage;
-    $scope.nameList = $scope.$storage.nameList;
     $scope.nameFilter = "Name";
     $scope.liftName = "Lift";
-    $scope.monthMap = {
-        'Jan': 1,
-        'Feb': 2,
-        'Mar': 3,
-        'Apr': 4,
-        'May': 5,
-        'Jun': 6,
-        'Jul': 7,
-        'Aug': 8,
-        'Sep': 9,
-        'Oct': 10,
-        'Nov': 11,
-        'Dec': 12
-    };
-    $scope.calendar1 = true;
-    $scope.infoFlag = 2;
-    $scope.date;
+    $scope.tabTitle = "Calendar";
+    $scope.loading = true;
+
+
+
+    //$scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+    //    if (!states.fromCache && states.stateName == "tab.calendar") {
+    // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
+
+    //    }
+    //});
+    $scope.$on('$ionicView.afterEnter',function(scopes, states){
+        $timeout(function() {
+            if (!states.fromCache && states.stateName == "tab.calendar") {
+                $scope.loading = false;
+                $scope.$storage = $localStorage;
+                $scope.workouts = $scope.$storage.workouts;
+                $scope.filterList = angular.copy($scope.$storage.workouts);
+                $scope.searchQuery = '';
+                $scope.dateType = '';
+                $scope.today = new Date();
+                $scope.$storage = $localStorage;
+                $scope.nameList = $scope.$storage.nameList;
+                $scope.monthMap = {
+                    'Jan': 1,
+                    'Feb': 2,
+                    'Mar': 3,
+                    'Apr': 4,
+                    'May': 5,
+                    'Jun': 6,
+                    'Jul': 7,
+                    'Aug': 8,
+                    'Sep': 9,
+                    'Oct': 10,
+                    'Nov': 11,
+                    'Dec': 12
+                };
+                $scope.calendar1 = true;
+                $scope.infoFlag = 2;
+
+                //$ionicLoading.hide();
+            }
+        },100);
+    });
 
     $scope.$on('calRefresh', function () {
         $scope.filterList = angular.copy($scope.$storage.workouts);
@@ -196,7 +204,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
                 $scope.nameList[key] = "(No Name)";
 
             }
-                nameArray.push($scope.nameList[key]);
+            nameArray.push($scope.nameList[key]);
 
         });
         //console.log('nameArray',nameArray);

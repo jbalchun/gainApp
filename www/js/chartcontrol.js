@@ -36,9 +36,6 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
     $scope.loading = true;
 
     $scope.refreshCharts = function (button) {
-        //$scope.chartTable = 0;
-        //console.log('timeout')
-        $scope.chartTable=0
         axisAdjust(false);
         $scope.bodyWtFlag = true;
         $scope.dateWeightObjectList = [];
@@ -51,13 +48,10 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
         $scope.firstDate = 'Start Date';
         $scope.lastDate = 'End Date';
         $scope.goalNum.wt = getGoal();
-        $scope.chartTable=0;
         $scope.spanSelect = 20;
-        //$scope.chartTable=0
         $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         $rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
         $timeout(function () {
-            $scope.chartTable=0;
             $scope.spanSelect = 20;
             console.log('reset');
         },1);
@@ -72,16 +66,23 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
-        if (states.fromCache && states.stateName == "tab.charts") {
+        if (states.fromCache && states.stateName === "tab.charts") {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
+           if($scope.chartTable == 0 || $scope.chartTable == 4)
+            {
+                $scope.loading = true;
+            }
+            //timeout is a girls best friend
+            $timeout(function(){
             $scope.refreshCharts();
             $scope.loading = false;
+            },50);
         }
-        else if (!states.fromCache && states.stateName == "tab.charts") {
+        else if (!states.fromCache && states.stateName === "tab.charts") {
             $timeout(function(){
                 $scope.refreshCharts();
                 $scope.loading = false;
-            },200);
+            },300);
         }
     });
 

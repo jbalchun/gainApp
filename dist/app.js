@@ -329,6 +329,14 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$http", "$roo
 
 
 
+            $ionicPlatform.ready(function() {
+                if(device.platform === "iOS") {
+                    window.plugin.notification.local.promptForPermission();
+                }
+            });
+
+
+
             Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
 
             if ($rootScope.$storage.populated == false) {//load in dummy data for demos
@@ -388,6 +396,7 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$http", "$roo
                 }
             }
 
+            //keyboard/ionic
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 window.addEventListener('native.keyboardhide', keyboardHideHandler);
                 navigator.splashscreen.hide();
@@ -399,6 +408,20 @@ app.run(["$ionicPlatform", "$timeout", "$state", "$localStorage", "$http", "$roo
                     user_id:device.uuid
                 });
             }
+
+            //IAP ios
+            //if((window.cordova && device.platform == "iOS") && window.storekit) {
+            //    alert("storekit");
+            //    storekit.init({
+            //        debug:    true,
+            //        ready:    onReady,
+            //        purchase: onPurchase,
+            //        restore:  onRestore,
+            //        error:    onError
+            //    });
+            //}else{
+            //    alert("no storekit");
+            //}
 
 
         });

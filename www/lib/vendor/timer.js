@@ -43,6 +43,15 @@ var timerModule = angular.module('timer', [])
                     $scope.start();
                 });
 
+                //$scope.$on('timer-set', function (event,args) {
+                //    $scope.minutes = args.min;
+                //    $scope.seconds = args.sec;
+                //    console.log('hit directive')
+                //    $scope.reset();
+                //    $scope.start();
+                //});
+
+
                 $scope.$on('timer-resume', function () {
                     $scope.resume();
                 });

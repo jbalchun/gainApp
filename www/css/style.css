@@ -104,6 +104,18 @@ body {
     background: transparent !important;
 }
 
+.button.big-timer-button{
+    font-size: 4em; !important;
+}
+
+.button.play-button{
+    margin-left:17%;
+}
+
+.button.big-timer-button{
+    font-size: 2em;
+}
+
 .blurBackground {
     -webkit-filter: blur(3px);
 }
@@ -717,6 +729,11 @@ div.row.no-padding.borderless{
     display: none !important;
 }
 
+
+
+
+
+
 /*.progress-bar {*/
 /*background: #191919;*/
 /*height: 120px;*/
@@ -807,7 +824,14 @@ div.row.no-padding.borderless{
 div.spinner {
     margin: auto;
     position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0; left: 0; bottom: 0px; right: 0;
+    height: 85px;
+    text-align: center;
+}
+div.spinner-chart {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 200px; right: 0;
     height: 85px;
     text-align: center;
 }

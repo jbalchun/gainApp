@@ -21,6 +21,7 @@ app.controller('liftselectcontrol',
         $scope.liftObjectForSettingsChange = {};
         $scope.liftSelectorState = 'All Lifts';
         $scope.keyBoardUp = false;
+
         window.addEventListener('native.hidekeyboard', keyboardHideHandler);
         window.addEventListener('native.showkeyboard', keyboardShowHandler);
         function keyboardHideHandler(e){
@@ -183,6 +184,7 @@ app.controller('liftselectcontrol',
             $scope.removeFlagB = false;
             $scope.searchTextC = '';
             $scope.searchText = '';
+
         };
         // $scope.selected = 0;
 
@@ -293,6 +295,7 @@ app.controller('liftselectcontrol',
                                     $scope.hideFlag = false;
                                     e.preventDefault();
                                     $scope.lock1 = false;
+                                    $scope.loading = true; // redraw list becasue lifts aren't showing after added
                                     $timeout(function () {//this was to prevent the keyboard from opening when this popup closed. WEIRD
                                         addLiftPopup.close();
                                         if ($scope.preventFlag) {
@@ -302,6 +305,7 @@ app.controller('liftselectcontrol',
                                         }
                                     }, 300);
                                     $timeout(function () {
+                                        $scope.loading = false; // redraw list becasue lifts aren't showing after added
                                         $scope.hideFlag = true;
                                         $scope.lock1 = true;
                                     }, 500);

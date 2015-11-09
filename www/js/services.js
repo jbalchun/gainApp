@@ -388,14 +388,34 @@ app.factory('localStore', function ($rootScope, $localStorage) {
         getGoal:function(key){
             return  $rootScope.$storage.goalsMap[key];
         },
-        setStartTime:function(){
-            $rootScope.$storage.startTime = +new Date()
+        setStartTime:function(min, sec){
+            $rootScope.$storage.startTime = +new Date();
+
+            console.log('timetrace', $rootScope.$storage.startTime,min,sec );
+            $rootScope.$storage.min = min;
+            $rootScope.$storage.sec = sec;
+            console.log('timetrace2', $rootScope.$storage.startTime,$rootScope.$storage.min,$rootScope.$storage.sec );
+
         },
         getStartTime:function(){
             return $rootScope.$storage.startTime;
         },
+        getStartMinSec:function(){
+            console.log('starttime return',{min:$rootScope.$storage.min,sec:$rootScope.$storage.sec });
+            return {min:angular.copy($rootScope.$storage.min),sec:angular.copy($rootScope.$storage.sec )};
+        },
         resetStartTime:function(){
             $rootScope.$storage.startTime = 0;
+            $rootScope.$storage.min = 0;
+            $rootScope.$storage.sec = 0;
+        },
+        getMillisecondsFromMinSec:function(){
+            var min = $rootScope.$storage.min;
+            var sec = $rootScope.$storage.sec;
+
+            var milli = (min*60*1000) + (sec*1000);
+            return milli;
+
         },
         normalizeToWeeks:function(dateWeightList,flag){
             //   This mess converts all of our dates into weeks from the start date, because chartjs doesnt

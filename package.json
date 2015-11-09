@@ -19,6 +19,12 @@
     "gulp-ngmin": "^0.3.0",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.11",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18",
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
@@ -27,7 +33,6 @@
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-splashscreen.git",
     "https://github.com/apache/cordova-plugin-whitelist",
-    "https://github.com/katzer/cordova-plugin-local-notifications",
     "https://github.com/apache/cordova-plugin-splashscreen.git",
     "https://github.com/driftyco/ionic-plugins-deploy",
     {
@@ -35,7 +40,9 @@
       "id": "ionic-plugin-deploy"
     },
     "cordova-plugin-whitelist",
-    "cordova-plugin-network-information"
+    "cordova-plugin-network-information",
+    "https://github.com/katzer/cordova-plugin-local-notifications.git",
+    "de.appplant.cordova.plugin.local-notification"
   ],
   "cordovaPlatforms": [
     "ios"

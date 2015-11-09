@@ -41,6 +41,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.dateList = [];
     $scope.calendar1 = false;
     $scope.infoFlag = 1;
+    $scope.loading = true;
     $scope.tabTitle = $scope.$storage.tabTitle;
     var hideModalFlag = {'newlift': '', 'sets': '', 'id': ''};
 
@@ -54,31 +55,30 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $ionicPlatform.ready(function(){
         //var networkStateA = navigator.connection.type;
         //alert(networkStateA);
-        if(window.cordova){
-            //alert('hascord')
-            var networkState = navigator.connection.type;
-            $rootScope.checkAndDoUpdate(networkState);
-            if($scope.$storage.updated){
-                $scope.$storage.updated = false;
-                $scope.updated = $scope.$storage.updated;
-                var confirmPopup3 = $ionicPopup.show({
-                    title: 'Gain Updated',
-                    subTitle: "Changes:" +
-                    "Minor bug fixes and enhancements",
-                    scope: $scope,
-                    buttons: [
-                        {
-                            text: '<b>Ok</b>',
-                            type: 'button-dark'
-                        }
-                    ]
-                });
-                confirmPopup3.then(function (res) {
-                    //console.log('Tapped!', res);
-                });
-            }
-
-        }
+        //if(window.cordova){
+        //    //alert('hascord')
+        //    var networkState = navigator.connection.type;
+        //    $rootScope.checkAndDoUpdate(networkState);
+        //    if($scope.$storage.updated){
+        //        $scope.$storage.updated = false;
+        //        $scope.updated = $scope.$storage.updated;
+        //        var confirmPopup3 = $ionicPopup.show({
+        //            title: 'Gain Updated',
+        //            subTitle: "Changes:" +
+        //            "Minor bug fixes and enhancements",
+        //            scope: $scope,
+        //            buttons: [
+        //                {
+        //                    text: '<b>Ok</b>',
+        //                    type: 'button-dark'
+        //                }
+        //            ]
+        //        });
+        //        confirmPopup3.then(function (res) {
+        //            //console.log('Tapped!', res);
+        //        });
+        //    }
+        //}
     });
 
 
@@ -850,7 +850,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         var openModalDelay = function () {
             $scope.modal.show();
         }
-        if (id == 1) {
+        if (id == 1) {//lift?
             $scope.blurFlag = true;
             if (window.cordova) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -863,8 +863,11 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             });
             $timeout(openModalDelay(), 0);
             $scope.$storage.editingLift = {'name': name, 'index': index};
+            $timeout(function(){
+                $scope.loading = false;
+            },100);
         }
-        else if (id == 2) {
+        else if (id == 2) {//weight?
             $scope.blurFlag = true;
             //$localStorage.editingLift= {'name':name,'index':index};
             $scope.nameLift = name;
@@ -963,6 +966,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             $scope.kgMap = $scope.$storage.kgMap
             $timeout(function () {
                 $scope.$broadcast('reset-liftselect');
+                //flag for force redraw
             }, 500);
         }
         else if (id == 2) {
@@ -1004,6 +1008,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $scope.blurFlag = false;
         if (id == 1) {
             $scope.modal.hide();
+
         }
         else if (id == 2) {
             $scope.modal2.hide();

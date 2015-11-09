@@ -4,8 +4,8 @@
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
 
         </button>
-
     </ion-nav-buttons>
+
     <ion-nav-buttons side="right">
         <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
             Like it?
@@ -15,8 +15,6 @@
     <ion-content class="has-header padding" >
         <div class="card">
 
-            <!--<div class="item item-divider color-header">-->
-            <!--</div>-->
             <div class="row">
                 <div class="col-offset-20">
                     <h3 style="font-size: 5.0em; color:#808080;">
@@ -24,12 +22,14 @@
                     </h3>
                 </div>
             </div>
+
             <div class ="row">
                 <div class="col-30 col-offest-66" style="margin-left:44%">
                 <a style="color:grey;font-size:1.2em" >{{rangeMin.min < 10 ? '0' + rangeMin.min : rangeMin.min}}:</a>
                     <a class="" style="color:grey; font-size:1.2em">{{rangeSec.sec < 10 ? '0' + rangeSec.sec  : rangeSec.sec }}</a>
                 </div>
             </div>
+
             <ion-item>
                 <div class="range">
                     <button class="button-icon ion-minus-round timerMinus" ng-click="downOneMin()"></button>
@@ -62,7 +62,6 @@
                    class="button button-positive button-clear timerButtonSmall" ng-click="timerPreset(0,3)" style="border-top:none;border-bottom:none;border-right:none;">03:00</a>
             </div>
             </ion-item>
-
 
             <div class="startStopReset row">
                 <div class="col " >
