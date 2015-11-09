@@ -1,168 +1,113 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'karma-cli' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.33
-4 verbose cache add [ 'karma-cli', null ]
-5 verbose cache add name=undefined spec="karma-cli" args=["karma-cli",null]
-6 verbose parsed url { protocol: null,
-6 verbose parsed url   slashes: null,
-6 verbose parsed url   auth: null,
-6 verbose parsed url   host: null,
-6 verbose parsed url   port: null,
-6 verbose parsed url   hostname: null,
-6 verbose parsed url   hash: null,
-6 verbose parsed url   search: null,
-6 verbose parsed url   query: null,
-6 verbose parsed url   pathname: 'karma-cli',
-6 verbose parsed url   path: 'karma-cli',
-6 verbose parsed url   href: 'karma-cli' }
-7 silly lockFile aa100f68-karma-cli karma-cli
-8 verbose lock karma-cli /Users/Jbalchun/.npm/aa100f68-karma-cli.lock
-9 silly lockFile aa100f68-karma-cli karma-cli
-10 silly lockFile aa100f68-karma-cli karma-cli
-11 verbose addNamed [ 'karma-cli', '' ]
-12 verbose addNamed [ null, '*' ]
-13 silly lockFile 8f6f2c72-karma-cli karma-cli@
-14 verbose lock karma-cli@ /Users/Jbalchun/.npm/8f6f2c72-karma-cli.lock
-15 silly addNameRange { name: 'karma-cli', range: '*', hasData: false }
-16 verbose request where is /karma-cli
-17 verbose request registry https://registry.npmjs.org/
-18 verbose request id e01ad165eefada46
-19 verbose url raw /karma-cli
-20 verbose url resolving [ 'https://registry.npmjs.org/', './karma-cli' ]
-21 verbose url resolved https://registry.npmjs.org/karma-cli
-22 verbose request where is https://registry.npmjs.org/karma-cli
-23 info trying registry request attempt 1 at 13:13:17
-24 http GET https://registry.npmjs.org/karma-cli
-25 http 200 https://registry.npmjs.org/karma-cli
-26 silly registry.get cb [ 200,
-26 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-26 silly registry.get     etag: '"C2H6UCYFAHOAA1M5P72B7L2ED"',
-26 silly registry.get     'content-type': 'application/json',
-26 silly registry.get     'cache-control': 'max-age=60',
-26 silly registry.get     'content-length': '10952',
-26 silly registry.get     'accept-ranges': 'bytes',
-26 silly registry.get     date: 'Sat, 17 Oct 2015 17:13:17 GMT',
-26 silly registry.get     via: '1.1 varnish',
-26 silly registry.get     age: '0',
-26 silly registry.get     connection: 'keep-alive',
-26 silly registry.get     'x-served-by': 'cache-atl6229-ATL',
-26 silly registry.get     'x-cache': 'HIT',
-26 silly registry.get     'x-cache-hits': '1',
-26 silly registry.get     'x-timer': 'S1445101997.366157,VS0,VE107',
-26 silly registry.get     vary: 'Accept' } ]
-27 silly addNameRange number 2 { name: 'karma-cli', range: '*', hasData: true }
-28 silly addNameRange versions [ 'karma-cli',
-28 silly addNameRange   [ '0.0.1', '0.0.2', '0.0.3', '0.0.4', '0.1.0', '0.1.1' ] ]
-29 verbose addNamed [ 'karma-cli', '0.1.1' ]
-30 verbose addNamed [ '0.1.1', '0.1.1' ]
-31 silly lockFile 135d1b51-karma-cli-0-1-1 karma-cli@0.1.1
-32 verbose lock karma-cli@0.1.1 /Users/Jbalchun/.npm/135d1b51-karma-cli-0-1-1.lock
-33 silly lockFile 9cb916ab-rg-karma-cli-karma-cli-0-1-1-tgz https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz
-34 verbose lock https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz /Users/Jbalchun/.npm/9cb916ab-rg-karma-cli-karma-cli-0-1-1-tgz.lock
-35 verbose addRemoteTarball [ 'https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz',
-35 verbose addRemoteTarball   'd097c6e50a825007a63d0ade7cd18e1645afc294' ]
-36 info retry fetch attempt 1 at 13:13:17
-37 verbose fetch to= /var/folders/qn/b01t2g3174dbjfp57xxprn680000gn/T/npm-60364-D3RkxaRK/registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz
-38 http GET https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz
-39 http 200 https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz
-40 silly lockFile 9cb916ab-rg-karma-cli-karma-cli-0-1-1-tgz https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz
-41 silly lockFile 9cb916ab-rg-karma-cli-karma-cli-0-1-1-tgz https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz
-42 silly lockFile 135d1b51-karma-cli-0-1-1 karma-cli@0.1.1
-43 silly lockFile 135d1b51-karma-cli-0-1-1 karma-cli@0.1.1
-44 silly lockFile 8f6f2c72-karma-cli karma-cli@
-45 silly lockFile 8f6f2c72-karma-cli karma-cli@
-46 silly resolved [ { name: 'karma-cli',
-46 silly resolved     description: 'The Karma command line interface.',
-46 silly resolved     homepage: 'http://karma-runner.github.io/',
-46 silly resolved     repository:
-46 silly resolved      { type: 'git',
-46 silly resolved        url: 'git://github.com/karma-runner/karma-cli.git' },
-46 silly resolved     bugs: { url: 'https://github.com/karma-runner/karma-cli/issues' },
-46 silly resolved     keywords:
-46 silly resolved      [ 'karma',
-46 silly resolved        'spectacular',
-46 silly resolved        'runner',
-46 silly resolved        'karma',
-46 silly resolved        'js',
-46 silly resolved        'javascript',
-46 silly resolved        'testing',
-46 silly resolved        'test',
-46 silly resolved        'remote',
-46 silly resolved        'execution' ],
-46 silly resolved     author: { name: 'Vojta Jína', email: 'vojta.jina@gmail.com' },
-46 silly resolved     contributors:
-46 silly resolved      [ [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object],
-46 silly resolved        [Object] ],
-46 silly resolved     dependencies: { resolve: '^1.1.6' },
-46 silly resolved     devDependencies:
-46 silly resolved      { 'eslint-config-standard': '^4.4.0',
-46 silly resolved        'eslint-plugin-standard': '^1.3.1',
-46 silly resolved        grunt: '^0.4.1',
-46 silly resolved        'grunt-bump': '^0.3.1',
-46 silly resolved        'grunt-conventional-changelog': '^1.2.2',
-46 silly resolved        'grunt-eslint': '^17.0.0',
-46 silly resolved        'grunt-npm': '0.0.2',
-46 silly resolved        'load-grunt-tasks': '^3.2.0' },
-46 silly resolved     preferGlobal: true,
-46 silly resolved     bin: { karma: './bin/karma' },
-46 silly resolved     engines: { node: '0.10 || 0.12 || 4' },
-46 silly resolved     version: '0.1.1',
-46 silly resolved     license: 'MIT',
-46 silly resolved     gitHead: '8c6e3e5c335b52cd3e97d66e12b2137f7134c1a5',
-46 silly resolved     _id: 'karma-cli@0.1.1',
-46 silly resolved     scripts: {},
-46 silly resolved     _shasum: 'd097c6e50a825007a63d0ade7cd18e1645afc294',
-46 silly resolved     _from: 'karma-cli@',
-46 silly resolved     _npmVersion: '3.3.4',
-46 silly resolved     _nodeVersion: '4.0.0',
-46 silly resolved     _npmUser: { name: 'dignifiedquire', email: 'dignifiedquire@gmail.com' },
-46 silly resolved     dist:
-46 silly resolved      { shasum: 'd097c6e50a825007a63d0ade7cd18e1645afc294',
-46 silly resolved        tarball: 'http://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz' },
-46 silly resolved     maintainers: [ [Object], [Object], [Object] ],
-46 silly resolved     directories: {},
-46 silly resolved     _resolved: 'https://registry.npmjs.org/karma-cli/-/karma-cli-0.1.1.tgz' } ]
-47 info install karma-cli@0.1.1 into /usr/local/lib
-48 info installOne karma-cli@0.1.1
-49 verbose lib/node_modules/karma-cli unbuild
-50 verbose tar unpack /Users/Jbalchun/.npm/karma-cli/0.1.1/package.tgz
-51 silly lockFile f15a2687-local-lib-node-modules-karma-cli tar:///usr/local/lib/node_modules/karma-cli
-52 verbose lock tar:///usr/local/lib/node_modules/karma-cli /Users/Jbalchun/.npm/f15a2687-local-lib-node-modules-karma-cli.lock
-53 silly lockFile aae8bb9c--npm-karma-cli-0-1-1-package-tgz tar:///Users/Jbalchun/.npm/karma-cli/0.1.1/package.tgz
-54 verbose lock tar:///Users/Jbalchun/.npm/karma-cli/0.1.1/package.tgz /Users/Jbalchun/.npm/aae8bb9c--npm-karma-cli-0-1-1-package-tgz.lock
-55 silly gunzTarPerm modes [ '755', '644' ]
-56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/karma-cli'
-56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/karma-cli']
-56 error   errno: 3,
-56 error   code: 'EACCES',
-56 error   path: '/usr/local/lib/node_modules/karma-cli',
-56 error   fstream_type: 'Directory',
-56 error   fstream_path: '/usr/local/lib/node_modules/karma-cli',
-56 error   fstream_class: 'DirWriter',
-56 error   fstream_stack:
-56 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
-56 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
-56 error      'Object.oncomplete (fs.js:107:15)' ] }
-57 error Please try running this command again as root/Administrator.
-58 error System Darwin 14.4.0
-59 error command "node" "/usr/local/bin/npm" "install" "-g" "karma-cli"
-60 error cwd /Users/Jbalchun/gainApp
-61 error node -v v0.10.33
-62 error npm -v 1.4.28
-63 error path /usr/local/lib/node_modules/karma-cli
-64 error fstream_path /usr/local/lib/node_modules/karma-cli
-65 error fstream_type Directory
-66 error fstream_class DirWriter
-67 error code EACCES
-68 error errno 3
-69 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/karma-cli'
-70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
-70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
-70 error fstream_stack Object.oncomplete (fs.js:107:15)
-71 verbose exit [ 3, true ]
+4 warn package.json gainapp@1.0.0 No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ '/Users/Jbalchun/gainApp',
+6 verbose install   [ 'express',
+6 verbose install     'gulp',
+6 verbose install     'gulp-concat',
+6 verbose install     'gulp-minify-css',
+6 verbose install     'gulp-rename',
+6 verbose install     'gulp-sass',
+6 verbose install     'mongoose',
+6 verbose install     'bower',
+6 verbose install     'gulp-angular-templatecache',
+6 verbose install     'gulp-ng-annotate',
+6 verbose install     'gulp-ngmin',
+6 verbose install     'gulp-uglify',
+6 verbose install     'gulp-util',
+6 verbose install     'jasmine-core',
+6 verbose install     'karma',
+6 verbose install     'karma-chrome-launcher',
+6 verbose install     'karma-jasmine',
+6 verbose install     'karma-phantomjs-launcher',
+6 verbose install     'phantomjs',
+6 verbose install     'shelljs' ] ]
+7 info preinstall gainapp@1.0.0
+8 verbose readDependencies using package.json deps
+9 verbose already installed skipping express@^4.13.1 /Users/Jbalchun/gainApp
+10 verbose already installed skipping gulp@^3.9.0 /Users/Jbalchun/gainApp
+11 verbose already installed skipping gulp-concat@^2.2.0 /Users/Jbalchun/gainApp
+12 verbose already installed skipping gulp-minify-css@^0.3.0 /Users/Jbalchun/gainApp
+13 verbose already installed skipping gulp-rename@^1.2.0 /Users/Jbalchun/gainApp
+14 verbose already installed skipping gulp-sass@^0.7.1 /Users/Jbalchun/gainApp
+15 verbose already installed skipping mongoose@^4.1.0 /Users/Jbalchun/gainApp
+16 verbose already installed skipping bower@^1.3.3 /Users/Jbalchun/gainApp
+17 verbose already installed skipping gulp-angular-templatecache@^1.7.0 /Users/Jbalchun/gainApp
+18 verbose already installed skipping gulp-ng-annotate@^1.1.0 /Users/Jbalchun/gainApp
+19 verbose already installed skipping gulp-ngmin@^0.3.0 /Users/Jbalchun/gainApp
+20 verbose already installed skipping gulp-uglify@^1.2.0 /Users/Jbalchun/gainApp
+21 verbose already installed skipping gulp-util@^3.0.6 /Users/Jbalchun/gainApp
+22 verbose already installed skipping jasmine-core@^2.3.4 /Users/Jbalchun/gainApp
+23 verbose already installed skipping karma@^0.13.11 /Users/Jbalchun/gainApp
+24 verbose already installed skipping karma-chrome-launcher@^0.2.1 /Users/Jbalchun/gainApp
+25 verbose already installed skipping karma-jasmine@^0.3.6 /Users/Jbalchun/gainApp
+26 verbose already installed skipping karma-phantomjs-launcher@^0.2.1 /Users/Jbalchun/gainApp
+27 verbose already installed skipping phantomjs@^1.9.18 /Users/Jbalchun/gainApp
+28 verbose already installed skipping shelljs@^0.3.0 /Users/Jbalchun/gainApp
+29 silly resolved []
+30 info build /Users/Jbalchun/gainApp
+31 verbose linkStuff [ false, false, false, '/Users/Jbalchun' ]
+32 info linkStuff gainapp@1.0.0
+33 verbose linkBins gainapp@1.0.0
+34 verbose linkMans gainapp@1.0.0
+35 verbose rebuildBundles gainapp@1.0.0
+36 verbose rebuildBundles [ '.DS_Store',
+36 verbose rebuildBundles   '.bin',
+36 verbose rebuildBundles   'bower',
+36 verbose rebuildBundles   'express',
+36 verbose rebuildBundles   'gify',
+36 verbose rebuildBundles   'gulp',
+36 verbose rebuildBundles   'gulp-angular-templatecache',
+36 verbose rebuildBundles   'gulp-concat',
+36 verbose rebuildBundles   'gulp-minify-css',
+36 verbose rebuildBundles   'gulp-ng-annotate',
+36 verbose rebuildBundles   'gulp-ngmin',
+36 verbose rebuildBundles   'gulp-rename',
+36 verbose rebuildBundles   'gulp-sass',
+36 verbose rebuildBundles   'gulp-uglify',
+36 verbose rebuildBundles   'gulp-util',
+36 verbose rebuildBundles   'jasmine-core',
+36 verbose rebuildBundles   'jquery',
+36 verbose rebuildBundles   'karma',
+36 verbose rebuildBundles   'karma-chrome-launcher',
+36 verbose rebuildBundles   'karma-jasmine',
+36 verbose rebuildBundles   'karma-phantomjs-launcher',
+36 verbose rebuildBundles   'mongoose',
+36 verbose rebuildBundles   'newrelic',
+36 verbose rebuildBundles   'phantomjs',
+36 verbose rebuildBundles   'require-dir',
+36 verbose rebuildBundles   'shelljs',
+36 verbose rebuildBundles   'winston',
+36 verbose rebuildBundles   'winston-express',
+36 verbose rebuildBundles   'winston-papertrail' ]
+37 verbose rebuild bundle /Users/Jbalchun/gainApp/node_modules/gify
+38 info build /Users/Jbalchun/gainApp/node_modules/gify
+39 info preinstall gify@0.2.0
+40 verbose linkStuff [ false, false, false, '/Users/Jbalchun/gainApp/node_modules' ]
+41 info linkStuff gify@0.2.0
+42 verbose linkBins gify@0.2.0
+43 verbose link bins [ { gify: './bin/gify' },
+43 verbose link bins   '/Users/Jbalchun/gainApp/node_modules/.bin',
+43 verbose link bins   false ]
+44 verbose linkMans gify@0.2.0
+45 verbose rebuildBundles gify@0.2.0
+46 verbose rebuildBundles [ 'commander', 'debug', 'mkdirp', 'shell-escape', 'uid2' ]
+47 error Error: EACCES, unlink '/Users/Jbalchun/gainApp/node_modules/.bin/gify'
+47 error  { [Error: EACCES, unlink '/Users/Jbalchun/gainApp/node_modules/.bin/gify']
+47 error   errno: 3,
+47 error   code: 'EACCES',
+47 error   path: '/Users/Jbalchun/gainApp/node_modules/.bin/gify' }
+48 error Please try running this command again as root/Administrator.
+49 error System Darwin 14.4.0
+50 error command "node" "/usr/local/bin/npm" "install"
+51 error cwd /Users/Jbalchun/gainApp
+52 error node -v v0.10.33
+53 error npm -v 1.4.28
+54 error path /Users/Jbalchun/gainApp/node_modules/.bin/gify
+55 error code EACCES
+56 error errno 3
+57 error stack Error: EACCES, unlink '/Users/Jbalchun/gainApp/node_modules/.bin/gify'
+58 verbose exit [ 3, true ]
