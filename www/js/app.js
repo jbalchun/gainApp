@@ -329,11 +329,11 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootSc
 
 
 
-            $ionicPlatform.ready(function() {
-                if(device.platform === "iOS") {
-                    window.plugin.notification.local.promptForPermission();
-                }
-            });
+            //$ionicPlatform.ready(function() {
+            //    if(device.platform === "iOS") {
+            //        window.plugin.notification.local.promptForPermission();
+            //    }
+            //});
 
 
 
