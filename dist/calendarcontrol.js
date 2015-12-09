@@ -18,38 +18,45 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
 
     //    }
     //});
-    $scope.$on('$ionicView.afterEnter',function(scopes, states){
-        $timeout(function() {
-            if (!states.fromCache && states.stateName == "tab.calendar") {
-                $scope.loading = false;
-                $scope.$storage = $localStorage;
-                $scope.workouts = $scope.$storage.workouts;
-                $scope.filterList = angular.copy($scope.$storage.workouts);
-                $scope.searchQuery = '';
-                $scope.dateType = '';
-                $scope.today = new Date();
-                $scope.$storage = $localStorage;
-                $scope.nameList = $scope.$storage.nameList;
-                $scope.monthMap = {
-                    'Jan': 1,
-                    'Feb': 2,
-                    'Mar': 3,
-                    'Apr': 4,
-                    'May': 5,
-                    'Jun': 6,
-                    'Jul': 7,
-                    'Aug': 8,
-                    'Sep': 9,
-                    'Oct': 10,
-                    'Nov': 11,
-                    'Dec': 12
-                };
-                $scope.calendar1 = true;
-                $scope.infoFlag = 2;
+    $scope.$on('clear-cal',function(){
+        console.log('clearcal');
+        $scope.refreshCal();
+    });
 
-                //$ionicLoading.hide();
-            }
-        },100);
+    $scope.refreshCal = function() {
+                if ((!states.fromCache && states.stateName == "tab.calendar" )|| $rootScope.clearCal) {
+                    $scope.loading = false;
+                    $scope.$storage = $localStorage;
+                    $scope.workouts = $scope.$storage.workouts;
+                    $scope.filterList = angular.copy($scope.$storage.workouts);
+                    $scope.searchQuery = '';
+                    $scope.dateType = '';
+                    $scope.today = new Date();
+                    $scope.$storage = $localStorage;
+                    $scope.nameList = $scope.$storage.nameList;
+                    $scope.monthMap = {
+                        'Jan': 1,
+                        'Feb': 2,
+                        'Mar': 3,
+                        'Apr': 4,
+                        'May': 5,
+                        'Jun': 6,
+                        'Jul': 7,
+                        'Aug': 8,
+                        'Sep': 9,
+                        'Oct': 10,
+                        'Nov': 11,
+                        'Dec': 12
+                    };
+                    $scope.calendar1 = true;
+                    $scope.infoFlag = 2;
+
+                    //$ionicLoading.hide();
+                }
+    };
+
+    $scope.$on('$ionicView.afterEnter',function(scopes, states){
+        $scope.refreshCal();
     });
 
     $scope.$on('calRefresh', function () {

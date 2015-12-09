@@ -1,4 +1,4 @@
-@media screen and (min-height : 320px) and (max-height : 500px) {
+@media screen and (device-aspect-ratio: 40/71){
     /* Empty. Add your own CSS if you like */
     /* Empty. Add your own CSS if you like */
 
@@ -24,17 +24,33 @@
     .liftSearchButtons {
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        font-size: .8em;
+        padding-top: 0px !important;
+
     }
 
     .button.big-timer-button{
         font-size: 4em; !important;
     }
-
-    .button.play-button{
-        margin-left:13%;
+    .play-button{
+        float:left;
+        margin-left:2% !important;
+        padding-left: 2%;
+        font-size: 3em
     }
+    .timer-large-col{
+        margin-left:14% !important;
+    }
+    .timer-large{
+        font-size: 5.0em;
+        color:#808080;
+        float:left !important;
+    }
+
+    .chartBodyDiv{
+        padding:3px !important;
+    }
+
+
 
     .scrollbox {
 
@@ -208,10 +224,10 @@
 
     .inline-liftselect{
         display: inline-block;
-        height:25px;
+        height:15px;
         text-align: center;
         vertical-align: middle;
-        line-height: 25px
+        line-height: 15px
     }
 
     .nopad .item-content {
@@ -259,14 +275,24 @@
     .scroller{
         -webkit-overflow-scrolling: touch;
     }
-    .plusMinusGoal {
-        font-size: .3em !important;
+    .button.plusMinusGoal {
+        font-size: 1em !important;
         padding: 0;
-        width:44px;
-        margin:0;
-        width:3px;
-
+        width:42px;
+        margin-left:0 !important;
+        margin-right:0 !important;
+        border-radius: 0px !important;
+        min-width: 20px !important;
+        min-height: 20px !important;
     }
+    .lift-select-scroll{
+        height:18em !important;
+    }
+    .liftSelectEntry{
+        color:#387ef5;
+        font-size:.9em !important;
+    }
+
     .bigGoal {
         font-size: 1.7em;
         padding: 0px;
@@ -274,12 +300,7 @@
     }
 
     .button.liftSearchButtonSmall  {
-        font-size: 1em;
-        padding-left: 1px;
-        padding-right: 1px;
-    }
-    .liftSearchButtonSmall  {
-        font-size: 1em;
+        font-size: 1em !important;
         padding-left: 1px;
         padding-right: 1px;
     }
@@ -336,9 +357,6 @@
         /*padding-right: 5%; click was missing*/
     }
 
-    .liftSelectEntry{
-        color:#387ef5;
-    }
 
 
     input[type="tel"].bodyWtInput {
@@ -480,7 +498,8 @@
     }
 
     .button.button-clear.timerButtonSmall{
-        font-size: 1.2em;
+        font-size: .8em ;
+        min-width: 30px !important  ;
         padding-left: 1px;
         padding-right: 1px;
 
@@ -846,6 +865,18 @@
     .chartlistborder {
         border-bottom: 2px solid black;
 
+    }
+    .chartListHeight{
+        height:19.3em !important;
+    }
+
+    .chartAreaHeight{
+        height: 175px !important;
+        display: block;
+    }
+
+    .button.iap-button{
+        font-size:.6em !important;
     }
 
     [collection-repeat] {

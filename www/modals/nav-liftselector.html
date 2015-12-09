@@ -26,7 +26,7 @@
                 <div class="item item-divider color-header">
                 </div>
                 <div>
-                    <ion-scroll ng class="scrollbox" delegate-handle="liftBox" zooming="true" direction="y" style="height:22em;">
+                    <ion-scroll  delegate-handle="liftBox" zooming="true" direction="y" class="scrollbox lift-select-scroll">
 
                         <div class="spinner" ng-if="loading" style="height: 100%">
                             <ion-spinner class="ios"></ion-spinner>
@@ -34,12 +34,12 @@
                         <ion-list ng-if="!loading" show-delete="removeFlag">
                             <ion-item class="item-stable item-remove-animate lift-list"
                                       ng-class="{active : isSelected(lift)}"
-                                      collection-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText"
+                                      collection-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText "
                                       item-height = "34px"
                                       item-width = "100%"
                                       ng-show="!custom ||(custom && lift.custom == true)">
                                 <a class="liftSelectEntry inline-liftselect" ng-class="{'remove-lift':removeFlagB}"
-                                   ng-click="setLift(lift,$index)">{{lift.name }} </a>
+                                   ng-click="setLift(lift,$index)">{{lift.name }}</a>
                                 <i class="icon ion-social-google-outline inline-liftselect searchIcon"
                                    style="float:right; font-size: 1.4em; padding-right: .8em"
                                    ng-click="goToUrl(lift.name)"></i>

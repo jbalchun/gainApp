@@ -1,0 +1,14 @@
+<div class="item-input-wrapper" style="text-align: center;padding-bottom: 15px">
+    <ul style="display: inline-block">Feedback here, any input is much appreciated! Email is optional</ul>
+
+</div>
+<label >
+    <div>
+        <input ng-enter="closeKeyboard()" ng-model="betaInfo.email" type="text" placeholder="Email (optional)" maxlength="40"/>
+    </div>
+</label>
+<label >
+    <div style="padding-top: 15px;">
+        <input ng-enter="closeKeyboard()" ng-model="betaInfo.feedback" type="text" placeholder="Feedback"/>
+    </div>
+</label>

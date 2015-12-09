@@ -42,6 +42,24 @@ app.filter('customFilter', function() {
     };
 });
 
+app.filter('chartLiftFilter', function() {
+    return function(input, scope) {
+        var out = [];
+        // $scope.$watch(scope.searchText)
+        if(input) {
+            for (var i = 0; i < input.length; i++) {
+                if(scope.$storage.nameList[input]){
+                    out.push(input[i]);
+                }
+            }
+        }
+        return out;
+    };
+});
+
+
+
+
 //TODO For focusing on modal fields when opened. get to work w. repeat
 //app.directive('customAutofocus', function() {
 //    return{

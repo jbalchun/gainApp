@@ -7,6 +7,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.removeFlag = false;
     //$scope.reorderFlag=false;
     $scope.blurFlag = false;
+    $scope.promo = {promo:''};
     $scope.indexLift = 0;
     $scope.userId = "userX";
     $scope.focusIndex = 0;
@@ -42,6 +43,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.calendar1 = false;
     $scope.infoFlag = 1;
     $scope.loading = true;
+    $scope.xyzabc = 'GOGAIN1234';
     $scope.tabTitle = $scope.$storage.tabTitle;
     var hideModalFlag = {'newlift': '', 'sets': '', 'id': ''};
 
@@ -52,34 +54,45 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.autoRepChoice = [3, 5, 6, 8, 10]
     $scope.liftCards = $scope.$storage.todaysLifts;
     $scope.updated = $scope.$storage.updated;
+
     $ionicPlatform.ready(function(){
+        console.log($scope.$storage.populated);
+
+        if($scope.$storage.firstVisit){
+            $rootScope.showWelcomePopup($scope);
+            $scope.$storage.firstVisit = false;
+        }
+
         //var networkStateA = navigator.connection.type;
         //alert(networkStateA);
-        //if(window.cordova){
-        //    //alert('hascord')
-        //    var networkState = navigator.connection.type;
-        //    $rootScope.checkAndDoUpdate(networkState);
-        //    if($scope.$storage.updated){
-        //        $scope.$storage.updated = false;
-        //        $scope.updated = $scope.$storage.updated;
-        //        var confirmPopup3 = $ionicPopup.show({
-        //            title: 'Gain Updated',
-        //            subTitle: "Changes:" +
-        //            "Minor bug fixes and enhancements",
-        //            scope: $scope,
-        //            buttons: [
-        //                {
-        //                    text: '<b>Ok</b>',
-        //                    type: 'button-dark'
-        //                }
-        //            ]
-        //        });
-        //        confirmPopup3.then(function (res) {
-        //            //console.log('Tapped!', res);
-        //        });
-        //    }
-        //}
+        //alert('dx');
+        if(window.cordova){
+            //alert('hascord')
+            var networkState = navigator.connection.type;
+            $rootScope.checkAndDoUpdate(networkState);
+            if($scope.$storage.updated){
+                $scope.$storage.updated = false;
+                $scope.updated = $scope.$storage.updated;
+                var confirmPopup3 = $ionicPopup.show({
+                    title: 'Gain Updated',
+                    subTitle: "Changes:" +
+                    "Minor bug fixes and enhancements",
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: '<b>Ok</b>',
+                            type: 'button-dark'
+                        }
+                    ]
+                });
+                confirmPopup3.then(function (res) {
+                    //console.log('Tapped!', res);
+                });
+            }
+        }
     });
+
+
 
 
     $ionicPopover.fromTemplateUrl('pop/pop-date.html', {
@@ -134,7 +147,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         $scope.sets = $scope.resultsLifts;
         var repListList = [];
         angular.forEach($scope.resultsLifts, function (lift, index) {
-            var repList2 = []
+            var repList2 = [];
             angular.forEach(lift.sets, function (setr, index) {
                 repList2.push(setr.reps);
             });
@@ -533,6 +546,12 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
     $scope.showConfirm = function () {
         var error = false;
+        //stop for IAP limit
+        if(!$scope.$storage.unlocked && $scope.$storage.liftCount >=  $scope.$storage.liftLimit){
+            var errorPopup1 = $ionicPopup.confirm({
+                title: 'You ran out of lifts! Upgrade Gain Deck to continue to track your progress'
+            });
+        }
         angular.forEach($scope.liftCards, function (lift, index) {
             if (lift.name == "Select Lift") {
                 error = true;
@@ -623,6 +642,99 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             }
 
         });
+
+    };
+
+    $rootScope.iapPop = function () {
+        var promo = false;
+        var iapPop = $ionicPopup.show({
+            title: 'Gain Unlimited!',
+            subTitle: 'Get the unlimited version to take full advantage of our tracking and analytics tools ' +
+            'Only $1.99.'+'\n'+' Less than your notebook and pen!',
+            scope: $rootScope,
+            template: "<style>.popup { width:380px !important; }</style>", //todo web demo only
+            buttons: [
+                {
+                    text: '<b>Buy</b>',
+                    type: 'button-balanced',
+                    onTap: function (e) {
+                        if ($rootScope.stateW == 'cordova') {
+
+                        }
+                    }
+                },
+                {
+                    text: '<b>Promo Code</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        promo  = true;
+
+                    }
+                },
+                {
+                    text: '<b>Cancel</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+
+            ]
+        });
+        iapPop.then(function (res) {
+            //console.log('Tapped!', res);
+            if(promo){
+                $timeout(function(){promoCode()},200)
+            }
+
+        });
+
+    };
+
+
+
+
+
+    var promoCode = function(){
+        var promoPop = $ionicPopup.show({
+            title: 'Promo Code',
+            scope: $scope,
+            templateUrl: 'pop/pop-promo.html',
+            buttons: [
+                {
+                    text: '<b>Submit</b>',
+                    type: 'button-dark',
+                    onTap: function () {
+
+                    }
+                }
+            ]
+        });
+        promoPop.then(function (res) {
+            $scope.closeKeyboard();
+            if($scope.promo.promo == $scope.xyzabc){
+                var success = true;
+                $scope.$storage.unlocked = true;
+            }else{
+                 success = false;
+            }
+            var message = success ? 'Success! Gain on!' : 'Invalid Code'
+
+            var promoResult = $ionicPopup.show({
+                title: message,
+                scope: $rootScope,
+                buttons: [
+                    {
+                        text: '<b>Close</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }
+                ]
+            });
+        });
+
 
     };
 
@@ -720,6 +832,38 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.clearAll();
+                        $scope.liftCards = $scope.$storage.todaysLifts;
+                        $scope.$storage.tabTitle= 'Lift';
+                        $scope.tabTitle='Lift';
+                        $ionicScrollDelegate.scrollTop();
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            //console.log('Tapped!', res);
+        });
+
+    };
+
+
+    $scope.clearAllStart = function () {
+
+        if($scope.removeFlag){
+            $scope.removeFlag = false
+        }
+        var confirmPopup = $ionicPopup.show({
+            title: 'Clear sample Workouts?',
+            subTitle: "Tap 'Clear Sample Workouts' to wipe the sample workout data and get to work. Your lifts and settings will be maintained",
+            scope: $scope,
+            buttons: [
+                {text: 'Cancel'},
+                {
+                    text: '<b>Clear Dummy Workouts</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        localStore.clearLiftsOnly();
+                        $rootScope.$storage.cleared = true;
                         $scope.liftCards = $scope.$storage.todaysLifts;
                         $scope.$storage.tabTitle= 'Lift';
                         $scope.tabTitle='Lift';
@@ -1028,6 +1172,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         $ionicDeploy.check().then(function(hasUpdate) {
             $rootScope.hasUpdate = hasUpdate;
             if(networkState == 'wifi' && hasUpdate ){
+                alert('updating');
                 $rootScope.doUpdate();
                 var confirmPopup0 = $ionicPopup.show({
                     title: 'Update Available',
@@ -1037,6 +1182,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                         {
                             text: '<b>Ok</b>',
                             type: 'button-dark'
+                            
                         }
                     ]
                 });
@@ -1072,28 +1218,33 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
     $scope.percentage = '';
     $rootScope.doUpdate = function() {
-
+        alert('try updating')
         $ionicDeploy.download().then(function() {
             // called when the download has completed successfully
-
+            alert('downloaded')
             $ionicDeploy.extract().then(function() {
                 // called when the extraction completes succesfully
+                alert('extracted')
                 $scope.$storage.updated = true;
                 $scope.updated = true;
             }, function(error) {
+                alert('error')
                 // called when an error occurs
             }, function(deployExtractionProgress) {
                 // this is a progress callback, so it will be called a lot
                 // deployExtractionProgress will be an Integer representing the current
                 // completion percentage.
+                alert('extracting')
                 $scope.percentage = deployExtractionProgress;
             });
         }, function(deployDownloadError) {
+            alert('errord')
             // called when an error occurs
         }, function(deployDownloadProgress) {
             // this is a progress callback, so it will be called a lot
             // deployDownloadProgress will be an Integer representing the current
             // completion percentage.
+            alert('downloading');
             $scope.percentage = deployDownloadProgress;
         });
 

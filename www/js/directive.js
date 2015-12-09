@@ -42,6 +42,31 @@ app.filter('customFilter', function() {
     };
 });
 
+app.filter('chartLiftFilter', function() {
+    return function(input, scope) {
+        var out = [];
+        // $scope.$watch(scope.searchText)
+        if(input) {
+            //console.log('dir',scope.view, scope.$storage.liftMap);
+            if (scope.view === 'charts') {
+                for (var i = 0; i < input.length; i++) {
+                    //console.log('dir2',scope.view,input[i], scope.$storage.liftMap[input[i]]);
+                    if(scope.$storage.liftMap[input[i].name]){
+                        out.push(input[i]);
+                    }
+                }
+            }else{
+                for (var j = 0; j < input.length; j++) {
+                    out.push(input[j]);
+                }
+            }
+        }
+        return out;
+    };
+});
+
+
+
 //TODO For focusing on modal fields when opened. get to work w. repeat
 //app.directive('customAutofocus', function() {
 //    return{

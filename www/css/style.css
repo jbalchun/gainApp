@@ -23,7 +23,16 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
-    font-size: .8em;
+
+}
+
+.chartListHeight{
+    height:21.5em;
+}
+
+.chartAreaHeight{
+   height: 220px ;
+    display: block;
 }
 
 .scrollbox {
@@ -108,9 +117,6 @@ body {
     font-size: 4em; !important;
 }
 
-.button.play-button{
-    margin-left:17%;
-}
 
 .button.big-timer-button{
     font-size: 2em;
@@ -208,13 +214,6 @@ body {
     line-height: 23px
 }
 
-.inline-liftselect{
-    display: inline-block;
-    height:25px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 25px
-}
 
 .nopad .item-content {
     padding: 0 !important;
@@ -267,24 +266,25 @@ input[type="tel"].setInput {
     width:44px;
     margin:0;
     width:5px;
-
+}
+.lift-select-scroll{
+    height:22em;
 }
 .bigGoal {
     font-size: 1.7em;
     padding: 0px;
     margin: 0px;
 }
-
 .button.liftSearchButtonSmall  {
-    font-size: 1em;
+    font-size: 1em ;
     padding-left: 1px;
     padding-right: 1px;
 }
-.liftSearchButtonSmall  {
-    font-size: 1em;
-    padding-left: 1px;
-    padding-right: 1px;
-}
+/*.button.liftSearchButtonSmall  {*/
+    /*font-size: 1.2em !important;*/
+    /*padding-left: 1px;*/
+    /*padding-right: 1px;*/
+/*}*/
 
 
 .button.liftListButton  {
@@ -340,7 +340,20 @@ input[type="tel"].setInput {
 
 .liftSelectEntry{
     color:#387ef5;
+
 }
+
+
+.inline-liftselect{
+display: inline-block;
+height:25px;
+text-align: center;
+vertical-align: middle;
+line-height: 25px
+}
+
+
+
 
 
 input[type="tel"].bodyWtInput {
@@ -458,6 +471,7 @@ input[type="text"].workoutNameInput {
 
 .borderless {
     border-top: none !important;
+
 }
 .borderless2 {
     border-top: none !important;
@@ -481,11 +495,40 @@ input[type="text"].workoutNameInput {
     color :#33cd5f;
 }
 
+/*.button.button-clear.timerButtonSmall{*/
+    /*font-size: 1.2em;*/
+    /*padding-left: 1px;*/
+    /*padding-right: 1px;*/
+
+/*}*/
+
+
 .button.button-clear.timerButtonSmall{
-    font-size: 1.2em;
+    font-size: .8em ;
+    min-width: 30px !important  ;
     padding-left: 1px;
     padding-right: 1px;
 
+}
+
+.play-button{
+    float:left;
+    margin-left:17%;
+    padding-left: 2%;
+    font-size: 3em
+}
+
+.timer-large{
+    font-size: 5.0em;
+    color:#808080;
+    float:left
+}
+.timer-large-col{
+
+}
+
+.chartBodyDiv{
+    padding:8px ;
 }
 
 .button.button-outline.first{
@@ -564,6 +607,14 @@ input, input[placeholder]{
 
 }
 
+input[type="text"].valid-promo{
+    color:green !important;
+}
+
+input[type="text"].invalid-promo{
+    color:red !important;
+}
+
 .bottom-only{
     border-left:none;
     border-top:none;
@@ -572,6 +623,13 @@ input, input[placeholder]{
 
 .active.selected{
     color:red;
+}
+.button.iap-button{
+    font-size:1.1em;
+}
+
+.button-buy{
+    background-color: #E87E04 !important;
 }
 
 .my-button,
@@ -642,8 +700,9 @@ button.ion-minus-circled:before {
         left: 0;
         right: 0;
         bottom: 0;
-        max-width: 400px;
-        max-height:700px;
+        /*max-width: 400px;*/
+        /*max-height:700px;*/
+
         margin-left: auto;
         margin-right: auto;
         border-left: #000000;
@@ -699,8 +758,10 @@ button.ion-minus-circled:before {
         left: 0;
         right: 0;
         bottom: 0;
-        max-width: 400px;
-        max-height:700px;
+        /*max-width: 400px;*/
+        /*max-height:700px;*/
+        max-width: 560px;
+        max-height:1136px;
         margin-left: auto;
         margin-right: auto;
         /*border-left: #000000;*/

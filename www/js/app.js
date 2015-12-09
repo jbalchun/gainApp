@@ -13,21 +13,32 @@ var app = angular.module('MyApp', [
     'timer',
     'ngStorage',
     'ngCordova',
-    'templates'
+    'templates',
+    'ngIOS9UIWebViewPatch'
 ]);
 
-app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicUser,$ionicAnalytics) {
+app.run(function ($ionicPlatform, $timeout,$ionicPopup, $state, $localStorage,$http, $rootScope, localStore,$templateCache,$ionicDeploy,$ionicUser,$ionicAnalytics) {
     $rootScope.$storage = $localStorage.$default({
         x: 53,
         userId: '',
         visitCount: 0,
+        //IAP etc, initial condition vars
         updating:false,
+        firstVisit:true,
+        unlocked:true,
+        allClear:false,
+        cleared:false,
+        liftLimit:4,
+        liftCount:0,
+
         startTime:'',
         tabTitle:'Lift',
         editingLift: [],
         goalsMap: {},
         kgMap: {},
+        liftMap:{},
         nameList: {},
+        selectedCycle:5,
         email: {},
         //nameList:{'Arms6/2/2015':'Arms','Legs6/15/2015':'Legs'},
         selectedLiftNames: [],
@@ -314,6 +325,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootSc
 
     $rootScope.hasUpdate = '';
     $rootScope.stateW = '';
+    $rootScope.iapButton = 'Upgrade';
     $rootScope.email = {email: ''};
     $rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
     $rootScope.weightSetFull = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
@@ -323,10 +335,35 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootSc
             if(navigator && navigator.splashscreen) {
                 navigator.splashscreen.hide();
             }
-            $http.get('tab-calendar.html', { cache: $templateCache });
+
             //PARSE
             $ionicAnalytics.register();
 
+          if(window.cordova){
+              if((window.device && device.platform === "iOS") && window.storekit) {
+                  //store.register({
+                  //    id:    'unl',
+                  //    alias: 'Unlimited',
+                  //    type:   store.NON_CONSUMABLE
+                  //});
+                  //
+                  //store.when("Unlimited").approved(function (order) {
+                  //    alert("Enjoy!");
+                  //    order.finish();
+                  //});
+                  //
+                  //store.ready(function() {
+                  //    console.log("The store is ready");
+                  //});
+                  //store.refresh();
+
+              }
+          }
+
+        var onReady = function() { }
+        var onPurchase = function(transactionId, productId, receipt) { }
+        var onRestore = function(transactionId, productId, transactionReceipt) { }
+        var onError = function(errorCode, errorMessage) { }
 
 
             //$ionicPlatform.ready(function() {
@@ -338,15 +375,17 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootSc
 
 
             Parse.initialize("SiCbzRW2kNcln8iLcYyPj85mY5qp8Xa1R3nkWOZi", "Bdyh495XAOVYCbZVVDasYmZ3f94U04OrUuS6q7th");
-
+            console.log('isFalse',$rootScope.$storage.populated  )
             if ($rootScope.$storage.populated == false) {//load in dummy data for demos
                 //$rootScope.$storage.dummy.reverse();
+                console.log('setpop',$rootScope.$storage.populated )
                 angular.forEach($rootScope.$storage.dummy, function (workout, key) {
                     //console.log('notes', workout)
-                    localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes)
-                })
-                $rootScope.$storage.populated = true
-                location.reload();
+                    localStore.saveLift(workout.date, workout.lifts, workout.name, workout.bodyWeight, workout.notes);
+                });
+
+                $rootScope.$broadcast('clear-cal');
+                $rootScope.$storage.populated = true;
             }
 
             if (!window.cordova) {
@@ -383,7 +422,7 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootSc
                         //}
                     //});
                 } else {
-                    $rootScope.$storage.userId = generateUUID()
+                    $rootScope.$storage.userId = generateUUID();
                     winston.log('info', 'first visit for ' + $rootScope.$storage.userId);
                     ++$rootScope.$storage.visitCount;
                     console.log('parsing');
@@ -409,8 +448,31 @@ app.run(function ($ionicPlatform, $timeout, $state, $localStorage,$http, $rootSc
                 });
             }
 
+            $rootScope.showWelcomePopup = function(scope){
+                var showWelcomePopup = $ionicPopup.show({
+                    title: 'Welcome to Gain Deck!',
+                    scope: scope,
+                    templateUrl: 'pop/pop-welcome.html',
+                    buttons: [
+                        {
+                            text: '<b>Close</b>',
+                            type: 'button-dark',
+                            onTap: function (e) {
+
+
+                            }
+                        }
+                    ]
+                });
+                showWelcomePopup.then(function (res) {
+                    ////console.log('Tapped!', res);
+
+
+                });
+            };
+
             //IAP ios
-            //if((window.cordova && device.platform == "iOS") && window.storekit) {
+            //if((window.cordova && device.platform == "iOS") && window.s) {
             //    alert("storekit");
             //    storekit.init({
             //        debug:    true,

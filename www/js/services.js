@@ -24,7 +24,7 @@ app.factory('Post', function () {
 app.factory('UserData', function () {
 });
 
-app.factory('localStore', function ($rootScope, $localStorage) {
+app.factory('localStore', function ($rootScope, $localStorage,$timeout) {
     var getWeek = function(date1) {
         //Monday is first day of new week. Ok with this.
         var date = new Date(date1);
@@ -37,16 +37,33 @@ app.factory('localStore', function ($rootScope, $localStorage) {
         return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
             - 3 + (week1.getDay() + 6) % 7) / 7);
     };
+    var refreshCal = function(){
+        $rootScope.$broadcast('clear-cal');
+        $rootScope.clearCal = true;
+    };
 
     return {
         addLift: function (name, sets,superFlag) {
-            $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':superFlag})
+            console.log('ad ddeep')
+            $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':superFlag});
+
+            console.log('ad ddeep1',$rootScope.$storage.todaysLifts);
         },
         saveLift: function (date,lifts,name,bodyWeight,notes) {
             //console.log('saving',{'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes})
             $rootScope.$storage.workouts.unshift({'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes}),
             $rootScope.$storage.nameList[name.name+date] = name.name;
 
+            angular.forEach(lifts,function(key,val){
+                //console.log('name',key.name)
+                if($rootScope.$storage.liftMap[key.name]){
+                    $rootScope.$storage.liftMap[key.name]++;
+                }else{
+                    $rootScope.$storage.liftMap[key.name] = 1;
+                }
+
+            });
+            console.log('added');
             //console.log('namelistStore',$rootScope.$storage.nameList);
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
@@ -54,6 +71,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 'super':false
             },];
             $rootScope.$broadcast('calRefresh');
+            $rootScope.$storage.liftCount++;
 
         },
 
@@ -71,6 +89,7 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 delete $rootScope.$storage.nameList[workout.name+workout.date];
 
             });
+            $rootScope.$storage.liftCount--;
 
             //delete $rootScope.$storage.nameList[name.name+date];
 
@@ -103,16 +122,31 @@ app.factory('localStore', function ($rootScope, $localStorage) {
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
+            //refreshCal();
         },
         clearAll:function(){
-            console.log('resetting' +
-            '')
             $localStorage.$reset();
             //location.reload(); TODO, make talk to app.js so it doesn't reload.
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
+            $rootScope.$storage.populated = true;
+            $rootScope.$storage.firstVisit = false;
+            $rootScope.$storage.liftCount = 0;
+            location.reload();
+            refreshCal();
+        },
+        clearLiftsOnly:function(){
+            $rootScope.$storage.workouts = [];
+            $rootScope.$storage.nameList = {};
+            $rootScope.$storage.todaysLifts = [{
+                'name': 'Select Lift',
+                'sets': [{'reps': '0', wt: '0'}]
+            },];
+            $rootScope.$storage.liftCount = 0;
+            refreshCal();
+            //$timeout(location.reload(),100);
         },
         addSet: function (index) {
             if ($rootScope.$storage.todaysLifts[index].sets.length < 10 ) {
@@ -408,6 +442,12 @@ app.factory('localStore', function ($rootScope, $localStorage) {
             $rootScope.$storage.startTime = 0;
             $rootScope.$storage.min = 0;
             $rootScope.$storage.sec = 0;
+        },
+        setSelectedCycle: function(cycle){
+            $rootScope.$storage.selectedCycle = cycle;
+        },
+        getSelectedCycle: function(cycle){
+            return $rootScope.$storage.selectedCycle;
         },
         getMillisecondsFromMinSec:function(){
             var min = $rootScope.$storage.min;

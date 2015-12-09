@@ -33,7 +33,7 @@ app.controller('liftselectcontrol',
         }
 
 
-        $scope.closeKeyboard = function () {
+        $rootScope.closeKeyboard = function () {
             //cordova.plugins.Keyboard.hide()
             document.activeElement.blur();
             document.activeElement.blur();
@@ -255,6 +255,7 @@ app.controller('liftselectcontrol',
         $scope.lock1 = true;
         $scope.hideFlag = true;
         $scope.hideFlag2 = true;
+        $scope.cancelFlag = false;
         $scope.addLiftPopup = function () {
             //console.log("trying ");
             var addLiftPopup = $ionicPopup.show({
@@ -265,6 +266,7 @@ app.controller('liftselectcontrol',
                 buttons: [
                     {text: 'Cancel',
                         onTap: function (e) {
+                            $scope.cancelFlag = true;
                             $scope.hideFlag = false;
                             e.preventDefault();
                             $timeout(function() {//this was to prevent the keyboard from opening when this popup closed. WEIRD
@@ -273,52 +275,53 @@ app.controller('liftselectcontrol',
                             $timeout(function() {
                                 $scope.hideFlag = true;
                             }, 500);
-
                         }//todo test this on device
                     },
                     {
                         text: '<b>Add</b>',
                         type: 'button-dark',
                         onTap: function (e) {
-
-                            $scope.addLiftFlag = !$scope.addLiftFlag
-                            if ($scope.newLiftName.name == '') {
-                                //TODO grey out button until they type something
-                                //TODO focus snap
-                                e.preventDefault();
-                            } else {
-                                if ($scope.lock1) {
-                                    localStore.addLiftToList($scope.newLiftName.name);
-                                    // TODO get this to work properly
-                                    $scope.liftData = $localStorage.liftData;
-                                    $scope.filterCustom(true);
-                                    $scope.hideFlag = false;
-                                    e.preventDefault();
-                                    $scope.lock1 = false;
-                                    $scope.loading = true; // redraw list becasue lifts aren't showing after added
-                                    $timeout(function () {//this was to prevent the keyboard from opening when this popup closed. WEIRD
-                                        addLiftPopup.close();
-                                        if ($scope.preventFlag) {
-                                            $scope.preventFlag = false;
-                                            console.log('broadcasting')
-                                            $rootScope.$broadcast('edit-settings', {name: angular.copy($scope.newLiftName.name)});
-                                        }
-                                    }, 300);
-                                    $timeout(function () {
-                                        $scope.loading = false; // redraw list becasue lifts aren't showing after added
-                                        $scope.hideFlag = true;
-                                        $scope.lock1 = true;
-                                    }, 500);
-
-                                }
-                            }
+                            $scope.cancelFlag = false;
                         }
                     }
                 ]
             });
             addLiftPopup.then(function (res) {
-                $scope.addLiftFlag = !$scope.addLiftFlag
-                //console.log('Tapped!', res);
+                if(!$scope.cancelFlag){
+                    $scope.addLiftFlag = !$scope.addLiftFlag
+                    $scope.addLiftFlag = !$scope.addLiftFlag;
+                    if ($scope.newLiftName.name == '') {
+                        //TODO grey out button until they type something
+                        //TODO focus snap
+                        //res.preventDefault();
+                    } else {
+                        if ($scope.lock1) {
+                            localStore.addLiftToList($scope.newLiftName.name);
+                            // TODO get this to work properly
+                            $scope.liftData = $localStorage.liftData;
+                            $scope.filterCustom(true);
+                            $scope.hideFlag = false;
+                            //res.preventDefault();
+                            $scope.lock1 = false;
+                            $scope.loading = true; // redraw list becasue lifts aren't showing after added
+                            $timeout(function () {//this was to prevent the keyboard from opening when this popup closed. WEIRD
+                                addLiftPopup.close();
+                                if ($scope.preventFlag) {
+                                    $scope.preventFlag = false;
+                                    console.log('broadcasting')
+                                    $rootScope.$broadcast('edit-settings', {name: angular.copy($scope.newLiftName.name)});
+                                }
+                            }, 300);
+                            $timeout(function () {
+                                $scope.loading = false; // redraw list becasue lifts aren't showing after added
+                                $scope.hideFlag = true;
+                                $scope.lock1 = true;
+                            }, 500);
+
+                        }
+                    }
+                }
+
             });
 
         };

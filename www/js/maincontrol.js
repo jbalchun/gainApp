@@ -7,9 +7,11 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.removeFlag = false;
     //$scope.reorderFlag=false;
     $scope.blurFlag = false;
+    $scope.promo = {promo:''};
     $scope.indexLift = 0;
     $scope.userId = "userX";
     $scope.focusIndex = 0;
+
     $scope.date = new Date();
     $scope.liftDate = String($scope.date).substring(4, 15);
     //$scope.list1 = [1,2,3];
@@ -42,7 +44,14 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.calendar1 = false;
     $scope.infoFlag = 1;
     $scope.loading = true;
+    $scope.xyzabc = 'GOGAIN1234';
     $scope.tabTitle = $scope.$storage.tabTitle;
+    //beta
+    $rootScope.betabutton = 'Beta';
+    $rootScope.beta = true;
+    $rootScope.betaInfo = {feedback:'',email:''};
+    $rootScope.$storage.betaEmail = $rootScope.betaInfo.email;
+
     var hideModalFlag = {'newlift': '', 'sets': '', 'id': ''};
 
     //prevent selection of the same lift, unless its "new lift"
@@ -52,9 +61,18 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     $scope.autoRepChoice = [3, 5, 6, 8, 10]
     $scope.liftCards = $scope.$storage.todaysLifts;
     $scope.updated = $scope.$storage.updated;
+
     $ionicPlatform.ready(function(){
+        console.log($scope.$storage.populated);
+
+        if($scope.$storage.firstVisit){
+            $rootScope.showWelcomePopup($scope);
+            $scope.$storage.firstVisit = false;
+        }
+
         //var networkStateA = navigator.connection.type;
         //alert(networkStateA);
+        //alert('dx');
         //if(window.cordova){
         //    //alert('hascord')
         //    var networkState = navigator.connection.type;
@@ -80,6 +98,8 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         //    }
         //}
     });
+
+
 
 
     $ionicPopover.fromTemplateUrl('pop/pop-date.html', {
@@ -114,14 +134,16 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
     };
 
     $scope.addLift = function (superFlag) {
+        console.log('adding')
         localStore.addLift('Select Lift', [{'reps': '0', wt: '0'}],superFlag);
-
+        console.log('added',$scope.liftCards );
+        $scope.liftCards = $scope.$storage.todaysLifts;
         $ionicScrollDelegate.$getByHandle('small').scrollBottom();
     };
 
     $scope.$on('loadedFromCalendar', function (event, args) {
         $scope.liftCards = $scope.$storage.todaysLifts;
-        $scope.tabTitle = $scope.$storage.tabTitle
+        $scope.tabTitle = $scope.$storage.tabTitle;
     });
     $scope.removeLift = function () {
         if ($scope.liftCards.length > 1) {
@@ -134,7 +156,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $scope.sets = $scope.resultsLifts;
         var repListList = [];
         angular.forEach($scope.resultsLifts, function (lift, index) {
-            var repList2 = []
+            var repList2 = [];
             angular.forEach(lift.sets, function (setr, index) {
                 repList2.push(setr.reps);
             });
@@ -226,7 +248,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         var maxItem = localStore.getMax(name, reps);
         var lastItemList = localStore.getChartData(name, reps, 3);
         if(lastItemList.length == 1){
-            var lastItem = {wt:'None',date: lastItemList[0].date}
+            var lastItem = {wt:'None',date: lastItemList[0].date};
 
         }else lastItem = lastItemList[1]
 
@@ -533,6 +555,11 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.showConfirm = function () {
         var error = false;
+        //stop for IAP limit
+        if(!$scope.$storage.unlocked && $scope.$storage.liftCount >=  $scope.$storage.liftLimit){
+            $scope.iapPop(true);
+            return
+        }
         angular.forEach($scope.liftCards, function (lift, index) {
             if (lift.name == "Select Lift") {
                 error = true;
@@ -574,6 +601,42 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                 }
             ]
         })
+    };
+
+    $rootScope.betaPop = function () {
+        var betaPop = $ionicPopup.show({
+            title: 'Beta Feedback',
+            scope: $rootScope,
+            templateUrl: 'pop/pop-beta.html',
+            buttons: [
+                {
+                    text: '<b>Cancel</b>',
+                    type: 'button-light',
+                    onTap: function (e) {
+
+                    }
+                },
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+
+            ]
+        });
+        betaPop.then(function (res) {
+            //console.log('Tapped!', res);
+            var Beta = Parse.Object.extend("Beta");
+            var beta = new Beta();
+            beta.save({email: $rootScope.betaInfo.email,uid:$rootScope.$storage.userId,feedback:$rootScope.betaInfo.feedback})
+                .then(function(object) {
+                //alert("yay! it worked");
+                    $rootScope.betaInfo.feedback = '';
+            });
+        });
+
     };
 
 
@@ -623,6 +686,100 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
             }
 
         });
+
+    };
+
+    $rootScope.iapPop = function (errorFlag) {
+        var promo = false;
+        var title = errorFlag ? "Out of Lifts!" : 'Gain Unlimited!';
+        var iapPop = $ionicPopup.show({
+            title: title,
+            subTitle: 'Get the unlimited version to take full advantage of our tracking and analytics tools ' +
+            'Only $1.99.'+'\n'+' Less than your notebook and pen!',
+            scope: $rootScope,
+            template: "<style>.popup { width:380px !important; }</style>", //todo web demo only
+            buttons: [
+                {
+                    text: '<b>Buy</b>',
+                    type: 'button-balanced',
+                    onTap: function (e) {
+                        if ($rootScope.stateW == 'cordova') {
+                            store.order("Full Version");
+                        }
+                    }
+                },
+                {
+                    text: '<b>Promo Code</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        promo  = true;
+
+                    }
+                },
+                {
+                    text: '<b>Cancel</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+
+            ]
+        });
+        iapPop.then(function (res) {
+            //console.log('Tapped!', res);
+            if(promo){
+                $timeout(function(){promoCode()},200)
+            }
+
+        });
+
+    };
+
+
+
+
+
+    var promoCode = function(){
+        var promoPop = $ionicPopup.show({
+            title: 'Promo Code',
+            scope: $scope,
+            templateUrl: 'pop/pop-promo.html',
+            buttons: [
+                {
+                    text: '<b>Submit</b>',
+                    type: 'button-dark',
+                    onTap: function () {
+
+                    }
+                }
+            ]
+        });
+        promoPop.then(function (res) {
+            $scope.closeKeyboard();
+            if($scope.promo.promo == $scope.xyzabc){
+                var success = true;
+                $scope.$storage.unlocked = true;
+            }else{
+                 success = false;
+            }
+            var message = success ? 'Success! Gain on!' : 'Invalid Code'
+
+            var promoResult = $ionicPopup.show({
+                title: message,
+                scope: $rootScope,
+                buttons: [
+                    {
+                        text: '<b>Close</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }
+                ]
+            });
+        });
+
 
     };
 
@@ -720,6 +877,38 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.clearAll();
+                        $scope.liftCards = $scope.$storage.todaysLifts;
+                        $scope.$storage.tabTitle= 'Lift';
+                        $scope.tabTitle='Lift';
+                        $ionicScrollDelegate.scrollTop();
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            //console.log('Tapped!', res);
+        });
+
+    };
+
+
+    $scope.clearAllStart = function () {
+
+        if($scope.removeFlag){
+            $scope.removeFlag = false
+        }
+        var confirmPopup = $ionicPopup.show({
+            title: 'Clear sample Workouts?',
+            subTitle: "Tap 'Clear Sample Workouts' to wipe the sample workout data and get to work. Your lifts and settings will be maintained",
+            scope: $scope,
+            buttons: [
+                {text: 'Cancel'},
+                {
+                    text: '<b>Clear Dummy Workouts</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        localStore.clearLiftsOnly();
+                        $rootScope.$storage.cleared = true;
                         $scope.liftCards = $scope.$storage.todaysLifts;
                         $scope.$storage.tabTitle= 'Lift';
                         $scope.tabTitle='Lift';
@@ -981,18 +1170,17 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
         }
         else {//confirm
-            if (newLift == 1) { //TODO make sure date isn't today
-                if(!localStore.checkDate($scope.liftDate)){
-
-                localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);
-                $scope.resultsLifts = $scope.liftCards;
-                $scope.liftCards = $scope.$storage.todaysLifts;
-                $scope.uniqueSortReps();
-                $scope.openModal('', '', '', '3');
-                $scope.workoutName.name ='';
-                $scope.notes.notes = '';
-                $scope.bodyWeight.wt = '';
-                $state.go('tab.calendar')//TODO reset filter etc so that it's showing via broadcast or emit
+            if (newLift == 1) { //TODO add lift check
+                if(true){//!localStore.checkDate($scope.liftDate
+                    localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);
+                    $scope.resultsLifts = $scope.liftCards;
+                    $scope.liftCards = $scope.$storage.todaysLifts;
+                    $scope.uniqueSortReps();
+                    $scope.openModal('', '', '', '3');
+                    $scope.workoutName.name ='';
+                    $scope.notes.notes = '';
+                    $scope.bodyWeight.wt = '';
+                    $state.go('tab.calendar')//TODO reset filter etc so that it's showing via broadcast or emit
                     $scope.tabTitle = "Lift"
                 }else {
                     $scope.dateErrorPop();
@@ -1028,6 +1216,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $ionicDeploy.check().then(function(hasUpdate) {
             $rootScope.hasUpdate = hasUpdate;
             if(networkState == 'wifi' && hasUpdate ){
+                alert('updating');
                 $rootScope.doUpdate();
                 var confirmPopup0 = $ionicPopup.show({
                     title: 'Update Available',
@@ -1037,6 +1226,7 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
                         {
                             text: '<b>Ok</b>',
                             type: 'button-dark'
+                            
                         }
                     ]
                 });
@@ -1072,28 +1262,33 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
 
     $scope.percentage = '';
     $rootScope.doUpdate = function() {
-
+        alert('try updating')
         $ionicDeploy.download().then(function() {
             // called when the download has completed successfully
-
+            alert('downloaded')
             $ionicDeploy.extract().then(function() {
                 // called when the extraction completes succesfully
+                alert('extracted')
                 $scope.$storage.updated = true;
                 $scope.updated = true;
             }, function(error) {
+                alert('error')
                 // called when an error occurs
             }, function(deployExtractionProgress) {
                 // this is a progress callback, so it will be called a lot
                 // deployExtractionProgress will be an Integer representing the current
                 // completion percentage.
+                alert('extracting')
                 $scope.percentage = deployExtractionProgress;
             });
         }, function(deployDownloadError) {
+            alert('errord')
             // called when an error occurs
         }, function(deployDownloadProgress) {
             // this is a progress callback, so it will be called a lot
             // deployDownloadProgress will be an Integer representing the current
             // completion percentage.
+            alert('downloading');
             $scope.percentage = deployDownloadProgress;
         });
 

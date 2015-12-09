@@ -1,22 +1,30 @@
 var app = angular.module('MyApp.timercontrol', []);
-app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,localStore,$ionicPlatform,$cordovaLocalNotification) {
+app.controller('timercontrol', function($scope,$ionicPopup,$cordovaMedia,$timeout,$rootScope,localStore,$ionicPlatform,$ionicPopover,$cordovaLocalNotification) {
     //$scope.range = ($scope.rangeMin * 60 *10) + ($scope.rangeSec *10);
 
     $scope.rangeMin = {min:1};
     $scope.rangeSec = {sec:30};
     $scope.startStopFlag = true;
     $scope.timerClear = true;
-    $scope.infoFlag = 4;
     $scope.loopFlag = false;
     $scope.startedAt = '';
+    $scope.count = 0;
+    $scope.currentLoops = 0;
+    var N = 11;
+    $scope.selectedCycle = localStore.getSelectedCycle();
+    //$scope.cycles = Array.apply(null, new Array(N)).map((_,i) => i); ECMA 6
+    $scope.cycles = Array.apply(null, {length: N}).map(Number.call, Number);
 
-    $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
+        $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
         if (!states.fromCache && states.stateName == "tab.timer") {
             console.log('entering timer');
+            $scope.timerPreset(30,1);
             var startTime = localStore.getStartTime();
             var timerMilli = localStore.getMillisecondsFromMinSec();
             //if the timer was running when we left
             //console.log('timermilli', timerMilli,'starttime',startTime);
+            $scope.rangeMin = {min:1};
+            $scope.rangeSec = {sec:30};
             if(startTime !== 0) {
                 var currentTime = new Date();
                 var timeDifference = currentTime - startTime;
@@ -46,16 +54,21 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
             var currentTime = new Date();
             var timeDifference = currentTime - startTime;
             if (timeDifference < timerMilli) {
-                //var minSecDif = milliToMinSec(timerMilli - timeDifference);
-                //var origMinSec = localStore.getStartMinSec();
-                //console.log(minSecDif);
-                //$scope.timerEnterSet(minSecDif.sec,minSecDif.min);
-                //$scope.rangeMin.min = origMinSec.min;
-                //$scope.rangeSec.sec = origMinSec.sec;
-                //console.log($scope.rangeMin.min,$scope.rangeSec.sec);
-                //$scope.startStopFlag = true;
-                //$scope.startStop();
+                console.log('timer set to negative');
+                var minSecDif = milliToMinSec(timerMilli - timeDifference);
+                var origMinSec = localStore.getStartMinSec();
+                console.log(minSecDif);
+                $scope.timerEnterSet(minSecDif.sec,minSecDif.min);
+                $scope.rangeMin.min = origMinSec.min;
+                $scope.rangeSec.sec = origMinSec.sec;
+                console.log($scope.rangeMin.min,$scope.rangeSec.sec);
+                $scope.startStopFlag = true;
+                $scope.startStop();
+            }else{
+                $scope.startStopFlag = !$scope.startStopFlag;
+                $scope.$broadcast('timer-reset');
             }
+
         });
 
     $ionicPlatform.on('pause', function() {
@@ -72,10 +85,8 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
     };
 
     var changeTimeEnter = function(sec,min){
-
         $rootScope.minutes = min;
         $rootScope.seconds = sec;
-        console.log('minsecchange',$rootScope.minutes,$rootScope.seconds,min,sec);
     };
 
 
@@ -85,10 +96,9 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
 
     };
 
-    var showInfo = function(){
-        if ($rootScope.stateW =='heroku') {
+    $scope.showInfo = function(){
 
-        }
+        $scope.infoFlag = 4;
         var confirmPopup = $ionicPopup.show({
             title: 'Timer',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -140,6 +150,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
             changeTime(sec,min);
         },5);
         $scope.startStopFlag = true;
+        $scope.timerClear = true;
     };
 
     var changeTime = function(sec,min){
@@ -149,6 +160,7 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
         localStore.setStartTime($scope.rangeMin.min,$scope.rangeSec.sec);
         $scope.minutes = min;
         $scope.seconds = sec;
+        $scope.timerClear = true;
     };
 
 
@@ -194,10 +206,10 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
         }
 
     };
-    // Remove one second from the slider
+
     $scope.downOneSec = function() {
         if($scope.rangeSec.sec) {
-            if ($scope.rangeSec > 0) {
+            if ($scope.rangeSec.sec > 0) {
                 $scope.rangeSec.sec = parseFloat($scope.rangeSec.sec) - 1;
                 $scope.$broadcast('timer-reset');
             }
@@ -208,6 +220,30 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
         }
 
     };
+
+    $scope.$on('timer-reset',function(){
+        if(!$scope.loopFlag){
+            clearNotification();
+            console.log('clearing');
+            $scope.timerClear = true;
+        }
+    });
+
+    $scope.$on('timer-stop',function(){
+        console.log('clearing');
+        clearNotification();
+        $scope.timerClear = true;
+    });
+
+    var clearNotification = function(){
+        if(window.cordova){
+            console.log('clear');
+            $cordovaLocalNotification.cancelAll(function() {
+                alert("done");
+            }, this);
+        }
+    };
+
 
     $scope.onRelease = function(){
         console.log('working');
@@ -263,25 +299,58 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
 
     //comments should be things not easily readable in code
     $scope.startStop = function(){
+        $scope.count++;
         if($scope.startStopFlag){
             if($scope.timerClear){
                 $scope.$broadcast('timer-start');
                 localStore.setStartTime($scope.rangeMin.min,$scope.rangeSec.sec);
                 var now = new Date().getTime(),
                     timeUp  = new Date(now +$scope.seconds*1000+$scope.minutes*60*1000);
-                var now             = new Date().getTime(),
-                    _5_sec_from_now = new Date(now + 10*1000);
+                console.log('loo',$scope.loopFlag)
                 if(window.cordova){
-                    $cordovaLocalNotification.schedule({
-                        at: timeUp,
-                        message: "This is a message",
-                        title: "This is a title",
-                        sound:null
-                    }).then(function () {
-                        console.log("The notification has been set");
-                    });
+                    if(!$scope.loopFlag){
+                        console.log('booking');
+                        $cordovaLocalNotification.schedule({
+                            at: timeUp,
+                            id: $scope.count,
+                            title: "Time's Up!"
+                        }).then(function () {
+                            console.log("The notification has been set");
+                        });
+                        $scope.count++;
+                    }
+                    else{
+                        console.log('hit it');
+                        var paramArray = [];
+                        for(var i = $scope.selectedCycle; i >0;i--){
+                            var addTime = i*($scope.seconds*1000+$scope.minutes*60*1000);
+                            timeUp  = new Date(now + addTime);
+                            console.log('forloop',timeUp,i,$scope.selectedCycle);
+                            paramArray.push({
+                                at: timeUp,
+                                id: $scope.count,
+                                title: "Time's Up!",
+                                text: "Cycle "+ i+ " of " + $scope.selectedCycle
+                            });
+                            //$cordovaLocalNotification.schedule({
+                            //    at: timeUp,
+                            //    id: $scope.count,
+                            //    title: "Timer Up!",
+                            //    text: "Cycle "+ i+ " of " + $scope.selectedCycle
+                            //},$scope).then(function () {
+                            //    console.log("The notification has been set");
+                            //});
+                            $scope.count++;
+                        }
+                        $cordovaLocalNotification.schedule(paramArray,$scope).then(function () {
+                            console.log("The notifications have been set");
+                        });
+                        console.log(paramArray);
+                    }
+
                 }
                 $scope.timerClear = false;
+
             }
             else{
                 //timer is paused, resume
@@ -291,12 +360,9 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
         }
         else{//pause timer
             $scope.$broadcast('timer-stop');
-            //if(window.cordova){
-            //    cordova.plugins.notification.local.clearAll();
-            //}
-            //
             if($scope.loopFlag){
                 $scope.loopFlag = false;
+
             }
             //window.plugins.insomnia.allowSleepAgain()
         }
@@ -304,97 +370,95 @@ app.controller('timercontrol', function($scope,$ionicPopup,$timeout,$rootScope,l
         $scope.startStopFlag = !$scope.startStopFlag;
     };
 
+    $ionicPopover.fromTemplateUrl('pop/pop-cycle.html', {
+        scope: $scope
+    }).then(function (popover) {
+        $scope.popover = popover;
+    });
+
+    $scope.cyclePop = function ($event) {
+        document.body.classList.add('platform-ios');
+        console.log('cycles',$scope.cycles);
+        $scope.popover.show($event);
+    };
+
+    $scope.cycleSelect = function(cycle){
+        $scope.selectedCycle = cycle;
+        localStore.setSelectedCycle(cycle);
+        $scope.popover.hide();
+
+    };
+
     $scope.reset = function(){
         console.log($scope.loopFlag);
         localStore.resetStartTime();
         if($scope.loopFlag){
-            console.log('init')
             $scope.loopFlag = false;
+            $scope.startStopFlag  = !$scope.startStopFlag;
             $scope.$broadcast('timer-reset');
+            $scope.timerClear = true;
         }
-        if($scope.timerClear === false){
-            //console.log('reset');
+        //if($scope.timerClear === false){
             $scope.$broadcast('timer-reset');
             $scope.minutes = 0;
-                $scope.seconds = 0;
+            $scope.seconds = 0;
             $scope.startStopFlag = true;
-        }
+            $scope.timerClear = true;
+        //}
     };
 
     $scope.finished = function(){
         //TODO local notification, works outside of app.
+
+        console.log('finished');
         $scope.startStopFlag = true;
         localStore.resetStartTime();
-
-        var alertPopup = $ionicPopup.alert({
-            title: 'Times up!',
-            template: ''
-        });
-        if($scope.loopFlag){
-            alertPopup.close();
-            $scope.$broadcast('timer-reset');
-            $scope.startStop();
+        $scope.$broadcast('timer-reset');
+        if(window.cordova){
+            play('audio/chime (2).mp3');
         }
-        alertPopup.then(function(res) {
+        if(!$scope.loopFlag){
+            $timeout(function () {
+                $scope.alertPopup = $ionicPopup.alert({
+                    title: 'Times up!'
+                });
 
-        });
+            }, 30);
+        }
+        else{
+            $scope.currentLoops++;
+            if ($scope.currentLoops <= $scope.selectedCycle) {
+                $timeout(function () {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Cycle '+ $scope.currentLoops + ' of ' + $scope.selectedCycle +' complete'
+                    });
+                    $timeout(function () {
+                        alertPopup.close();
+                    }, 600);
+                }, 30);
+                $scope.$broadcast('timer-reset');
+                if($scope.currentLoops < $scope.selectedCycle){
+                    $scope.startStop();
+                }
+
+                if($scope.currentLoops == $scope.selectedCycle){
+                   $scope.loopFlag = !$scope.loopFlag;
+                }
+            }
+            else {
+                $scope.currentLoops = 0;
+                $scope.$broadcast('timer-reset');
+            }
+        }
+
     };
 
+    var play = function(src) {
+        var media = new Media(src, null, null, mediaStatusCallback);
+        media.play();
+    };
+    var mediaStatusCallback = function(status) {
 
+    };
 
-// Timer Controller
-
-    // Some presents and variables
-    //$scope.duration = moment.duration(parseFloat($scope.range*100), "milliseconds").format("mm:ss", { trim: false });
-
-    //Look out for the shakes and insomnia
-    //$scope.eventAdded = false;
-    //if (!eventAdded) {
-    //if (window.plugins !== undefined) {
-    //        window.plugins.insomnia.keepAwake();
-    //    }
-    //    eventAdded = true;
-    //}
-
-    //Shake 'dat booty/phone
-    //function shakeEventDi dOccur() {
-    //    var items = document.getElementsByTagName('timer');x
-    //    var btn = document.getElementsByClassName('button')[0];
-    //
-    //    if (btn.innerHTML === '◼︎') {
-    //        for (var i=0; i < items.length; i++) {
-    //            btn.innerHTML = '▶︎';
-    //            items[i].stop();
-    //        }
-    //    }
-    //    else {
-    //        for (var i=0; i < items.length; i++) {
-    //            btn.innerHTML = '◼︎';
-    //            items[i].resume();
-    //        }
-    //    }
-    //}
-
-    // Click that button
-    $scope.timerToggle = function() {
-        //var items = document.getElementsByTagName('timer');
-        $scope.$broadcast('timer-stop');
-        //if (btn.innerHTML === '◼︎') {
-        //    for (var i=0; i < items.length; i++) {
-        //        btn.innerHTML = '▶︎';
-        //        items[i].stop();
-        //    }
-        //}
-        //else {
-        //    for (var i=0; i < items.length; i++) {
-        //        btn.innerHTML = '◼︎';
-        //        items[i].resume();
-        //    }
-        //}
-    }
-
-    // Go home Buddy, I work(out) alone.
-    //$scope.goBack = function() {
-    //    window.location.href = '#/app';
-    //}
-})
+});

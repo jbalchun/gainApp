@@ -14,10 +14,6 @@ app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
     }
 
     $scope.showInfo = function () {
-        if ($rootScope.stateW == 'heroku') {
-            var datenew = new Date()
-            winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
-        }
         $scope.infoFlag = 6;
         var confirmPopup = $ionicPopup.show({
             title: 'Set Details',

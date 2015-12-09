@@ -4542,7 +4542,6 @@ angular.module('ngCordova.plugins.localNotification', [])
 
         return q.promise;
       },
-
       add: function (options, scope) {
         console.warn('Deprecated: use "schedule" instead.');
 

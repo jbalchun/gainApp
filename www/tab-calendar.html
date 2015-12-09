@@ -8,10 +8,21 @@
                 ng-click="clearAll()">
 
         </button>
-        <button class="button button-balanced " ng-if="stateW == 'heroku'" style='font-size: 1.2em'
+        <button class="button button-balanced " ng-if="stateW == 'heroku'" style='font-size: 1.1em'
                 ng-click="emailPop()">
             Like it?
+
         </button>
+        <button class="button button-assertive iap-button"  ng-if="!$storage.unlocked"
+                ng-click="iapPop()">
+            {{iapButton}}
+        </button>
+
+        <button class="button button-positive iap-button" ng-if="beta"
+                ng-click="betaPop()">
+            {{betabutton}}
+        </button>
+
 
     </ion-nav-buttons>
     <ion-nav-buttons side="left">
@@ -23,7 +34,7 @@
     </ion-nav-buttons>
         </ion-nav-bar>
     <ion-content scroll="false" class="has-header" >
-        <div style="background-color: #dbdbdb">
+        <div style="background-color: #dbdbdb; margin-top: -3px;">
         <div class=" button-bar bar-positive" style="background-color:#ffffff;border-bottom: thin">
             <a on-hold="clearHold('lift')" ng-class="{'button-dark':liftName != 'Lift'}"
                class="button button-clear button-positive col" ng-click=" openModal()" style="width:2em;">
@@ -35,7 +46,6 @@
                style="width:3em float:right;">
                 {{nameFilter}}
             </a>
-
         </div>
         <!--<div style="border-top: thick;"></div>-->
         <div class=" button-bar bar-positive" style="background-color:#ffffff; margin-top:3px; ">

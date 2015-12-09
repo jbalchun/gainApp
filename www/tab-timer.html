@@ -10,14 +10,25 @@
         <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
             Like it?
         </button>
+
+        <button class="button button-assertive iap-button" ng-if="!$storage.unlocked"
+                ng-click="iapPop()">
+            {{iapButton}}
+        </button>
+
+        <button class="button button-positive iap-button" ng-if="beta"
+                ng-click="betaPop()">
+            {{betabutton}}
+        </button>
+
     </ion-nav-buttons>
         </ion-nav-bar>
     <ion-content class="has-header padding" >
         <div class="card">
 
             <div class="row">
-                <div class="col-offset-20">
-                    <h3 style="font-size: 5.0em; color:#808080;">
+                <div class="col-offset-20 timer-large-col">
+                    <h3 class="timer-large" style="">
                         <timer interval="1000" countdown="seconds1()" finish-callback="finished()" auto-start="false"> {{mminutes}} : {{sseconds}} </timer>
                     </h3>
                 </div>
@@ -65,12 +76,12 @@
 
             <div class="startStopReset row">
                 <div class="col " >
-                <button class="button button-clear button-balanced ion ion-ios-play ng-cloak" ng-click="startStop()"   style=" float:left;margin-left:17%;padding-left: 2%; font-size: 3em"
+                <button class="button button-clear button-balanced ion play-button ion-ios-play ng-cloak" ng-click="startStop()"
                         ng-class="{'button-balanced ion ion-ios-play':startStopFlag,'button-assertive ion ion-ios-pause':!startStopFlag}" ng-cloak></button>
                 <!--<button class="button button-assertive col-40"  ng-click="startStop()" ng-if="!startStopFlag" style="width:45%;float:left;" >Stop</button>-->
                 <button class="button button-dark button-clear  ion ion-ios-refresh-outline" ng-click="reset()" type="submit"  value="Reset" style=" float:left;margin-left:10%; font-size: 3em" ></button>
                     <button class="button button-positive button-clear  ion ion-loop" ng-click="cycle()"  ng-class="{'active':loopFlag}"  style="float:left;margin-left:10%; font-size: 3em" ></button>
-
+                    <button class="button button-positive button-clear  ion ion-ios-arrow-down" ng-click="cyclePop($event)"   style="float:left;margin-left:0%; font-size: 1.1em; margin-right:0px;" ></button>
                 </div>
                 </div>
             </div>

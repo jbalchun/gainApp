@@ -15,6 +15,15 @@
                     ng-click="emailPop()" ng-cloak>
                 Like it?
             </button>
+            <button class="button button-assertive iap-button" ng-if="!$storage.unlocked"
+                    ng-click="iapPop()">
+                {{iapButton}}
+            </button>
+
+            <button class="button button-positive iap-button" ng-if="beta"
+                    ng-click="betaPop()">
+                {{betabutton}}
+            </button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
@@ -24,17 +33,17 @@
             <div ng-switch-when="0">
 
                 <div class="card ">
-                    <div class="row">
-                        <div class="col-40 col-offset-20">
-                        </div>
-                    </div>
+                    <!--<div class="row">-->
+                        <!--<div class="col-40 col-offset-20">-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div ng-switch on="loading">
-                        <div style="height: 220px;display: block" ng-switch-when="true">
+                        <div class="chartAreaHeight" ng-switch-when="true">
                             <div class="spinner-chart">
                                 <ion-spinner style="margin-bottom:100px; padding-bottom: 50px;" class="ios"></ion-spinner>
                             </div>
                         </div>
-                        <div ng-switch-when="false" style="min-height:220px;">
+                        <div ng-switch-when="false" class="chartAreaHeight">
                             <canvas id="line" class="chart chart-line" data="weightSet" labels="dateSet"
                                     legend="true" options="chartOptions"></canvas>
                             <div>
@@ -42,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="item-input-wrapper">
+                    <div class="item-input-wrapper" style="width:100%">
                         <input ng-submit="keyPressed($event.keyCode)" class="col col-33 col-offset-34" type="tel"
                                placeholder="Goal" maxlength="3"
                                ng-model="goalNum.wt.wt">
@@ -75,12 +84,12 @@
                            ng-click="selectTimespan(false)"
                            style="border-top:none;border-bottom:none;border-right:none;">All</a>
                     </div>
-                    <div class="row item" style="padding:8px;  ">
-                        <a class="col liftSelectEntry" style="margin-left:29%" ng-click="chartBodyWeight()"
+                    <div class="row item chartBodyDiv">
+                        <a class="col chartBodyDiv liftSelectEntry" style="margin-left:29%" ng-click="chartBodyWeight()"
                            ng-if="bodyWtFlag"
                                 >Chart
                             Body Weight</a>
-                        <a class="col chartSwitch " style="margin-left:41%" ng-click="chartBodyWeight()"
+                        <a class="col  chartBodyDiv chartSwitch " style="margin-left:41%" ng-click="chartBodyWeight()"
                            ng-if="!bodyWtFlag"
                                 >Reset</a>
                     </div>
@@ -93,14 +102,13 @@
             <!--end janky block-->
 
 
-            <!--list scroll    -->
+            <!--list scroll-->
             <div ng-switch-when="1" class="card ng-cloak" ng-cloak style="background-color: white">
                 <ion-item class="item-stable lift-list chartlistborder" style="border-bottom: 2px solid lightgrey;">
                     <a class="month-highlight">Date</a>
                     <a class="month-highlight" style="float:right">Weight</a>
                 </ion-item>
-                <ion-scroll class="scrollbox" delegate-handle="tableBox" zooming="true" direction="y"
-                            style="height:21.5em;">
+                <ion-scroll class="scrollbox chartListHeight" delegate-handle="tableBox" zooming="true" direction="y">
 
 
                     <ion-list>

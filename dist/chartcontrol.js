@@ -66,6 +66,7 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+
         if (states.fromCache && states.stateName === "tab.charts") {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
            if($scope.chartTable == 0 || $scope.chartTable == 4)
@@ -84,6 +85,7 @@ app.controller("chartcontrol", ["$scope", "localStore", "$ionicModal", "$timeout
                 $scope.loading = false;
             },300);
         }
+
     });
 
     $scope.infoFlag = 3;

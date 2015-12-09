@@ -15,10 +15,6 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
     $scope.labels2 = ["January", "February", "March"];
     $scope.series = ['Series A'];
     $scope.selectedLift = "Barbell Bench";
-    //$scope.data = [
-    //    [145, 155, 160, 155, 165, 175, 185, 100, 120, 130, 140, 150, 154, 140, 120, 150, 100, 120, 120, 150],
-    //];
-    //$rootScope.weightSet = [[], [225, 225, 245, 245, 245, 250, 255, 255, 275],];
     $scope.bodyWeightData = [];
     $scope.bodyWtFlag = true;
     $scope.dateSet = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -55,7 +51,6 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
             $scope.spanSelect = 20;
             console.log('reset');
         },1);
-
         resetAnalytics();
         if(button){
             $state.go($state.current, {}, {reload: true});
@@ -66,6 +61,7 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
     };
 
     $scope.$on("$ionicView.beforeEnter", function (scopes, states) {
+        console.log($scope.$storage.nameList);
         if (states.fromCache && states.stateName === "tab.charts") {
             // reset basically everything. This is because the chart spazzes when entering and leaving. Still want to cache though
            if($scope.chartTable == 0 || $scope.chartTable == 4)
@@ -340,7 +336,6 @@ app.controller("chartcontrol", function ($scope, localStore, $ionicModal, $timeo
                     $scope.weightSet[0] = one;
                     $scope.weightSet[1] = zero;
                     $rootScope.weightSetFull = angular.copy($scope.weightSet);
-
                 }
                 else {
                     $scope.weightSet.unshift([]);

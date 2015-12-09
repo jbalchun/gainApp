@@ -1,0 +1,9 @@
+<ion-popover-view style="height:170px; overflow-y: scroll ; width:110px;">
+
+    <ion-list>
+        <ion-item  >{{"# Cycles:" + " " + selectedCycle}}</ion-item>
+        <ion-item ng-repeat="cycle in cycles track by $index"
+                  ng-click="cycleSelect(cycle)"
+                  ng-class="{'month-highlight':$index == selectedCycle}">{{cycle}}</ion-item>
+    </ion-list>
+</ion-popover-view>

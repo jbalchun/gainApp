@@ -34,16 +34,18 @@
     "https://github.com/apache/cordova-plugin-whitelist",
     "https://github.com/apache/cordova-plugin-splashscreen.git",
     "https://github.com/driftyco/ionic-plugins-deploy",
-    {
-      "locator": "https://github.com/driftyco/ionic-plugins-deploy",
-      "id": "ionic-plugin-deploy"
-    },
     "cordova-plugin-whitelist",
     "cordova-plugin-network-information",
     "https://github.com/katzer/cordova-plugin-local-notifications.git",
-    "de.appplant.cordova.plugin.local-notification"
+    "de.appplant.cordova.plugin.local-notification",
+    "cordova-ios-requires-fullscreen",
+    "cordova-plugin-media",
+    "ionic-plugin-deploy",
+    "ionic-plugin-keyboard",
+    "https://github.com/Telerik-Verified-Plugins/InAppPurchase"
   ],
   "cordovaPlatforms": [
+    "android",
     "ios"
   ]
 }

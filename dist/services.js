@@ -24,7 +24,7 @@ app.factory('Post', function () {
 app.factory('UserData', function () {
 });
 
-app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, $localStorage) {
+app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function ($rootScope, $localStorage,$timeout) {
     var getWeek = function(date1) {
         //Monday is first day of new week. Ok with this.
         var date = new Date(date1);
@@ -36,6 +36,10 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
         // Adjust to Thursday in week 1 and count number of weeks from date to week1.
         return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
             - 3 + (week1.getDay() + 6) % 7) / 7);
+    };
+    var refreshCal = function(){
+        //$rootScope.$broadcast('clear-cal');
+        //$rootScope.clearCal = true;
     };
 
     return {
@@ -103,16 +107,29 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
+            //refreshCal();
         },
         clearAll:function(){
-            console.log('resetting' +
-            '')
             $localStorage.$reset();
             //location.reload(); TODO, make talk to app.js so it doesn't reload.
             $rootScope.$storage.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
+            $rootScope.$storage.populated = true;
+            $rootScope.$storage.firstVisit = false;
+            location.reload();
+            refreshCal();
+        },
+        clearLiftsOnly:function(){
+            $rootScope.$storage.workouts = {};
+            $rootScope.$storage.nameList = {};
+            $rootScope.$storage.todaysLifts = [{
+                'name': 'Select Lift',
+                'sets': [{'reps': '0', wt: '0'}]
+            },];
+            refreshCal();
+            //$timeout(location.reload(),100);
         },
         addSet: function (index) {
             if ($rootScope.$storage.todaysLifts[index].sets.length < 10 ) {
@@ -408,6 +425,12 @@ app.factory('localStore', ["$rootScope", "$localStorage", function ($rootScope, 
             $rootScope.$storage.startTime = 0;
             $rootScope.$storage.min = 0;
             $rootScope.$storage.sec = 0;
+        },
+        setSelectedCycle: function(cycle){
+            $rootScope.$storage.selectedCycle = cycle;
+        },
+        getSelectedCycle: function(cycle){
+            return $rootScope.$storage.selectedCycle;
         },
         getMillisecondsFromMinSec:function(){
             var min = $rootScope.$storage.min;
