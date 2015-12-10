@@ -123,24 +123,24 @@ app.controller('liftselectcontrol',
         $scope.editSettings = function (name) {
                 $scope.liftForSettingsChange = name;
                 $scope.liftObjectForSettingsChange = localStore.getLiftByName(name);
-                $scope.modal.show();
-                //var confirmPopup = $ionicPopup.show({
-                //    templateUrl: 'pop/pop-liftset.html',
-                //    title: 'Settings for lift',
-                //    scope: $scope,
-                //    buttons: [
-                //        {
-                //            text: '<b >Done</b>',
-                //            type: 'button-dark',
-                //            onTap: function (e) {
-                //                $scope.preventFlag = true;
-                //            }
-                //        }
-                //    ]
-                //});
-                //confirmPopup.then(function (res) {
-                //
-                //});
+                //$scope.modal.show();
+                var confirmPopup = $ionicPopup.show({
+                    templateUrl: 'pop/pop-liftset.html',
+                    title: 'Settings for lift',
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: '<b >Done</b>',
+                            type: 'button-dark',
+                            onTap: function (e) {
+                                $scope.preventFlag = true;
+                            }
+                        }
+                    ]
+                });
+                confirmPopup.then(function (res) {
+
+                });
         };
 
 
@@ -264,6 +264,13 @@ app.controller('liftselectcontrol',
 
         });
 
+        $scope.closeKeyboardLiftSelect = function(){
+            $rootScope.closeKeyboard();
+            $scope.cancelFlag = false;
+            $scope.addLiftPopup.close();
+
+        }
+
         $scope.goToUrl = function (name, $ionicPlatform) {
             var namePlus = name.replace(/ /g, "+");
             var link = 'https://www.google.com/search?q=' + namePlus;
@@ -285,8 +292,8 @@ app.controller('liftselectcontrol',
 
         $scope.addLiftPopup = function () {
             //console.log("trying ");
-            var addLiftPopup = $ionicPopup.show({
-                template: '<input ng-readonly="!hideFlag" type="text" ng-model="newLiftName.name" maxlength="30">',
+             $scope.addLiftPopup = $ionicPopup.show({
+                template: '<form><div><input ng-enter="closeKeyboard()" ng-readonly="!hideFlag" type="text" ng-model="newLiftName.name" maxlength="30"/></div></form>',
                 title: 'Enter new lift name',
                 subTitle: "Press 'View Added' Button to filter to your added lifts",
                 scope: $scope,
@@ -297,7 +304,7 @@ app.controller('liftselectcontrol',
                             $scope.hideFlag = false;
                             e.preventDefault();
                             $timeout(function() {//this was to prevent the keyboard from opening when this popup closed. WEIRD
-                                addLiftPopup.close();
+                                $scope.addLiftPopup.close();
                             }, 300);
                             $timeout(function() {
                                 $scope.hideFlag = true;
@@ -334,7 +341,7 @@ app.controller('liftselectcontrol',
                             addLiftPopup.close();
                             console.log('asdf3')
                             $rootScope.$broadcast('edit-settings', {name: angular.copy($scope.newLiftName.name)});
-
+                            $rootScope.closeKeyboard();
                         }, 300);
                         $timeout(function () {
                             $scope.loading = false; // redraw list becasue lifts aren't showing after added

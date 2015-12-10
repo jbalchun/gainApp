@@ -101,8 +101,11 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         $scope.popover2 = popover2;
     });
 
-    $scope.closeKeyboard = function () {
+    $rootScope.closeKeyboard = function () {
         //cordova.plugins.Keyboard.hide()
+        if(window.cordova){
+            cordova.plugins.Keyboard.close();
+        }
         document.activeElement.blur();
         document.activeElement.blur();
     };

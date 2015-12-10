@@ -33,11 +33,6 @@ app.controller('liftselectcontrol',
         }
 
 
-        $rootScope.closeKeyboard = function () {
-            //cordova.plugins.Keyboard.hide()
-            document.activeElement.blur();
-            document.activeElement.blur();
-        };
 
         $scope.showInfo = function () {
             if ($rootScope.stateW == 'heroku') {

@@ -108,11 +108,20 @@ app.controller('liftcontrol', function ($scope, $ionicModal, $localStorage, $roo
         $scope.popover2 = popover2;
     });
 
-    $scope.closeKeyboard = function () {
+    $rootScope.closeKeyboard = function () {
         //cordova.plugins.Keyboard.hide()
+        console.log('closekey')
+        if(window.cordova){
+            console.log('closekeyCord')
+            cordova.plugins.Keyboard.close();
+            $timeout(function(){
+                cordova.plugins.Keyboard.close();
+            },300);
+        }
         document.activeElement.blur();
         document.activeElement.blur();
     };
+
 
     $scope.datePopup = function ($event, date) {
         document.body.classList.add('platform-ios');

@@ -50,11 +50,13 @@
                         </ion-list>
 
                     </ion-scroll>
-                    <div class="item item-input-inset no-padding borderless">
-                        <label class="item-input-wrapper" on-swipe-left="swipeLeftLift()">
-                            <input ng-model="searchText" ng-enter="closeKeyboard()" type="search" placeholder="Search">
-                        </label>
-                    </div>
+                    <form>
+                        <div class="item item-input-inset no-padding borderless">
+                            <label class="item-input-wrapper" on-swipe-left="swipeLeftLift()">
+                                <input ng-enter="closeKeyboard()" ng-model="searchText" ng-enter="closeKeyboard()" type="text" placeholder="Search">
+                            </label>
+                        </div>
+                    </form>
                     <div class="button-bar bar-dark liftSearchButtons" on-swipe-left="swipeLeftLift()">
                         <a ng-class="{'button-highlight': attr1Pressed == '1'}" ng-click="listSort(1,'1')" type="button"
                            class="button button-positive button-row1 button-clear liftSearchButtonSmall">Push</a>
