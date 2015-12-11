@@ -700,8 +700,8 @@ button.ion-minus-circled:before {
         left: 0;
         right: 0;
         bottom: 0;
-        /*max-width: 400px;*/
-        /*max-height:700px;*/
+        max-width: 400px;
+        max-height:700px;
 
         margin-left: auto;
         margin-right: auto;
