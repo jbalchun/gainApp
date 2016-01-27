@@ -9,22 +9,25 @@
         <button class="button button-balanced " ng-if= "stateW == 'heroku'"  style='font-size: 1.2em' ng-click="emailPop()">
             Like it?
         </button>
-        <button class="button button-assertive iap-button" ng-if="!$storage.unlocked"
+        <button class="button button-assertive iap-button" ng-if="!$storage.mainObj.unlocked"
                 ng-click="iapPop()">
             {{iapButton}}
         </button>
-        <button class="button button-positive iap-button" ng-if="beta"
+        <button class="button button-positive iap-button" ng-if="$storage.mainObj.beta"
                 ng-click="betaPop()">
             {{betabutton}}
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="left">
-        <button class="button button-buy iap-button" ng-if="!$storage.cleared"
+        <button class="button button-buy iap-button" ng-if="!$storage.mainObj.cleared"
                 ng-click="clearAllStart()">
             Clear
         </button>
         <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
         </button>
+        <button class="button button-clear icon ion-ios-cloud-outline" style='font-size:.8em;padding-left:12px;' ng-if="!$storage.mainObj.registered || $storage.mainObj.beta" ng-click="cloudPop()">
+        </button>
+
         <a ng-if="percentage > 0 && percentage < 100">{{"updating " + percentage+"%"}}</a>
         <button ng-if="updated" class="button button-clear icon ion-loop" style='font-size: .8em' ng-click="refreshUpdate()">
         </button>
@@ -37,11 +40,12 @@
                 <!--</div>-->
 
                 <ion-list show-delete="removeFlag">
-                    <span class="reorder-adjusted"></span>
+                    <!--<span class="reorder-adjusted"></span>-->
 
-                    <ion-item on-hold="lift.super = !lift.super" style="border-top:none !important;border-bottom:none !important"
-                              class=" borderless2 item  item-remove-animate no-padding borderless" ng-repeat="lift in liftCards track by $index"
-                              href="#/lift/{{lift.name}}">
+                    <ion-item item="lift"  style="border-top:none !important;border-bottom:none !important"
+                              class=" borderless2 item  no-padding borderless" ng-repeat="lift in liftCards track by $index"
+                              href="#/lift/{{lift.name}}"
+                            can-swipe="$index != 0">
                         <div ng-if="$index != 0 && lift.super == true" class="item item-divider color-header2">
                         </div>
                         <div class="liftNameButton">
@@ -73,12 +77,16 @@
                         <!--<button class="button button-clear button-positive button-text-wrap icon ion-arrow-graph-up-right" ng-class="{'active':lift.name =='Select Lift' || lift.sets[0].reps == 0 && lift.sets[0].wt==0}"-->
                                 <!--style="float:right;" ng-click="openModal(lift.name, $index,0,4)">-->
                         <!--</button>-->
-                        <button class="button button-clear button-positive button-text-wrap icon ion-ios-timer-outline" ng-class="{'active':lift.name =='Select Lift' || lift.sets[0].reps == 0 && lift.sets[0].wt==0}"
+                        <button class="button button-clear button-positive button-text-wrap icon ion-reply" ng-class="{'active':lift.name =='Select Lift' || lift.sets[0].reps == 0 && lift.sets[0].wt==0}"
                                 style="float:right;" ng-click="historyPop($index)">
                         </button>
                         <ion-delete-button class="ion-minus-circled"
-                                           ng-click="removeLiftRow($index)" style="float:left;">
+                                           ng-click="removeLiftRow($index,$event,lift)" style="float:left;">
                         </ion-delete-button>
+                        <ion-option-button class="button-dark"
+                                           ng-click="lift.super = !lift.super">
+                            Super
+                        </ion-option-button>
                     </ion-item>
 
                 </ion-list>

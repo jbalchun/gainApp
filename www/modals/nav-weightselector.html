@@ -4,8 +4,9 @@
         <div class="buttons">
             <button class="button icon ion-arrow-left-c" style="border:none;" ng-click="closeModal('none',0,2)"></button>
         </div>
-        <h1 class="title">{{nameLift}}</h1>
-        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em' ng-click="showInfo()">
+
+        <h1 class="title " ng-click="openSettings()">{{namelift}}</h1>
+        <button class="button button-clear icon ion-ios-information-outline" style='font-size: .8em;margin-left:3%' ng-click="showInfo()">
 
         </button>
 
@@ -35,7 +36,7 @@
 
                 </div>
                 <div style="float:right; width:30%;">
-                    <button class="button  button-outline button-positive" ng-class="{'button-selected-lift':wtSelectPress == $index+'2','button-noborder':wtSelectPress != $index+'2'}" ng-click="selectNumber($index,2)">{{set.wt + kgMap[nameLift]}}</button>
+                    <button class="button  button-outline button-positive" ng-class="{'button-selected-lift':wtSelectPress == $index+'2','button-noborder':wtSelectPress != $index+'2'}" ng-click="selectNumber($index,2)">{{set.wt + kgMap[namelift]}}</button>
                 <!--<input ng-model="set.wt"  type="tel" maxlength="3" select-on-click select-on-focus>-->
                     <!--<input ng-model="set.wt"  type="tel" maxlength="3" ng-if="$index != focusIndex"  select-on-click>-->
                 </div>
@@ -90,18 +91,18 @@
               <a ng-class="" ng-click="changeNumber(80,true)" type="button"  class="button bottom-only">80</a>
               <a ng-class="" ng-click="changeNumber(100,true)" type="button"  class="button bottom-only">100</a>
           </div>
-          <div class="button-bar bar-dark" ng-if="editingNumber.id ==2 && weightRack=='heavykg'">
-              <a ng-class="" ng-click="changeNumber(20,true)" type="button" class="button button-positive button-clear " >20</a>
-              <a ng-class="" ng-click="changeNumber(60,true)" type="button" class="button button-positive button-clear" >60</a>
-              <a ng-class="" ng-click="changeNumber(100,true)" type="button" class="button button-positive button-clear">100</a>
-              <a ng-class="" ng-click="changeNumber(140,true)" type="button"  class="button button-positive button-clear">140</a>
-              <a ng-class="" ng-click="changeNumber(180,true)" type="button" class="button button-positive button-clear">180</a>
+          <div class="button-bar bar-dark" ng-class="{'kg-top':weightRack=='heavykg'}" ng-if="editingNumber.id ==2 && weightRack=='heavykg'">
+              <a ng-class="" ng-click="changeNumber(20,true)" type="button" class="button  bottom-only " >20</a>
+              <a ng-class="" ng-click="changeNumber(60,true)" type="button" class="button  bottom-only " >60</a>
+              <a ng-class="" ng-click="changeNumber(100,true)" type="button" class="button  bottom-only ">100</a>
+              <a ng-class="" ng-click="changeNumber(140,true)" type="button"  class="button  bottom-only ">140</a>
+              <a ng-class="" ng-click="changeNumber(180,true)" type="button" class="button bottom-only">180</a>
           </div>
       </div>
 
         <div class="row">
             <!--<div class = "col-offset-5"></div>-->
-            <div ng-if="editingNumber.id ==1 " class="" style="float:left;">
+            <div ng-if="editingNumber.id ==1 " class="sixplus-shift" style="float:left;">
                 <button class="button button-clear button-assertive plusMinusGoal"on-hold="popEditingNumber(-1)"  ng-click="changeNumber(-1)"
                         style="float:right;"> -1
                 </button>
@@ -112,7 +113,7 @@
                         style="float:right;"> -10
                 </button>
             </div>
-            <div ng-if="editingNumber.id ==2 && weightRack=='light'" class="" style="float:left;">
+            <div ng-if="editingNumber.id ==2 && weightRack=='light'" class="sixplus-shift" style="float:left;">
                 <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-5)"
                         style="float:right;"> -5
                 </button>
@@ -123,7 +124,7 @@
                         style="float:right;"> -20
                 </button>
             </div>
-            <div ng-if="editingNumber.id ==2 && weightRack=='heavytens'" class="" style="float:left;">
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavytens'" class="sixplus-shift" style="float:left;">
                 <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-5)"
                         style="float:right;"> -5
                 </button>
@@ -134,7 +135,7 @@
                         style="float:right;"> -25
                 </button>
             </div>
-            <div ng-if="editingNumber.id ==2 && weightRack=='heavy' " class="" style="float:left;">
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavy' " class="sixplus-shift" style="float:left;">
                 <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-10)"
                         style="float:right;"> -10
                 </button>
@@ -145,19 +146,22 @@
                         style="float:right;"> -50
                 </button>
             </div>
-            <div ng-if="editingNumber.id ==2 && weightRack=='heavykg' " class="" style="float:left;">
-                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-10)"
-                        style="float:right;color:white "> -10
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavykg' " ng-class="{'kg-shift' : weightRack='heavykg' }" class="sixplus-shift" >
+                <button class="button button-clear button-assertive plusMinusGoal kg-plate" ng-click="changeNumber(-2.5)"
+                        style="float:right;"> -2.5
                 </button>
-                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-20)"
-                        style="float:right; color:green"> -20
+                <button class="button button-clear button-assertive plusMinusGoal kg-plate" ng-click="changeNumber(-5)"
+                        style="float:right; "> -5
                 </button>
-                <button class="button button-clear button-assertive plusMinusGoal" ng-click="changeNumber(-30)"
-                        style="float:right; color:yellow"> -30
+                <button class="button button-clear button-assertive plusMinusGoal kg-plate" ng-click="changeNumber(-10)"
+                        style="float:right;"> -10
+                </button>
+                <button class="button button-clear button-assertive plusMinusGoal kg-plate" ng-click="changeNumber(-20)"
+                        style="float:right;"> -20
                 </button>
             </div>
             <div>
-                <button class="button button-clear bigGoal ">{{editingShow.num}}</button>
+                <button class="button button-clear bigGoal" ng-class="{'kg-plate-mid': weightRack == 'heavykg' && editingNumber.id ==2}" ng-click="centerTap(1)"  on-hold="centerTap(-1)">{{editingShow.num}}</button>
             </div>
             <div ng-if="editingNumber.id ==1"  style="float:right;">
                 <button class="button button-clear button-balanced plusMinusGoal"on-hold="popEditingNumber(10)" ng-click="changeNumber(10)"
@@ -206,15 +210,18 @@
                 </button>
             </div>
 
-            <div ng-if="editingNumber.id ==2 && weightRack=='heavykg' "  style="float:right;">
-                <button class="button button-clear button-balanced plusMinusGoal" ng-click="changeNumber(30)"
-                        style="float:right;color:yellow">  +30
+            <div ng-if="editingNumber.id ==2 && weightRack=='heavykg' "  class="kg-plate-div" style="float:right;">
+                <button class="button button-clear button-balanced plusMinusGoal kg-plate"  ng-click="changeNumber(20)"
+                        style="float:right; "> +20
                 </button>
-                <button class="button button-clear button-balanced plusMinusGoal"  ng-click="changeNumber(20)"
-                        style="float:right; color:green"> +20
+                <button class="button button-clear button-balanced plusMinusGoal kg-plate"  ng-click="changeNumber(10)"
+                        style="float:right; "> +10
                 </button>
-                <button class="button button-clear button-balanced plusMinusGoal"  ng-click="changeNumber(10)"
-                        style="float:right; color:white"> +10
+                <button class="button button-clear button-balanced plusMinusGoal kg-plate"  ng-click="changeNumber(5)"
+                        style="float:right; "> +5
+                </button>
+                <button class="button button-clear button-balanced plusMinusGoal kg-plate"  ng-click="changeNumber(2.5)"
+                        style="float:right; "> +2.5
                 </button>
             </div>
         </div>

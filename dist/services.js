@@ -1,30 +1,236 @@
 var app = angular.module('MyApp.services', ['ngStorage']);
 
-app.factory('Post', function () {
-    return {
-        find: function (id) {
-            this.posts[id];
-        },
 
-        add: function (post) {
-            this.posts.push(
-                {id: this.posts.length, url: post.url, title: post.title}
-            );
-        },
-
-        posts: [
-            {id: 0, url: "#/some-url/0", title: "How to do item A"},
-            {id: 1, url: "#/some-url/1", title: "How to do item B"},
-            {id: 2, url: "#/some-url/2", title: "YOLO"},
-        ]
-
-    };
-
-});
 app.factory('UserData', function () {
 });
 
-app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function ($rootScope, $localStorage,$timeout) {
+app.factory('parseFactory', ["$rootScope", "$localStorage", "$timeout", "$ionicHistory", "$state", function ($rootScope, $localStorage,$timeout,$ionicHistory,$state) {
+    return {
+         register:function(userData){
+             var factory = this;
+             var user = new Parse.User();
+             user.set("username", userData.email);
+             user.set("password", userData.password);
+             user.set("email", userData.email);
+             $rootScope.$storage.mainObj.username = userData.email;
+             user.signUp(null, {
+                 success: function(user) {
+                     //alert("success!");
+                     $rootScope.$storage.mainObj.username = userData.email;
+                     $rootScope.$storage.mainObj.email = userData.email;
+                     $rootScope.$storage.mainObj.registered = true;
+                     alert('Registration successful');
+                     $rootScope.$broadcast('cloud-load');
+                     factory.deleteAndSave();
+                 },
+                 error: function(user, error) {
+                        console.log(error);
+                     if(error.code == 125){
+                         alert('Error, invalid email address');
+                     }
+                     if(error.code == 202){
+                         alert('Error, username is taken! Already an account w/ this email');
+                     }else{
+                         alert('Error signing up, make sure email is valid');
+                     }
+                 }
+             });
+         },
+        logIn:function(userData){
+            var factory = this;
+            $rootScope.$storage.mainObj.username = userData.email;
+            $rootScope.$storage.mainObj.email = userData.email;
+            console.log('logging in');
+            Parse.User.logIn(userData.email, userData.password,{
+                success: function(user) {
+                    factory.loadFrom(userData.email);
+                },
+                error: function(user, error) {
+                    alert('Error: No connection or invalid username/password');
+                }
+            });
+        },
+         saveNew:function(){
+             var factory = this;
+             if($rootScope.$storage.mainObj.unlocked && $rootScope.$storage.mainObj.registered && $rootScope.$storage.mainObj.username.length > 1){
+                 var stringStorage = JSON.stringify($rootScope.$storage.mainObj);
+
+                 var Backup = Parse.Object.extend("Backup");
+                 var backup = new Backup();
+
+                 backup.set('username',$rootScope.$storage.mainObj.username);
+                 backup.set('file',stringStorage);
+                 backup.save(null, {
+                     success: function(backup) {
+                         //alert('saved the file');
+                     },
+                     error: function(backup, error) {
+                         //alert('Failed save');
+                     }
+                 });
+             }
+         },
+        deleteAndSave:function(){//TODO dangerous to delete before save. should be a transaction of sorts
+            var factory = this;
+            var query = new Parse.Query("Backup");
+            console.log('delSave', $rootScope.$storage.mainObj.unlocked ,$rootScope.$storage.mainObj.registered, $rootScope.$storage.mainObj.username.length > 1)
+            if($rootScope.$storage.mainObj.unlocked && $rootScope.$storage.mainObj.registered && $rootScope.$storage.mainObj.username.length > 1){
+                query.equalTo("username",$rootScope.$storage.mainObj.username);
+                query.find({
+                    success: function(results) {
+                        //alert("Successfully retrieved " + results.length +$rootScope.$storage.mainObj.uid+ " scores.");
+                        // Do something with the returned Parse.Object values
+                        for (var i = 0; i < results.length; i++) {
+                            results[i].destroy({});
+                        }
+                        factory.saveNew();
+                    },
+                    error: function(error) {
+                        //alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+            }
+        },
+        loadFrom:function(username){
+            //load row by userId
+            //var stringStorage = JSON.stringify($rootScope.$storage);
+            var query = new Parse.Query("Backup");
+            query.equalTo("username",username);
+            query.find({
+                success: function(results) {
+                    //alert("Successfully retrieved " + results.length +$rootScope.$storage.mainObj.uid+ " scores.");
+                    // Do something with the returned Parse.Object values
+                    console.log('result',results[0].get('file'));
+                    console.log('parse',JSON.parse(results[0].get('file')));
+                    //$localStorage.$reset();
+                    $rootScope.$storage.mainObj = JSON.parse(results[0].get('file'));
+                    $rootScope.$broadcast('cloud-load');
+                    //location.reload(true);
+                    //alert('Welcome ' + username + ', Your data has been restored! Please close the app and reopen if it does not seem to have loaded properly');
+                    $timeout(function(){
+                        $state.go('tab.calendar');
+                        $rootScope.$broadcast('cloud-load');
+                        $state.go('tab.posts');
+                        $rootScope.$broadcast('cloud-load');
+                    },30);
+                    $rootScope.$storage.mainObj.justLoaded = true;
+                    $rootScope.$storage.mainObj.registered = true;
+                },
+                error: function(error) {
+                    //alert("Error: " + error.code + " " + error.message);
+                }
+            });
+
+        },
+        checkPromo:function(code){
+            var query = new Parse.Query("Promo");
+            query.equalTo("code",code);
+            query.find({
+                success: function(results) {
+                    if(typeof results[0] !== 'undefined'){
+                        var valid = results[0].get('valid');
+                        console.log('valid',valid);
+                        $rootScope.$broadcast('promo-return',results[0].get('valid'));
+                    }else{
+                        $rootScope.$broadcast('promo-return',false);
+                    }
+
+                },
+                error: function(error) {
+                    alert('Error contacting server, try again later');
+                }
+            });
+
+        },
+        getIt:function(){
+            var query = new Parse.Query("ActiveP");
+            query.equalTo("active",'active');
+            query.find({
+                success: function(results) {
+                    if(typeof results[0] !== 'undefined'){
+                        var valid = results[0].get('shown');
+                        console.log('error active1')
+                         $rootScope.$broadcast('active-return',results[0].get('shown')); 
+                    }else{
+                        $rootScope.$broadcast('active-return',false);
+                    }
+
+                },
+                error: function(error) {
+                    console.log('error active',error)
+                    //alert('Error contacting server, try again later');
+                }
+            });
+
+        }
+    };
+}]);
+
+app.factory('QuickActionService', ["$rootScope", "$localStorage", "$q", "$ionicHistory", "$state", function ($rootScope, $localStorage,$q,$ionicHistory,$state) {
+        var check3DTouchAvailability = function () {
+            return $q(function(resolve, reject) {
+                if (window.ThreeDeeTouch) {
+                    window.ThreeDeeTouch.isAvailable(function (available) {
+                        resolve(available);
+                    });
+                } else {
+                    reject();
+                }
+            });
+        };
+
+        var configure = function () {
+            // Check if 3D Touch is supported on the device
+            check3DTouchAvailability().then(function(available) {
+
+                if (available) {    // Comment out this check if testing in simulator
+
+                    // Configure Quick Actions
+                    window.ThreeDeeTouch.configureQuickActions([
+                        {
+                            type: 'tab.posts',
+                            title: 'New Workout',
+                            subtitle: '',
+                           //iconType:
+                        },
+                        {
+                            type: 'tab.calendar',
+                            title: 'Calendar',
+                            subtitle: '',
+
+                        },
+                        {
+                            type: 'tab.charts',
+                            title: 'Chart',
+                            subtitle: '',
+
+                        },
+                        {
+                            type: 'tab.timer',
+                            title: 'Timer',
+                            subtitle: '',
+
+                        }
+                    ]);
+
+                    // Set event handler to check which Quick Action was pressed
+                    window.ThreeDeeTouch.onHomeIconPressed = function(payload) {
+                        $rootScope.$broadcast('tab-quick',payload);
+                    };
+                }
+            });
+        }
+
+        return {
+            configure: configure
+        };
+
+}]);
+
+
+
+
+app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", "parseFactory", function ($rootScope, $localStorage,$timeout,parseFactory) {
     var getWeek = function(date1) {
         //Monday is first day of new week. Ok with this.
         var date = new Date(date1);
@@ -38,50 +244,67 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
             - 3 + (week1.getDay() + 6) % 7) / 7);
     };
     var refreshCal = function(){
-        //$rootScope.$broadcast('clear-cal');
-        //$rootScope.clearCal = true;
+        $rootScope.$broadcast('clear-cal');
+        $rootScope.clearCal = true;
     };
 
     return {
         addLift: function (name, sets,superFlag) {
-            $rootScope.$storage.todaysLifts.push({'name': name, 'sets': sets,'super':superFlag})
+            console.log('ad ddeep')
+            $rootScope.$storage.mainObj.todaysLifts.push({'name': name, 'sets': sets,'super':superFlag});
+
+            console.log('ad ddeep1',$rootScope.$storage.mainObj.todaysLifts);
         },
         saveLift: function (date,lifts,name,bodyWeight,notes) {
             //console.log('saving',{'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes})
-            $rootScope.$storage.workouts.unshift({'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes}),
-            $rootScope.$storage.nameList[name.name+date] = name.name;
+            $rootScope.$storage.mainObj.workouts.unshift({'date': date, 'name':name.name,'bodyWeight':bodyWeight.wt, 'lifts': lifts,'notes':notes.notes}),
+            $rootScope.$storage.mainObj.nameList[name.name+date] = name.name;
 
+            angular.forEach(lifts,function(key,val){
+                //console.log('name',key.name)
+                if($rootScope.$storage.mainObj.liftMap[key.name]){
+                    $rootScope.$storage.mainObj.liftMap[key.name]++;
+                }else{
+                    $rootScope.$storage.mainObj.liftMap[key.name] = 1;
+                }
+
+            });
+            console.log('added');
             //console.log('namelistStore',$rootScope.$storage.nameList);
-            $rootScope.$storage.todaysLifts = [{
+            $rootScope.$storage.mainObj.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}],
                 'super':false
             },];
             $rootScope.$broadcast('calRefresh');
-
+            $rootScope.$storage.mainObj.liftCount++;
+            parseFactory.deleteAndSave();
         },
 
         removeWorkout:function(workout){//TODO change if you allow free dates?
-            angular.forEach($rootScope.$storage.workouts,function(workout2,index){
+            console.log(workout,$rootScope.$storage.mainObj.workouts)
+            angular.forEach($rootScope.$storage.mainObj.workouts,function(workout2,index){
                 //console.log('workouts',workout,workout2)
                 if(workout.date == workout2.date){
                     //console.log('in to remove',index)
-                    $rootScope.$storage.workouts.splice(index,1);
+                    $rootScope.$storage.mainObj.workouts.splice(index,1);
                 }
 
             });
-            angular.forEach($rootScope.$storage.nameList,function(name,key){
+            angular.forEach($rootScope.$storage.mainObj.nameList,function(name,key){
                console.log('name',name, 'key',key, 'targetttt', workout.name+workout.date);
-                delete $rootScope.$storage.nameList[workout.name+workout.date];
+                delete $rootScope.$storage.mainObj.nameList[workout.name+workout.date];
 
             });
+            if($rootScope.$storage.mainObj.cleared){
+                $rootScope.$storage.mainObj.liftCount--;
+            }
 
-            //delete $rootScope.$storage.nameList[name.name+date];
-
+            parseFactory.deleteAndSave();
         },
         checkDay:function(day){//for checking the whole list
           var resultFlag=false;
-          angular.forEach($rootScope.$storage.workouts,function(workout,index){
+          angular.forEach($rootScope.$storage.mainObj.workouts,function(workout,index){
               var currentDay = Number(workout.date.slice(3,6));
               var numDay = Number(day);
                   if(currentDay == numDay){
@@ -93,7 +316,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
         },
         checkDate:function(date){
             var returnFlag = false;
-            angular.forEach($rootScope.$storage.workouts,function(workout,index){
+            angular.forEach($rootScope.$storage.mainObj.workouts,function(workout,index){
                 if(workout.date == date){
                     returnFlag= true
                 }
@@ -103,7 +326,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
         clearLifts:function(){
             //$localStorage.$reset();
             //location.reload()
-            $rootScope.$storage.todaysLifts = [{
+            $rootScope.$storage.mainObj.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
@@ -112,47 +335,54 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
         clearAll:function(){
             $localStorage.$reset();
             //location.reload(); TODO, make talk to app.js so it doesn't reload.
-            $rootScope.$storage.todaysLifts = [{
+            $rootScope.$storage.mainObj.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
-            $rootScope.$storage.populated = true;
-            $rootScope.$storage.firstVisit = false;
+            $rootScope.$storage.mainObj.populated = true;
+            $rootScope.$storage.mainObj.firstVisit = false;
+            $rootScope.$storage.mainObj.liftCount = 0;
             location.reload();
             refreshCal();
         },
         clearLiftsOnly:function(){
-            $rootScope.$storage.workouts = {};
-            $rootScope.$storage.nameList = {};
-            $rootScope.$storage.todaysLifts = [{
+            $rootScope.$storage.mainObj.workouts = [];
+            $rootScope.$storage.mainObj.nameList = {};
+            $rootScope.$storage.mainObj.todaysLifts = [{
                 'name': 'Select Lift',
                 'sets': [{'reps': '0', wt: '0'}]
             },];
+            $rootScope.$storage.mainObj.liftMap = {};
+            $rootScope.$storage.mainObj.liftCount = 0;
             refreshCal();
             //$timeout(location.reload(),100);
         },
         addSet: function (index) {
-            if ($rootScope.$storage.todaysLifts[index].sets.length < 10 ) {
-                var lastSet = angular.copy( _.last( $rootScope.$storage.todaysLifts[index].sets));
-                $rootScope.$storage.todaysLifts[index].sets.push(lastSet);
+            if ($rootScope.$storage.mainObj.todaysLifts[index].sets.length < 10 ) {
+                var lastSet = angular.copy( _.last( $rootScope.$storage.mainObj.todaysLifts[index].sets));
+                $rootScope.$storage.mainObj.todaysLifts[index].sets.push(lastSet);
             }
         },
         removeSet: function (index) {
-            if($rootScope.$storage.todaysLifts[index].sets.length > 1){
-                $rootScope.$storage.todaysLifts[index].sets.splice(-1, 1);
+            if($rootScope.$storage.mainObj.todaysLifts[index].sets.length > 1){
+                $rootScope.$storage.mainObj.todaysLifts[index].sets.splice(-1, 1);
             }
 
         },
         buildKgMap:function(){
-            $rootScope.$storage.kgMap ={};
-          angular.forEach($rootScope.$storage.liftData,function(lift,ind){
-            if(lift.weight == "heavykg"){
-                $rootScope.$storage.kgMap[lift.name]='kgs'
-            }else{
-                $rootScope.$storage.kgMap[lift.name]='lbs'
-            }
+            $rootScope.$storage.mainObj.kgMap ={};
+          angular.forEach($rootScope.$storage.mainObj.liftData,function(lift,ind){
 
-          })
+            if(lift.weight == "heavykg"){
+                $rootScope.$storage.mainObj.kgMap[lift.name]='kgs';
+            }else{
+                $rootScope.$storage.mainObj.kgMap[lift.name]='lbs';
+            }
+              console.log($rootScope.$storage.mainObj.kgMap);
+          });
+            var map =  angular.copy($rootScope.$storage.mainObj.kgMap);
+            console.log('map',map);
+            return map;
             //console.log('kgmap',$rootScope.$storage.kgMap)
         },
         getChartData: function(name,reps,flag){ //its a monster, watch type stuff
@@ -160,7 +390,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
             var dateSetTemp =[]
             var weightDateSet = [];
             var tempMaxMap ={};
-            angular.forEach($rootScope.$storage.workouts, function(day, index) {
+            angular.forEach($rootScope.$storage.mainObj.workouts, function(day, index) {
                 angular.forEach(day.lifts, function(lift, index){
                     ////console.log('day lifts',lift);
                     if (lift.name == name){
@@ -214,23 +444,24 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
 
 
         removeLiftEntry: function(name){
-            angular.forEach($rootScope.$storage.liftData,function(lift,index){
+            angular.forEach($rootScope.$storage.mainObj.liftData,function(lift,index){
                if(lift.name == name){
-                   $rootScope.$storage.liftData.splice(index,1);
+                   $rootScope.$storage.mainObj.liftData.splice(index,1);
                }
             });
 
         },
         addLiftToList: function(name){
-            $rootScope.$storage.liftData.unshift({'name':name,attr1: ".",
+            $rootScope.$storage.mainObj.liftData.unshift({'name':name,attr1: ".",
                 attr2: ".",
                 attr3: ".",
                 custom:true,
                 weight:'heavy'});
+            parseFactory.deleteAndSave();
         },
         getLiftByName: function(name){
             var liftObj = {};
-            angular.forEach($rootScope.$storage.liftData, function (lift, index) {//todo this should be in services
+            angular.forEach($rootScope.$storage.mainObj.liftData, function (lift, index) {//todo this should be in services
                 if (name == lift.name) {
                      liftObj = lift;
                 }
@@ -238,22 +469,22 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
             return liftObj;
         },
         loadLiftFromCalendar:function(workout){ //has to search, can't just go off index asshole.
-            angular.forEach($rootScope.$storage.workouts,function(workout2,ind){
+            angular.forEach($rootScope.$storage.mainObj.workouts,function(workout2,ind){
                 console.log('name',workout.name,workout.date)
                 if(workout.name == workout2.name && workout.date == workout2.date){
-                    $rootScope.$storage.todaysLifts = angular.copy(workout2.lifts);
+                    $rootScope.$storage.mainObj.todaysLifts = angular.copy(workout2.lifts);
                 }
             });
             console.log('name', workout.name);
             if(workout.name){
                 console.log("adding name");
-                $rootScope.$storage.tabTitle = workout.name;
+                $rootScope.$storage.mainObj.tabTitle = workout.name;
             }
                 //$rootScope.$storage.todaysLifts = angular.copy($rootScope.$storage.workouts[index].lifts);
 
         },
         wipeWeights:function(){
-            angular.forEach( $rootScope.$storage.todaysLifts,function(lift,ind){
+            angular.forEach( $rootScope.$storage.mainObj.todaysLifts,function(lift,ind){
                 angular.forEach(lift.sets,function(set1,ind){
                     set1.wt = 0;
                 });
@@ -261,7 +492,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
             $rootScope.$broadcast("loadedFromCalendar");
         },
         liftsOnly:function(){
-            angular.forEach( $rootScope.$storage.todaysLifts,function(lift,ind){
+            angular.forEach( $rootScope.$storage.mainObj.todaysLifts,function(lift,ind){
                 lift.sets = [{'reps': '0', wt: '0'}];
             });
             $rootScope.$broadcast("loadedFromCalendar");
@@ -269,14 +500,14 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
         makeCalendar:function(){
          return   {
                 $storage : $localStorage,
-                workouts : $storage.workouts,
-                filterList : angular.copy($storage.workouts),
+                workouts : $storage.mainObj.workouts,
+                filterList : angular.copy($storage.mainObj.workouts),
                 searchQuery : '',
                 dateType : '',
                 today : new Date(),
                 dateObj : {'Year': 'Year', 'Month': 'Month', 'Day': 'Day'},
                 $storage : $localStorage,
-                nameList : $storage.nameList,
+                nameList : $storage.mainObj.nameList,
                 nameFilter : "Name",
                 liftName : "Lift",
                 monthMap : {
@@ -297,10 +528,9 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
                 infoFlag : 2
             };
         },
-
         buildRepList:function(name){
             var repList = [];
-            angular.forEach($rootScope.$storage.workouts, function(day, index) {
+            angular.forEach($rootScope.$storage.mainObj.workouts, function(day, index) {
                 //var weightSetDayTemp= [];
                 //var dateSetDayTemp =[];
                 //console.log('day replist',day)
@@ -333,7 +563,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
         getBodyWeightData: function(flag){//flag indicates dates or weights
             var bodyWeightData = [];
             var bodyWeightDates = [];
-            angular.forEach($rootScope.$storage.workouts, function(day, index) {
+            angular.forEach($rootScope.$storage.mainObj.workouts, function(day, index) {
                 if(day.bodyWeight) {
                     bodyWeightData.push(day.bodyWeight);
                     bodyWeightDates.push(day.date);
@@ -361,7 +591,7 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
             var weightsDates = [];
             var bodyWeight = [];
 
-            angular.forEach($rootScope.$storage.workouts, function(day, index) {
+            angular.forEach($rootScope.$storage.mainObj.workouts, function(day, index) {
                 bodyWeight.push({wt:day.bodyWeight,date:day.date})
                 angular.forEach(day.lifts, function(lift, index2){
                     if(index>0) {
@@ -398,43 +628,43 @@ app.factory('localStore', ["$rootScope", "$localStorage", "$timeout", function (
         updateGoals: function(goalsMap){
           angular.forEach(goalsMap,function(value, key){
               console.log("inserted goal for:", key);
-              $rootScope.$storage.goalsMap[key]=value;
-              console.log($rootScope.$storage.goalsMap)
+              $rootScope.$storage.mainObj.goalsMap[key]=value;
+              console.log($rootScope.$storage.mainObj.goalsMap)
           });
         },
         getGoal:function(key){
-            return  $rootScope.$storage.goalsMap[key];
+            return  $rootScope.$storage.mainObj.goalsMap[key];
         },
         setStartTime:function(min, sec){
-            $rootScope.$storage.startTime = +new Date();
+            $rootScope.$storage.mainObj.startTime = +new Date();
 
-            console.log('timetrace', $rootScope.$storage.startTime,min,sec );
-            $rootScope.$storage.min = min;
-            $rootScope.$storage.sec = sec;
-            console.log('timetrace2', $rootScope.$storage.startTime,$rootScope.$storage.min,$rootScope.$storage.sec );
+            console.log('timetrace', $rootScope.$storage.mainObj.startTime,min,sec );
+            $rootScope.$storage.mainObj.min = min;
+            $rootScope.$storage.mainObj.sec = sec;
+            console.log('timetrace2', $rootScope.$storage.mainObj.startTime,$rootScope.$storage.mainObj.min,$rootScope.$storage.mainObj.sec );
 
         },
         getStartTime:function(){
-            return $rootScope.$storage.startTime;
+            return $rootScope.$storage.mainObj.startTime;
         },
         getStartMinSec:function(){
-            console.log('starttime return',{min:$rootScope.$storage.min,sec:$rootScope.$storage.sec });
-            return {min:angular.copy($rootScope.$storage.min),sec:angular.copy($rootScope.$storage.sec )};
+            console.log('starttime return',{min:$rootScope.$storage.mainObj.min,sec:$rootScope.$storage.mainObj.sec });
+            return {min:angular.copy($rootScope.$storage.mainObj.min),sec:angular.copy($rootScope.$storage.mainObj.sec )};
         },
         resetStartTime:function(){
-            $rootScope.$storage.startTime = 0;
-            $rootScope.$storage.min = 0;
-            $rootScope.$storage.sec = 0;
+            $rootScope.$storage.mainObj.startTime = 0;
+            $rootScope.$storage.mainObj.min = 0;
+            $rootScope.$storage.mainObj.sec = 0;
         },
         setSelectedCycle: function(cycle){
-            $rootScope.$storage.selectedCycle = cycle;
+            $rootScope.$storage.mainObj.selectedCycle = cycle;
         },
         getSelectedCycle: function(cycle){
-            return $rootScope.$storage.selectedCycle;
+            return $rootScope.$storage.mainObj.selectedCycle;
         },
         getMillisecondsFromMinSec:function(){
-            var min = $rootScope.$storage.min;
-            var sec = $rootScope.$storage.sec;
+            var min = $rootScope.$storage.mainObj.min;
+            var sec = $rootScope.$storage.mainObj.sec;
 
             var milli = (min*60*1000) + (sec*1000);
             return milli;

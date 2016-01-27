@@ -2,7 +2,7 @@
  * Created by Jbalchun on 12/26/14.
  */
 var app = angular.module('MyApp.maincontrol', ['ionic', 'MyApp.services', 'ngStorage', 'ngCordova']);
-app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootScope", "$state", "localStore", "$ionicPopup", "$ionicPopover", "$ionicPlatform", "$timeout", "$ionicScrollDelegate", "$ionicDeploy", function ($scope, $ionicModal, $localStorage, $rootScope,$state, localStore, $ionicPopup, $ionicPopover, $ionicPlatform, $timeout, $ionicScrollDelegate,$ionicDeploy) {
+app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootScope", "$state", "QuickActionService", "localStore", "parseFactory", "$ionicPopup", "$ionicPopover", "$ionicPlatform", "$timeout", "$ionicScrollDelegate", "$ionicDeploy", function ($scope, $ionicModal, $localStorage, $rootScope,$state, QuickActionService,localStore,parseFactory, $ionicPopup, $ionicPopover, $ionicPlatform, $timeout, $ionicScrollDelegate,$ionicDeploy) {
 
     $scope.removeFlag = false;
     //$scope.reorderFlag=false;
@@ -11,6 +11,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.indexLift = 0;
     $scope.userId = "userX";
     $scope.focusIndex = 0;
+    $scope.userData = {};
     $scope.date = new Date();
     $scope.liftDate = String($scope.date).substring(4, 15);
     //$scope.list1 = [1,2,3];
@@ -22,14 +23,15 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     var plusMinusLast = {};
     $scope.todaysMaxs = {};
     $scope.lastClickedRep = {};
-    $scope.goalMap = $scope.$storage.goalsMap;
+    $rootScope.it = false;
+    $scope.goalMap = $scope.$storage.mainObj.goalsMap;
     $scope.unpackedGoalsMap = {};
     $scope.$storage = $localStorage;
     $scope.rangeMap = {};
     $scope.rangeFlipFlag = true;
     $scope.editingShow = 0;
-    $scope.lightHeavyMap = $scope.$storage.lightHeavyMap
-    $scope.nameList = $scope.$storage.nameList;
+    $scope.lightHeavyMap = $scope.$storage.mainObj.lightHeavyMap
+    $scope.nameList = $scope.$storage.mainObj.nameList;
     var lastAmount = 0;
     var lastAmount2 = 0;
     var lastAmount3 = 0;
@@ -44,7 +46,13 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.infoFlag = 1;
     $scope.loading = true;
     $scope.xyzabc = 'GOGAIN1234';
-    $scope.tabTitle = $scope.$storage.tabTitle;
+    $scope.tabTitle = $scope.$storage.mainObj.tabTitle;
+    //beta
+    $rootScope.betabutton = 'Beta';
+    $rootScope.beta = false;
+    $rootScope.betaInfo = {feedback:'',email:''};
+    $rootScope.$storage.mainObj.betaEmail = $rootScope.betaInfo.email;
+
     var hideModalFlag = {'newlift': '', 'sets': '', 'id': ''};
 
     //prevent selection of the same lift, unless its "new lift"
@@ -52,48 +60,147 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.auto = {sets: 0, reps: 0}
     $scope.autoSetChoice = [{set1: 3}, {set1: 4}, {set1: 5}, {set1: 6}];
     $scope.autoRepChoice = [3, 5, 6, 8, 10]
-    $scope.liftCards = $scope.$storage.todaysLifts;
-    $scope.updated = $scope.$storage.updated;
+    $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+    $scope.updated = $scope.$storage.mainObj.updated;
+    //IAP
+    $rootScope.IAP = {
+        list: [ "unl"]
+    };
+
+    $rootScope.IAP.load = function(){
+        // Check availability of the storekit plugin
+        if (!window.storekit) {
+            alert("In-App Purchases not available");
+            return;
+        }
+        //alert('IAP init');
+        storekit.init({
+            debug:    true, // Enable IAP messages on the console
+            ready:    $rootScope.IAP.onReady,
+            purchase: $rootScope.IAP.onPurchase,
+            restore:  $rootScope.IAP.onRestore,
+            error:    $rootScope.IAP.onError
+        });
+    };
+
+    $scope.restoreAgain =function(){
+        storekit.restore();
+    };
+
+
+
+    $rootScope.IAP.onReady = function () {
+        storekit.load($rootScope.IAP.list, function (products, invalidIds) {
+            $rootScope.IAP.products = products;
+            $rootScope.IAP.loaded = true;
+            //alert('loading');
+            for (var i = 0; i < invalidIds.length; ++i) {
+                console.log("Error: could not load " + invalidIds[i]);
+            }
+        });
+    };
+    $rootScope.IAP.onPurchase = function (transactionId, productId, receipt) {
+        if(productId === 'unl'){
+            //alert("Ads Removed!");
+            $scope.$storage.mainObj.unlocked = true;
+            var promoResult = $ionicPopup.show({
+                title: 'Success! Gain on!',
+                scope: $rootScope,
+                buttons: [
+                    {
+                        text: '<b>Close</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }
+                ]
+            });
+            promoResult.then(function(res){
+                $scope.register();
+            });
+        }
+    };
+    $rootScope.IAP.onRestore = function (transactionId, productId) {
+        if(productId === 'unl'){
+            //alert("Ads Removed!");
+            $scope.$storage.mainObj.unlocked = true;
+            var promoResult = $ionicPopup.show({
+                title: 'Success! Gain on!',
+                scope: $rootScope,
+                buttons: [
+                    {
+                        text: '<b>Close</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }
+                ]
+            });
+            promoResult.then(function(res){
+                $scope.register();
+            });
+        }
+    };
+    $rootScope.IAP.onError = function (errorCode, errorMessage) {
+        alert(errorMessage);
+    };
+    $rootScope.IAP.buy = function(productId){
+        //alert('iapbuy');
+        storekit.purchase(productId);
+    };
 
     $ionicPlatform.ready(function(){
-        console.log($scope.$storage.populated);
-
-        if($scope.$storage.firstVisit){
+        console.log($scope.$storage.mainObj.populated);
+        if($scope.$storage.mainObj.firstVisit){
             $rootScope.showWelcomePopup($scope);
-            $scope.$storage.firstVisit = false;
+            $scope.$storage.mainObj.firstVisit = false;
         }
+        if(window.cordova){
+            //if((window.device && device.platform === "iOS") && window.storekit) {
 
+                $rootScope.IAP.load();
+            //}
+        }
+        $scope.$on('tab-quick',function(event,args){
+            $state.go(args.type);
+        });
+
+        parseFactory.deleteAndSave();
+        QuickActionService.configure();
+        console.log('getit')
+        parseFactory.getIt();
+        console.log($rootScope.it,'it')
+        //DEPLOY
         //var networkStateA = navigator.connection.type;
         //alert(networkStateA);
         //alert('dx');
-        if(window.cordova){
-            //alert('hascord')
-            var networkState = navigator.connection.type;
-            $rootScope.checkAndDoUpdate(networkState);
-            if($scope.$storage.updated){
-                $scope.$storage.updated = false;
-                $scope.updated = $scope.$storage.updated;
-                var confirmPopup3 = $ionicPopup.show({
-                    title: 'Gain Updated',
-                    subTitle: "Changes:" +
-                    "Minor bug fixes and enhancements",
-                    scope: $scope,
-                    buttons: [
-                        {
-                            text: '<b>Ok</b>',
-                            type: 'button-dark'
-                        }
-                    ]
-                });
-                confirmPopup3.then(function (res) {
-                    //console.log('Tapped!', res);
-                });
-            }
-        }
+        //if(window.cordova){
+        //    //alert('hascord')
+        //    var networkState = navigator.connection.type;
+        //    $rootScope.checkAndDoUpdate(networkState);
+        //    if($scope.$storage.updated){
+        //        $scope.$storage.updated = false;
+        //        $scope.updated = $scope.$storage.updated;
+        //        var confirmPopup3 = $ionicPopup.show({
+        //            title: 'Gain Updated',
+        //            subTitle: "Changes:" +
+        //            "Minor bug fixes and enhancements",
+        //            scope: $scope,
+        //            buttons: [
+        //                {
+        //                    text: '<b>Ok</b>',
+        //                    type: 'button-dark'
+        //                }
+        //            ]
+        //        });
+        //        confirmPopup3.then(function (res) {
+        //            //console.log('Tapped!', res);
+        //        });
+        //    }
+        //}
     });
-
-
-
 
     $ionicPopover.fromTemplateUrl('pop/pop-date.html', {
         scope: $scope
@@ -101,14 +208,41 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         $scope.popover2 = popover2;
     });
 
+    $scope.$on('active-return',function(event,args){
+        if(args){
+       
+            $rootScope.it = true;
+        }
+        
+    });
+
+
+
     $rootScope.closeKeyboard = function () {
         //cordova.plugins.Keyboard.hide()
+        console.log('closekey')
         if(window.cordova){
+            console.log('closekeyCord')
             cordova.plugins.Keyboard.close();
+            $timeout(function(){
+                cordova.plugins.Keyboard.close();
+            },300);
         }
         document.activeElement.blur();
         document.activeElement.blur();
     };
+
+    $scope.$on('cloud-load',function(){
+        $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+
+    });
+
+    //duplicated,why not?
+    $scope.$on('tab-quick',function(event,args){
+
+        $state.go(args.type);
+    });
+
 
     $scope.datePopup = function ($event, date) {
         document.body.classList.add('platform-ios');
@@ -130,14 +264,16 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     };
 
     $scope.addLift = function (superFlag) {
+        console.log('adding')
         localStore.addLift('Select Lift', [{'reps': '0', wt: '0'}],superFlag);
-
+        console.log('added',$scope.liftCards );
+        $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
         $ionicScrollDelegate.$getByHandle('small').scrollBottom();
     };
 
     $scope.$on('loadedFromCalendar', function (event, args) {
-        $scope.liftCards = $scope.$storage.todaysLifts;
-        $scope.tabTitle = $scope.$storage.tabTitle
+        $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+        $scope.tabTitle = $scope.$storage.mainObj.tabTitle;
     });
     $scope.removeLift = function () {
         if ($scope.liftCards.length > 1) {
@@ -242,7 +378,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         var maxItem = localStore.getMax(name, reps);
         var lastItemList = localStore.getChartData(name, reps, 3);
         if(lastItemList.length == 1){
-            var lastItem = {wt:'None',date: lastItemList[0].date}
+            var lastItem = {wt:'None',date: lastItemList[0].date};
 
         }else lastItem = lastItemList[1]
 
@@ -274,6 +410,18 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         console.log('results preview', {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: maxItem, last: lastItem});
         return {name: name, reps: reps, todaysMax: $scope.todaysMaxs[name + String(reps)], max: maxItem, last: lastItem}
         //last clicked rep for a given lift
+    };
+
+    $scope.centerTap = function(plusMinus){
+        if($scope.editingNumber.id === 1 ){
+            $scope.changeNumber(1*plusMinus);
+        }
+        else if($scope.weightRack === 'light' || $scope.weightRack === 'heavytens' || $scope.weightRack === 'heavykg'){
+            $scope.changeNumber(.5 * plusMinus);
+        }
+        else{
+            $scope.changeNumber(5*plusMinus);
+        }
     };
 
 
@@ -313,15 +461,15 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             } else if ($scope.editingNumber.id == 3) { //goals
 
                 var repsLocal = String($scope.sets2[$scope.editingNumber.index].reps);
-                var oldGoal = Number($scope.goalMapEdit[$scope.nameLift + repsLocal].wt);
+                var oldGoal = Number($scope.goalMapEdit[$rootScope.namelift + repsLocal].wt);
                 if (button) { // go to amount
                     lastAmount3 = amount;
-                    $scope.goalMapEdit[$scope.nameLift + repsLocal] = {wt: amount};
+                    $scope.goalMapEdit[$rootScope.namelift + repsLocal] = {wt: amount};
                     return
                 }
-                lastAmount3 = $scope.goalMapEdit[$scope.nameLift + repsLocal].wt + amount;
+                lastAmount3 = $scope.goalMapEdit[$rootScope.namelift + repsLocal].wt + amount;
                 if (lastAmount3 >= 0) { // add to amount
-                    $scope.goalMapEdit[$scope.nameLift + repsLocal] = {wt: oldGoal + amount};
+                    $scope.goalMapEdit[$rootScope.namelift + repsLocal] = {wt: oldGoal + amount};
                 }
             }
         }
@@ -337,7 +485,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     };
 
     $scope.onRelease = function (reps, index) {
-        $scope.goalMapEdit[$scope.nameLift + reps] = {wt: $scope.rangeMap[index]};
+        $scope.goalMapEdit[$rootScope.namelift + reps] = {wt: $scope.rangeMap[index]};
     }
 
     $scope.selectNumber = function (index, id) {
@@ -379,7 +527,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
         $scope.wtSelectPress = index + String(3)
         ////console.log('zero',$scope.sets2[0]);
-        $scope.editingShow = {num: $scope.goalMapEdit[$scope.nameLift + String($scope.sets2[index].reps)]}
+        $scope.editingShow = {num: $scope.goalMapEdit[$rootScope.namelift + String($scope.sets2[index].reps)]}
         $scope.editingNumber = {index: index, id: 3};
 
     }
@@ -516,7 +664,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.namePopupSubmit = function ($event) {
         document.body.classList.add('platform-ios');
         //console.log('nml', $scope.nameList)
-        $scope.nameList = $rootScope.$storage.nameList
+        $scope.nameList = $rootScope.$storage.mainObj.nameList
         _.uniq($scope.nameList, false);
         var nameArray = []
         angular.forEach($scope.nameList, function (val, key) {
@@ -550,10 +698,10 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     $scope.showConfirm = function () {
         var error = false;
         //stop for IAP limit
-        if(!$scope.$storage.unlocked && $scope.$storage.liftCount >=  $scope.$storage.liftLimit){
-            var errorPopup1 = $ionicPopup.confirm({
-                title: 'You ran out of lifts! Upgrade Gain Deck to continue to track your progress'
-            });
+        console.log($scope.$storage.mainObj.unlocked , $scope.$storage.mainObj.liftCount ,  $scope.$storage.mainObj.liftLimit)
+        if(!$scope.$storage.mainObj.unlocked && $scope.$storage.mainObj.liftCount >=  $scope.$storage.mainObj.liftLimit){
+            $scope.iapPop(true);
+            return
         }
         angular.forEach($scope.liftCards, function (lift, index) {
             if (lift.name == "Select Lift") {
@@ -562,8 +710,22 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         });
         if (error) {
             var errorPopup = $ionicPopup.confirm({
-                title: 'Remove or edit "Select Lift"'
+                title: 'Remove or edit "Select Lift"',
+                buttons:[
+                    {
+                        text: '<b >Cancel</b>',
+                        type: 'button-light',
+                        onTap: function (e) {
 
+                        }
+                    },
+                    {
+                        text: '<b >Done</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }]
             });
             errorPopup.then(function (res) {
                 if (res) {
@@ -598,10 +760,46 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         })
     };
 
+    $rootScope.betaPop = function () {
+        var betaPop = $ionicPopup.show({
+            title: 'Beta Feedback',
+            scope: $rootScope,
+            templateUrl: 'pop/pop-beta.html',
+            buttons: [
+                {
+                    text: '<b>Cancel</b>',
+                    type: 'button-light',
+                    onTap: function (e) {
+
+                    }
+                },
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+
+            ]
+        });
+        betaPop.then(function (res) {
+            //console.log('Tapped!', res);
+            var Beta = Parse.Object.extend("Beta");
+            var beta = new Beta();
+            beta.save({email: $rootScope.betaInfo.email,uid:$rootScope.$storage.mainObj.userId,feedback:$rootScope.betaInfo.feedback})
+                .then(function(object) {
+                //alert("yay! it worked");
+                    $rootScope.betaInfo.feedback = '';
+            });
+        });
+
+    };
+
 
     $rootScope.emailPop = function () {
         if ($rootScope.stateW == 'heroku') {
-            winston.log('info', $scope.$storage.userId + ", opened email")
+            winston.log('info', $scope.$storage.mainObj.userId + ", opened email")
 
         }
         var emailPop = $ionicPopup.show({
@@ -623,19 +821,19 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             if ($rootScope.stateW == 'heroku') {
 
                 if ($rootScope.email.email.length > 3 && $rootScope.email.email.indexOf('@') == -1 ) {
-                    winston.log('info', $scope.$storage.userId + " closed with no email")
+                    winston.log('info', $scope.$storage.mainObj.userId + " closed with no email")
                     var Reddit = Parse.Object.extend("Reddit");
                     var reddit = new Reddit();
-                    reddit.save({username: $rootScope.email.email,uid:$rootScope.$storage.userId}).then(function(object) {
+                    reddit.save({username: $rootScope.email.email,uid:$rootScope.$storage.mainObj.userId}).then(function(object) {
                         //alert("yay! it worked");
                     });
 
                 } else if($rootScope.email.email.length > 3 ) {
-                    winston.log('info', $scope.$storage.userId + " closed with email" + $rootScope.email.email)
+                    winston.log('info', $scope.$storage.mainObj.userId + " closed with email" + $rootScope.email.email)
 
                     var Email = Parse.Object.extend("Email");
                     var email = new Email();
-                    email.save({address: $rootScope.email.email,uid:$rootScope.$storage.userId}).then(function(object) {
+                    email.save({address: $rootScope.email.email,uid:$rootScope.$storage.mainObj.userId}).then(function(object) {
                         //alert("yay! it worked");
                     });
                     //$scope.$storage.email = angular.copy($rootScope.email.email);
@@ -648,22 +846,34 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
     };
 
-    $rootScope.iapPop = function () {
+
+
+
+    $rootScope.iapPop = function (errorFlag) {
         var promo = false;
+        var restore = false;
+        var title = errorFlag ? "Out of Lifts!" : 'Gain Unlimited!';
+        //$rootScope.initStoreiOS();
         var iapPop = $ionicPopup.show({
-            title: 'Gain Unlimited!',
-            subTitle: 'Get the unlimited version to take full advantage of our tracking and analytics tools ' +
-            'Only $1.99.'+'\n'+' Less than your notebook and pen!',
+            title: title,
+            templateUrl:'pop/pop-iap.html',
+            subTitle: '<b>Get the unlimited version to take full advantage of our tracking and analytics tools ' +
+            'Only $1.99.'+'\n'+' Less than your notebook and pen!</b>',
             scope: $rootScope,
             template: "<style>.popup { width:380px !important; }</style>", //todo web demo only
-            buttons: [
+            buttons: $rootScope.it ? [
                 {
-                    text: '<b>Buy</b>',
-                    type: 'button-balanced',
+                    text: '<b>Cancel</b>',
+                    type: 'button-light',
                     onTap: function (e) {
-                        if ($rootScope.stateW == 'cordova') {
 
-                        }
+                    }
+                },
+                {
+                    text: '<b>Restore</b>',
+                    type: 'button-light',
+                    onTap: function (e) {
+                        restore = true;
                     }
                 },
                 {
@@ -675,25 +885,56 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                     }
                 },
                 {
+                    text: '<b>Buy</b>',
+                    type: 'button-balanced',
+                    onTap: function (e) {
+                        if(window.cordova) {
+                            //if ((window.device && device.platform === "iOS") && window.storekit) {
+                            $rootScope.IAP.buy('unl');
+                            //}
+                        }
+                    }
+                }
+            ] : [
+                {
                     text: '<b>Cancel</b>',
-                    type: 'button-dark',
+                    type: 'button-light',
                     onTap: function (e) {
 
                     }
+                },
+                {
+                    text: '<b>Restore</b>',
+                    type: 'button-light',
+                    onTap: function (e) {
+                        restore = true;
+                    }
+                },
+                {
+                    text: '<b>Buy</b>',
+                    type: 'button-balanced',
+                    onTap: function (e) {
+                        if(window.cordova) {
+                            //if ((window.device && device.platform === "iOS") && window.storekit) {
+                            $rootScope.IAP.buy('unl');
+                            //}
+                        }
+                    }
                 }
-
-            ]
+            ] 
         });
         iapPop.then(function (res) {
             //console.log('Tapped!', res);
             if(promo){
                 $timeout(function(){promoCode()},200)
             }
+            if(restore){
+                $scope.restoreAgain();
+            }
 
         });
 
     };
-
 
 
 
@@ -705,41 +946,61 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             templateUrl: 'pop/pop-promo.html',
             buttons: [
                 {
+                    text: '<b>Cancel</b>',
+                    type: 'button-light',
+                    onTap: function () {
+                         $scope.cancelPromo = true;
+                    }
+                },
+                {
                     text: '<b>Submit</b>',
                     type: 'button-dark',
                     onTap: function () {
 
                     }
                 }
+
             ]
         });
         promoPop.then(function (res) {
-            $scope.closeKeyboard();
-            if($scope.promo.promo == $scope.xyzabc){
-                var success = true;
-                $scope.$storage.unlocked = true;
-            }else{
-                 success = false;
+            if(!$scope.cancelPromo){
+                $scope.closeKeyboard();
+                $scope.isValid = parseFactory.checkPromo($scope.promo.promo);
             }
-            var message = success ? 'Success! Gain on!' : 'Invalid Code'
 
-            var promoResult = $ionicPopup.show({
-                title: message,
-                scope: $rootScope,
-                buttons: [
-                    {
-                        text: '<b>Close</b>',
-                        type: 'button-dark',
-                        onTap: function (e) {
-
-                        }
-                    }
-                ]
-            });
         });
-
-
     };
+
+    $scope.$on('promo-return',function(event,args){
+        console.log('args',args)
+        if(args){
+            var success = true;
+            $scope.$storage.mainObj.unlocked = true;
+        }else{
+            success = false;
+        }
+
+        var message = success ? 'Success! Gain on!' : 'Invalid Code'
+
+        var promoResult = $ionicPopup.show({
+            title: message,
+            scope: $rootScope,
+            buttons: [
+                {
+                    text: '<b>Close</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+        promoResult.then(function(res){
+            if($scope.$storage.mainObj.unlocked){
+                $scope.register()
+            }
+        });
+    });
 
     $scope.$on('destroyEmail', function () {
         $timeout(function () {
@@ -750,7 +1011,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
     $scope.showInfo = function () {
         if ($rootScope.stateW == 'heroku') {
-            winston.log('info', $scope.$storage.userId + ", viewed home info")
+            winston.log('info', $scope.$storage.mainObj.userId + ", viewed home info")
             var datenew = new Date()
         }
         var confirmPopup = $ionicPopup.show({
@@ -771,16 +1032,24 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             //console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
                 var dateDiff = new Date() - datenew
-                winston.log('info', $scope.$storage.userId + ", closed home info after" + dateDiff)
+                winston.log('info', $scope.$storage.mainObj.userId + ", closed home info after" + dateDiff)
             }
         });
     };
 
-    $scope.removeLiftRow = function ($index) {
+    $scope.removeLiftRow = function ($index,event,item) {
+
         if ($scope.removeFlag) {
-            $scope.liftCards.splice($index, 1);
+            $scope.liftCards.splice($scope.liftCards.indexOf(item), 1);
+
         }
         $scope.removeFlag = !$scope.removeFlag;
+    }
+
+    $scope.swipeRemoveLiftRow = function ($index,event,item) {
+
+        $scope.liftCards.splice($scope.liftCards.indexOf(item), 1);
+
     }
 
 
@@ -790,6 +1059,140 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             $scope.s()
         }
     };
+
+    $scope.cloudPop = function(){
+        var action = ''
+        if(!$scope.$storage.mainObj.unlocked) {
+            var confirmPopup = $ionicPopup.show({
+                templateUrl: 'pop/pop-cloud.html',
+                title: "Cloud Sync",
+                subTitle: "<b>Purchase Unlimited to access! Or log in here<b>",
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>Cancel</b>',
+                        type: 'button-light',
+                        onTap: function (e) {
+                            action = '3';
+                        }
+
+                    },
+                    {
+                        text: '<b>Log in</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+                            action = '2';
+                        }
+
+                    },
+                    {
+                        text: '<b>Buy</b>',
+                        type: 'button-balanced',
+                        onTap: function (e) {
+                            action = '1';
+                        }
+
+                    }
+
+                ]
+            });
+        }else{
+            var confirmPopup = $ionicPopup.show({
+                templateUrl: 'pop/pop-cloud.html',
+                title: "Cloud Sync",
+                subTitle: "<b>Purchase Unlimited to access! Or log in here<b>",
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>Cancel</b>',
+                        type: 'button-light',
+                        onTap: function (e) {
+                            action = '3';
+                        }
+
+                    },
+                    {
+                        text: '<b>Log in</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+                            action = '2';
+                        }
+
+                    },
+                    {
+                        text: '<b>Register</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+                            action = '4';
+                        }
+
+                    }
+
+                ]
+            });
+        }
+        confirmPopup.then(function (res) {
+            if(action === '1'){
+                if(window.cordova) {
+                    //if ((window.device && device.platform === "iOS") && window.storekit) {
+                    $rootScope.IAP.buy('unl');
+                    //}
+                }
+            }
+            if(action === '2'){
+                $scope.logIn();
+            }
+            if(action === '4'){
+                $scope.register();
+            }
+        });
+    };
+
+    $scope.register = function () {
+        var confirmPopup = $ionicPopup.show({
+            templateUrl:'pop/pop-register.html',
+            scope: $scope,
+            title:'Register',
+            subTitle:'Create your account to sync your data to the cloud and get access to our web client. The cloud icon will disappear and your data will be synced automatically',
+            buttons: [
+                {text: 'Later'},
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        parseFactory.register($scope.userData)
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            $scope.closeKeyboard();
+        });
+    }
+
+    $scope.logIn = function () {
+        var confirmPopup = $ionicPopup.show({
+            templateUrl:'pop/pop-signin.html',
+            scope: $scope,
+            title:'Log In',
+            subTitle:'Enter your username and password here to load your profile',
+            buttons: [
+                {text: 'Cancel'},
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        parseFactory.logIn($scope.userData)
+
+                    }
+
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+
+        });
+    }
 
     $scope.clearLifts = function () {
         if($scope.removeFlag){
@@ -806,8 +1209,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.clearLifts();
-                        $scope.liftCards = $scope.$storage.todaysLifts;
-                        $scope.$storage.tabTitle= 'Lift';
+                        $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+                        $scope.$storage.mainObj.tabTitle= 'Lift';
                         $scope.tabTitle='Lift';
                         $ionicScrollDelegate.scrollTop();
                     }
@@ -835,8 +1238,8 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.clearAll();
-                        $scope.liftCards = $scope.$storage.todaysLifts;
-                        $scope.$storage.tabTitle= 'Lift';
+                        $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+                        $scope.$storage.mainObj.tabTitle= 'Lift';
                         $scope.tabTitle='Lift';
                         $ionicScrollDelegate.scrollTop();
                     }
@@ -866,9 +1269,9 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                     type: 'button-dark',
                     onTap: function (e) {
                         localStore.clearLiftsOnly();
-                        $rootScope.$storage.cleared = true;
-                        $scope.liftCards = $scope.$storage.todaysLifts;
-                        $scope.$storage.tabTitle= 'Lift';
+                        $rootScope.$storage.mainObj.cleared = true;
+                        $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+                        $scope.$storage.mainObj.tabTitle= 'Lift';
                         $scope.tabTitle='Lift';
                         $ionicScrollDelegate.scrollTop();
                     }
@@ -915,7 +1318,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
     //goal modal
     $scope.updateGoals = function () {
         localStore.updateGoals($scope.goalMapEdit);
-        $scope.goalMap = $scope.$storage.goalsMap;
+        $scope.goalMap = $scope.$storage.mainObj.goalsMap;
         $scope.closeModal('none', 0, 4);
     }
 
@@ -1002,14 +1405,14 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             if (window.cordova) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
-            $scope.$storage.selectedLiftNames = [];
+            $scope.$storage.mainObj.selectedLiftNames = [];
             angular.forEach($scope.liftCards, function (lift, index) {
                 if (lift.name) {
-                    $scope.$storage.selectedLiftNames.push(lift.name);
+                    $scope.$storage.mainObj.selectedLiftNames.push(lift.name);
                 }
             });
             $timeout(openModalDelay(), 0);
-            $scope.$storage.editingLift = {'name': name, 'index': index};
+            $scope.$storage.mainObj.editingLift = {'name': name, 'index': index};
             $timeout(function(){
                 $scope.loading = false;
             },100);
@@ -1017,10 +1420,12 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
         else if (id == 2) {//weight?
             $scope.blurFlag = true;
             //$localStorage.editingLift= {'name':name,'index':index};
-            $scope.nameLift = name;
+            //console.log($rootScope.nameLift);
+            $rootScope.namelift = name;
             $scope.indexLift = index;
 
-            angular.forEach($scope.$storage.liftData, function (key, val) {
+
+            angular.forEach($scope.$storage.mainObj.liftData, function (key, val) {
                 if (key.name == name) {
                     $scope.weightRack = key.weight;
                 }
@@ -1038,6 +1443,9 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             else {
                 $scope.selectNumber(childIndex, 1);
             }
+            $scope.kgMap = localStore.buildKgMap();
+
+            console.log('kgmap',$scope.kgMap);
             $scope.modal2.show();
             //cordova.plugins.Keyboard.disableScroll(true);
         }
@@ -1055,7 +1463,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                 return
             }
             $scope.blurFlag = true;
-            $scope.nameLift = name;
+            $rootScope.namelift = name;
             $scope.indexLift = index;
             $scope.focusIndex = childIndex;
             $scope.goalMapEdit = angular.copy($scope.goalMap);
@@ -1063,30 +1471,44 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                 return Number(set2.reps)
             });
             $scope.selectGoal(0);
-            angular.forEach($scope.$storage.liftData, function (key, val) {
+            angular.forEach($scope.$storage.mainObj.liftData, function (key, val) {
                 if (key.name == name) {
                     $scope.weightRack = key.weight;
                 }
             });
             angular.forEach($scope.sets2, function (set2, ind) {
-                if (!$scope.goalMapEdit[$scope.nameLift + set2.reps]) {
-                    $scope.goalMapEdit[$scope.nameLift + set2.reps] = {wt: 0};
+                if (!$scope.goalMapEdit[$rootScope.namelift + set2.reps]) {
+                    $scope.goalMapEdit[$rootScope.namelift + set2.reps] = {wt: 0};
                     $scope.rangeMap[ind] = 0;
                 } else {
-                    $scope.rangeMap[ind] = $scope.goalMapEdit[$scope.nameLift + set2.reps].wt;
+                    $scope.rangeMap[ind] = $scope.goalMapEdit[$rootScope.namelift + set2.reps].wt;
                 }
             });
             $scope.modal4.show();
         }
         else {
-            console.log('go',$scope.$storage.tabTitle,$scope.workoutName.name);
+            console.log('go',$scope.$storage.mainObj.tabTitle,$scope.workoutName.name);
             if($scope.tabTitle != "Lift"){
-                $scope.workoutName.name = angular.copy($scope.$storage.tabTitle);
+                $scope.workoutName.name = angular.copy($scope.$storage.mainObj.tabTitle);
             }
             $scope.blurFlag = true;
             $scope.modal5.show()
 
         }
+    };
+
+    $scope.$on('lift-settings-change',function(event,args){
+        console.log('stap up')
+        $scope.bootStrapWeightModal(args.name)
+    });
+
+    $scope.bootStrapWeightModal = function(name){
+        angular.forEach($scope.$storage.mainObj.liftData, function (key, val) {
+            if (key.name == name) {
+                $scope.weightRack = key.weight;
+            }
+        });
+        $scope.kgMap = localStore.buildKgMap();
     };
 
     $scope.$on('modal.hidden', function () {
@@ -1100,17 +1522,17 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                 //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
             if (newLift == "no change") {
-                if ($scope.liftCards[$scope.$storage.editingLift.index].name == "Select Lift") {
+                if ($scope.liftCards[$scope.$storage.mainObj.editingLift.index].name == "Select Lift") {
                     $scope.liftName = "Select Lift";
                 }
             }
             if (newLift != 'no change') {
-                $scope.liftCards[$scope.$storage.editingLift.index].name = newLift.name;
-                $scope.$storage.lightHeavyMap[newLift.name] = newLift.weight;
+                $scope.liftCards[$scope.$storage.mainObj.editingLift.index].name = newLift.name;
+                $scope.$storage.mainObj.lightHeavyMap[newLift.name] = newLift.weight;
                 //console.log($scope.lightHeavyMap);
             }
             localStore.buildKgMap();
-            $scope.kgMap = $scope.$storage.kgMap
+            $scope.kgMap = $scope.$storage.mainObj.kgMap
             $timeout(function () {
                 $scope.$broadcast('reset-liftselect');
                 //flag for force redraw
@@ -1128,18 +1550,17 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
 
         }
         else {//confirm
-            if (newLift == 1) { //TODO make sure date isn't today
-                if(!localStore.checkDate($scope.liftDate)){
-
-                localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);
-                $scope.resultsLifts = $scope.liftCards;
-                $scope.liftCards = $scope.$storage.todaysLifts;
-                $scope.uniqueSortReps();
-                $scope.openModal('', '', '', '3');
-                $scope.workoutName.name ='';
-                $scope.notes.notes = '';
-                $scope.bodyWeight.wt = '';
-                $state.go('tab.calendar')//TODO reset filter etc so that it's showing via broadcast or emit
+            if (newLift == 1) { //TODO add lift check
+                if(true){//!localStore.checkDate($scope.liftDate
+                    localStore.saveLift($scope.liftDate, $scope.liftCards, $scope.workoutName, $scope.bodyWeight, $scope.notes);
+                    $scope.resultsLifts = $scope.liftCards;
+                    $scope.liftCards = $scope.$storage.mainObj.todaysLifts;
+                    $scope.uniqueSortReps();
+                    $scope.openModal('', '', '', '3');
+                    $scope.workoutName.name ='';
+                    $scope.notes.notes = '';
+                    $scope.bodyWeight.wt = '';
+                    $state.go('tab.calendar')//TODO reset filter etc so that it's showing via broadcast or emit
                     $scope.tabTitle = "Lift"
                 }else {
                     $scope.dateErrorPop();
@@ -1185,7 +1606,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                         {
                             text: '<b>Ok</b>',
                             type: 'button-dark'
-                            
+
                         }
                     ]
                 });
@@ -1204,7 +1625,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
                             text: '<b>Ok</b>',
                             type: 'button-dark',
                             onTap: function (e) {
-                                $scope.$storage.updating = true;
+                                $scope.$storage.mainObj.updating = true;
                                 $rootScope.doUpdate();
                             }
                         }
@@ -1228,7 +1649,7 @@ app.controller('liftcontrol', ["$scope", "$ionicModal", "$localStorage", "$rootS
             $ionicDeploy.extract().then(function() {
                 // called when the extraction completes succesfully
                 alert('extracted')
-                $scope.$storage.updated = true;
+                $scope.$storage.mainObj.updated = true;
                 $scope.updated = true;
             }, function(error) {
                 alert('error')

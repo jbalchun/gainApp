@@ -1,17 +1,59 @@
 var app = angular.module('MyApp.weightcontrol', ['ionic']);
 
-app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
+app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope,localStore) {
 
     $scope.removeFlag = false;
     //console.log("weightxx" + $scope.indexLift);
     $scope.kgLookup = function (nameLift) {
-    }
+    };
 
     $scope.remove = function () {
         if ($scope.sets2.length > 1) {
-            $scope.removeFlag = !$scope.removeFlag
+            $scope.removeFlag = !$scope.removeFlag;
         }
-    }
+    };
+
+    //had to copy paste this code.. didn't feel like fighting dupe issue.
+    $scope.openSettings = function(){
+
+        $scope.liftForSettingsChange = name;
+        $scope.liftObjectForSettingsChange = localStore.getLiftByName($rootScope.namelift);
+        console.log($scope.liftObjectForSettingsChange );
+        var confirmPopup = $ionicPopup.show({
+            templateUrl: 'pop/pop-liftset.html',
+            title: 'Settings for lift',
+            scope: $scope,
+            buttons: [
+                {
+                    text: '<b >Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        $scope.preventFlag = true;
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            $rootScope.$broadcast('lift-settings-change',{name:name});
+        });
+
+    };
+    $scope.changeSort = function (index, index2) {
+        if (index != 4) {//if we aren't selecting the weight Rack
+            console.log('reverted',$scope.liftObjectForSettingsChange['attr' + String(index)],index2);
+
+            if($scope.liftObjectForSettingsChange['attr' + String(index)] == index2){
+                $scope.liftObjectForSettingsChange['attr' + String(index)] = '.';
+                console.log('revebrted',$scope.liftObjectForSettingsChange.attr1 == '1');
+                return;
+            }
+            $scope.liftObjectForSettingsChange['attr' + String(index)] = index2;
+        } else {
+            $scope.liftObjectForSettingsChange['weight'] = index2;
+        }
+    };
+
+
 
     $scope.showInfo = function () {
         $scope.infoFlag = 6;
@@ -77,6 +119,7 @@ app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
     $scope.removeSet = function ($index) {
         if ($scope.removeFlag) {
             $scope.sets2.splice($index, 1);
+            $scope.removeFlag = false;
         }
     }
 
@@ -88,7 +131,7 @@ app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
     $scope.showInfo = function () {
         if ($rootScope.stateW == 'heroku') {
             var datenew = new Date()
-            winston.log('info', $scope.$storage.userId + ", viewed liftselect info")
+            winston.log('info', $scope.$storage.mainObj.userId + ", viewed liftselect info")
         }
         $scope.infoFlag = 6;
         var confirmPopup = $ionicPopup.show({
@@ -113,7 +156,7 @@ app.controller('weightcontrol', function ($scope, $ionicPopup, $rootScope) {
             ////console.log('Tapped!', res);
             if ($rootScope.stateW == 'heroku') {
                 var dateDiff = new Date() - datenew
-                winston.log('info', $scope.$storage.userId + ", closed liftselect after" + dateDiff)
+                winston.log('info', $scope.$storage.mainObj.userId + ", closed liftselect after" + dateDiff)
             }
         });
 

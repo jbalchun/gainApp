@@ -199,6 +199,9 @@ body {
     padding: 4px !important;
 }
 
+
+
+
 .month-divider {
     background-color: #444444;
     color:#ffffff;
@@ -267,14 +270,17 @@ input[type="tel"].setInput {
     margin:0;
     width:5px;
 }
+
 .lift-select-scroll{
     height:22em;
 }
+
 .bigGoal {
-    font-size: 1.7em;
+    font-size: 1.4em;
     padding: 0px;
     margin: 0px;
 }
+
 .button.liftSearchButtonSmall  {
     font-size: 1em ;
     padding-left: 1px;
@@ -295,11 +301,11 @@ input[type="tel"].setInput {
     height: 15%;
 }
 
-.popup-buttons.button:last-child {
-    border-color: #111;
-    background-color: #444;
-    color: #fff;
-}
+/*.popup-buttons.button:last-child {*/
+    /*border-color: #111;*/
+    /*background-color: #444;*/
+    /*color: #fff;*/
+/*}*/
 
 .button.liftNameButton{
     font-size: 13px;
@@ -329,8 +335,8 @@ input[type="tel"].setInput {
 /*.button:last-child*/
 /*.button:first-child*/
 .popup-buttons .button:last-child{
-    background-color: #444444;
-    border-color:#444444;
+    /*background-color: #444444;*/
+    /*border-color:#444444;*/
 }
 
 .searchIcon{
@@ -933,9 +939,36 @@ div.spinner-chart {
     display: none !important; }
 
 
+.kg-plate{
+    min-width: 35px !important;
+    margin-left:0px !important;
+    font-size: 1em !important;
+
+}
+.kg-plate-div{
+    float: left !important;
+}
+.kg-plate-mid{
+    font-size: 1.2em !important;
+    min-width: 70px !important;
+    padding-left: 4px;
+    padding-right: 4px;
+
+}
+
+.kg-top{
+    border-bottom:2px !important;
+    border-bottom-color: black !important;
+}
+
+.kg-shift{
+    margin-left:3% !important;
+}
 
 
-
+.popup-sub-title {
+font-size:1em !important;
+}
 /*::-webkit-input-placeholder {*/
 /*color: red;*/
 /*}*/
@@ -948,4 +981,41 @@ div.spinner-chart {
 /*height: 30%;*/
 
 /*}*/
+
+
+/*6PLUS*/
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px)
+and (device-width : 414px)
+and (device-height : 736px)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio : 3)
+and (-webkit-device-pixel-ratio : 3)
+{
+
+.timer-large-col{
+margin-left:23% !important;
+}
+.sixplus-shift{
+margin-left:5% !important;
+}
+.kg-shift{
+    margin-left:7% !important;
+}
+
+}
+/* iphone5 importants*/
+@media screen and (device-aspect-ratio: 40/71) {
+
+    .kg-plate.button.plusMinusGoal{
+        min-width: 25px !important;
+        margin-left:0px !important;
+        font-size: .8em !important;
+        width:28px !important;
+
+    }
+}
+
+
 

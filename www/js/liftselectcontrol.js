@@ -5,7 +5,7 @@ var app = angular.module('MyApp.liftselectcontrol', ['MyApp.services', 'ngStorag
 app.controller('liftselectcontrol',
     ["$scope", "$ionicScrollDelegate", "$ionicPlatform", "$localStorage", "$timeout", "localStore", "$ionicPopup", "$rootScope","$ionicModal", function ($scope, $ionicScrollDelegate, $ionicPlatform, $localStorage,$timeout, localStore, $ionicPopup, $rootScope,$ionicModal) {
 
-        $scope.liftData = $localStorage.liftData;
+        $scope.liftData = $localStorage.mainObj.liftData;
         $scope.matchedLifts = [];
         $scope.attr1Pressed = '.';
         $scope.attr2Pressed = '.';
@@ -39,6 +39,15 @@ app.controller('liftselectcontrol',
             document.activeElement.blur();
         };
 
+        $scope.$on('cloud-load',function(){
+            $scope.liftData = $localStorage.mainObj.liftData;
+        });
+
+        $scope.$on('open-lift-settings',function(event, args){
+            console.log(args);
+            $scope.editSettings(args.name);
+        });
+
         $scope.showInfo = function () {
             if ($rootScope.stateW == 'heroku') {
 
@@ -66,7 +75,7 @@ app.controller('liftselectcontrol',
                 ////console.log('Tapped!', res);
                 if ($rootScope.stateW == 'heroku') {
                     var dateDiff = new Date() - datenew
-                    winston.log('info', $scope.$storage.userId + ", closed liftselect after" + dateDiff)
+                    //winston.log('info', $scope.$storage.userId + ", closed liftselect after" + dateDiff)
                 }
             });
 
@@ -120,6 +129,7 @@ app.controller('liftselectcontrol',
         }).then(function (modal) {
             $scope.modal = modal;
         });
+
         $scope.editSettings = function (name) {
                 $scope.liftForSettingsChange = name;
                 $scope.liftObjectForSettingsChange = localStore.getLiftByName(name);
@@ -139,7 +149,7 @@ app.controller('liftselectcontrol',
                     ]
                 });
                 confirmPopup.then(function (res) {
-
+                    $rootScope.$broadcast('lift-settings-change',{name:name});
                 });
         };
 
@@ -258,6 +268,8 @@ app.controller('liftselectcontrol',
         $scope.$on('edit-settings',function(event,args){
             console.log('asdf4');
             console.log('asdf5');
+            $scope.countPop++;
+            console.log('thencount',$scope.countPop);
             $scope.editSettings(args.name);
             $scope.newLiftName.name = '';
 
@@ -292,7 +304,7 @@ app.controller('liftselectcontrol',
 
         $scope.addLiftPopup = function () {
             //console.log("trying ");
-             $scope.addLiftPopup = $ionicPopup.show({
+             var addLiftPopup = $ionicPopup.show({
                 template: '<form><div><input ng-enter="closeKeyboard()" ng-readonly="!hideFlag" type="text" ng-model="newLiftName.name" maxlength="30"/></div></form>',
                 title: 'Enter new lift name',
                 subTitle: "Press 'View Added' Button to filter to your added lifts",
@@ -304,7 +316,7 @@ app.controller('liftselectcontrol',
                             $scope.hideFlag = false;
                             e.preventDefault();
                             $timeout(function() {//this was to prevent the keyboard from opening when this popup closed. WEIRD
-                                $scope.addLiftPopup.close();
+                                addLiftPopup.close();
                             }, 300);
                             $timeout(function() {
                                 $scope.hideFlag = true;
@@ -315,12 +327,16 @@ app.controller('liftselectcontrol',
                         text: '<b>Add</b>',
                         type: 'button-dark',
                         onTap: function (e) {
+                            $scope.$storage.mainObj.addCount++;
+                            console.log('counter',$scope.$storage.mainObj.addCount);
                             $scope.cancelFlag = false;
                         }
                     }
                 ]
             });
             addLiftPopup.then(function (res) {//TODO, consolidate to one popup, with ng-if? Modal? nasty bug
+                $scope.countPop = 0;
+
                 if(!$scope.cancelFlag){
                     $scope.addLiftFlag = !$scope.addLiftFlag;
                     $scope.addLiftFlag = !$scope.addLiftFlag;
@@ -331,7 +347,7 @@ app.controller('liftselectcontrol',
                     } else {
                         localStore.addLiftToList($scope.newLiftName.name);
                         // TODO get this to work properly
-                        $scope.liftData = $localStorage.liftData;
+                        $scope.liftData = $localStorage.mainObj.liftData;
                         $scope.filterCustom(true);
                         $scope.hideFlag = false;
                         //res.preventDefault();
@@ -339,8 +355,10 @@ app.controller('liftselectcontrol',
                         $scope.loading = true; // redraw list becasue lifts aren't showing after added
                         $timeout(function () {//this was to prevent the keyboard from opening when this popup closed. WEIRD
                             addLiftPopup.close();
-                            console.log('asdf3')
-                            $rootScope.$broadcast('edit-settings', {name: angular.copy($scope.newLiftName.name)});
+                            console.log('asdf3');
+                            $scope.editSettings(angular.copy($scope.newLiftName.name));
+                            $scope.newLiftName.name = '';
+                            //$rootScope.$broadcast('edit-settings', {name: angular.copy($scope.newLiftName.name)});
                             $rootScope.closeKeyboard();
                         }, 300);
                         $timeout(function () {

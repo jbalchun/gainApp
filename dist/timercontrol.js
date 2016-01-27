@@ -6,25 +6,27 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
     $scope.rangeSec = {sec:30};
     $scope.startStopFlag = true;
     $scope.timerClear = true;
-    $scope.infoFlag = 4;
     $scope.loopFlag = false;
     $scope.startedAt = '';
     $scope.count = 0;
     $scope.currentLoops = 0;
     var N = 11;
+
+
     $scope.selectedCycle = localStore.getSelectedCycle();
     //$scope.cycles = Array.apply(null, new Array(N)).map((_,i) => i); ECMA 6
     $scope.cycles = Array.apply(null, {length: N}).map(Number.call, Number);
-
         $scope.$on( "$ionicView.beforeEnter", function( scopes, states ) {
         if (!states.fromCache && states.stateName == "tab.timer") {
             console.log('entering timer');
+            $scope.timerPreset(30,1);
             var startTime = localStore.getStartTime();
             var timerMilli = localStore.getMillisecondsFromMinSec();
             //if the timer was running when we left
             //console.log('timermilli', timerMilli,'starttime',startTime);
             $scope.rangeMin = {min:1};
             $scope.rangeSec = {sec:30};
+
             if(startTime !== 0) {
                 var currentTime = new Date();
                 var timeDifference = currentTime - startTime;
@@ -51,8 +53,11 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
         console.log('resuming');
         var startTime = localStore.getStartTime();
         var timerMilli = localStore.getMillisecondsFromMinSec();
-            var currentTime = new Date();
-            var timeDifference = currentTime - startTime;
+        var currentTime = new Date();
+        var timeDifference = currentTime - startTime;
+        console.log('timediff',timeDifference,'curtime',currentTime,'starttime',startTime,'mil',timerMilli);
+
+        if(!$scope.startStopFlag){
             if (timeDifference < timerMilli) {
                 console.log('timer set to negative');
                 var minSecDif = milliToMinSec(timerMilli - timeDifference);
@@ -68,6 +73,7 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
                 $scope.startStopFlag = !$scope.startStopFlag;
                 $scope.$broadcast('timer-reset');
             }
+        }
 
         });
 
@@ -96,10 +102,9 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
 
     };
 
-    var showInfo = function(){
-        if ($rootScope.stateW =='heroku') {
+    $scope.showInfo = function(){
 
-        }
+        $scope.infoFlag = 4;
         var confirmPopup = $ionicPopup.show({
             title: 'Timer',
             //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
@@ -125,6 +130,31 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
             //console.log('Tapped!', res);
         });
 
+    };
+
+    $scope.timerSettings = function(){
+        $scope.infoFlag = 4;
+        var confirmPopup = $ionicPopup.show({
+            title: 'Timer Settings',
+            //subTitle: "Click 'Select Lift' to choose your movement" + "\n"
+            //+ "Click 'Add Weight' to select reps and weight" + "\n"
+            //+ " Use the clock to see your history" + "\n" + "\n"
+            //+ " Plus and minus add/remove sets and lifts, check button to complete the workout ",
+            scope: $scope,
+            templateUrl:'pop/pop-timerset.html',
+            buttons: [
+                {
+                    text: '<b>Done</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+
+                    }
+                }
+            ]
+        });
+        confirmPopup.then(function (res) {
+            //console.log('Tapped!', res);
+        });
     };
     //
     //$ionicPopover.fromTemplateUrl('pop/pop-time.html', {
@@ -307,7 +337,7 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
                 localStore.setStartTime($scope.rangeMin.min,$scope.rangeSec.sec);
                 var now = new Date().getTime(),
                     timeUp  = new Date(now +$scope.seconds*1000+$scope.minutes*60*1000);
-                console.log('loo',$scope.loopFlag)
+                console.log('loo',$scope.loopFlag);
                 if(window.cordova){
                     if(!$scope.loopFlag){
                         console.log('booking');
@@ -410,18 +440,25 @@ app.controller('timercontrol', ["$scope", "$ionicPopup", "$cordovaMedia", "$time
 
     $scope.finished = function(){
         //TODO local notification, works outside of app.
-
         console.log('finished');
         $scope.startStopFlag = true;
         localStore.resetStartTime();
         $scope.$broadcast('timer-reset');
-        if(window.cordova){
+        console.log( 's',$scope.$storage.mainObj.sound)
+        if(window.cordova && $scope.$storage.mainObj.sound){
             play('audio/chime (2).mp3');
         }
         if(!$scope.loopFlag){
             $timeout(function () {
                 $scope.alertPopup = $ionicPopup.alert({
-                    title: 'Times up!'
+                    title: 'Times up!',
+                    buttons:[{
+                        text: '<b >Done</b>',
+                        type: 'button-dark',
+                        onTap: function (e) {
+
+                        }
+                    }]
                 });
 
             }, 30);

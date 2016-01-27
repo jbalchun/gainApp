@@ -42,7 +42,10 @@
     "cordova-plugin-media",
     "ionic-plugin-deploy",
     "ionic-plugin-keyboard",
-    "https://github.com/Telerik-Verified-Plugins/InAppPurchase"
+    "https://github.com/Telerik-Verified-Plugins/InAppPurchase",
+    "cc.fovea.cordova.purchase",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-3dtouch"
   ],
   "cordovaPlatforms": [
     "android",

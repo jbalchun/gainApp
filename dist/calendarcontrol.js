@@ -2,7 +2,7 @@
 
 var app = angular.module('MyApp.calendarcontrol', ['ionic', 'MyApp.services', 'ngStorage']);
 
-app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicScrollDelegate", "$rootScope", "$localStorage", "$state", "localStore", "$ionicPopup", "$ionicPopover", function ($scope, $ionicModal, $timeout, $ionicScrollDelegate, $rootScope, $localStorage, $state, localStore, $ionicPopup, $ionicPopover) {
+app.controller('calendarcontrol', ["$scope", "$ionicModal", "parseFactory", "$timeout", "$ionicScrollDelegate", "$rootScope", "$localStorage", "$state", "localStore", "$ionicPopup", "$ionicPopover", function ($scope, $ionicModal,parseFactory, $timeout, $ionicScrollDelegate, $rootScope, $localStorage, $state, localStore, $ionicPopup, $ionicPopover) {
 
     $scope.dateObj = {'Year': 'Year', 'Month': 'Month', 'Day': 'Day'};
     $scope.nameFilter = "Name";
@@ -22,18 +22,18 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         console.log('clearcal');
         $scope.refreshCal();
     });
-
-    $scope.refreshCal = function() {
-                if ((!states.fromCache && states.stateName == "tab.calendar" )|| $rootScope.clearCal) {
+    $scope.refreshCal = function(states) {
+        $timeout(
+            function () {
                     $scope.loading = false;
                     $scope.$storage = $localStorage;
-                    $scope.workouts = $scope.$storage.workouts;
-                    $scope.filterList = angular.copy($scope.$storage.workouts);
+                    $scope.workouts = $scope.$storage.mainObj.workouts;
+                    $scope.filterList = angular.copy($scope.$storage.mainObj.workouts);
                     $scope.searchQuery = '';
                     $scope.dateType = '';
                     $scope.today = new Date();
                     $scope.$storage = $localStorage;
-                    $scope.nameList = $scope.$storage.nameList;
+                    $scope.nameList = $scope.$storage.mainObj.nameList;
                     $scope.monthMap = {
                         'Jan': 1,
                         'Feb': 2,
@@ -52,15 +52,22 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
                     $scope.infoFlag = 2;
 
                     //$ionicLoading.hide();
-                }
+
+            }, 100);
     };
 
     $scope.$on('$ionicView.afterEnter',function(scopes, states){
-        $scope.refreshCal();
+        if ((!states.fromCache && states.stateName == "tab.calendar" )|| $rootScope.clearCal) {
+            $scope.refreshCal();
+        }
+        if(states.stateName == "tab.calendar" && $scope.$storage.mainObj.justLoaded === true){
+            $scope.clearAll();
+            $rootScope.$storage.mainObj.justLoaded = false;
+        }
     });
 
     $scope.$on('calRefresh', function () {
-        $scope.filterList = angular.copy($scope.$storage.workouts);
+        $scope.filterList = angular.copy($scope.$storage.mainObj.workouts);
 
     });
     $scope.toggleGroup = function (group) {
@@ -104,22 +111,37 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
 
         });
         return resultFlag;
-    }
+    };
 
     $scope.removeWorkout = function (workout) {
+        $scope.trashFlag = false;
         var confirmPopup = $ionicPopup.confirm({
-            title: 'Remove this workout permanently?'
+            title: 'Remove this workout permanently?',
+            buttons: [
+                {
+                    text: '<b>Cancel</b>',
+                    type: 'button-light',
+                    onTap: function (e) {
+
+
+                    }
+                },
+                {
+                    text: '<b>Ok</b>',
+                    type: 'button-dark',
+                    onTap: function (e) {
+                        $scope.trashFlag = true;
+
+                    }
+                }
+            ]
         });
         confirmPopup.then(function (res) {
-            if (res) {
+            if($scope.trashFlag){
                 localStore.removeWorkout(workout);
-
-                $scope.filterList = angular.copy($scope.$storage.workouts);
+                $scope.filterList = angular.copy($scope.$storage.mainObj.workouts);
                 $scope.clearAll();
-                $scope.nameList = angular.copy($scope.$storage.nameList);
-
-            } else {
-
+                $scope.nameList = angular.copy($scope.$storage.mainObj.nameList);
             }
         });
     };
@@ -142,7 +164,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         },3);
         if ($rootScope.stateW == 'heroku') {
             var datenew = new Date()
-            winston.log('info', $scope.$storage.userId + ", viewed calendar info");
+            winston.log('info', $scope.$storage.mainObj.userId + ", viewed calendar info");
         }
         var confirmPopup = $ionicPopup.show({
             title: 'Calendar',
@@ -167,7 +189,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
             ////console.log('Tapped!', res);
             if (!window.cordova) {
                 var dateDiff = new Date() - datenew
-                winston.log('info', $scope.$storage.userId + ", closed calendar after" + dateDiff);
+                winston.log('info', $scope.$storage.mainObj.userId + ", closed calendar after" + dateDiff);
             }
         });
 
@@ -190,11 +212,15 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
         $scope.popover.show($event);
     };
 
+    $scope.$on('cloud-load',function(){
+       $scope.clearAll;
+    });
+
     $scope.clearAll = function () {
         $scope.dateObj = {'Year': 'Year', 'Month': 'Month', 'Day': 'Day'};
         $scope.nameFilter = "Name";
         $scope.liftName = "Lift";
-        $scope.filterList = angular.copy($scope.$storage.workouts);
+        $scope.filterList = angular.copy($scope.$storage.mainObj.workouts);
         $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
     };
 
@@ -202,7 +228,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
     $scope.namePopup = function ($event) {
         document.body.classList.add('platform-ios');
         //console.log('nml', $scope.nameList)
-        $scope.nameList = $scope.$storage.nameList;
+        $scope.nameList = $scope.$storage.mainObj.nameList;
         _.uniq($scope.nameList, false);
         var nameArray = []
         angular.forEach($scope.nameList, function (val, key) {
@@ -277,7 +303,7 @@ app.controller('calendarcontrol', ["$scope", "$ionicModal", "$timeout", "$ionicS
 
         var noneFlag = 1;
         if ((!nameFlag && !monthFlag && !yearFlag && !dayFlag && !liftFlag) || clearFlag == 'clear') {
-            $scope.filterList = angular.copy($scope.$storage.workouts);
+            $scope.filterList = angular.copy($scope.$storage.mainObj.workouts);
             $ionicScrollDelegate.$getByHandle('mainScroll').scrollTop();
         }
 

@@ -7,11 +7,15 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
+        <button class="button button-clear icon ion-gear-a " style='font-size: .8em' ng-click="timerSettings()">
+
+        </button>
+        
         <button class="button button-balanced " ng-if= "stateW == 'heroku'" style='font-size: 1.2em' ng-click="emailPop()">
             Like it?
         </button>
 
-        <button class="button button-assertive iap-button" ng-if="!$storage.unlocked"
+        <button class="button button-assertive iap-button" ng-if="!$storage.mainObj.unlocked"
                 ng-click="iapPop()">
             {{iapButton}}
         </button>
@@ -43,7 +47,7 @@
 
             <ion-item>
                 <div class="range">
-                    <button class="button-icon ion-minus-round timerMinus" ng-click="downOneMin()"></button>
+                    <button class="button-icon ion-minus-round timerMinus" style="display:block;"  ng-click="downOneMin()"></button>
                     <input type="range" ng-model="rangeMin.min" ng-readonly="!startStopFlag"  min="0" max="30" on-release="onRelease()" />
                     <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()"  />-->
 
@@ -51,7 +55,7 @@
                 </div>
 
             <div class="range">
-                <button class="button-icon ion-minus-round timerMinus" ng-click="downOneSec()"></button>
+                <button style="display:block;" class="button-icon ion-minus-round timerMinus" ng-click="downOneSec()"></button>
                 <input type="range" ng-model="rangeSec.sec" ng-readonly="!startStopFlag"  min="0" max="59" on-release="onRelease()" />
                 <!--<input type="range" ng-model="rangeSec"  min="0" max="59" on-release="onRelease()" ng-if="!startStopFlag" disabled/>-->
                 <button class="button-icon ion-plus-round timerPlus" ng-click="upOneSec()"></button>

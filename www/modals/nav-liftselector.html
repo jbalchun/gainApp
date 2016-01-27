@@ -31,10 +31,10 @@
                         <div class="spinner" ng-if="loading" style="height: 100%">
                             <ion-spinner class="ios"></ion-spinner>
                         </div>
-                        <ion-list ng-if="!loading" show-delete="removeFlag">
-                            <ion-item class="item-stable item-remove-animate lift-list"
+                        <ion-list ng-if="!loading" show-delete="removeFlag" >
+                            <ion-item class="item-stable item item-remove-animate lift-list"
                                       ng-class="{active : isSelected(lift)}"
-                                      collection-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText "
+                                      collection-repeat="lift in liftData |customFilter:custom| liftFilter:this |filter: searchText | chartLiftFilter: this"
                                       item-height = "34px"
                                       item-width = "100%"
                                       ng-show="!custom ||(custom && lift.custom == true)">

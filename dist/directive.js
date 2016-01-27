@@ -42,21 +42,28 @@ app.filter('customFilter', function() {
     };
 });
 
-app.filter('chartLiftFilter', function() {
+app.filter('chartLiftFilter', ['$rootScope','$state',function($rootScope,$state) {
     return function(input, scope) {
         var out = [];
         // $scope.$watch(scope.searchText)
+        //console.log('in the filter1',$state);
         if(input) {
-            for (var i = 0; i < input.length; i++) {
-                if(scope.$storage.nameList[input]){
-                    out.push(input[i]);
+            //console.log('dir',scope.view, scope.$storage.liftMap);
+            if ($state.current.name === 'tab.charts') {
+                //console.log('in the filter')
+                for (var i = 0; i < input.length; i++) {
+                    //console.log('dir2',scope.view,input[i], scope.$storage.liftMap[input[i]]);
+                    if(scope.$storage.mainObj.liftMap[input[i].name]){
+                        out.push(input[i]);
+                    }
                 }
+            }else{
+                return input
             }
         }
         return out;
     };
-});
-
+}]);
 
 
 
@@ -125,6 +132,9 @@ app.directive('ngEnter', function() {
         });
     };
 });
+
+
+
 
 app.controller('accordionCtrl',["$scope", function($scope){
     $scope.groups = [];

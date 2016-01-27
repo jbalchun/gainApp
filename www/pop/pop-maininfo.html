@@ -1,25 +1,25 @@
 <style>.popup { width:500px; }</style>
 <div ng-if="infoFlag == 1">
-<li>Click 'Select Lift' to choose your movement </li>
-    <li>Click 'Add Weight' to select reps and weight</li>
+<li>Tap 'Select Lift' to choose your movement </li>
+    <li>Tap 'Add Weight' to select reps and weight</li>
     <li> Use the clock button to see your history</li>
     <li> Plus and minus buttons add/remove sets and lifts </li>
     <li>Check button completes the workout </li>
-    <li>Press and hold a lift card for a super-set divider  </li>
-    <li>Press and hold the trash icon to clear all app data</li>
+    <li>Swipe cards to the left to add a super-set divider</li>
+    <li>Press and hold the trash icon to clear all app data (be careful)</li>
 </div>
 
 <div ng-if="infoFlag == 2">
     <li>Combine the filters up top to search for your workouts</li>
-    <li>Click the garbage icon to delete a workout</li>
-    <li>Click the arrow icon to load the workout to the editor</li>
+    <li>Tap the garbage icon to delete a workout</li>
+    <li>Tap the arrow icon to load the workout to the editor</li>
     <li>Press the refresh button to clear all filters</li>
     <li>Only days which you have lifted will show as options</li>
 </div>
 
 <div ng-if="infoFlag == 3">
     <li>For a given lift and number of reps, the weekly max of each daily max is shown</li>
-    <li>Click the table button to see all daily max's listed</li>
+    <li>Tap the table button to see all daily max's listed</li>
     <li>Set your goals underneath the chart area</li>
     <li>Change the timeframe with the buttons below</li>
     <li>You need to lift for a few weeks to get meaningful data we can chart!</li>
@@ -28,6 +28,7 @@
 <div ng-if="infoFlag == 4">
     <li>Use the presets or the sliders to set your timer</li>
     <li>The loop button will cause the timer to reset every time it finishes its cycle</li>
+    <li>You need to enable notifications for this to work outside of the app. We won't send you anything besides timer alerts</li>
 </div>
 
 <div ng-if="infoFlag == 5">
@@ -43,7 +44,9 @@
     <li>Add your first set of reps and weight with the bottom buttons</li>
     <li>On the Weight Rack, white buttons are presets, the green and red buttons add and subtract</li>
     <li>After your first set is added, add another with the plus button, then add or subtract weight/reps</li>
+    <li>Press the center value to increment by smaller values</li>
     <li>Press and hold a bottom button when selecting reps to automatically jump to weights</li>
+    <li>Change the Weight Rack by tapping the lift rack at the top of the screen</li>
     <li>The Weight Rack is set on the lift select screen, under lift settings (gear icon)</li>
 </div>
 
